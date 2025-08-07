@@ -1,0 +1,161 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaHeart, FaRegHeart, FaShoppingBag, FaCheck, FaEye, FaEdit } from 'react-icons/fa';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { addToCart, removeFromCart } from '@/lib/features/cart/cartSlice';
+import { toggleFavorite } from '@/lib/features/favorites/favoritesSlice';
+import { Product, getProductImage, formatProductTitle } from '@/types';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+
+interface ProductCardClientProps {
+  product: Product;
+  isNew?: boolean;
+}
+
+export function ProductCardClient({ product, isNew = false }: ProductCardClientProps) {
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector(state => state.cart.items);
+  const favorites = useAppSelector(state => state.favorites.items);
+  const { data: session } = useSession();
+  const router = useRouter();
+  
+  const isFavorite = favorites.some(f => f.id === product.id);
+  const inCart = cart.some(c => c.id === product.id);
+  
+  // Проверяем, является ли пользователь админом
+  const isAdmin = session?.user?.email === 'admin@provans-decor.ru';
+
+  // Новая логика скидки
+  const discount = product.discount || 0;
+  const hasDiscount = discount > 0;
+  const discountedPrice = hasDiscount 
+    ? Math.round((product.price * (1 - discount / 100)) * 100) / 100
+    : product.price;
+
+  // Используем хелпер для получения главного изображения
+  const mainImage = getProductImage(product);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      ...product,
+      count: 1
+    }));
+  };
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCart(product.id));
+  };
+
+  const handleCartToggle = () => {
+    if (inCart) {
+      handleRemoveFromCart();
+    } else {
+      handleAddToCart();
+    }
+  };
+
+  const handleToggleFavorite = () => {
+    dispatch(toggleFavorite({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: mainImage
+    }));
+  };
+
+  return (
+    <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden h-full flex flex-col">
+      {/* Бейджи */}
+      <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
+        {isNew && (
+          <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">НОВИНКА</span>
+        )}
+        {hasDiscount && (
+          <span className="text-white bg-red-500 text-xs px-2 py-1 rounded">-{discount}%</span>
+        )}
+      </div>
+
+      {/* Кнопки в углах */}
+      <div className="absolute top-2 right-2 z-10 flex flex-col gap-2">
+        {/* Кнопка избранного */}
+        <button
+          onClick={handleToggleFavorite}
+          className="p-2 sm:p-3 rounded-full bg-white/80 hover:bg-white transition-colors cursor-pointer"
+        >
+          {isFavorite ? (
+            <FaHeart className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
+          ) : (
+            <FaRegHeart className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+          )}
+        </button>
+
+        {/* Кнопка просмотра */}
+        <Link href={`/products/${product.id}`}>
+          <button className="p-2 sm:p-3 rounded-full bg-white/80 hover:bg-white transition-colors cursor-pointer">
+            <FaEye className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500" />
+          </button>
+        </Link>
+
+        {/* Кнопка редактирования для админа */}
+        {isAdmin && (
+          <button
+            onClick={() => router.push(`/admin/products/edit/${product.id}`)}
+            className="p-2 sm:p-3 rounded-full bg-white/80 hover:bg-white transition-colors cursor-pointer"
+            title="Редактировать товар"
+          >
+            <FaEdit className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+          </button>
+        )}
+      </div>
+
+      {/* Изображение товара */}
+      <div className="relative aspect-square overflow-hidden bg-gray-100">
+        <Image
+          src={mainImage}
+          alt={product.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+        />
+      </div>
+      
+      {/* Информация о товаре */}
+      <div className="p-3 sm:p-4 flex flex-col justify-between flex-grow">
+        <div className="font-semibold text-xs sm:text-sm mb-2 text-center min-h-[2.5rem] overflow-hidden">
+          <div className="line-clamp-2">{formatProductTitle(product.title)}</div>
+        </div>
+        {hasDiscount ? (
+          <div className="flex flex-col items-center mb-2">
+            <span className="text-gray-400 text-xs sm:text-sm line-through">{product.price.toLocaleString('ru-RU')} ₽</span>
+            <span className="text-[#E5D3B3] font-bold text-sm sm:text-lg">{discountedPrice.toLocaleString('ru-RU')} ₽</span>
+          </div>
+        ) : (
+          <div className="text-black font-bold mb-2 text-center text-sm sm:text-base">{product.price.toLocaleString('ru-RU')} ₽</div>
+        )}
+      </div>
+
+      {/* Кнопка корзины */}
+      <div className="absolute bottom-2 right-2">
+        <button
+          onClick={handleCartToggle}
+          className={`p-2 sm:p-3 rounded-full transition-colors cursor-pointer ${
+            inCart 
+              ? 'bg-green-500 hover:bg-red-500 text-white' 
+              : 'bg-[#E5D3B3] hover:bg-[#D4C2A1] text-gray-800'
+          }`}
+          title={inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
+        >
+          {inCart ? <FaCheck className="w-3 h-3 sm:w-4 sm:h-4" /> : <FaShoppingBag className="w-3 h-3 sm:w-4 sm:h-4" />}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default ProductCardClient;

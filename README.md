@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏺 Прованс Декор - Интернет-магазин декора
 
-## Getting Started
+Современный интернет-магазин товаров для дома и декора, построенный на Next.js 15 с полной системой управления товарами и заказами.
 
-First, run the development server:
+## 🚀 Технологии
 
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Стилизация**: Tailwind CSS 4, Custom CSS
+- **База данных**: PostgreSQL + Prisma ORM
+- **Аутентификация**: NextAuth.js (Email/Password + OAuth)
+- **Состояние**: Redux Toolkit
+- **Изображения**: Next.js Image Optimization
+
+## �� Установка
+
+1. Клонируйте репозиторий:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/AlexQsQ/provans33.git
+cd provans33
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Установите зависимости:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Настройте переменные окружения:
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Настройте базу данных:
+```bash
+npx prisma db push
+npx prisma generate
+```
 
-## Learn More
+5. Запустите проект:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Конфигурация
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### База данных
+Создайте PostgreSQL базу данных и обновите `DATABASE_URL` в `.env.local`:
+```
+DATABASE_URL="postgresql://username:password@localhost:5432/provans"
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### NextAuth
+Настройте переменные для аутентификации:
+```
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key
+```
 
-## Deploy on Vercel
+## 📁 Структура проекта
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/                    # App Router (Next.js 15)
+│   ├── components/         # React компоненты
+│   ├── api/               # API endpoints
+│   ├── catalog/           # Страницы каталога
+│   └── admin/             # Админ панель
+├── components/            # Переиспользуемые компоненты
+├── lib/                   # Утилиты и конфигурация
+├── styles/               # CSS стили
+└── types/                # TypeScript типы
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌟 Функциональность
+
+- ✅ Каталог товаров с фильтрацией и поиском
+- ✅ Корзина и избранное
+- ✅ Система пользователей и заказов
+- ✅ Админ панель для управления товарами
+- ✅ Адаптивный дизайн
+- ✅ Оптимизация изображений
+- ✅ SEO оптимизация
+
+## 🔐 Безопасность
+
+- Хеширование паролей (bcryptjs)
+- CSRF защита
+- Валидация данных
+- Защищенные API endpoints
+
+## 📱 Адаптивность
+
+Проект полностью адаптирован для всех устройств:
+- 📱 Мобильные телефоны
+- 📱 Планшеты  
+- 💻 Десктопы
+
+## 🤝 Вклад в проект
+
+1. Форкните репозиторий
+2. Создайте ветку для новой функции
+3. Сделайте коммит изменений
+4. Отправьте Pull Request
+
+## 📄 Лицензия
+
+Этот проект использует MIT лицензию.
