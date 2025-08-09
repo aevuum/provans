@@ -1,13 +1,11 @@
-//app/layout.tsx
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "../styles/responsive.css";
-import  {Header}  from "./components/Header";
 import { Footer } from "./components/Footer";
-import { Providers } from './providers';
-import NotificationContainer from './components/NotificationContainer';
+import { Providers } from "./providers";
+import Header from "./components/Header";
+import NotificationContainer from "./components/NotificationContainer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Provans Decor | Эксклюзивный декор для дома и подарков – Ручная работа",
-  description: "Купить авторский декор для интерьера: фоторамки, вазы, зеркала, текстиль, посуда, ароматы для дома. Натуральные материалы, доставка по всей России.",
+  description:
+    "Купить авторский декор для интерьера: фоторамки, вазы, зеркала, текстиль, посуда, ароматы для дома. Натуральные материалы, доставка по всей России.",
   keywords: [
     "купить декор для дома",
     "интерьерный декор",
@@ -45,8 +44,8 @@ export const metadata: Metadata = {
     "Пасхальный декор",
     "Новогодний декор",
     "елочные игрушки",
-    "подарки для дома"
-  ]
+    "подарки для дома",
+  ],
 };
 
 export default function RootLayout({
@@ -57,12 +56,13 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
+        {/* Провайдеры приложения (NextAuth + Redux) */}
         <Providers>
           <Header />
           <main className="flex-1">{children}</main>
-          <Footer />
           <NotificationContainer />
         </Providers>
+        <Footer />
       </body>
     </html>
   );

@@ -1,11 +1,5 @@
-import CategoryPage from '@/app/components/CategoryPage';
+import { redirect } from 'next/navigation';
 
 export default function PhotoframesPage() {
-  return (
-    <CategoryPage 
-      categoryName="фоторамки"
-      displayName="Фоторамки"
-      filterType="category"
-    />
-  );
+  redirect('/catalog/frames');
 }

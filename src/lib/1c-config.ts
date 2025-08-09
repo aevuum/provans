@@ -11,6 +11,54 @@ export interface C1Config {
   timeout: number; // в миллисекундах
 }
 
+// Типы данных для интеграции с 1C
+export interface C1Product {
+  id: string;
+  title: string;
+  price: number;
+  barcode?: string;
+  images?: string[];
+  stock?: number;
+  size?: string;
+  comment?: string;
+}
+
+export interface C1OrderItem {
+  productId: string;
+  productTitle: string;
+  quantity: number;
+  price: number;
+}
+
+export interface C1Order {
+  id?: string;
+  externalId?: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone?: string;
+  customerAddress?: string;
+  items: C1OrderItem[];
+  total: number;
+  status: 'new' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  createdAt?: string;
+  notes?: string;
+}
+
+export interface C1Stock {
+  productId: string;
+  barcode?: string;
+  quantity: number;
+  reserved?: number;
+  warehouse?: string;
+  lastUpdated?: string;
+}
+
+export type C1ImportData = {
+  products?: C1Product[];
+  orders?: C1Order[];
+  stocks?: C1Stock[];
+};
+
 export interface C1SyncSettings {
   catalog: {
     enabled: boolean;
@@ -111,6 +159,26 @@ export class C1Integration {
     } catch {
       return false;
     }
+  }
+
+  // Проверка авторизации 1C
+  validateAuth(authHeader: string | null): boolean {
+    if (!authHeader) return false;
+    
+    // Проверяем API ключ из переменных окружения
+    const apiKey = process.env.NEXT_1C_API_KEY;
+    if (apiKey && authHeader === `Bearer ${apiKey}`) {
+      return true;
+    }
+
+    // Проверяем Basic Auth
+    const basicAuth = process.env.NEXT_1C_BASIC_AUTH;
+    if (basicAuth && authHeader === `Basic ${basicAuth}`) {
+      return true;
+    }
+
+    // Временная заглушка для разработки
+    return authHeader.startsWith('Bearer test') || authHeader.startsWith('Basic test');
   }
 
   // Отправка данных в 1C

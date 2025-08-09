@@ -1,28 +1,8 @@
 // app/api/1c/orders/route.ts
 // Синхронизация заказов с 1C
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
-
-interface C1OrderItem {
-  productId: string;
-  productTitle: string;
-  quantity: number;
-  price: number;
-}
-
-interface C1Order {
-  id?: string;
-  externalId?: string;
-  customerName: string;
-  customerEmail: string;
-  customerPhone?: string;
-  customerAddress?: string;
-  items: C1OrderItem[];
-  total: number;
-  status: 'new' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
-  createdAt?: string;
-  notes?: string;
-}
+import { prisma } from '@/lib/prisma';
+import { type C1Order } from '@/lib/1c-config';
 
 // Экспорт заказов в 1C (GET)
 export async function GET(request: NextRequest) {

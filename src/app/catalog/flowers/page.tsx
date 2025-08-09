@@ -7,8 +7,8 @@ export default function FlowersPage() {
     <CatalogPage
       title="Цветы"
       description="Искусственные цветы высочайшего качества в стиле Прованс. Создайте вечную красоту в вашем интерьере"
-      apiEndpoint="/api/products?category=цветы"
       category="flowers"
+      showCategoryFilter={false}
     />
   );
 }

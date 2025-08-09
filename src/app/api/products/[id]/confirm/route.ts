@@ -1,6 +1,6 @@
 // app/api/products/[id]/confirm/route.ts
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 
 export async function POST(req: Request, context: { params: Promise<{ id: string }> }) {
   const { id: idString } = await context.params;

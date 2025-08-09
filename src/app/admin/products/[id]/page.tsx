@@ -35,8 +35,8 @@ export default function AdminProductViewPage({ params }: PageProps) {
           const data = await response.json()
           setProduct(data)
         }
-      } catch (error) {
-        console.error('Error fetching product:', error)
+      } catch (_error) {
+        console.error('Error fetching product:', _error)
       } finally {
         setLoading(false)
       }
@@ -152,20 +152,6 @@ export default function AdminProductViewPage({ params }: PageProps) {
                     <div>
                       <label className="block text-sm font-medium text-gray-700">Размер</label>
                       <p className="text-lg">{product.size}</p>
-                    </div>
-                  )}
-                  
-                  {product.material && (
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">Материал</label>
-                      <p className="text-lg">{product.material}</p>
-                    </div>
-                  )}
-                  
-                  {product.country && (
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">Страна</label>
-                      <p className="text-lg">{product.country}</p>
                     </div>
                   )}
                   

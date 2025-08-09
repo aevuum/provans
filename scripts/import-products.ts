@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { parse } from 'csv-parse/sync';
-import prisma from '../src/lib/prisma';
+import { prisma } from '../src/lib/prisma';
 
 type CsvRow = {
   'Фото'?: string;

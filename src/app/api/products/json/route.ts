@@ -78,8 +78,6 @@ export async function GET(request: NextRequest) {
       images: product.image_path ? [product.image_path] : [],
       category: determineCategory(product.raw_title),
       size: extractSize(product.title),
-      material: null,
-      country: null,
       barcode: null,
       comment: null,
       isConfirmed: true,

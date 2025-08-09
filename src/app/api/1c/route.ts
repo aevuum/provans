@@ -1,50 +1,13 @@
 // app/api/1c/route.ts
 // Основной endpoint для интеграции с 1C
 import { NextRequest, NextResponse } from 'next/server';
-
-// Типы для интеграции с 1C
-interface C1Product {
-  id: string;
-  title: string;
-  price: number;
-  material?: string;
-  country?: string;
-  barcode?: string;
-  images?: string[];
-  stock?: number;
-}
-
-interface C1Order {
-  id: string;
-  customerName: string;
-  customerEmail: string;
-  customerPhone: string;
-  items: Array<{
-    productId: string;
-    quantity: number;
-    price: number;
-  }>;
-  total: number;
-  status: string;
-}
-
-interface C1Stock {
-  productId: string;
-  quantity: number;
-  reserved?: number;
-}
-
-type C1ImportData = {
-  products?: C1Product[];
-  orders?: C1Order[];
-  stocks?: C1Stock[];
-};
+import { c1Integration, type C1ImportData } from '@/lib/1c-config';
 
 export async function GET(request: NextRequest) {
   try {
     // Проверяем аутентификацию 1C (по API ключу или Basic Auth)
     const authHeader = request.headers.get('authorization');
-    if (!authHeader || !isValidAuth(authHeader)) {
+    if (!c1Integration.validateAuth(authHeader)) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
@@ -86,7 +49,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const authHeader = request.headers.get('authorization');
-    if (!authHeader || !isValidAuth(authHeader)) {
+    if (!c1Integration.validateAuth(authHeader)) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
@@ -121,15 +84,6 @@ export async function POST(request: NextRequest) {
 }
 
 // Проверка авторизации 1C
-function isValidAuth(authHeader: string): boolean {
-  // TODO: Реализовать проверку API ключа или Basic Auth
-  // Пример: const apiKey = process.env.NEXT_1C_API_KEY;
-  // return authHeader === `Bearer ${apiKey}`;
-  
-  // Временная заглушка для разработки
-  return authHeader.startsWith('Bearer ') || authHeader.startsWith('Basic ');
-}
-
 // Обработчики для разных режимов синхронизации
 async function handleCatalogSync() {
   // Экспорт каталога товаров для 1C

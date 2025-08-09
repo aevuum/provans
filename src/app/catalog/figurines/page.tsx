@@ -1,18 +1,14 @@
-import { Metadata } from 'next';
-import CatalogPage from '../../components/CatalogPage';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Фигурки - Декоративные статуэтки | Provans Decor',
-  description: 'Коллекция декоративных фигурок и статуэток в стиле прованс. Ангелы, животные, сказочные персонажи для украшения дома.',
-  keywords: 'фигурки, статуэтки, декоративные фигурки, ангелы, прованс, декор для дома',
-};
+import { CatalogPage } from '@/app/components/CatalogPage';
 
 export default function FigurinesPage() {
   return (
     <CatalogPage 
-      category="фигурки"
+      category="figures"
       title="Фигурки"
       description="Очаровательные декоративные фигурки и статуэтки, которые привнесут особую атмосферу в ваш дом. От нежных ангелочков до забавных животных - каждая фигурка рассказывает свою историю."
+      showCategoryFilter={false}
     />
   );
 }

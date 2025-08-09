@@ -8,19 +8,12 @@ import { FaUpload, FaTrash } from 'react-icons/fa'
 
 const categories = [
   { value: 'vases', label: 'Вазы' },
-  { value: 'photoframes', label: 'Фоторамки' },
-  { value: 'figures', label: 'Фигуры и статуэтки' },
-  { value: 'candle-holders', label: 'Подсвечники' },
-  { value: 'jewelry-boxes', label: 'Шкатулки' },
-  { value: 'bookends', label: 'Книгодержатели' },
+  { value: 'candlesticks', label: 'Подсвечники' },
+  { value: 'frames', label: 'Рамки' },
   { value: 'flowers', label: 'Цветы' },
-  { value: 'decor', label: 'Декор' },
-  { value: 'furniture', label: 'Мебель' },
-  { value: 'textile', label: 'Текстиль' },
-  { value: 'dishes', label: 'Посуда' },
-  { value: 'scents', label: 'Ароматы' },
-  { value: 'newyear', label: 'Новый год' },
-  { value: 'easter', label: 'Пасха' }
+  { value: 'jewelry-boxes', label: 'Шкатулки' },
+  { value: 'figurines', label: 'Фигурки' },
+  { value: 'bookends', label: 'Книгодержатели' }
 ]
 
 export default function AdminProductNewPage() {
@@ -34,8 +27,6 @@ export default function AdminProductNewPage() {
     title: '',
     price: '',
     size: '',
-    material: '',
-    country: '',
     barcode: '',
     comment: '',
     image: '',
@@ -79,8 +70,8 @@ export default function AdminProductNewPage() {
       } else {
         alert('Ошибка загрузки изображения')
       }
-    } catch (error) {
-      console.error('Error uploading image:', error)
+    } catch (_error) {
+      console.error('Error uploading image:', _error)
       alert('Ошибка загрузки изображения')
     } finally {
       setUploadingImage(false)
@@ -130,8 +121,8 @@ export default function AdminProductNewPage() {
         const error = await response.json()
         alert(error.error || 'Ошибка при создании товара')
       }
-    } catch (error) {
-      console.error('Error creating product:', error)
+    } catch (_error) {
+      console.error('Error creating product:', _error)
       alert('Ошибка при создании товара')
     } finally {
       setSaving(false)
@@ -278,32 +269,6 @@ export default function AdminProductNewPage() {
                     value={product.size}
                     onChange={(e) => setProduct(prev => ({ ...prev, size: e.target.value }))}
                     placeholder="например: 20x15x10 см"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Материал
-                  </label>
-                  <input
-                    type="text"
-                    value={product.material}
-                    onChange={(e) => setProduct(prev => ({ ...prev, material: e.target.value }))}
-                    placeholder="например: керамика, стекло"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Страна производитель
-                  </label>
-                  <input
-                    type="text"
-                    value={product.country}
-                    onChange={(e) => setProduct(prev => ({ ...prev, country: e.target.value }))}
-                    placeholder="например: Китай, Россия"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>

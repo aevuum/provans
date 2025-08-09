@@ -34,8 +34,8 @@ export default function ModerationPage() {
       if (!response.ok) throw new Error('Failed to fetch products');
       const data = await response.json();
       setProducts(data.products || []);
-    } catch (error) {
-      console.error('Ошибка загрузки товаров:', error);
+    } catch (_error) {
+      console.error('Ошибка загрузки товаров:', _error);
     } finally {
       setLoading(false);
     }
@@ -64,8 +64,8 @@ export default function ModerationPage() {
         setCurrentIndex(0);
       }
       
-    } catch (error) {
-      console.error('Ошибка категоризации:', error);
+    } catch (_error) {
+      console.error('Ошибка категоризации:', _error);
       alert('Ошибка при категоризации товара');
     } finally {
       setProcessing(false);
@@ -91,8 +91,8 @@ export default function ModerationPage() {
         setCurrentIndex(0);
       }
       
-    } catch (error) {
-      console.error('Ошибка одобрения:', error);
+    } catch (_error) {
+      console.error('Ошибка одобрения:', _error);
       alert('Ошибка при одобрении товара');
     } finally {
       setProcessing(false);
@@ -118,8 +118,8 @@ export default function ModerationPage() {
       await fetchUncategorizedProducts();
       setCurrentIndex(0);
       
-    } catch (error) {
-      console.error('Ошибка массового одобрения:', error);
+    } catch (_error) {
+      console.error('Ошибка массового одобрения:', _error);
       alert('Ошибка при одобрении товаров');
     } finally {
       setProcessing(false);

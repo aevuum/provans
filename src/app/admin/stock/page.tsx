@@ -30,13 +30,13 @@ export default function StockManagementPage() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('/api/products');
-      const data = await response.json();
-      if (data.success) {
-        setProducts(data.products);
+      const response = await fetch('/api/products?limit=10000');
+      const result = await response.json();
+      if (result.success && result.data.products) {
+        setProducts(result.data.products);
       }
-    } catch (error) {
-      console.error('Error fetching products:', error);
+    } catch (_error) {
+      console.error('Error fetching products:', _error);
     } finally {
       setLoading(false);
     }
@@ -79,8 +79,8 @@ export default function StockManagementPage() {
       } else {
         alert('Ошибка при обновлении остатков');
       }
-    } catch (error) {
-      console.error('Error updating stock:', error);
+    } catch (_error) {
+      console.error('Error updating stock:', _error);
       alert('Ошибка при обновлении остатков');
     }
   };

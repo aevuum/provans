@@ -1,6 +1,7 @@
-// app/api/products/route.ts
+// app/api/products/route.ts - Унифицированный API товаров
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
+import type { Prisma } from '@prisma/client';
 
 export async function GET(req: NextRequest) {
   try {
@@ -8,157 +9,261 @@ export async function GET(req: NextRequest) {
     
     // Пагинация
     const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '1000');
+    const limit = parseInt(searchParams.get('limit') || '10');
     const skip = (page - 1) * limit;
 
-    // Фильтры
-    const search = searchParams.get('search');
+    // Фильтры из query
+    const type = searchParams.get('type'); // new, discount, popular, all
+    const search = searchParams.get('search') || undefined;
     const minPrice = searchParams.get('minPrice');
     const maxPrice = searchParams.get('maxPrice');
-    const material = searchParams.get('material');
-    const country = searchParams.get('country');
-    const category = searchParams.get('category'); // Старое API
-    const categories = searchParams.get('categories')?.split(',').filter(Boolean) || [];
-    const subcategories = searchParams.get('subcategories')?.split(',').filter(Boolean) || [];
-    const sort = searchParams.get('sort') || 'default'; // 'default', 'price-asc', 'price-desc', 'name-asc', 'popular'
-    const type = searchParams.get('type'); // 'new', 'discount', 'all'
 
-    // Строим условия WHERE
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const where: any = {
-      isConfirmed: true,
+    // Категории: поддерживаем и category, и categories (через запятую)
+    const categorySingle = searchParams.get('category') || undefined;
+    const categoriesParam = searchParams.get('categories') || undefined;
+    const categories: string[] = [];
+    if (categoriesParam) {
+      categories.push(
+        ...categoriesParam
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+      );
+    }
+    if (categorySingle) categories.push(categorySingle);
+
+    // Сортировка
+    const sortBy = searchParams.get('sortBy') || undefined; // createdAt | discount | price
+    const sortOrder = (searchParams.get('sortOrder') || 'desc') as 'asc' | 'desc';
+
+    // Базовый фильтр
+    const whereClause: Prisma.ProductWhereInput = {
+      isConfirmed: true
     };
 
-    // Поиск по названию, материалу, комментарию
+    // Поиск по названию/описанию
     if (search) {
-      where.OR = [
+      whereClause.OR = [
         { title: { contains: search, mode: 'insensitive' } },
-        { material: { contains: search, mode: 'insensitive' } },
-        { comment: { contains: search, mode: 'insensitive' } },
-        { country: { contains: search, mode: 'insensitive' } }
+        { comment: { contains: search, mode: 'insensitive' } }
       ];
     }
 
     // Фильтр по цене
     if (minPrice || maxPrice) {
-      where.price = {};
-      if (minPrice) where.price.gte = parseInt(minPrice);
-      if (maxPrice) where.price.lte = parseInt(maxPrice);
-    }
-
-    // Фильтр по материалу
-    if (material) {
-      where.material = { contains: material, mode: 'insensitive' };
-    }
-
-    // Фильтр по стране
-    if (country) {
-      where.country = { contains: country, mode: 'insensitive' };
-    }
-
-    // Фильтр по старому полю категории
-    if (category) {
-      where.category = { contains: category, mode: 'insensitive' };
+      const priceFilter: Prisma.IntFilter = {};
+      if (minPrice) priceFilter.gte = parseInt(minPrice);
+      if (maxPrice) priceFilter.lte = parseInt(maxPrice);
+      whereClause.price = priceFilter;
     }
 
     // Фильтр по категориям
-    if (categories.length > 0 || subcategories.length > 0) {
-      where.OR = where.OR || [];
-      
-      if (categories.length > 0) {
-        where.OR.push({
-          categoryModel: {
-            slug: { in: categories }
-          }
-        });
-      }
-      
-      if (subcategories.length > 0) {
-        where.OR.push({
-          subcategoryModel: {
-            slug: { in: subcategories }
-          }
-        });
-      }
+    if (categories.length > 0) {
+      whereClause.category = { in: categories };
     }
 
-    // Фильтр по типу
+    // Фильтр по типу + сортировка по умолчанию
+    let orderBy: Prisma.ProductOrderByWithRelationInput = { createdAt: 'desc' };
+
     if (type === 'new') {
-      // Новинки - последние 50 товаров
-      where.createdAt = {
-        gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) // за последний месяц
-      };
+      orderBy = { createdAt: 'desc' };
     } else if (type === 'discount') {
-      // Акции - товары со скидкой
-      where.discount = { gt: 0 };
+      whereClause.discount = { gt: 0 };
+      orderBy = { discount: 'desc' };
+    } else if (type === 'popular') {
+      orderBy = { title: 'asc' };
     }
 
-    // Определяем сортировку
-    let orderBy: Record<string, 'asc' | 'desc'> = { createdAt: 'desc' }; // по умолчанию
-    
-    switch (sort) {
-      case 'price-asc':
-        orderBy = { price: 'asc' };
-        break;
-      case 'price-desc':
-        orderBy = { price: 'desc' };
-        break;
-      case 'name-asc':
-        orderBy = { title: 'asc' };
-        break;
-      case 'popular':
-        // TODO: добавить поле popularity или использовать количество просмотров
-        orderBy = { createdAt: 'desc' };
-        break;
-      default:
-        orderBy = { createdAt: 'desc' };
+    // Переопределение сортировки из query, если задана
+    if (sortBy) {
+      if (sortBy === 'createdAt') orderBy = { createdAt: sortOrder };
+      else if (sortBy === 'discount') orderBy = { discount: sortOrder };
+      else if (sortBy === 'price') orderBy = { price: sortOrder };
     }
 
-    // Получаем общее количество для пагинации (оптимизированный запрос)
-    const total = await prisma.product.count({ where });
-
-    // Получаем продукты с пагинацией и сортировкой (только нужные поля)
+    // Получение товаров
     const products = await prisma.product.findMany({
-      where,
-      select: {
-        id: true,
-        title: true,
-        price: true,
-        originalPrice: true,
-        discount: true,
-        image: true,
-        images: true,
-        category: true,
-        material: true,
-        country: true,
-        barcode: true,
-        quantity: true,
-        isConfirmed: true,
-        createdAt: true,
-        updatedAt: true
-      },
+      where: whereClause,
       orderBy,
       skip,
       take: limit
     });
 
-    // Возвращаем данные с метаинформацией
+    // Подсчет общего количества
+    const total = await prisma.product.count({
+      where: whereClause
+    });
+
+    // Форматирование данных (без material и country)
+    const formattedProducts = products.map((product) => {
+      let imageUrls: string[] = [];
+      if (product.images && product.images.length > 0) {
+        imageUrls = product.images;
+      } else if (product.image) {
+        imageUrls = [product.image];
+      }
+
+      return {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        originalPrice: product.originalPrice,
+        discount: product.discount,
+        description: product.comment,
+        size: product.size,
+        category: product.category,
+        subcategory: product.subcategory,
+        isConfirmed: product.isConfirmed,
+        quantity: product.quantity,
+        reserved: product.reserved,
+        barcode: product.barcode,
+        images: imageUrls,
+        createdAt: product.createdAt,
+        updatedAt: product.updatedAt
+      };
+    });
+
     return NextResponse.json({
-      data: products,
-      meta: {
-        total,
-        page,
-        limit,
-        totalPages: Math.ceil(total / limit),
-        hasNextPage: page < Math.ceil(total / limit),
-        hasPrevPage: page > 1
+      success: true,
+      data: {
+        products: formattedProducts,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit)
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Ошибка при получении товаров',
+        details: process.env.NODE_ENV === 'development' ? String(error) : undefined
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const {
+      search,
+      minPrice,
+      maxPrice,
+      categories,
+      type,
+      page = 1,
+      limit = 10
+    } = body;
+
+    const skip = (page - 1) * limit;
+
+    // Базовый фильтр
+    const whereClause: Prisma.ProductWhereInput = {
+      isConfirmed: true
+    };
+
+    // Поиск по названию
+    if (search) {
+      whereClause.OR = [
+        { title: { contains: search, mode: 'insensitive' } },
+        { comment: { contains: search, mode: 'insensitive' } }
+      ];
+    }
+
+    // Фильтр по цене
+    if (minPrice || maxPrice) {
+      const priceFilter: Prisma.IntFilter = {};
+      if (minPrice) priceFilter.gte = parseInt(minPrice);
+      if (maxPrice) priceFilter.lte = parseInt(maxPrice);
+      whereClause.price = priceFilter;
+    }
+
+    // Фильтр по категориям
+    if (categories && categories.length > 0) {
+      whereClause.category = { in: categories };
+    }
+
+    // Фильтр по типу
+    let orderBy: Prisma.ProductOrderByWithRelationInput = { createdAt: 'desc' }; // По умолчанию новые товары
+    
+    if (type === 'new') {
+      orderBy = { createdAt: 'desc' };
+    } else if (type === 'discount') {
+      whereClause.discount = { gt: 0 };
+      orderBy = { discount: 'desc' };
+    } else if (type === 'popular') {
+      orderBy = { title: 'asc' };
+    }
+
+    // Получение товаров
+    const products = await prisma.product.findMany({
+      where: whereClause,
+      orderBy,
+      skip,
+      take: limit
+    });
+
+    // Подсчет общего количества
+    const total = await prisma.product.count({
+      where: whereClause
+    });
+
+    // Форматирование данных (без material и country)
+    const formattedProducts = products.map(product => {
+      let imageUrls: string[] = [];
+      if (product.images && product.images.length > 0) {
+        imageUrls = product.images;
+      } else if (product.image) {
+        imageUrls = [product.image];
+      }
+
+      return {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        originalPrice: product.originalPrice,
+        discount: product.discount,
+        description: product.comment,
+        size: product.size,
+        category: product.category,
+        subcategory: product.subcategory,
+        isConfirmed: product.isConfirmed,
+        quantity: product.quantity,
+        reserved: product.reserved,
+        barcode: product.barcode,
+        images: imageUrls,
+        createdAt: product.createdAt,
+        updatedAt: product.updatedAt
+      };
+    });
+
+    return NextResponse.json({
+      success: true,
+      data: {
+        products: formattedProducts,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit)
+        }
       }
     });
 
   } catch (error) {
-    console.error('API Products Error:', error);
+    console.error('Error fetching products via POST:', error);
     return NextResponse.json(
-      { error: 'Ошибка получения продуктов' },
+      { 
+        success: false, 
+        error: 'Ошибка при получении товаров',
+        details: process.env.NODE_ENV === 'development' ? String(error) : undefined
+      }, 
       { status: 500 }
     );
   }

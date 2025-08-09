@@ -36,8 +36,8 @@ export default function SignIn() {
       } else {
         setMessage('Ошибка при отправке письма. Попробуйте еще раз.');
       }
-    } catch (error) {
-      console.error('Error signing in:', error);
+    } catch (_error) {
+      console.error('Error signing in:', _error);
       setMessage('Произошла ошибка. Попробуйте еще раз.');
     } finally {
       setIsLoading(false);
@@ -48,8 +48,8 @@ export default function SignIn() {
     setIsLoading(true);
     try {
       await signIn(provider, { callbackUrl: '/' });
-    } catch (error) {
-      console.error(`Error signing in with ${provider}:`, error);
+    } catch (_error) {
+      console.error(`Error signing in with ${provider}:`, _error);
       setMessage('Ошибка при входе. Попробуйте еще раз.');
       setIsLoading(false);
     }

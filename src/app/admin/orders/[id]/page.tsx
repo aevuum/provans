@@ -1,17 +1,17 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, use } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Order, OrderStatus } from '@/types/order';
 import { FaArrowLeft, FaPrint, FaEnvelope } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function AdminOrderDetailPage() {
-  const { data: session } = useSession();
+export default function AdminOrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
-  const params = useParams();
+  const { data: session } = useSession();
+  const resolvedParams = use(params);
   
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,7 @@ export default function AdminOrderDetailPage() {
   const fetchOrder = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/orders/${params.id}`);
+      const response = await fetch(`/api/orders/${resolvedParams.id}`);
       const data = await response.json();
       
       if (data.success) {
@@ -29,19 +29,19 @@ export default function AdminOrderDetailPage() {
       } else {
         router.push('/admin/orders');
       }
-    } catch (error) {
-      console.error('Error fetching order:', error);
+    } catch (_error) {
+      console.error('Error fetching order:', _error);
       router.push('/admin/orders');
     } finally {
       setLoading(false);
     }
-  }, [params.id, router]);
+  }, [resolvedParams.id, router]);
 
   useEffect(() => {
-    if (params.id) {
+    if (resolvedParams.id) {
       fetchOrder();
     }
-  }, [params.id, fetchOrder]);
+  }, [resolvedParams.id, fetchOrder]);
 
   // Проверка доступа
   if (!session || (session.user as { role?: string })?.role !== 'admin') {
@@ -71,8 +71,8 @@ export default function AdminOrderDetailPage() {
       } else {
         alert('Ошибка при обновлении статуса заказа');
       }
-    } catch (error) {
-      console.error('Error updating order:', error);
+    } catch (_error) {
+      console.error('Error updating order:', _error);
       alert('Ошибка при обновлении статуса заказа');
     } finally {
       setUpdating(false);

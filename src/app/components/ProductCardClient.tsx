@@ -9,13 +9,18 @@ import { toggleFavorite } from '@/lib/features/favorites/favoritesSlice';
 import { Product, getProductImage, formatProductTitle } from '@/types';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import type { ReactNode } from 'react';
 
 interface ProductCardClientProps {
   product: Product;
   isNew?: boolean;
+  // Дополнительно для модерации
+  renderFooter?: ReactNode;
+  hideAdminEditIcon?: boolean;
+  hideCartButton?: boolean;
 }
 
-export function ProductCardClient({ product, isNew = false }: ProductCardClientProps) {
+export function ProductCardClient({ product, isNew = false, renderFooter, hideAdminEditIcon = false, hideCartButton = false }: ProductCardClientProps) {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(state => state.cart.items);
   const favorites = useAppSelector(state => state.favorites.items);
@@ -25,8 +30,9 @@ export function ProductCardClient({ product, isNew = false }: ProductCardClientP
   const isFavorite = favorites.some(f => f.id === product.id);
   const inCart = cart.some(c => c.id === product.id);
   
-  // Проверяем, является ли пользователь админом
-  const isAdmin = session?.user?.email === 'admin@provans-decor.ru';
+  // Проверяем, является ли пользователь админом по роли из сессии
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const isAdmin = (session?.user as any)?.role === 'admin';
 
   // Новая логика скидки
   const discount = product.discount || 0;
@@ -71,7 +77,7 @@ export function ProductCardClient({ product, isNew = false }: ProductCardClientP
       {/* Бейджи */}
       <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
         {isNew && (
-          <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">НОВИНКА</span>
+          <span className="bg-mint-400 text-white text-xs px-2 py-1 rounded uppercase tracking-wide">new</span>
         )}
         {hasDiscount && (
           <span className="text-white bg-red-500 text-xs px-2 py-1 rounded">-{discount}%</span>
@@ -100,9 +106,9 @@ export function ProductCardClient({ product, isNew = false }: ProductCardClientP
         </Link>
 
         {/* Кнопка редактирования для админа */}
-        {isAdmin && (
+        {!hideAdminEditIcon && isAdmin && (
           <button
-            onClick={() => router.push(`/admin/products/edit/${product.id}`)}
+            onClick={() => router.push(`/admin/products/${product.id}/edit`)}
             className="p-2 sm:p-3 rounded-full bg-white/80 hover:bg-white transition-colors cursor-pointer"
             title="Редактировать товар"
           >
@@ -133,27 +139,36 @@ export function ProductCardClient({ product, isNew = false }: ProductCardClientP
         {hasDiscount ? (
           <div className="flex flex-col items-center mb-2">
             <span className="text-gray-400 text-xs sm:text-sm line-through">{product.price.toLocaleString('ru-RU')} ₽</span>
-            <span className="text-[#E5D3B3] font-bold text-sm sm:text-lg">{discountedPrice.toLocaleString('ru-RU')} ₽</span>
+            <span className="text-black font-bold text-lg sm:text-xl">{discountedPrice.toLocaleString('ru-RU')} ₽</span>
           </div>
         ) : (
-          <div className="text-black font-bold mb-2 text-center text-sm sm:text-base">{product.price.toLocaleString('ru-RU')} ₽</div>
+          <div className="text-black font-bold mb-2 text-center text-lg sm:text-xl">{product.price.toLocaleString('ru-RU')} ₽</div>
+        )}
+
+        {/* Кастомный футер, например панель модерации */}
+        {renderFooter && (
+          <div className="mt-2">
+            {renderFooter}
+          </div>
         )}
       </div>
 
       {/* Кнопка корзины */}
-      <div className="absolute bottom-2 right-2">
-        <button
-          onClick={handleCartToggle}
-          className={`p-2 sm:p-3 rounded-full transition-colors cursor-pointer ${
-            inCart 
-              ? 'bg-green-500 hover:bg-red-500 text-white' 
-              : 'bg-[#E5D3B3] hover:bg-[#D4C2A1] text-gray-800'
-          }`}
-          title={inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
-        >
-          {inCart ? <FaCheck className="w-3 h-3 sm:w-4 sm:h-4" /> : <FaShoppingBag className="w-3 h-3 sm:w-4 sm:h-4" />}
-        </button>
-      </div>
+      {!hideCartButton && (
+        <div className="absolute bottom-2 right-2">
+          <button
+            onClick={handleCartToggle}
+            className={`p-2 sm:p-3 rounded-full transition-colors cursor-pointer ${
+              inCart 
+                ? 'bg-green-500 hover:bg-red-500 text-white' 
+                : 'bg-[#E5D3B3] hover:bg-[#D4C2A1] text-gray-800'
+            }`}
+            title={inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
+          >
+            {inCart ? <FaCheck className="w-3 h-3 sm:w-4 sm:h-4" /> : <FaShoppingBag className="w-3 h-3 sm:w-4 sm:h-4" />}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

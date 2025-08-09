@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useMemo, lazy, Suspense } from 'react';
+import React, { useState, useCallback, useMemo, lazy, Suspense, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -13,14 +13,14 @@ import {
   FaBars,
   FaTimes,
 } from 'react-icons/fa';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { toggleSearch } from '@/lib/features/ui/uiSlice';
+import { useAppDispatch, useAppSelector } from '../../lib/hooks';
+import { toggleSearch } from '../../lib/features/ui/uiSlice';
 import { useRouter } from 'next/navigation';
-import { useSession, signOut } from 'next-auth/react';
-import { getProductImage } from '@/types';
+import { useSession } from 'next-auth/react';
+import { getProductImage } from '../../types';
 
 // Lazy load компонентов
-const AuthModal = lazy(() => import("../../components/AuthModalNew"));
+const AuthModal = lazy(() => import("./AuthModal"));
 
 interface ExtendedUser {
   id?: string;
@@ -42,6 +42,9 @@ export const Header = React.memo(() => {
   const { data: session } = useSession() as { data: ExtendedSession | null };
   const dispatch = useAppDispatch();
   const router = useRouter();
+  // Добавляем флаг монтирования клиента, чтобы избежать SSR/CSR рассинхронизации
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   
   // Используем селекторы с мемоизацией
   const cart = useAppSelector((state) => state.cart.items);
@@ -60,23 +63,24 @@ export const Header = React.memo(() => {
   // Обработчик поиска
   const handleSearch = (query: string) => {
     if (query.trim()) {
-      router.push(`/catalog/allshop?search=${encodeURIComponent(query.trim())}`);
+      router.push(`/catalog/все-категории?search=${encodeURIComponent(query.trim())}`);
       dispatch(toggleSearch());
     }
-  };
-
-  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const query = formData.get('search') as string;
-    handleSearch(query);
   };
 
   const handleMobileSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const query = formData.get('mobileSearch') as string;
+    const query = (formData.get('mobileSearch') as string) || '';
     handleSearch(query);
+  };
+
+  const onUserIconClick = () => {
+    if (session) {
+      router.push('/profile');
+    } else {
+      setLoginModalOpen(true);
+    }
   };
 
   return (
@@ -112,6 +116,15 @@ export const Header = React.memo(() => {
               />
             </Link>
           </div>
+          {/* Краткий телефон рядом с логотипом на маленьких экранах */}
+          <a
+            href="tel:88007771872"
+            className="md:hidden inline-flex items-center gap-2 text-gray-600 text-sm"
+          >
+            <FaPhone className="text-gray-500 text-sm" />
+            <span>8 (800) 777-18-72</span>
+          </a>
+
           {/* Desktop Contact */}
           <div className="hidden lg:flex flex-col ml-8">
             <div className="flex items-center gap-2">
@@ -126,34 +139,11 @@ export const Header = React.memo(() => {
             <p className="text-gray-400 text-xs mt-1 ml-5">с 09:00 до 21:00</p>
           </div>
 
-          {/* Search Bar */}
-          <div className="hidden lg:flex flex-1 justify-end mx-5">
-            <form
-              className="relative w-full max-w-xs"
-              onSubmit={handleSearchSubmit}
-            >
-              <input
-                type="text"
-                name="search"
-                placeholder="Поиск по сайту"
-                className="w-full py-2 px-4 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#E5D3B3] text-sm"
-                autoComplete="off"
-              />
-              <button
-                type="submit"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#7C5C27] w-4 h-4"
-                aria-label="Поиск"
-              >
-                <FaSearch />
-              </button>
-            </form>
-          </div>
-
           {/* Icons */}
           <div className="flex items-center justify-between gap-7 max-w-[180px] sm:max-w-[200px]">
-            {/* Mobile Search */}
+            {/* Search icon (на всех разрешениях) */}
             <button
-              className="lg:hidden text-gray-600 hover:text-[#7C5C27] transition-colors"
+              className="text-gray-600 hover:text-[#7C5C27] transition-colors"
               onClick={() => dispatch(toggleSearch())}
               aria-label="Поиск"
             >
@@ -166,7 +156,7 @@ export const Header = React.memo(() => {
               aria-label="Избранное"
             >
               <FaHeart className="w-6 h-6 cursor-pointer" />
-              {favorites.length > 0 && (
+              {mounted && favorites.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-[#E5D3B3] text-[#7C5C27] text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {favorites.length}
                 </span>
@@ -176,47 +166,12 @@ export const Header = React.memo(() => {
             <div className="relative group">
               <button
                 className="text-gray-600 hover:text-[#7C5C27] transition-colors"
+                onClick={onUserIconClick}
                 aria-label="Профиль"
               >
                 <FaUser className="w-6 h-6 cursor-pointer" />
               </button>
-              
-              {/* Dropdown меню пользователя */}
-              <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                {session ? (
-                  <div className="py-2">
-                    <div className="px-4 py-2 text-sm text-gray-500 border-b">
-                      {session.user?.name || session.user?.email}
-                    </div>
-                    <Link href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Мой профиль
-                    </Link>
-                    <Link href="/orders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Мои заказы
-                    </Link>
-                    {session.user?.role === 'admin' && (
-                      <Link href="/admin" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        Админ панель
-                      </Link>
-                    )}
-                    <button 
-                      onClick={() => signOut({ callbackUrl: '/' })}
-                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
-                    >
-                      Выйти
-                    </button>
-                  </div>
-                ) : (
-                  <div className="py-2">
-                    <button 
-                      onClick={() => router.push('/auth/signin')}
-                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Войти
-                    </button>
-                  </div>
-                )}
-              </div>
+              {/* Убрано ховер-меню пользователя */}
             </div>
             {/* Cart Popover */}
             <div
@@ -231,7 +186,7 @@ export const Header = React.memo(() => {
                 onClick={() => router.push('/cart')}
               >
                 <FaShoppingBag className="w-6 h-6 cursor-pointer" />
-                {cart.length > 0 && (
+                {mounted && cart.length > 0 && (
                   <span className="absolute -top-2 -right-2 bg-[#E5D3B3] text-[#7C5C27] text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {cart.length}
                   </span>
@@ -301,23 +256,14 @@ export const Header = React.memo(() => {
               </button>
               <div className="invisible absolute left-0 top-full z-50 mt-1 w-56 rounded-md bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
                 {[
-                  { name: 'Все категории', href: '/catalog/allshop' },
-                  { name: 'Декор', href: '/catalog/decor' },
-                  { name: 'Фоторамки', href: '/catalog/photoframes' },
+                  { name: 'Все категории', href: '/catalog/все-категории' },
                   { name: 'Вазы', href: '/catalog/vases' },
-                  { name: 'Зеркала', href: '/catalog/mirrors' },
-                  { name: 'Подсвечники', href: '/catalog/candles' },
+                  { name: 'Подсвечники', href: '/catalog/candlesticks' },
+                  { name: 'Рамки', href: '/catalog/frames' },
+                  { name: 'Цветы', href: '/catalog/flowers' },
                   { name: 'Шкатулки', href: '/catalog/jewelry-boxes' },
-                  { name: 'Интерьерные фигуры', href: '/catalog/figures' },
-                  { name: 'Часы', href: '/catalog/clocks' },
-                  { name: 'Садовый декор', href: '/catalog/garden-decor' },
-                  { name: 'Искусственные цветы', href: '/catalog/flowers' },
-                  { name: 'Текстиль', href: '/catalog/textile' },
-                  { name: 'Посуда и бокалы', href: '/catalog/dishes' },
-                  { name: 'Мебель', href: '/catalog/furniture' },
-                  { name: 'Ароматы для дома', href: '/catalog/scents' },
-                  { name: 'Пасхальная коллекция', href: '/catalog/easter' },
-                  { name: 'Новый год', href: '/catalog/newyear' },
+                  { name: 'Фигурки', href: '/catalog/figurines' },
+                  { name: 'Книгодержатели', href: '/catalog/bookends' },
                 ].map((item) => (
                   <Link
                     key={item.href}
@@ -330,8 +276,8 @@ export const Header = React.memo(() => {
               </div>
             </li>
             {[
-              { name: 'Акции', href: '/discount' },
-              { name: 'Новинки', href: '/catalog/novinki' },
+              { name: 'Акции', href: '/catalog/акции' },
+              { name: 'Новинки', href: '/catalog/новинки' },
               { name: 'О компании', href: '/about' },
               { name: 'Контакты', href: '/contacts' },
             ].map((link) => (
@@ -364,23 +310,14 @@ export const Header = React.memo(() => {
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Каталог</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {[
-                    { name: 'Все категории', href: '/catalog/allshop' },
-                    { name: 'Декор', href: '/catalog/decor' },
-                    { name: 'Фоторамки', href: '/catalog/photoframes' },
+                    { name: 'Все категории', href: '/catalog/все-категории' },
                     { name: 'Вазы', href: '/catalog/vases' },
-                    { name: 'Зеркала', href: '/catalog/mirrors' },
-                    { name: 'Подсвечники', href: '/catalog/candles' },
+                    { name: 'Подсвечники', href: '/catalog/candlesticks' },
+                    { name: 'Рамки', href: '/catalog/frames' },
+                    { name: 'Цветы', href: '/catalog/flowers' },
                     { name: 'Шкатулки', href: '/catalog/jewelry-boxes' },
-                    { name: 'Интерьерные фигуры', href: '/catalog/figures' },
-                    { name: 'Часы', href: '/catalog/clocks' },
-                    { name: 'Садовый декор', href: '/catalog/garden-decor' },
-                    { name: 'Искусственные цветы', href: '/catalog/flowers' },
-                    { name: 'Текстиль', href: '/catalog/textile' },
-                    { name: 'Посуда и бокалы', href: '/catalog/dishes' },
-                    { name: 'Мебель', href: '/catalog/furniture' },
-                    { name: 'Ароматы для дома', href: '/catalog/scents' },
-                    { name: 'Пасхальная коллекция', href: '/catalog/easter' },
-                    { name: 'Новый год', href: '/catalog/newyear' },
+                    { name: 'Фигурки', href: '/catalog/figurines' },
+                    { name: 'Книгодержатели', href: '/catalog/bookends' },
                   ].map((item) => (
                     <Link
                       key={item.href}
@@ -395,8 +332,8 @@ export const Header = React.memo(() => {
               </div>
 
               {[
-                { name: 'Акции', href: '/discount' },
-                { name: 'Новинки', href: '/catalog/novinki' },
+                { name: 'Акции', href: '/catalog/акции' },
+                { name: 'Новинки', href: '/catalog/новинки' },
                 { name: 'О компании', href: '/about' },
                 { name: 'Контакты', href: '/contacts' },
               ].map((item) => (
@@ -419,10 +356,10 @@ export const Header = React.memo(() => {
         <AuthModal isOpen={loginModalOpen} onClose={() => setLoginModalOpen(false)} />
       </Suspense>
 
-      {/* Модальное окно поиска для мобильных */}
-      {showSearch && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 lg:hidden">
-          <div className="bg-white p-4 m-4 rounded-lg shadow-lg">
+      {/* Модальное окно поиска для мобильных и десктопа */}
+      {mounted && showSearch && (
+        <div className="fixed inset-0 z-50 bg-black/10 backdrop-blur-sm flex items-start justify-center pt-24 px-4">
+          <div className="bg-white p-4 rounded-lg shadow-xl w-full max-w-md">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold">Поиск товаров</h3>
               <button
@@ -461,4 +398,4 @@ export const Header = React.memo(() => {
 
 Header.displayName = 'Header';
 
-export default Header ;
+export default Header;

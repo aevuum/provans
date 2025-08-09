@@ -1,11 +1,5 @@
-import CategoryPage from '@/app/components/CategoryPage';
+import { redirect } from 'next/navigation';
 
-export default function FiguresPage() {
-  return (
-    <CategoryPage 
-      categoryName="фигурки"
-      displayName="Фигурки"
-      filterType="category"
-    />
-  );
+export default function FiguresRedirectPage() {
+  redirect('/catalog/figurines');
 }

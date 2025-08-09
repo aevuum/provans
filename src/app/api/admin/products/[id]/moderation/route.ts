@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { getServerSession } from 'next-auth/next';
+import { getAdminSession } from '@/lib/authUtils';
 
 const prisma = new PrismaClient();
 
@@ -10,10 +10,9 @@ export async function POST(
 ) {
   try {
     const { id } = await params;
-    const session = await getServerSession();
-    
-    // Проверяем права администратора
-    if (!session?.user?.email || session.user.email !== 'admin@provans-decor.ru') {
+    const session = await getAdminSession();
+
+    if (!session || session.user?.role !== 'admin') {
       return NextResponse.json(
         { error: 'Нет прав доступа' },
         { status: 403 }
@@ -23,7 +22,6 @@ export async function POST(
     const { action } = await request.json();
 
     if (action === 'back_to_moderation') {
-      // Возвращаем товар на модерацию (isConfirmed = false)
       const updatedProduct = await prisma.product.update({
         where: { id: parseInt(id) },
         data: { isConfirmed: false }

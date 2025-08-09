@@ -7,8 +7,6 @@ import { FaChevronDown, FaFilter, FaTimes } from 'react-icons/fa';
 interface ProductFiltersProps {
   filters?: {
     priceRange?: { min: number; max: number };
-    materials?: string[];
-    countries?: string[];
     categories?: string[];
   };
   currentPath?: string;
@@ -17,8 +15,6 @@ interface ProductFiltersProps {
 export default function ProductFilters({ 
   filters = {
     priceRange: { min: 0, max: 15000 },
-    materials: ['дерево', 'металл', 'ткань', 'керамика', 'стекло', 'пластик'],
-    countries: ['Россия', 'Италия', 'Франция', 'Германия', 'Китай', 'Нидерланды'],
     categories: []
   },
   currentPath = '/catalog'
@@ -28,16 +24,12 @@ export default function ProductFilters({
   
   const [expandedSections, setExpandedSections] = useState({
     price: true,
-    material: false,
-    country: false,
     category: false
   });
 
   const [tempFilters, setTempFilters] = useState({
     minPrice: searchParams.get('minPrice') || '',
     maxPrice: searchParams.get('maxPrice') || '',
-    material: searchParams.get('material') || '',
-    country: searchParams.get('country') || '',
     category: searchParams.get('category') || ''
   });
 
@@ -67,13 +59,11 @@ export default function ProductFilters({
     setTempFilters({
       minPrice: '',
       maxPrice: '',
-      material: '',
-      country: '',
       category: ''
     });
     
     const params = new URLSearchParams(searchParams);
-    ['minPrice', 'maxPrice', 'material', 'country', 'category', 'page'].forEach(key => {
+    ['minPrice', 'maxPrice', 'category', 'page'].forEach(key => {
       params.delete(key);
     });
     
@@ -151,3 +141,6 @@ export default function ProductFilters({
     </div>
   );
 }
+
+// DEPRECATED: Используйте ReusableFilters. Этот файл оставлен как заглушка.
+export function DeprecatedProductFiltersStub() { return null; }

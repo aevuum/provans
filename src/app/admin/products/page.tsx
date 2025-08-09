@@ -14,7 +14,7 @@ import {
   FaFilter,
   FaClock
 } from 'react-icons/fa';
-import { useProducts, useFilterOptions } from '@/lib/hooks/useProducts';
+import { useProducts } from '@/lib/hooks/useProducts';
 import { Product } from '@/types';
 import Pagination from '@/app/components/Pagination';
 
@@ -24,8 +24,6 @@ export default function AdminProductsPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
     search: '',
-    material: '',
-    country: '',
     isConfirmed: '',
     priceFrom: '',
     priceTo: ''
@@ -40,22 +38,16 @@ export default function AdminProductsPage() {
     refetch
   } = useProducts({
     search: filters.search,
-    material: filters.material,
-    country: filters.country,
     isConfirmed: filters.isConfirmed,
     priceFrom: filters.priceFrom ? Number(filters.priceFrom) : undefined,
     priceTo: filters.priceTo ? Number(filters.priceTo) : undefined,
     limit: 20
   });
 
-  const { options } = useFilterOptions();
-
   // Применение фильтров
   const applyFilters = () => {
     updateFilters({
       search: filters.search,
-      material: filters.material,
-      country: filters.country,
       isConfirmed: filters.isConfirmed,
       priceFrom: filters.priceFrom ? Number(filters.priceFrom) : undefined,
       priceTo: filters.priceTo ? Number(filters.priceTo) : undefined
@@ -66,8 +58,6 @@ export default function AdminProductsPage() {
   const resetFilters = () => {
     const emptyFilters = {
       search: '',
-      material: '',
-      country: '',
       isConfirmed: '',
       priceFrom: '',
       priceTo: ''
@@ -75,10 +65,9 @@ export default function AdminProductsPage() {
     setFilters(emptyFilters);
     updateFilters({
       search: '',
-      material: '',
-      country: '',
       priceFrom: undefined,
-      priceTo: undefined
+      priceTo: undefined,
+      isConfirmed: ''
     });
   };
 
@@ -111,8 +100,8 @@ export default function AdminProductsPage() {
       } else {
         alert('Ошибка при выполнении операции');
       }
-    } catch (error) {
-      console.error('Bulk operation error:', error);
+    } catch (_error) {
+      console.error('Bulk operation error:', _error);
       alert('Ошибка при выполнении операции');
     }
   };
@@ -131,8 +120,8 @@ export default function AdminProductsPage() {
       } else {
         alert('Ошибка при удалении товара');
       }
-    } catch (error) {
-      console.error('Delete error:', error);
+    } catch (_error) {
+      console.error('Delete error:', _error);
       alert('Ошибка при удалении товара');
     }
   };
@@ -151,8 +140,8 @@ export default function AdminProductsPage() {
       } else {
         alert('Ошибка при изменении статуса');
       }
-    } catch (error) {
-      console.error('Toggle confirm error:', error);
+    } catch (_error) {
+      console.error('Toggle confirm error:', _error);
       alert('Ошибка при изменении статуса');
     }
   };
@@ -229,36 +218,6 @@ export default function AdminProductsPage() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B8835A]"
                   placeholder="Название товара..."
                 />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Материал
-                </label>
-                <select
-                  value={filters.material}
-                  onChange={(e) => setFilters({ ...filters, material: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B8835A]"
-                >
-                  <option value="">Все материалы</option>
-                  {options.materials.map(material => (
-                    <option key={material} value={material}>{material}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Страна
-                </label>
-                <select
-                  value={filters.country}
-                  onChange={(e) => setFilters({ ...filters, country: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B8835A]"
-                >
-                  <option value="">Все страны</option>
-                  {options.countries.map(country => (
-                    <option key={country} value={country}>{country}</option>
-                  ))}
-                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -384,12 +343,6 @@ export default function AdminProductsPage() {
                       Цена
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Материал
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Страна
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Статус
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -437,12 +390,6 @@ export default function AdminProductsPage() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {product.price.toLocaleString('ru-RU')} ₽
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {product.material}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {product.country}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <button

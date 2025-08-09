@@ -1,6 +1,6 @@
 // app/api/products/[id]/edit/route.ts
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 
 export async function POST(req: Request, context: { params: Promise<{ id: string }> }) {
   try {
@@ -14,7 +14,6 @@ export async function POST(req: Request, context: { params: Promise<{ id: string
         title: data.title,
         price: Number(data.price),
         size: data.size,
-        material: data.material,
         comment: data.comment,
         images: data.images,
         // другие поля по необходимости

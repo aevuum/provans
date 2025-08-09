@@ -1,6 +1,6 @@
 // app/api/products/promotions/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 
 export async function GET(req: NextRequest) {
   try {
@@ -11,8 +11,6 @@ export async function GET(req: NextRequest) {
     const category = searchParams.get('category');
     const minPrice = searchParams.get('minPrice');
     const maxPrice = searchParams.get('maxPrice');
-    const material = searchParams.get('material');
-    const country = searchParams.get('country');
 
     // Строим условия WHERE
     const where: {
@@ -21,8 +19,6 @@ export async function GET(req: NextRequest) {
       title?: { contains: string };
       category?: { contains: string };
       price?: { gte?: number; lte?: number };
-      material?: { contains: string };
-      country?: { contains: string };
     } = {
       isConfirmed: true, // Только подтвержденные товары
       discount: { gt: 0 } // Только товары со скидкой
@@ -43,16 +39,6 @@ export async function GET(req: NextRequest) {
       where.price = {};
       if (minPrice) where.price.gte = parseFloat(minPrice);
       if (maxPrice) where.price.lte = parseFloat(maxPrice);
-    }
-
-    // Фильтр по материалу
-    if (material) {
-      where.material = { contains: material };
-    }
-
-    // Фильтр по стране
-    if (country) {
-      where.country = { contains: country };
     }
 
     // Получаем товары со скидкой

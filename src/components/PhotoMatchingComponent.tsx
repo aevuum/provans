@@ -91,7 +91,7 @@ export default function PhotoMatchingComponent({ onComplete }: PhotoMatchingProp
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              image: `/ФОТО/${matchingPhoto}`
+              image: `/фото/${matchingPhoto}`
             })
           });
         }
@@ -102,8 +102,8 @@ export default function PhotoMatchingComponent({ onComplete }: PhotoMatchingProp
       
       setResults(matchResults);
       
-    } catch (error) {
-      console.error('Ошибка привязки фото:', error);
+    } catch (_error) {
+      console.error('Ошибка привязки фото:', _error);
     } finally {
       setLoading(false);
     }

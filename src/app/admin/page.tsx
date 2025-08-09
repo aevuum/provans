@@ -14,6 +14,7 @@ import {
   FaUpload
 } from 'react-icons/fa';
 import { IconType } from 'react-icons';
+import type { Session } from 'next-auth';
 
 interface AdminStats {
   products: {
@@ -27,24 +28,39 @@ export default function AdminDashboard() {
   const { data: session, status } = useSession();
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const role = (session as (Session & { user?: { role?: string } }) | null)?.user?.role;
+  const isAdmin = role === 'admin';
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if (session?.user && 'role' in session.user && (session.user as any).role === 'admin') {
-      fetch('/api/admin/stats')
-        .then(res => res.json())
-        .then(setStats)
-        .catch(console.error)
-        .finally(() => setLoading(false));
-    }
-  }, [session]);
+    if (!isAdmin) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/admin/stats', { credentials: 'include' });
+        if (!res.ok) {
+          // 401/403 — не админ/нет сессии, тихо выходим
+          return;
+        }
+        const data = await res.json();
+        if (!cancelled) setStats(data);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isAdmin]);
 
   if (status === 'loading') {
     return <AdminSkeleton />;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if (!session || !(session.user && 'role' in session.user && (session.user as any).role === 'admin')) {
+  if (!isAdmin) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -70,7 +86,7 @@ export default function AdminDashboard() {
           <div className="flex justify-between items-center py-6">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Админ-панель</h1>
-              <p className="text-gray-600">Добро пожаловать, {session.user?.email}</p>
+              <p className="text-gray-600">Добро пожаловать, {session?.user?.email}</p>
             </div>
             <div className="flex space-x-3">
               <Link
@@ -93,19 +109,19 @@ export default function AdminDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <StatCard
               title="Всего товаров"
-              value={stats.products.total}
+              value={stats?.products?.total ?? 0}
               icon={FaBox}
               color="blue"
             />
             <StatCard
               title="Подтвержденные"
-              value={stats.products.confirmed}
+              value={stats?.products?.confirmed ?? 0}
               icon={FaCheckCircle}
               color="green"
             />
             <StatCard
               title="На модерации"
-              value={stats.products.pending}
+              value={stats?.products?.pending ?? 0}
               icon={FaClock}
               color="yellow"
             />
@@ -153,6 +169,13 @@ export default function AdminDashboard() {
             title="1C Интеграция"
             description="Синхронизация с системой учета"
             href="/admin/1c"
+            icon={FaUpload}
+            color="gray"
+          />
+          <ActionCard
+            title="Импорт из JSON"
+            description="Заменить или обновить товары из products.json"
+            href="/admin/products/import"
             icon={FaUpload}
             color="gray"
           />

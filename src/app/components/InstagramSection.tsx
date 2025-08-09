@@ -41,16 +41,16 @@ function InstagramCard({ src, alt }: InstagramCardProps) {
 }
 
 export default function InstagramSection() {
-  // Правильные пути к изображениям Instagram
+  // Правильные пути к изображениям Instagram — соответствуют файлам в public/инста
   const instagramImages = [
-    '/инста/IMG_0892.jpg',
-    '/инста/IMG_0900.JPG', 
-    '/инста/IMG_0901.JPG',
-    '/инста/IMG_0902.JPG',
-    '/инста/IMG_0903.JPG',
-    '/инста/IMG_0904.JPG',
-    '/инста/IMG_0905.JPG',
-    '/инста/IMG_0906.JPG'
+    '/instagram/IMG_1.png',
+    '/instagram/IMG_2.png',
+    '/instagram/IMG_3.png',
+    '/instagram/IMG_4.png',
+    '/instagram/IMG_5.png',
+    '/instagram/IMG_6.png',
+    '/instagram/IMG_7.png',
+    '/instagram/IMG_8.png',
   ];
 
   const handleInstagramClick = () => {
@@ -58,7 +58,7 @@ export default function InstagramSection() {
   };
 
   return (
-    <section className="container mx-auto px-4 py-12">
+    <section className="container mx-auto px-4 py-12 bg-gradient-to-r ">
       {/* Заголовок секции */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

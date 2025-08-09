@@ -1,7 +1,9 @@
 // app/api/admin/products/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { getAdminSession } from '@/lib/authUtils';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 // GET - получение одного продукта
 export async function GET(
@@ -102,8 +104,6 @@ export async function PUT(
       title,
       price,
       size,
-      material,
-      country,
       barcode,
       comment,
       image,
@@ -137,8 +137,6 @@ export async function PUT(
         title: title?.trim() || currentProduct.title,
         price: price ? parseInt(price) : currentProduct.price,
         size: size !== undefined ? (size?.trim() || null) : currentProduct.size,
-        material: material !== undefined ? (material?.trim() || null) : currentProduct.material,
-        country: country !== undefined ? (country?.trim() || null) : currentProduct.country,
         barcode: barcode !== undefined ? (barcode?.trim() || null) : currentProduct.barcode,
         comment: comment !== undefined ? (comment?.trim() || null) : currentProduct.comment,
         // Сохраняем изображения только если они переданы явно
@@ -149,6 +147,27 @@ export async function PUT(
         category: category !== undefined ? (category?.trim() || null) : currentProduct.category
       }
     });
+
+    // Синхронизация JSON после обновления
+    try {
+      const confirmed = await prisma.product.findMany({ where: { isConfirmed: true } });
+      const payload = {
+        products: confirmed.map((p) => ({
+          title: p.title,
+          image_path: p.image || (p.images?.[0] ?? null),
+          price: p.price,
+          discount: p.discount ?? 0,
+          size: p.size ?? null,
+          category: p.category ?? null,
+          barcode: p.barcode ?? null,
+          comment: p.comment ?? null,
+        }))
+      };
+      const filePath = path.join(process.cwd(), 'products.json');
+      await fs.writeFile(filePath, JSON.stringify(payload, null, 2), 'utf-8');
+    } catch (e) {
+      console.warn('JSON sync after update failed:', e);
+    }
 
     return NextResponse.json(updatedProduct);
 
@@ -184,9 +203,61 @@ export async function DELETE(
       return NextResponse.json({ error: 'Неверный ID' }, { status: 400 });
     }
 
-    await prisma.product.delete({
-      where: { id: productId }
-    });
+    // Получаем продукт для доступа к путям изображений
+    const existing = await prisma.product.findUnique({ where: { id: productId } });
+    if (!existing) {
+      return NextResponse.json({ error: 'Продукт не найден' }, { status: 404 });
+    }
+
+    // Удаляем запись из БД
+    await prisma.product.delete({ where: { id: productId } });
+
+    // Удаляем локальные файлы изображений, если они находятся в /public
+    try {
+      const toDelete = [existing.image, ...(existing.images || [])].filter(Boolean) as string[];
+      for (const rel of toDelete) {
+        // пропускаем, если изображение используется другими товарами
+        const stillUsed = await prisma.product.count({
+          where: {
+            OR: [
+              { image: rel },
+              { images: { has: rel } }
+            ]
+          }
+        });
+        if (stillUsed > 0) continue;
+
+        const relPath = rel.startsWith('/') ? rel.slice(1) : rel; // нормализуем
+        const publicDir = path.join(process.cwd(), 'public');
+        const absPath = path.join(publicDir, relPath);
+        // Защита от выхода за пределы /public
+        if (!absPath.startsWith(publicDir)) continue;
+        await fs.unlink(absPath).catch(() => {});
+      }
+    } catch (e) {
+      console.warn('Failed to delete image files:', e);
+    }
+
+    // Синхронизация JSON после удаления
+    try {
+      const confirmed = await prisma.product.findMany({ where: { isConfirmed: true } });
+      const payload = {
+        products: confirmed.map((p) => ({
+          title: p.title,
+          image_path: p.image || (p.images?.[0] ?? null),
+          price: p.price,
+          discount: p.discount ?? 0,
+          size: p.size ?? null,
+          category: p.category ?? null,
+          barcode: p.barcode ?? null,
+          comment: p.comment ?? null,
+        }))
+      };
+      const jsonPath = path.join(process.cwd(), 'products.json');
+      await fs.writeFile(jsonPath, JSON.stringify(payload, null, 2), 'utf-8');
+    } catch (e) {
+      console.warn('JSON sync after delete failed:', e);
+    }
 
     return NextResponse.json({ message: 'Продукт удален' });
 

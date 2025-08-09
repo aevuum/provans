@@ -58,11 +58,15 @@ export default function PhotoUploader({
         });
 
         if (!uploadResponse.ok) {
-          throw new Error(`Ошибка загрузки файла ${file.name}`);
+          const err = await uploadResponse.json().catch(() => ({}));
+          throw new Error(err?.error || `Ошибка загрузки файла ${file.name}`);
         }
 
         const uploadResult = await uploadResponse.json();
-        const imageUrl = `/uploads/${uploadResult.filename}`;
+        const imageUrl: string = uploadResult.url || (uploadResult.filename ? `/uploads/${uploadResult.filename}` : '');
+        if (!imageUrl) {
+          throw new Error('Не удалось получить URL загруженного файла');
+        }
         uploadedImages.push(imageUrl);
       }
 
@@ -82,12 +86,12 @@ export default function PhotoUploader({
           onImagesUpdate(updatedImages);
         }
 
-        await updateProductImages(updatedImages);
+        await updateProductImages(updatedImages, uploadedImages[0]);
       }
 
-    } catch (error) {
-      console.error('Error uploading files:', error);
-      alert('Ошибка при загрузке изображений');
+    } catch (_error) {
+      console.error('Error uploading files:', _error);
+      alert(_error instanceof Error ? _error.message : 'Ошибка при загрузке изображений');
     } finally {
       setUploading(false);
       // Очищаем input
@@ -95,7 +99,7 @@ export default function PhotoUploader({
     }
   };
 
-  const updateProductImages = async (newImages: string[]) => {
+  const updateProductImages = async (newImages: string[], main?: string) => {
     try {
       const response = await fetch(`/api/admin/products/${productId}`, {
         method: 'PUT',
@@ -104,7 +108,7 @@ export default function PhotoUploader({
         },
         body: JSON.stringify({
           images: newImages,
-          image: previewUrl || newImages[0] || null
+          image: main || previewUrl || newImages[0] || null
         }),
       });
 
@@ -112,8 +116,8 @@ export default function PhotoUploader({
         throw new Error('Ошибка обновления изображений');
       }
 
-    } catch (error) {
-      console.error('Error updating product images:', error);
+    } catch (_error) {
+      console.error('Error updating product images:', _error);
       alert('Ошибка при обновлении изображений товара');
     }
   };
@@ -142,7 +146,7 @@ export default function PhotoUploader({
     setPreviewUrl(imageUrl);
     onImageUpdate(imageUrl);
     
-    await updateProductImages(images);
+    await updateProductImages(images, imageUrl);
   };
 
   return (

@@ -35,8 +35,8 @@ function CheckoutSuccessContent() {
           message: 'Не удалось подтвердить платеж'
         }));
       }
-    } catch (error) {
-      console.error('Payment status check error:', error);
+    } catch (_error) {
+      console.error('Payment status check error:', _error);
       setStatus('error');
       dispatch(addNotification({
         type: 'error',

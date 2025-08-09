@@ -1,6 +1,6 @@
 // lib/hooks/useProducts.ts
 import { useState, useEffect, useCallback } from 'react';
-import { Product, ProductsApiResponse, ProductFilters, FilterOptions } from '@/types';
+import { Product, ProductFilters, FilterOptions } from '@/types';
 
 // Хук для работы с продуктами с фильтрацией и пагинацией
 export function useProducts(initialFilters: ProductFilters = {}) {
@@ -39,9 +39,21 @@ export function useProducts(initialFilters: ProductFilters = {}) {
         throw new Error('Ошибка загрузки продуктов');
       }
 
-      const result: ProductsApiResponse = await response.json();
-      setData(result.data);
-      setMeta(result.meta);
+      const result = await response.json();
+      
+      if (result.success) {
+        setData(result.data.products);
+        setMeta({
+          total: result.data.pagination.total,
+          page: result.data.pagination.page,
+          limit: result.data.pagination.limit,
+          totalPages: result.data.pagination.totalPages,
+          hasNextPage: result.data.pagination.page < result.data.pagination.totalPages,
+          hasPrevPage: result.data.pagination.page > 1
+        });
+      } else {
+        throw new Error(result.error || 'Ошибка загрузки продуктов');
+      }
       
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Неизвестная ошибка';
@@ -98,8 +110,6 @@ export function useProducts(initialFilters: ProductFilters = {}) {
 // Хук для получения опций фильтров
 export function useFilterOptions() {
   const [options, setOptions] = useState<FilterOptions>({
-    materials: [],
-    countries: [],
     priceRange: { min: 0, max: 100000 }
   });
   const [loading, setLoading] = useState(false);

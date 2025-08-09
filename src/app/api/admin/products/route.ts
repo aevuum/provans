@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAdminSession } from '@/lib/authUtils';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 // POST - создание нового продукта
 export async function POST(req: NextRequest) {
@@ -20,8 +22,6 @@ export async function POST(req: NextRequest) {
       title,
       price,
       size,
-      material,
-      country,
       barcode,
       comment,
       image,
@@ -45,8 +45,6 @@ export async function POST(req: NextRequest) {
         title: title.trim(),
         price: parseFloat(price),
         size: size?.trim() || null,
-        material: material?.trim() || null,
-        country: country?.trim() || null,
         barcode: barcode?.trim() || null,
         comment: comment?.trim() || null,
         image: image?.trim() || null,
@@ -57,6 +55,27 @@ export async function POST(req: NextRequest) {
         quantity: quantity ? parseInt(quantity) : 1
       }
     });
+
+    // Синхронизация в products.json (экспорт подтвержденных товаров)
+    try {
+      const confirmed = await prisma.product.findMany({ where: { isConfirmed: true } });
+      const payload = {
+        products: confirmed.map((p) => ({
+          title: p.title,
+          image_path: p.image || (p.images?.[0] ?? null),
+          price: p.price,
+          discount: p.discount ?? 0,
+          size: p.size ?? null,
+          category: p.category ?? null,
+          barcode: p.barcode ?? null,
+          comment: p.comment ?? null,
+        }))
+      };
+      const filePath = path.join(process.cwd(), 'products.json');
+      await fs.writeFile(filePath, JSON.stringify(payload, null, 2), 'utf-8');
+    } catch (e) {
+      console.warn('JSON sync after create failed:', e);
+    }
 
     return NextResponse.json(product, { status: 201 });
 
@@ -99,25 +118,29 @@ export async function GET(req: NextRequest) {
     
     // Поиск
     if (search) {
+
       where.OR = [
         { title: { contains: search, mode: 'insensitive' } },
-        { material: { contains: search, mode: 'insensitive' } },
-        { country: { contains: search, mode: 'insensitive' } },
-        { barcode: { contains: search, mode: 'insensitive' } }
+        { barcode: { contains: search, mode: 'insensitive' } },
+        { comment: { contains: search, mode: 'insensitive' } }
       ];
     }
 
     // Фильтр по подтверждению
     if (confirmed === 'true') {
+     
       where.isConfirmed = true;
     } else if (confirmed === 'false') {
+     
       where.isConfirmed = false;
     }
 
     // Фильтр по статусу
     if (status === 'pending') {
+    
       where.isConfirmed = false;
     } else if (status === 'confirmed') {
+     
       where.isConfirmed = true;
     }
 

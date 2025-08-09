@@ -21,7 +21,7 @@ export function AdminEditButton({ productId, className = '' }: AdminEditButtonPr
   }
 
   const handleEdit = () => {
-    router.push(`/admin/products/edit/${productId}`);
+    router.push(`/admin/products/${productId}/edit`);
   };
 
   const handleBackToModeration = async () => {
@@ -40,8 +40,8 @@ export function AdminEditButton({ productId, className = '' }: AdminEditButtonPr
       } else {
         alert('Ошибка при отправке товара на модерацию');
       }
-    } catch (error) {
-      console.error('Error:', error);
+    } catch (_error) {
+      console.error('Error:', _error);
       alert('Ошибка при отправке товара на модерацию');
     }
   };

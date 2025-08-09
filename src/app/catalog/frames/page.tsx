@@ -7,8 +7,8 @@ export default function FramesPage() {
     <CatalogPage
       title="Рамки"
       description="Элегантные рамки для фотографий в стиле Прованс. Подчеркните красоту ваших воспоминаний с нашими изысканными рамками"
-      apiEndpoint="/api/products?category=фоторамки"
       category="frames"
+      showCategoryFilter={false}
     />
   );
 }

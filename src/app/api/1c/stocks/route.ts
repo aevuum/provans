@@ -1,7 +1,7 @@
 // app/api/1c/stocks/route.ts
 // Синхронизация остатков товаров с 1C
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 
 interface C1Stock {
   productId: string;

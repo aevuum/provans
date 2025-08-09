@@ -17,16 +17,12 @@ export default function SmartFilters({ products, onFilterChange }: SmartFiltersP
   const [filters, setFilters] = useState({
     search: searchParams.get('search') || '',
     category: searchParams.get('category') || '',
-    material: searchParams.get('material') || '', 
-    country: searchParams.get('country') || '',
     minPrice: searchParams.get('minPrice') || '',
     maxPrice: searchParams.get('maxPrice') || '',
   });
 
   // Извлекаем уникальные значения из товаров
   const uniqueCategories = [...new Set(products.map(p => p.category).filter(Boolean))] as string[];
-  const uniqueMaterials = [...new Set(products.map(p => p.material).filter(Boolean))] as string[];
-  const uniqueCountries = [...new Set(products.map(p => p.country).filter(Boolean))] as string[];
   const priceRange = products.length > 0 ? {
     min: Math.min(...products.map(p => p.price)),
     max: Math.max(...products.map(p => p.price))
@@ -48,20 +44,6 @@ export default function SmartFilters({ products, onFilterChange }: SmartFiltersP
       filtered = filtered.filter(product => product.category === filters.category);
     }
 
-    // Материал
-    if (filters.material) {
-      filtered = filtered.filter(product => 
-        product.material?.toLowerCase().includes(filters.material.toLowerCase())
-      );
-    }
-
-    // Страна
-    if (filters.country) {
-      filtered = filtered.filter(product => 
-        product.country?.toLowerCase().includes(filters.country.toLowerCase())
-      );
-    }
-
     // Цена
     if (filters.minPrice) {
       filtered = filtered.filter(product => product.price >= parseFloat(filters.minPrice));
@@ -77,8 +59,6 @@ export default function SmartFilters({ products, onFilterChange }: SmartFiltersP
     setFilters({
       search: '',
       category: '',
-      material: '', 
-      country: '',
       minPrice: '',
       maxPrice: '',
     });
@@ -158,48 +138,6 @@ export default function SmartFilters({ products, onFilterChange }: SmartFiltersP
             </div>
           )}
 
-          {/* Материал */}
-          {uniqueMaterials.length > 0 && (
-            <div>
-              <label className="block text-base font-medium text-gray-700 mb-3">
-                Материал
-              </label>
-              <select
-                value={filters.material}
-                onChange={(e) => setFilters(prev => ({ ...prev, material: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5D3B3] text-base"
-              >
-                <option value="">Все материалы</option>
-                {uniqueMaterials.map(material => (
-                  <option key={material} value={material}>
-                    {material}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-
-          {/* Страна */}
-          {uniqueCountries.length > 0 && (
-            <div>
-              <label className="block text-base font-medium text-gray-700 mb-3">
-                Страна производитель
-              </label>
-              <select
-                value={filters.country}
-                onChange={(e) => setFilters(prev => ({ ...prev, country: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5D3B3] text-base"
-              >
-                <option value="">Все страны</option>
-                {uniqueCountries.map(country => (
-                  <option key={country} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-
           {/* Цена */}
           <div>
             <label className="block text-base font-medium text-gray-700 mb-3">
@@ -238,3 +176,6 @@ export default function SmartFilters({ products, onFilterChange }: SmartFiltersP
     </div>
   );
 }
+
+// DEPRECATED: Используйте ReusableFilters. Этот файл оставлен как заглушка.
+export function DeprecatedSmartFiltersStub() { return null; }

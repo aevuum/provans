@@ -36,7 +36,6 @@ export async function POST(req: NextRequest) {
 
     // Генерируем токен для сброса пароля
     const resetToken = crypto.randomBytes(32).toString('hex');
-    const resetTokenExpiry = new Date(Date.now() + 3600000); // 1 час
 
     // В реальном приложении здесь должна быть логика отправки email
     // Пока что просто логируем токен

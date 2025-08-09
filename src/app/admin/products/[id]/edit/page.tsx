@@ -19,11 +19,10 @@ export default function AdminProductEditPage({ params }: PageProps) {
     title: '',
     price: 0,
     size: '',
-    material: '',
-    country: '',
     barcode: '',
     comment: '',
     image: '',
+    images: [],
     isConfirmed: false,
     discount: 0,
     category: ''
@@ -45,10 +44,13 @@ export default function AdminProductEditPage({ params }: PageProps) {
         const response = await fetch(`/api/admin/products/${id}`)
         if (response.ok) {
           const data = await response.json()
-          setProduct(data)
+          setProduct({
+            ...data,
+            images: Array.isArray(data.images) ? data.images : []
+          })
         }
-      } catch (error) {
-        console.error('Error fetching product:', error)
+      } catch (_error) {
+        console.error('Error fetching product:', _error)
       } finally {
         setLoading(false)
       }
@@ -68,16 +70,23 @@ export default function AdminProductEditPage({ params }: PageProps) {
     setSaving(true)
 
     try {
+      const body = {
+        ...product,
+        price: Number(product.price),
+        discount: Number(product.discount) || 0,
+        // фильтруем пустые строки в images
+        images: Array.isArray(product.images)
+          ? product.images.map((s) => (s || '').trim()).filter(Boolean)
+          : [],
+        image: (product.image || '').toString().trim() || null,
+      }
+
       const response = await fetch(`/api/admin/products/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...product,
-          price: Number(product.price),
-          discount: Number(product.discount) || 0
-        }),
+        body: JSON.stringify(body),
       })
 
       if (response.ok) {
@@ -85,8 +94,8 @@ export default function AdminProductEditPage({ params }: PageProps) {
       } else {
         alert('Ошибка при сохранении товара')
       }
-    } catch (error) {
-      console.error('Error saving product:', error)
+    } catch (_error) {
+      console.error('Error saving product:', _error)
       alert('Ошибка при сохранении товара')
     } finally {
       setSaving(false)
@@ -99,6 +108,26 @@ export default function AdminProductEditPage({ params }: PageProps) {
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
     }))
+  }
+
+  const handleImageChange = (index: number, value: string) => {
+    setProduct(prev => {
+      const arr = Array.isArray(prev.images) ? [...prev.images] : []
+      arr[index] = value
+      return { ...prev, images: arr }
+    })
+  }
+
+  const addImageField = () => {
+    setProduct(prev => ({ ...prev, images: [ ...(Array.isArray(prev.images) ? prev.images : []), '' ]}))
+  }
+
+  const removeImageField = (index: number) => {
+    setProduct(prev => {
+      const arr = Array.isArray(prev.images) ? [...prev.images] : []
+      arr.splice(index, 1)
+      return { ...prev, images: arr }
+    })
   }
 
   if (loading) {
@@ -114,7 +143,7 @@ export default function AdminProductEditPage({ params }: PageProps) {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
           {/* Заголовок */}
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex justify-between items-center mb-2">
             <h1 className="text-3xl font-bold text-gray-900">
               Редактировать товар
             </h1>
@@ -124,6 +153,10 @@ export default function AdminProductEditPage({ params }: PageProps) {
             >
               Назад
             </button>
+          </div>
+          {/* Отображение ID товара (для админа) */}
+          <div className="mb-6 text-sm text-gray-600">
+            ID товара: <span className="font-mono">{id}</span>
           </div>
 
           {/* Форма */}
@@ -187,12 +220,13 @@ export default function AdminProductEditPage({ params }: PageProps) {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Выберите категорию</option>
-                  <option value="декор">Декор</option>
-                  <option value="мебель">Мебель</option>
-                  <option value="посуда">Посуда</option>
-                  <option value="текстиль">Текстиль</option>
-                  <option value="цветы">Цветы</option>
-                  <option value="ароматы">Ароматы</option>
+                  <option value="vases">Вазы</option>
+                  <option value="candlesticks">Подсвечники</option>
+                  <option value="frames">Рамки</option>
+                  <option value="flowers">Цветы</option>
+                  <option value="jewelry-boxes">Шкатулки</option>
+                  <option value="figurines">Фигурки</option>
+                  <option value="bookends">Книгодержатели</option>
                 </select>
               </div>
 
@@ -205,34 +239,6 @@ export default function AdminProductEditPage({ params }: PageProps) {
                     type="text"
                     name="size"
                     value={product.size || ''}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Материал
-                  </label>
-                  <input
-                    type="text"
-                    name="material"
-                    value={product.material || ''}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Страна
-                  </label>
-                  <input
-                    type="text"
-                    name="country"
-                    value={product.country || ''}
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -254,15 +260,50 @@ export default function AdminProductEditPage({ params }: PageProps) {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Изображение (URL)
+                  Изображение (основное, URL)
                 </label>
                 <input
                   type="url"
                   name="image"
-                  value={product.image || ''}
+                  value={(product.image as string) || ''}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+              </div>
+
+              {/* Дополнительные изображения */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Дополнительные изображения (URL)
+                  </label>
+                  <button
+                    type="button"
+                    onClick={addImageField}
+                    className="text-blue-600 hover:text-blue-700 text-sm"
+                  >
+                    + Добавить
+                  </button>
+                </div>
+                <div className="space-y-2">
+                  {(Array.isArray(product.images) ? product.images : []).map((img, idx) => (
+                    <div key={idx} className="flex gap-2">
+                      <input
+                        type="url"
+                        value={img || ''}
+                        onChange={(e) => handleImageChange(idx, e.target.value)}
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeImageField(idx)}
+                        className="px-3 py-2 text-red-600 hover:text-red-700 text-sm"
+                      >
+                        Удалить
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div>
@@ -320,8 +361,8 @@ export default function AdminProductEditPage({ params }: PageProps) {
                           } else {
                             throw new Error('Ошибка при возврате в модерацию');
                           }
-                        } catch (error) {
-                          alert('Ошибка: ' + (error as Error).message);
+                        } catch (_error) {
+                          alert('Ошибка: ' + (_error as Error).message);
                         } finally {
                           setSaving(false);
                         }

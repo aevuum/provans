@@ -61,8 +61,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           setSuggestions(data.suggestions || []);
           setShowSuggestions(data.suggestions?.length > 0);
         }
-      } catch (error) {
-        console.error('Error fetching suggestions:', error);
+      } catch (_error) {
+        console.error('Error fetching suggestions:', _error);
         setSuggestions([]);
         setShowSuggestions(false);
       } finally {
@@ -74,7 +74,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   // Выполнить поиск
   const executeSearch = (searchQuery: string = query) => {
     if (searchQuery.trim()) {
-      router.push(`/catalog/allshop?search=${encodeURIComponent(searchQuery.trim())}`);
+      router.push(`/catalog/все-категории?search=${encodeURIComponent(searchQuery.trim())}`);
       setShowSuggestions(false);
       setQuery('');
       

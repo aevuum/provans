@@ -1,11 +1,5 @@
-import CategoryPage from '@/app/components/CategoryPage';
+import { redirect } from 'next/navigation';
 
 export default function CandleHoldersPage() {
-  return (
-    <CategoryPage 
-      categoryName="подсвечники"
-      displayName="Подсвечники"
-      filterType="category"
-    />
-  );
+  redirect('/catalog/candlesticks');
 }

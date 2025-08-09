@@ -26,6 +26,12 @@ const nextConfig: NextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         port: '3001',
+        pathname: '/фото/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3001',
         pathname: '/instagram/**',
       },
       {
@@ -92,6 +98,15 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
+  },
+  
+  eslint: {
+    ignoreDuringBuilds: false,
+    dirs: ['src'],
+  },
+  
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 

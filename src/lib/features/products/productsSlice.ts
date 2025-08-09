@@ -1,7 +1,7 @@
 // lib/features/products/productsSlice.ts
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Product, ProductsApiResponse, ProductFilters } from '@/types';
+import { Product, ProductFilters } from '@/types';
 
 interface ProductsState {
   items: Product[];
@@ -52,8 +52,22 @@ export const fetchProducts = createAsyncThunk(
       throw new Error('Ошибка загрузки продуктов');
     }
 
-    const data: ProductsApiResponse = await response.json();
-    return { data: data.data, meta: data.meta, filters };
+    const result = await response.json();
+    
+    if (!result.success) {
+      throw new Error(result.error || 'Ошибка загрузки продуктов');
+    }
+
+    const meta = {
+      total: result.data.pagination.total,
+      page: result.data.pagination.page,
+      limit: result.data.pagination.limit,
+      totalPages: result.data.pagination.totalPages,
+      hasNextPage: result.data.pagination.page < result.data.pagination.totalPages,
+      hasPrevPage: result.data.pagination.page > 1
+    };
+
+    return { data: result.data.products, meta, filters };
   }
 );
 

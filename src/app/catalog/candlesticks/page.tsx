@@ -7,8 +7,8 @@ export default function CandlesticksPage() {
     <CatalogPage
       title="Подсвечники"
       description="Изысканные подсвечники в стиле Прованс для создания романтической атмосферы. Выберите идеальный подсвечник из нашей коллекции"
-      apiEndpoint="/api/products?category=подсвечники"
       category="candlesticks"
+      showCategoryFilter={false}
     />
   );
 }

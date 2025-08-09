@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getServerSession } from 'next-auth/next';
+import { authOptions } from './auth';
 
 export interface AuthSession {
   user?: {
@@ -8,5 +8,5 @@ export interface AuthSession {
 }
 
 export async function getAdminSession(): Promise<AuthSession | null> {
-  return await getServerSession() as AuthSession | null;
+  return (await getServerSession(authOptions)) as AuthSession | null;
 }

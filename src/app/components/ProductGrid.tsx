@@ -1,13 +1,12 @@
 'use client';
 
 import { Product } from '@/types';
-import UniversalProductCard from '@/components/UniversalProductCard';
+import ProductCardClient from '@/app/components/ProductCardClient';
 
 interface ProductGridProps {
   products: Product[];
   loading?: boolean;
   isNew?: boolean;
-  showDiscount?: boolean;
   className?: string;
   emptyMessage?: string;
   emptyIcon?: React.ReactNode;
@@ -23,7 +22,6 @@ export default function ProductGrid({
   products,
   loading = false,
   isNew = false,
-  showDiscount = true,
   className = '',
   emptyMessage = 'Товары не найдены',
   emptyIcon = '🔍',
@@ -71,11 +69,10 @@ export default function ProductGrid({
   return (
     <div className={`${gridClasses} ${className}`}>
       {products.map((product) => (
-        <UniversalProductCard 
+        <ProductCardClient 
           key={product.id} 
           product={product}
           isNew={isNew}
-          showDiscount={showDiscount}
         />
       ))}
     </div>

@@ -72,28 +72,18 @@ export function generateCatalogBreadcrumbs(category?: string, productTitle?: str
   // Добавляем каталог
   breadcrumbs.push({
     name: 'Каталог',
-    href: '/catalog/allshop'
+    href: '/catalog/все-категории'
   });
 
   // Добавляем категорию если есть
   if (category) {
     const categoryMap: Record<string, { name: string; href: string }> = {
-      'decor': { name: 'Декор', href: '/catalog/decor' },
-      'photoframes': { name: 'Фоторамки', href: '/catalog/photoframes' },
       'vases': { name: 'Вазы', href: '/catalog/vases' },
-      'mirrors': { name: 'Зеркала', href: '/catalog/mirrors' },
-      'candles': { name: 'Подсвечники', href: '/catalog/candles' },
+      'candlesticks': { name: 'Подсвечники', href: '/catalog/candlesticks' },
+      'frames': { name: 'Рамки', href: '/catalog/frames' },
+      'flowers': { name: 'Цветы', href: '/catalog/flowers' },
       'jewelry-boxes': { name: 'Шкатулки', href: '/catalog/jewelry-boxes' },
-      'figures': { name: 'Интерьерные фигуры', href: '/catalog/figures' },
-      'clocks': { name: 'Часы', href: '/catalog/clocks' },
-      'garden-decor': { name: 'Садовый декор', href: '/catalog/garden-decor' },
-      'flowers': { name: 'Искусственные цветы', href: '/catalog/flowers' },
-      'textile': { name: 'Текстиль', href: '/catalog/textile' },
-      'dishes': { name: 'Посуда и бокалы', href: '/catalog/dishes' },
-      'furniture': { name: 'Мебель', href: '/catalog/furniture' },
-      'scents': { name: 'Ароматы для дома', href: '/catalog/scents' },
-      'easter': { name: 'Пасхальная коллекция', href: '/catalog/easter' },
-      'newyear': { name: 'Новый год', href: '/catalog/newyear' }
+      'figurines': { name: 'Фигурки', href: '/catalog/figurines' },
     };
 
     const categoryInfo = categoryMap[category];

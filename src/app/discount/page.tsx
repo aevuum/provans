@@ -6,25 +6,7 @@ export const metadata: Metadata = {
   description: 'Специальные предложения и скидки на товары для дома в интернет-магазине Provans Decor.',
 };
 
-interface SearchParams {
-  search?: string;
-  category?: string;
-  minPrice?: string;
-  maxPrice?: string;
-  page?: string;
-  sortBy?: string;
-  sortOrder?: string;
-  material?: string;
-  country?: string;
-}
-
-export default async function DiscountPage({
-  searchParams
-}: {
-  searchParams: Promise<SearchParams>;
-}) {
-  const params = await searchParams;
-
+export default async function DiscountPage() {
   return (
     <CatalogPage
       apiEndpoint="/api/products/promotions"

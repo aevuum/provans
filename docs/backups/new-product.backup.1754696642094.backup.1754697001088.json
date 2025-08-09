@@ -1,0 +1,4901 @@
+{
+  "products": [
+    {
+    "title": "Подсвечник золотой узкий",
+    "image_path": "/ФОТО/Подсвечник золотой узкий.jpeg",
+    "price": 500,
+    "discount": 0,
+    "size": "22*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник золотой узкий 2",
+    "image_path": "/ФОТО/Подсвечник золотой узкий 2.jpeg",
+    "price": 900,
+    "discount": 0,
+    "size": "32*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник розовый антик",
+    "image_path": "/ФОТО/Подсвечник розовый антик.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "12*11*11",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник арт элемент бирюзовый",
+    "image_path": "null",
+    "price": 6100,
+    "discount": 0,
+    "size": "33*10*10",
+    "category": "candlesticks"
+  },{
+    "title": "Подсвечник разное стекло в ассортим",
+    "image_path": "/ФОТО/Подсвечник разное стекло в ассортим .jpeg",
+    "price": 1150,
+    "discount": 0,
+    "size": "27*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал золотой витой",
+    "image_path": "/ФОТО/Подсвечник бокал золотой витой .jpeg",
+    "price": 2900,
+    "discount": 0,
+    "size": "29,5*11*11",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал Шампань",
+    "image_path": "/ФОТО/Подсвечник бокал Шампань.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "35*11*11",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал Шампань 2",
+    "image_path": "/ФОТО/Подсвечник бокал Шампань 2.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "40*13*13",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник голубой с золотым градиентом",
+    "image_path": "/ФОТО/Подсвечник голубой с золотым градиентом.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "35*12*12",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник серебро винтажное стекло",
+    "image_path": "/ФОТО/Подсвечник серебро винтажное стекло.jpeg",
+    "price": 2900,
+    "discount": 0,
+    "size": "27*10*10",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник металл мятый золотой",
+    "image_path": "/ФОТО/Подсвечник металл мятый золотой.jpeg",
+    "price": 4750,
+    "discount": 0,
+    "size": "39*11,5*11,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник металл мятый золотой 2",
+    "image_path": "/ФОТО/Подсвечник металл мятый золотой 2.jpeg",
+    "price": 5300,
+    "discount": 0,
+    "size": "47*11,5*11,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал серый с матовой ножкой",
+    "image_path": "/ФОТО/Подсвечник бокал серый с матовой ножкой.jpeg",
+    "price": 5000,
+    "discount": 0,
+    "size": "30*11,5*11,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал серый с матовой ножкой 2",
+    "image_path": "/ФОТО/Подсвечник бокал серый с матовой ножкой 2.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "36*11,5*11,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал малиновый глянцевый",
+    "image_path": "/ФОТО/Подсвечник бокал малиновый глянцевый .jpeg",
+    "price": 3200,
+    "discount": 0,
+    "size": "35*12*12",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал малиновый глянцевый 2",
+    "image_path": "/ФОТО/Подсвечник бокал малиновый глянцевый 2.jpeg",
+    "price": 4100,
+    "discount": 0,
+    "size": "40*13*13",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал серебро гранит",
+    "image_path": "/ФОТО/Подсвечник бокал серебро гранит.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "35*12*12",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал серебро грани 2",
+    "image_path": "/ФОТО/Подсвечник бокал серебро грани 2.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "40*12*12",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал арт мазки",
+    "image_path": "/ФОТО/Подсвечник бокал арт мазки.jpeg",
+    "price": 2500,
+    "discount": 0,
+    "size": "30*12*12",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал арт мазки 2",
+    "image_path": "/ФОТО/Подсвечник бокал арт мазки 2.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "34,5*13*13",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал арт мазки 3",
+    "image_path": "/ФОТО/Подсвечник бокал арт мазки 3.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "40*13*13",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник оленьи рога",
+    "image_path": "null",
+    "price": 11000,
+    "discount": 0,
+    "size": "13*58*18",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник серебряный с цветами из стекла",
+    "image_path": "/ФОТО/Подсвечник серебряный с цветами из стекла.jpeg",
+    "price": 5850,
+    "discount": 0,
+    "size": "23*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник серебряный с цветами из стекла 2",
+    "image_path": "/ФОТО/Подсвечник серебряный с цветами из стекла 2.jpeg",
+    "price": 6550,
+    "discount": 0,
+    "size": "27*8*8",
+    "category": "candlesticks"
+  },{
+    "title": "Подсвечник узкий золотой металл грани",
+    "image_path": "/ФОТО/Подсвечник узкий золотой металл грани .jpeg",
+    "price": 1000,
+    "discount": 0,
+    "size": "22*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник узкий золотой металл грани 2",
+    "image_path": "/ФОТО/Подсвечник узкий золотой металл грани 2.jpeg",
+    "price": 1350,
+    "discount": 0,
+    "size": "27*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник узкий золотой металл грани 3",
+    "image_path": "/ФОТО/Подсвечник узкий золотой металл грани 3.jpeg",
+    "price": 1700,
+    "discount": 0,
+    "size": "32*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник классика серебро",
+    "image_path": "/ФОТО/Подсвечник классика серебро.jpeg",
+    "price": 1300,
+    "discount": 0,
+    "size": "22,5*9*9",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник классика серебро 2",
+    "image_path": "/ФОТО/Подсвечник классика серебро 2.jpeg",
+    "price": 1800,
+    "discount": 0,
+    "size": "28*10*10",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бел матовый с золотой бабочкой",
+    "image_path": "/ФОТО/Подсвечник бел матовый с золотой бабочкой .jpeg",
+    "price": 2000,
+    "discount": 0,
+    "size": "9,5*9*9",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник стекло серо-коричневый",
+    "image_path": "/ФОТО/Подсвечник стекло серо-коричневый .jpeg",
+    "price": 3600,
+    "discount": 0,
+    "size": "24,5*12,5*12,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник янтарное стекло",
+    "image_path": "/ФОТО/Подсвечник янтарное стекло .jpeg",
+    "price": 3200,
+    "discount": 0,
+    "size": "24,5*13*13",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник стекло серо коричневый",
+    "image_path": "/ФОТО/Подсвечник стекло серо коричневый .jpeg",
+    "price": 3800,
+    "discount": 0,
+    "size": "32,5*13*13",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник лимонная карамель",
+    "image_path": "/ФОТО/Подсвечник лимонная карамель.jpeg",
+    "price": 750,
+    "discount": 0,
+    "size": "3,5*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бокал серебряный кракели",
+    "image_path": "/ФОТО/Подсв бокал серебряный кракели.jpeg",
+    "price": 2500,
+    "discount": 0,
+    "size": "30,5*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник хрустальные грани",
+    "image_path": "/ФОТО/Подсвечник хрустальные грани .jpeg",
+    "price": 4800,
+    "discount": 0,
+    "size": "29*7,5*7,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник стакан винтажное серебро",
+    "image_path": "/ФОТО/Подсвечник стакан винтажное серебро.jpeg",
+    "price": 900,
+    "discount": 0,
+    "size": "8*7,5*7,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник прозрачный резной со съемным низом",
+    "image_path": "/ФОТО/Подсвечник прозрачный резной со съемным низом.jpeg",
+    "price": 2450,
+    "discount": 0,
+    "size": "9,6*10*20",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник состаренный серебро стекло",
+    "image_path": "/ФОТО/Подсвечник состаренный серебро стекло.jpeg",
+    "price": 2700,
+    "discount": 0,
+    "size": "18*15*15",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник матовое золото",
+    "image_path": "/ФОТО/Подсвечник матовое золото.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "4*5*5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник матовое золото 2",
+    "image_path": "/ФОТО/Подсвечник матовое золото .jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "4*7,5*7,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник золотой металл для широкой свечи",
+    "image_path": "/ФОТО/Подсвечник золотой металл для широкой свечи.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "16*10,5*10,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник золотой металл для широкой свечи 2",
+    "image_path": "/ФОТО/Подсвечник золотой металл для широкой свечи 2.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "22*10,5*10,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник разноцветный хрусталь",
+    "image_path": "/ФОТО/Подсвечник разноцветный хрусталь.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "16*5*5",
+    "category": "candlesticks"
+  }, {
+    "title": "Подсвечник разное стекло в ассортим",
+    "image_path": "/ФОТО/Подсвечник разное стекло в ассортим.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "10*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник золотой низкий полосы",
+    "image_path": "/ФОТО/Подсвечник золотой низкий полосы.jpeg",
+    "price": 1600,
+    "discount": 0,
+    "size": "5*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник мини золотой витой",
+    "image_path": "/ФОТО/Подсвечник мини золотой витой.jpeg",
+    "price": 1150,
+    "discount": 0,
+    "size": "4*6*6",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник золотые ветки",
+    "image_path": "/ФОТО/Подсвечник золотые ветки.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "40*12*12",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник золотые ветки 2",
+    "image_path": "/ФОТО/Подсвечник золотые ветки .jpeg",
+    "price": 11000,
+    "discount": 0,
+    "size": "32*13*13",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник с бантом",
+    "image_path": "/ФОТО/Подсвечник с бантом .jpeg",
+    "price": 4000,
+    "discount": 0,
+    "size": "22,5*8,5*8,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник золотой конус для узкой",
+    "image_path": "/ФОТО/Подсвечник золотой конус для узкой.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "22*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник на ножке бутон",
+    "image_path": "/ФОТО/Подсвечник на ножке бутон.jpeg",
+    "price": 1300,
+    "discount": 0,
+    "size": "21,5*8,5*8,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник хрусталь на золотой мет ножке",
+    "image_path": "/ФОТО/Подсвечник хрусталь на золотой мет ножке.jpeg",
+    "price": 5000,
+    "discount": 0,
+    "size": "38*7*7",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник хрусталь на золотой мет ножке 2",
+    "image_path": "/ФОТО/Подсвечник хрусталь на золотой мет ножке 2.jpeg",
+    "price": 6000,
+    "discount": 0,
+    "size": "46*7*7",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник хрусталь на золотой мет ножке 3",
+    "image_path": "/ФОТО/Подсвечник хрусталь на золотой мет ножке 3.jpeg",
+    "price": 7000,
+    "discount": 0,
+    "size": "53*7*7",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бежевый с патиной",
+    "image_path": "/ФОТО/Подсвечник бежевый с патиной.jpeg",
+    "price": 2850,
+    "discount": 0,
+    "size": "20*11*11",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник металл серебряный узкий",
+    "image_path": "/ФОТО/Подсвечник металл серебряный узкий .jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "35,5*11*11",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник металл серебряный узкий 2",
+    "image_path": "/ФОТО/Подсвечник металл серебряный узкий 2.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "40,5*11*11",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник металл серебряный узкий 3",
+    "image_path": "/ФОТО/Подсвечник металл серебряный узкий  3.jpeg",
+    "price": 5000,
+    "discount": 0,
+    "size": "45,5*11*11",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник разное стекло в ассортим 2",
+    "image_path": "/ФОТО/Подсвечник разное стекло в ассортим 2.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "16,5*8,5*8,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник разное стекло в ассортим 3",
+    "image_path": "/ФОТО/Подсвечник разное стекло в ассортим 3.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "16,5*8,5*8,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник разное стекло в ассортим 4",
+    "image_path": "/ФОТО/Подсвечник разное стекло в ассортим 4.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "16,5*8,5*8,5",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник разное стекло в ассортим 5",
+    "image_path": "/ФОТО/Подсвечник разное стекло в ассортим 5.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "27*8*8",
+    "category": "candlesticks"
+  },
+  {
+    "title": "Подсвечник бел матовый с золот бабочки",
+    "image_path": "/ФОТО/Подсвечник бел матовый с золот бабочки.jpeg",
+    "price": 2000,
+    "discount": 0,
+    "size": "9,5*9*9",
+    "category": "candlesticks"
+  },{
+    "title": "Ф золотые ветки и черные цветы",
+    "image_path": null,
+    "price": 2300,
+    "discount": 0,
+    "size": "24*19*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотые ветки металл",
+    "image_path": null,
+    "price": 2500,
+    "discount": 0,
+    "size": "22*17*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф бежевая с золотой кайомкой",
+    "image_path": null,
+    "price": 1400,
+    "discount": 0,
+    "size": "17,5*12*10*15",
+    "category": "frames"
+  },
+  {
+    "title": "Ф бежевая с золотой кайомкой 2",
+    "image_path": null,
+    "price": 1900,
+    "discount": 0,
+    "size": "20*15*13*18",
+    "category": "frames"
+  },
+  {
+    "title": "Ф перламутр металл",
+    "image_path": null,
+    "price": 3000,
+    "discount": 0,
+    "size": "17*12*16*10,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф серебряные листья",
+    "image_path": null,
+    "price": 2600,
+    "discount": 0,
+    "size": "17,5*12*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф серебряные листья 2",
+    "image_path": null,
+    "price": 1900,
+    "discount": 0,
+    "size": "20*14,5*17,5*12,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотые ветки и белые цветы",
+    "image_path": null,
+    "price": 2300,
+    "discount": 0,
+    "size": "24*18,5*18*13",
+    "category": "frames"
+  },{
+    "title": "Ф металлический лед",
+    "image_path": "/ФОТО/Ф металлический лед.jpeg",
+    "price": 3200,
+    "discount": 0,
+    "size": "20*14*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф металлический лед 2",
+    "image_path": "/ФОТО/Ф металлический лед 2.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "27*21,5*25,5*20,5",
+    "category": "frames"
+  },
+  {
+    "title": "Белый перламутр",
+    "image_path": "/ФОТО/Белый перламутр.jpeg",
+    "price": 4900,
+    "discount": 0,
+    "size": "22,5*17,5*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Белый перламутр 2",
+    "image_path": "/ФОТО/Белый перламутр 2.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "26*21*20,5*15,5",
+    "category": "frames"
+  },
+  {
+    "title": "Белый перламутр 3",
+    "image_path": "/ФОТО/Белый перламутр 3.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "30,5*25,5*25,5*20,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотая кожа металл",
+    "image_path": "/ФОТО/Ф золотая кожа металл.jpeg",
+    "price": 1500,
+    "discount": 0,
+    "size": "14,5*14,5*10,5*10,5",
+    "category": "frames"
+  },
+  {
+    "title": "Золотая кожа металл",
+    "image_path": "/ФОТО/Золотая кожа металл.jpeg",
+    "price": 2000,
+    "discount": 0,
+    "size": "19,5*14,5*15,5*10,5",
+    "category": "frames"
+  },
+  {
+    "title": "Белая кожа лен с хромом",
+    "image_path": "/ФОТО/Белая кожа лен с хромом.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "24*19*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Белая кожа лен с хромом 2",
+    "image_path": "/ФОТО/Белая кожа лен с хромом 2.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "26*21*17,5*12,5",
+    "category": "frames"
+  },
+  {
+    "title": "Перламутр металл большая с chance",
+    "image_path": "/ФОТО/Перламутр металл большая с chance.jpeg",
+    "price": 0,
+    "discount": 0,
+    "size": "",
+    "category": "frames"
+  },{
+    "title": "Ф бамбук золотой металл",
+    "image_path": "/ФОТО/Ф бамбук золотой металл.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "19*13,8*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф бамбук золотой металл б",
+    "image_path": "/ФОТО/Ф бамбук золотой металл б.jpeg",
+    "price": 2900,
+    "discount": 0,
+    "size": "21,7*16,5*17,7*12,6",
+    "category": "frames"
+  },
+  {
+    "title": "Ф овальная жемчуг с бантиком",
+    "image_path": "/ФОТО/Ф овальная жемчуг с бантиком.jpeg",
+    "price": 1900,
+    "discount": 0,
+    "size": "21*14,5*17,7*12,7",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотая с узором из перьев",
+    "image_path": "/ФОТО/Ф золотая с узором из перьев.jpeg",
+    "price": 1300,
+    "discount": 0,
+    "size": "19,6*15,1*14,8*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотая с розами",
+    "image_path": "/ФОТО/Ф золотая с розами.jpeg",
+    "price": 3300,
+    "discount": 0,
+    "size": "25*17,6*15*10,2",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотые перья",
+    "image_path": "/ФОТО/Ф золотые перья.jpeg",
+    "price": 1850,
+    "discount": 0,
+    "size": "23,5*18*16,7*11,9",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотая Гингго",
+    "image_path": "/ФОТО/Ф золотая Гингго.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "23,5*19*15,5*11",
+    "category": "frames"
+  },
+  {
+    "title": "Ф серая велюр с золотым металлом",
+    "image_path": "/ФОТО/Ф серая велюр с золотым металлом.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "27,3*21,5*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф плетение ботего замша коричневая",
+    "image_path": "/ФОТО/Ф плетение ботего замша коричневая.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "24,1*19,5*15,5*20,8",
+    "category": "frames"
+  },
+  {
+    "title": "Ф черная кожа объемная с золотым",
+    "image_path": "/ФОТО/Ф черная кожа объемная с золотым.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "24,5*19,5*15,5*10,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотые ветки и черные цветы",
+    "image_path": "/ФОТО/Ф золотые ветки и черные цветы.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "24*19*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотые ветки металл",
+    "image_path": "/ФОТО/Ф золотые ветки металл.jpeg",
+    "price": 2500,
+    "discount": 0,
+    "size": "22*17*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф бежевая с золотой кайомкой",
+    "image_path": "/ФОТО/Ф бежевая с золотой кайомкой.jpeg",
+    "price": 1400,
+    "discount": 0,
+    "size": "17,5*12*10*15",
+    "category": "frames"
+  },
+  {
+    "title": "Ф бежевая с золотой кайомкой 2",
+    "image_path": "/ФОТО/Ф бежевая с золотой кайомкой 2.jpeg",
+    "price": 1900,
+    "discount": 0,
+    "size": "20*15*13*18",
+    "category": "frames"
+  },
+  {
+    "title": "Ф перламутр металл",
+    "image_path": "/ФОТО/Ф перламутр металл.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "17*12*16*10,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф серебряные листья",
+    "image_path": "/ФОТО/Ф серебряные листья.jpeg",
+    "price": 2600,
+    "discount": 0,
+    "size": "17,5*12*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф серебряные листья 2",
+    "image_path": "/ФОТО/Ф серебряные листья 2.jpeg",
+    "price": 1900,
+    "discount": 0,
+    "size": "20*14,5*17,5*12,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотые ветки и белые цветы",
+    "image_path": "/ФОТО/Ф золотые ветки и белые цветы.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "24*18,5*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф белая кожа с хромом",
+    "image_path": "/ФОТО/Ф белая кожа с хромом.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "24*19*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф белая кожа с хромом 2",
+    "image_path": "/ФОТО/Ф белая кожа с хромом 2.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "26*21*17,5*12,5",
+    "category": "frames"
+  },{
+    "title": "Ф белая эмаль с золотым бантом",
+    "image_path": "/ФОТО/Ф белая эмаль с золотым бантом.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "21,5*15,3*17,7*12,7",
+    "category": "frames"
+  },
+  {
+    "title": "Ф белая патина лепнина",
+    "image_path": "/ФОТО/Ф белая патина лепнина.jpeg",
+    "price": 1400,
+    "discount": 0,
+    "size": "27,5*22,5*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф Арабеск крем",
+    "image_path": "/ФОТО/Ф Арабеск крем.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "23,9*18,9*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф Арабеск крем 2",
+    "image_path": "/ФОТО/Ф Арабеск крем 2.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "23,9*18,9*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф мини серая патина бат свет",
+    "image_path": "/ФОТО/Ф мини серая патина бат свет.jpeg",
+    "price": 1390,
+    "discount": 0,
+    "size": "12*8*8,8*8,2",
+    "category": "frames"
+  },
+  {
+    "title": "Ф хром засечки",
+    "image_path": "/ФОТО/Ф хром засечки.jpeg",
+    "price": 1600,
+    "discount": 0,
+    "size": "16*10,7*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф с короной серая",
+    "image_path": "/ФОТО/Ф с короной серая.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "23,7*14,3*15,5*10,2",
+    "category": "frames"
+  },
+  {
+    "title": "Ф белая с серебряными вензелями",
+    "image_path": "/ФОТО/Ф белая с серебряными вензелями.jpeg",
+    "price": 900,
+    "discount": 0,
+    "size": "24,6*19,1*17,7*12,8",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотая косичка",
+    "image_path": "/ФОТО/Ф золотая косичка.jpeg",
+    "price": 2600,
+    "discount": 0,
+    "size": "19,2*14*17,8*12,8",
+    "category": "frames"
+  },
+  {
+    "title": "Ф черная с золотыми розами",
+    "image_path": "/ФОТО/Ф черная с золотыми розами.jpeg",
+    "price": 1900,
+    "discount": 0,
+    "size": "25*19*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф черная кожа крокодила",
+    "image_path": "/ФОТО/Ф черная кожа крокодила.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "24,1*19*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф черно белый мрамор в золотом",
+    "image_path": "/ФОТО/Ф черно белый мрамор в золотом.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "23,6*18,3*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф черно белый мрамор в золоте",
+    "image_path": "/ФОТО/Ф черно белый мрамор в золоте.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "23,6*18,3*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф синяя змеиная кожа",
+    "image_path": "/ФОТО/Ф синяя змеиная кожа.jpeg",
+    "price": 6000,
+    "discount": 0,
+    "size": "20,3*15,2*15,2*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф синяя индиго",
+    "image_path": "/ФОТО/Ф синяя индиго.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "25*19,9*17,7*12,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотая с бантом",
+    "image_path": "/ФОТО/Ф золотая с бантом.jpeg",
+    "price": 4200,
+    "discount": 0,
+    "size": "25,2*16,3*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотая с бантом 2",
+    "image_path": "/ФОТО/Ф золотая с бантом 2.jpeg",
+    "price": 4850,
+    "discount": 0,
+    "size": "27,5*18,6*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф серая твид",
+    "image_path": "/ФОТО/Ф серая твид.jpeg",
+    "price": 6200,
+    "discount": 0,
+    "size": "23,2*18,2*18*12,8",
+    "category": "frames"
+  },
+  {
+    "title": "Ф белая вензеля на ножках",
+    "image_path": "/ФОТО/Ф белая вензеля на ножках.jpeg",
+    "price": 2500,
+    "discount": 0,
+    "size": "30*19,5*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф золотая косичка 2",
+    "image_path": "/ФОТО/Ф золотая косичка 2.jpeg",
+    "price": 1900,
+    "discount": 0,
+    "size": "16,5*11,5*15,4*10",
+    "category": "frames"
+  },{
+    "title": "Фоторамка золотая металлические полосы",
+    "image_path": "/ФОТО/Фоторамка золотая металлические полосы.jpeg",
+    "price": 4200,
+    "discount": 0,
+    "size": "20,5*15,4*15,2*10,2",
+    "category": "frames"
+  },
+  {
+    "title": "Ф черная с пайетками",
+    "image_path": "/ФОТО/Ф черная с пайетками.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "21*16*15,3*10,2",
+    "category": "frames"
+  },
+  {
+    "title": "Ф черная объемная с золотой кайомкой",
+    "image_path": "/ФОТО/Ф черная объемная с золотой кайомкой.jpeg",
+    "price": 6300,
+    "discount": 0,
+    "size": "20,1*15*17,7*12,7",
+    "category": "frames"
+  },
+  {
+    "title": "Ф сталь толстая",
+    "image_path": "/ФОТО/Ф сталь толстая.jpeg",
+    "price": 6100,
+    "discount": 0,
+    "size": "22,5*17,3*17,6*12,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф плетеная с отсрочкой",
+    "image_path": "/ФОТО/Ф плетеная с отсрочкой.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "26,2*21*18,3*13,3",
+    "category": "frames"
+  },
+  {
+    "title": "Ф благородное дерево",
+    "image_path": "/ФОТО/Ф благородное дерево.jpeg",
+    "price": 1600,
+    "discount": 0,
+    "size": "23*18*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф коричневая кожа с застежкой",
+    "image_path": "/ФОТО/Ф коричневая кожа с застежкой.jpeg",
+    "price": 7800,
+    "discount": 0,
+    "size": "27*22*17,9*12,7",
+    "category": "frames"
+  },
+  {
+    "title": "Ф беж с ветками по углам",
+    "image_path": "/ФОТО/Ф беж с ветками по углам.jpeg",
+    "price": 2100,
+    "discount": 0,
+    "size": "23,4*18,4*18*13",
+    "category": "frames"
+  },
+  {
+    "title": "Ф черная кожа с золотом",
+    "image_path": "/ФОТО/Ф черная кожа с золотом.jpeg",
+    "price": 7800,
+    "discount": 0,
+    "size": "22,9*17,8*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф черная кожа с золотом б",
+    "image_path": "/ФОТО/Ф черная кожа с золотом б.jpeg",
+    "price": 7800,
+    "discount": 0,
+    "size": "25,5*20*17,7*12,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф зеленая кожа с золотом 2",
+    "image_path": "/ФОТО/Ф зеленая кожа с золотом 2.jpeg",
+    "price": 9200,
+    "discount": 0,
+    "size": "22,9*17,8*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф зеленая кожа с золотом б",
+    "image_path": "/ФОТО/Ф зеленая кожа с золотом б.jpeg",
+    "price": 9200,
+    "discount": 0,
+    "size": "25,5*20*17,7*12,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф зеленое плетение глянцевое",
+    "image_path": "/ФОТО/Ф зеленое плетение глянцевое.jpeg",
+    "price": 2900,
+    "discount": 0,
+    "size": "20*14,9*15*10",
+    "category": "frames"
+  },
+  {
+    "title": "Ф зеленое плетение глянцевое б",
+    "image_path": "/ФОТО/Ф зеленое плетение глянцевое б.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "22,5*17,5*17,5*12,5",
+    "category": "frames"
+  },
+  {
+    "title": "Ф кофейная плетеная с золотыми углами",
+    "image_path": "/ФОТО/Ф кофейная плетеная с золотыми углами.jpeg",
+    "price": 6300,
+    "discount": 0,
+    "size": "22,7*17,7*15,4*10,3",
+    "category": "frames"
+  },
+  {
+    "title": "Ф кофейная плетеная с золотыми углами б",
+    "image_path": "/ФОТО/Ф кофейная плетеная с золотыми углами б.jpeg",
+    "price": 7800,
+    "discount": 0,
+    "size": "24,7*19,7*17,2*12,3",
+    "category": "frames"
+  },
+  {
+    "title": "Ф кожаная бургундия",
+    "image_path": "/ФОТО/Ф кожаная бургундия.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "22*17*15,2*10,2",
+    "category": "frames"
+  },
+  {
+    "title": "Ф кожаная бургундия б",
+    "image_path": "/ФОТО/Ф кожаная бургундия б.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "24,5*19,5*17,7*12,7",
+    "category": "frames"
+  },
+  {
+    "title": "Ф с бантом золото",
+    "image_path": "/ФОТО/Ф с бантом золото.jpeg",
+    "price": 2600,
+    "discount": 0,
+    "size": "21*13*15*11",
+    "category": "frames"
+  },
+  {
+    "title": "Ф овальная золотая с бантом",
+    "image_path": "/ФОТО/Ф овальная золотая с бантом.jpeg",
+    "price": 2800,
+    "discount": 0,
+    "size": "21*15,5*18*13",
+    "category": "frames"
+  },{
+    "title": "Африканская бежевая",
+    "image_path": "/ФОТО/Африканская бежевая.jpeg",
+    "price": 4600,
+    "discount": 0,
+    "size": "40*7*7",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина дебют фарфор",
+    "image_path": "/ФОТО/Балерина дебют фарфор.jpeg",
+    "price": 38000,
+    "discount": 0,
+    "size": "9,5*22*11",
+    "category": "figures"
+  },
+  {
+    "title": "Девочка стеснительная фарфор",
+    "image_path": "/ФОТО/Девочка стеснительная фарфор.jpeg",
+    "price": 21000,
+    "discount": 0,
+    "size": "20*7*10",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с барабаном",
+    "image_path": "/ФОТО/Клоун с барабаном.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*14*15",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с гармошкой",
+    "image_path": "/ФОТО/Клоун с гармошкой.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*16*16",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с кеглями",
+    "image_path": "/ФОТО/Клоун с кеглями.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "38*17*14,5",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с шариками",
+    "image_path": "/ФОТО/Клоун с шариками.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*14*20",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун кривляется",
+    "image_path": "/ФОТО/Клоун кривляется.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*15*14",
+    "category": "figures"
+  },
+  {
+    "title": "32,5*5*3 размер таком формате",
+    "image_path": "/ФОТО/Французский бульдог белый сетка в клетку.jpeg",
+    "price": 5800,
+    "discount": 0,
+    "size": "32,5*5*3",
+    "category": "figures"
+  },{
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото серебро 1.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "14,5*14*14",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в ассортим",
+    "image_path": "/ФОТО/Микки маус в ассортим 4.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "29*8*19",
+    "category": "figures"
+  },
+  {
+    "title": "Ракушка белая декоративная",
+    "image_path": "/ФОТО/Ракушка белая декоративная 1.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "20,5*25*8",
+    "category": "figures"
+  },
+  {
+    "title": "Ракушка белая декоративная",
+    "image_path": "/ФОТО/Ракушка белая декоративная 2.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "14*35*15",
+    "category": "figures"
+  },
+  {
+    "title": "Заяц бел с корзиной в платке на шее",
+    "image_path": "/ФОТО/Заяц бел с корзиной в платке на шее.jpeg",
+    "price": 2650,
+    "discount": 0,
+    "size": "19*8*14",
+    "category": "figures"
+  },
+  {
+    "title": "Конь хром абстракционный рваный",
+    "image_path": "/ФОТО/Конь хром абстракционный рваный.jpeg",
+    "price": 10000,
+    "discount": 0,
+    "size": "36*45*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим 1.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим 2.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим 3.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел бетон",
+    "image_path": "/ФОТО/Ангел бетон.jpeg",
+    "price": 4400,
+    "discount": 0,
+    "size": "16*17*10",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина розовая сидит на подставке",
+    "image_path": "/ФОТО/Балерина розовая сидит на подставке.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "12*16*8",
+    "category": "figures"
+  },
+  {
+    "title": "Орех золотой раскрытый с",
+    "image_path": "/ФОТО/Орех золотой раскрытый с.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "7*5*9",
+    "category": "figures"
+  },
+  {
+    "title": "Орех золотой раскрытый м",
+    "image_path": "/ФОТО/Орех золотой раскрытый м.jpeg",
+    "price": 4000,
+    "discount": 0,
+    "size": "10*7*11,5",
+    "category": "figures"
+  },
+  {
+    "title": "Статуэтка дедушка с внуком в кресле золото",
+    "image_path": "/ФОТО/Статуэтка дедушка с внуком в кресле золото.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "16*11*8",
+    "category": "figures"
+  },
+  {
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото серебро 2.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "15*18*14,5",
+    "category": "figures"
+  },
+  {
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото серебро 3.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "13*23*11",
+    "category": "figures"
+  },
+  {
+    "title": "Фрида бюст",
+    "image_path": "/ФОТО/Фрида бюст.jpeg",
+    "price": 15000,
+    "discount": 0,
+    "size": "22*9*16,5",
+    "category": "figures"
+  },
+  {
+    "title": "Декор молекула бел/чер",
+    "image_path": "/ФОТО/Декор молекула бел чер.jpeg",
+    "price": 11500,
+    "discount": 0,
+    "size": "22*16*16",
+    "category": "figures"
+  },
+  {
+    "title": "Бюст мужской торс черный",
+    "image_path": "/ФОТО/Бюст мужской торс черный.jpeg",
+    "price": 4300,
+    "discount": 0,
+    "size": "26*12*12",
+    "category": "figures"
+  },
+  {
+    "title": "Слоны друг на друге",
+    "image_path": "/ФОТО/Слоны друг на друге.jpeg",
+    "price": 11000,
+    "discount": 0,
+    "size": "40*33*12",
+    "category": "figures"
+  }, {
+    "title": "Собака черная",
+    "image_path": "/ФОТО/Собака черная.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "21,5*21*12",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в ассортим",
+    "image_path": "/ФОТО/Микки маус в ассортим 3.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "28,5*10,5*18,5",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик в цилиндре мини",
+    "image_path": "/ФОТО/Кролик в цилиндре мини.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "12*4,5*5,5",
+    "category": "figures"
+  },
+  {
+    "title": "Птичка белая керамика",
+    "image_path": "/ФОТО/Птичка белая керамика.jpeg",
+    "price": 400,
+    "discount": 0,
+    "size": "7*8*6",
+    "category": "figures"
+  },
+  {
+    "title": "Птичка перламутр белый",
+    "image_path": "/ФОТО/Птичка перламутр белый 1.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "7*11*5,5",
+    "category": "figures"
+  },
+  {
+    "title": "Птичка перламутр белый",
+    "image_path": "/ФОТО/Птичка перламутр белый 2.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "7,5*9,5*5",
+    "category": "figures"
+  },
+  {
+    "title": "Цыпленок с фиалкой",
+    "image_path": "/ФОТО/Цыпленок с фиалкой 1.jpeg",
+    "price": 2250,
+    "discount": 0,
+    "size": "10*5*5",
+    "category": "figures"
+  },
+  {
+    "title": "Будда серо-бежевый в ассортим",
+    "image_path": "/ФОТО/Будда серо-бежевый в ассортим.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "16,5*18*16,5",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в черно золотой",
+    "image_path": "/ФОТО/Микки маус в черно золотой.jpeg",
+    "price": 8800,
+    "discount": 0,
+    "size": "28,5*14*18",
+    "category": "figures"
+  },
+  {
+    "title": "Гимнастка стекло",
+    "image_path": "/ФОТО/Гимнастка стекло.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "15,5*4,5*8",
+    "category": "figures"
+  },
+  {
+    "title": "Цыпленок с фиалкой",
+    "image_path": "/ФОТО/Цыпленок с фиалкой 2.jpeg",
+    "price": 2250,
+    "discount": 0,
+    "size": "10*6*5",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина сидит на шпагате/лежит",
+    "image_path": "/ФОТО/Балерина сидит на шпагате 1.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "9*13*9",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина сидит на шпагате/лежит",
+    "image_path": "/ФОТО/Балерина сидит на шпагате 2.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "10*12*12,5",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 1.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "15*10*16",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 2.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16*8,5*14",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 3.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16,5*9,5*11",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 4.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "18*7,5*14",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 5.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16,5*8*11",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел трубит фигура",
+    "image_path": "/ФОТО/Ангел трубит фигура.jpeg",
+    "price": 7600,
+    "discount": 0,
+    "size": "34,5*20*18,5",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура три кота корич",
+    "image_path": "/ФОТО/Фигура три кота корич.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "21*10,5*24",
+    "category": "figures"
+  },{
+    "title": "Фигура NAO малыш в пеленке",
+    "image_path": "/ФОТО/Фигура NAO малыш в пеленке.jpeg",
+    "price": 29500,
+    "discount": 0,
+    "size": "16*13,5*8,5",
+    "category": "figures"
+  },
+  {
+    "title": "Ребенок на качалке фарфор",
+    "image_path": "/ФОТО/Ребенок на качалке фарфор.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "14*11*2,5",
+    "category": "figures"
+  },
+  {
+    "title": "Мальчик на скейте со щенком фарфор",
+    "image_path": "/ФОТО/Мальчик на скейте со щенком фарфор.jpeg",
+    "price": 1850,
+    "discount": 0,
+    "size": "12*8*3",
+    "category": "figures"
+  },
+  {
+    "title": "Девочка со скрипкой",
+    "image_path": "/ФОТО/Девочка со скрипкой.jpeg",
+    "price": 7200,
+    "discount": 0,
+    "size": "30*9*17",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик фиалка",
+    "image_path": "/ФОТО/Кролик фиалка.jpeg",
+    "price": 5990,
+    "discount": 0,
+    "size": "27*9,5*8",
+    "category": "figures"
+  },
+  {
+    "title": "Ребенок на коне качалке фарфор",
+    "image_path": "/ФОТО/Ребенок на коне качалке фарфор.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "14*11*2,5",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура NAO щенок",
+    "image_path": "/ФОТО/Фигура NAO щенок.jpeg",
+    "price": 25500,
+    "discount": 0,
+    "size": "10*9*8",
+    "category": "figures"
+  },
+  {
+    "title": "Мама с ребенком",
+    "image_path": "/ФОТО/Мама с ребенком.jpeg",
+    "price": 31000,
+    "discount": 0,
+    "size": "18*20*14",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун майолика в асс",
+    "image_path": "/ФОТО/Клоун майолика в асс.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "16*4*5",
+    "category": "figures"
+  },
+  {
+    "title": "Фигурка семья сидят читают беж",
+    "image_path": "/ФОТО/Фигурка семья сидят читают беж.jpeg",
+    "price": 3200,
+    "discount": 0,
+    "size": "10*7*10",
+    "category": "figures"
+  },
+  {
+    "title": "Французский бульдог космонавт",
+    "image_path": "/ФОТО/Французский бульдог космонавт.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "18*18*14",
+    "category": "figures"
+  },
+  {
+    "title": "Кот космонавт",
+    "image_path": "/ФОТО/Кот космонавт.jpeg",
+    "price": 2900,
+    "discount": 0,
+    "size": "23*9,5*14",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура мама с дочкой пастель",
+    "image_path": "/ФОТО/Фигура мама с дочкой пастель.jpeg",
+    "price": 5750,
+    "discount": 0,
+    "size": "34*14*9",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура папа с дочкой",
+    "image_path": "/ФОТО/Фигура папа с дочкой.jpeg",
+    "price": 5300,
+    "discount": 0,
+    "size": "35*16*9",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун белый фарфор",
+    "image_path": "/ФОТО/Клоун белый фарфор.jpeg",
+    "price": 3200,
+    "discount": 0,
+    "size": "16*7*7,5",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус сидит в ассортим",
+    "image_path": "/ФОТО/Микки маус сидит в ассортим.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "14*17*23",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в ассортим",
+    "image_path": "/ФОТО/Микки маус в ассортим.jpeg",
+    "price": 4900,
+    "discount": 0,
+    "size": "20,5*9*13,5",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус сидит в ассортим",
+    "image_path": "/ФОТО/Микки маус сидит в ассортим 2.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "28,5*10,5*18,5",
+    "category": "figures"
+  },
+  {
+    "title": "Мини маус в ассортим",
+    "image_path": "/ФОТО/Мини маус в ассортим.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "29*11*24",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус сидит черн/бел",
+    "image_path": "/ФОТО/Микки маус сидит черн-бел.jpeg",
+    "price": 7900,
+    "discount": 0,
+    "size": "21*8*21,5",
+    "category": "figures"
+  },{
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим 3.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел бетон",
+    "image_path": "/ФОТО/Ангел бетон.jpeg",
+    "price": 4400,
+    "discount": 0,
+    "size": "16*17*10",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина розовая сидит на подставке",
+    "image_path": "/ФОТО/Балерина розовая сидит на подставке.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "12*16*8",
+    "category": "figures"
+  },
+  {
+    "title": "Орех золотой раскрытый с",
+    "image_path": "/ФОТО/Орех золотой раскрытый с.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "7*5*9",
+    "category": "figures"
+  },
+  {
+    "title": "Орех золотой раскрытый м",
+    "image_path": "/ФОТО/Орех золотой раскрытый м.jpeg",
+    "price": 4000,
+    "discount": 0,
+    "size": "10*7*11,5",
+    "category": "figures"
+  },
+  {
+    "title": "Статуэтка дедушка с внуком в кресле золото",
+    "image_path": "/ФОТО/Статуэтка дедушка с внуком в кресле золото.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "16*11*8",
+    "category": "figures"
+  },
+  {
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото серебро 2.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "15*18*14,5",
+    "category": "figures"
+  },
+  {
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото серебро 3.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "13*23*11",
+    "category": "figures"
+  },
+  {
+    "title": "Фрида бюст",
+    "image_path": "/ФОТО/Фрида бюст.jpeg",
+    "price": 15000,
+    "discount": 0,
+    "size": "22*9*16,5",
+    "category": "figures"
+  },
+  {
+    "title": "Декор молекула бел/чер",
+    "image_path": "/ФОТО/Декор молекула бел чер.jpeg",
+    "price": 11500,
+    "discount": 0,
+    "size": "22*16*16",
+    "category": "figures"
+  },
+  {
+    "title": "Бюст мужской торс черный",
+    "image_path": "/ФОТО/Бюст мужской торс черный.jpeg",
+    "price": 4300,
+    "discount": 0,
+    "size": "26*12*12",
+    "category": "figures"
+  },
+  {
+    "title": "Слоны друг на друге",
+    "image_path": "/ФОТО/Слоны друг на друге.jpeg",
+    "price": 11000,
+    "discount": 0,
+    "size": "40*33*12",
+    "category": "figures"
+  },
+  {
+    "title": "Африканская бежевая",
+    "image_path": "/ФОТО/Африканская бежевая.jpeg",
+    "price": 4600,
+    "discount": 0,
+    "size": "40*7*7",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина дебют фарфор",
+    "image_path": "/ФОТО/Балерина дебют фарфор.jpeg",
+    "price": 38000,
+    "discount": 0,
+    "size": "9,5*22*11",
+    "category": "figures"
+  },
+  {
+    "title": "Девочка стеснительная фарфор",
+    "image_path": "/ФОТО/Девочка стеснительная фарфор.jpeg",
+    "price": 21000,
+    "discount": 0,
+    "size": "20*7*10",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с барабаном",
+    "image_path": "/ФОТО/Клоун с барабаном.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*14*15",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с гармошкой",
+    "image_path": "/ФОТО/Клоун с гармошкой.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*16*16",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с кеглями",
+    "image_path": "/ФОТО/Клоун с кеглями.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "38*17*14,5",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с шариками",
+    "image_path": "/ФОТО/Клоун с шариками.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*14*20",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун кривляется",
+    "image_path": "/ФОТО/Клоун кривляется.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*15*14",
+    "category": "figures"
+  },{
+    "title": "Микки маус в черно золотой",
+    "image_path": "/ФОТО/Микки маус в черно золотой.jpeg",
+    "price": 8800,
+    "discount": 0,
+    "size": "28,5*14*18",
+    "category": "figures"
+  },
+  {
+    "title": "Гимнастка стекло",
+    "image_path": "/ФОТО/Гимнастка стекло.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "15,5*4,5*8",
+    "category": "figures"
+  },
+  {
+    "title": "Цыпленок с фиалкой",
+    "image_path": "/ФОТО/Цыпленок с фиалкой 2.jpeg",
+    "price": 2250,
+    "discount": 0,
+    "size": "10*6*5",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина сидит на шпагате/лежит",
+    "image_path": "/ФОТО/Балерина сидит на шпагате.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "9*13*9",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина сидит на шпагате/лежит",
+    "image_path": "/ФОТО/Балерина сидит на шпагате 2.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "10*12*12,5",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "15*10*16",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 2.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16*8,5*14",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 3.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16,5*9,5*11",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 4.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "18*7,5*14",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 5.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16,5*8*11",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел трубит фигура",
+    "image_path": "/ФОТО/Ангел трубит фигура.jpeg",
+    "price": 7600,
+    "discount": 0,
+    "size": "34,5*20*18,5",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура три кота корич",
+    "image_path": "/ФОТО/Фигура три кота корич.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "21*10,5*24",
+    "category": "figures"
+  },
+  {
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото серебро.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "14,5*14*14",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в ассортим",
+    "image_path": "/ФОТО/Микки маус в ассортим 2.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "29*8*19",
+    "category": "figures"
+  },
+  {
+    "title": "Ракушка белая декоративная",
+    "image_path": "/ФОТО/Ракушка белая декоративная.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "20,5*25*8",
+    "category": "figures"
+  },
+  {
+    "title": "Ракушка белая декоративная",
+    "image_path": "/ФОТО/Ракушка белая декоративная 2.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "14*35*15",
+    "category": "figures"
+  },
+  {
+    "title": "Заяц бел с корзиной в платке на шее",
+    "image_path": "/ФОТО/Заяц бел с корзиной в платке на шее.jpeg",
+    "price": 2650,
+    "discount": 0,
+    "size": "19*8*14",
+    "category": "figures"
+  },
+  {
+    "title": "Конь хром абстракционный рваный",
+    "image_path": "/ФОТО/Конь хром абстракционный рваный.jpeg",
+    "price": 10000,
+    "discount": 0,
+    "size": "36*45*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим 2.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },{
+    "title": "Микки маус в черно золотой",
+    "image_path": "/ФОТО/Микки маус в черно золотой.jpeg",
+    "price": 8800,
+    "discount": 0,
+    "size": "28,5*14*18",
+    "category": "figures"
+  },
+  {
+    "title": "Гимнастка стекло",
+    "image_path": "/ФОТО/Гимнастка стекло.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "15,5*4,5*8",
+    "category": "figures"
+  },
+  {
+    "title": "Цыпленок с фиалкой",
+    "image_path": "/ФОТО/Цыпленок с фиалкой 2.jpeg",
+    "price": 2250,
+    "discount": 0,
+    "size": "10*6*5",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина сидит на шпагате/лежит",
+    "image_path": "/ФОТО/Балерина сидит на шпагате.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "9*13*9",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина сидит на шпагате/лежит",
+    "image_path": "/ФОТО/Балерина сидит на шпагате 2.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "10*12*12,5",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "15*10*16",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 2.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16*8,5*14",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 3.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16,5*9,5*11",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 4.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "18*7,5*14",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант 5.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16,5*8*11",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел трубит фигура",
+    "image_path": "/ФОТО/Ангел трубит фигура.jpeg",
+    "price": 7600,
+    "discount": 0,
+    "size": "34,5*20*18,5",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура три кота корич",
+    "image_path": "/ФОТО/Фигура три кота корич.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "21*10,5*24",
+    "category": "figures"
+  },
+  {
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото серебро.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "14,5*14*14",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в ассортим",
+    "image_path": "/ФОТО/Микки маус в ассортим 2.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "29*8*19",
+    "category": "figures"
+  },
+  {
+    "title": "Ракушка белая декоративная",
+    "image_path": "/ФОТО/Ракушка белая декоративная.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "20,5*25*8",
+    "category": "figures"
+  },
+  {
+    "title": "Ракушка белая декоративная",
+    "image_path": "/ФОТО/Ракушка белая декоративная 2.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "14*35*15",
+    "category": "figures"
+  },
+  {
+    "title": "Заяц бел с корзиной в платке на шее",
+    "image_path": "/ФОТО/Заяц бел с корзиной в платке на шее.jpeg",
+    "price": 2650,
+    "discount": 0,
+    "size": "19*8*14",
+    "category": "figures"
+  },
+  {
+    "title": "Конь хром абстракционный рваный",
+    "image_path": "/ФОТО/Конь хром абстракционный рваный.jpeg",
+    "price": 10000,
+    "discount": 0,
+    "size": "36*45*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим 2.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  }, {
+    "title": "Декор молекула бел/чер",
+    "image_path": "/ФОТО/Декор молекула бел_чер.jpeg",
+    "price": 11500,
+    "discount": 0,
+    "size": "22*16*16",
+    "category": "figures"
+  },
+  {
+    "title": "Бюст мужской торс черный",
+    "image_path": "/ФОТО/Бюст мужской торс черный.jpeg",
+    "price": 4300,
+    "discount": 0,
+    "size": "26*12*12",
+    "category": "figures"
+  },
+  {
+    "title": "Слоны друг на друге",
+    "image_path": "/ФОТО/Слоны друг на друге.jpeg",
+    "price": 11000,
+    "discount": 0,
+    "size": "40*33*12",
+    "category": "figures"
+  },
+  {
+    "title": "Африканская бежевая",
+    "image_path": "/ФОТО/Африканская бежевая.jpeg",
+    "price": 4600,
+    "discount": 0,
+    "size": "40*7*7",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина дебют фарфор",
+    "image_path": "/ФОТО/Балерина дебют фарфор.jpeg",
+    "price": 38000,
+    "discount": 0,
+    "size": "9,5*22*11",
+    "category": "figures"
+  },
+  {
+    "title": "Девочка стеснительная фарфор",
+    "image_path": "/ФОТО/Девочка стеснительная фарфор.jpeg",
+    "price": 21000,
+    "discount": 0,
+    "size": "20*7*10",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с барабаном",
+    "image_path": "/ФОТО/Клоун с барабаном.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*14*15",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с гармошкой",
+    "image_path": "/ФОТО/Клоун с гармошкой.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*16*16",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с кеглями",
+    "image_path": "/ФОТО/Клоун с кеглями.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "38*17*14,5",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун с шариками",
+    "image_path": "/ФОТО/Клоун с шариками.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*14*20",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун кривляется",
+    "image_path": "/ФОТО/Клоун кривляется.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "35*15*14",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура NAO малыш в пеленке",
+    "image_path": "/ФОТО/Фигура NAO малыш в пеленке.jpeg",
+    "price": 29500,
+    "discount": 0,
+    "size": "16*13,5*8,5",
+    "category": "figures"
+  },
+  {
+    "title": "Ребенок на качалке фарфор",
+    "image_path": "/ФОТО/Ребенок на качалке фарфор.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "14*11*2,5",
+    "category": "figures"
+  },
+  {
+    "title": "Мальчик на скейте со щенком фарфор",
+    "image_path": "/ФОТО/Мальчик на скейте со щенком фарфор.jpeg",
+    "price": 1850,
+    "discount": 0,
+    "size": "12*8*3",
+    "category": "figures"
+  },
+  {
+    "title": "Девочка со скрипкой",
+    "image_path": "/ФОТО/Девочка со скрипкой.jpeg",
+    "price": 7200,
+    "discount": 0,
+    "size": "30*9*17",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик фиалка",
+    "image_path": "/ФОТО/Кролик фиалка.jpeg",
+    "price": 5990,
+    "discount": 0,
+    "size": "27*9,5*8",
+    "category": "figures"
+  },
+  {
+    "title": "Ребенок на коне качалке фарфор",
+    "image_path": "/ФОТО/Ребенок на коне качалке фарфор.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "14*11*2,5",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура NAO щенок",
+    "image_path": "/ФОТО/Фигура NAO щенок.jpeg",
+    "price": 25500,
+    "discount": 0,
+    "size": "10*9*8",
+    "category": "figures"
+  },
+  {
+    "title": "Мама с ребенком",
+    "image_path": "/ФОТО/Мама с ребенком.jpeg",
+    "price": 31000,
+    "discount": 0,
+    "size": "18*20*14",
+    "category": "figures"
+  }, {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16,5*8*11",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел трубит фигура",
+    "image_path": "/ФОТО/Ангел трубит фигура.jpeg",
+    "price": 7600,
+    "discount": 0,
+    "size": "34,5*20*18,5",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура три кота корич",
+    "image_path": "/ФОТО/Фигура три кота корич.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "21*10,5*24",
+    "category": "figures"
+  },
+  {
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото_серебро.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "14,5*14*14",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в ассортим",
+    "image_path": "/ФОТО/Микки маус в ассортим.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "29*8*19",
+    "category": "figures"
+  },
+  {
+    "title": "Ракушка белая декоративная",
+    "image_path": "/ФОТО/Ракушка белая декоративная.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "20,5*25*8",
+    "category": "figures"
+  },
+  {
+    "title": "Ракушка белая декоративная",
+    "image_path": "/ФОТО/Ракушка белая декоративная.jpeg",
+    "price": 5200,
+    "discount": 0,
+    "size": "14*35*15",
+    "category": "figures"
+  },
+  {
+    "title": "Заяц бел с корзиной в платке на шее",
+    "image_path": "/ФОТО/Заяц бел с корзиной в платке на шее.jpeg",
+    "price": 2650,
+    "discount": 0,
+    "size": "19*8*14",
+    "category": "figures"
+  },
+  {
+    "title": "Конь хром абстракционный рваный",
+    "image_path": "/ФОТО/Конь хром абстракционный рваный.jpeg",
+    "price": 10000,
+    "discount": 0,
+    "size": "36*45*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },
+  {
+    "title": "Попугай на цветке в ассортим",
+    "image_path": "/ФОТО/Попугай на цветке в ассортим.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "17*12*9",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел бетон",
+    "image_path": "/ФОТО/Ангел бетон.jpeg",
+    "price": 4400,
+    "discount": 0,
+    "size": "16*17*10",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина розовая сидит на подставке",
+    "image_path": "/ФОТО/Балерина розовая сидит на подставке.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "12*16*8",
+    "category": "figures"
+  },
+  {
+    "title": "Орех золотой раскрытый с",
+    "image_path": "/ФОТО/Орех золотой раскрытый с.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "7*5*9",
+    "category": "figures"
+  },
+  {
+    "title": "Орех золотой раскрытый м",
+    "image_path": "/ФОТО/Орех золотой раскрытый м.jpeg",
+    "price": 4000,
+    "discount": 0,
+    "size": "10*7*11,5",
+    "category": "figures"
+  },
+  {
+    "title": "Статуэтка дедушка с внуком в кресле золото",
+    "image_path": "/ФОТО/Статуэтка дедушка с внуком в кресле золото.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "16*11*8",
+    "category": "figures"
+  },
+  {
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото_серебро.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "15*18*14,5",
+    "category": "figures"
+  },
+  {
+    "title": "Панда белая золото/серебро",
+    "image_path": "/ФОТО/Панда белая золото_серебро.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "13*23*11",
+    "category": "figures"
+  },
+  {
+    "title": "Фрида бюст",
+    "image_path": "/ФОТО/Фрида бюст.jpeg",
+    "price": 15000,
+    "discount": 0,
+    "size": "22*9*16,5",
+    "category": "figures"
+  },{
+    "title": "Микки маус сидит в ассортим",
+    "image_path": "/ФОТО/Микки маус сидит в ассортим.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "28,5*10,5*18,5",
+    "category": "figures"
+  },
+  {
+    "title": "Мини маус в ассортим",
+    "image_path": "/ФОТО/Мини маус в ассортим.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "29*11*24",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус сидит черн/бел",
+    "image_path": "/ФОТО/Микки маус сидит черн_бел.jpeg",
+    "price": 7900,
+    "discount": 0,
+    "size": "21*8*21,5",
+    "category": "figures"
+  },
+  {
+    "title": "Собака черная",
+    "image_path": "/ФОТО/Собака черная.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "21,5*21*12",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в ассортим",
+    "image_path": "/ФОТО/Микки маус в ассортим.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "28,5*10,5*18,5",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик в цилиндре мини",
+    "image_path": "/ФОТО/Кролик в цилиндре мини.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "12*4,5*5,5",
+    "category": "figures"
+  },
+  {
+    "title": "Птичка белая керамика",
+    "image_path": "/ФОТО/Птичка белая керамика.jpeg",
+    "price": 400,
+    "discount": 0,
+    "size": "7*8*6",
+    "category": "figures"
+  },
+  {
+    "title": "Птичка перламутр белый",
+    "image_path": "/ФОТО/Птичка перламутр белый.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "7*11*5,5",
+    "category": "figures"
+  },
+  {
+    "title": "Птичка перламутр белый",
+    "image_path": "/ФОТО/Птичка перламутр белый.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "7,5*9,5*5",
+    "category": "figures"
+  },
+  {
+    "title": "Цыпленок с фиалкой",
+    "image_path": "/ФОТО/Цыпленок с фиалкой.jpeg",
+    "price": 2250,
+    "discount": 0,
+    "size": "10*5*5",
+    "category": "figures"
+  },
+  {
+    "title": "Будда серо-бежевый в ассортим",
+    "image_path": "/ФОТО/Будда серо-бежевый в ассортим.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "16,5*18*16,5",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в черно золотой",
+    "image_path": "/ФОТО/Микки маус в черно золотой.jpeg",
+    "price": 8800,
+    "discount": 0,
+    "size": "28,5*14*18",
+    "category": "figures"
+  },
+  {
+    "title": "Гимнастка стекло",
+    "image_path": "/ФОТО/Гимнастка стекло.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "15,5*4,5*8",
+    "category": "figures"
+  },
+  {
+    "title": "Цыпленок с фиалкой",
+    "image_path": "/ФОТО/Цыпленок с фиалкой.jpeg",
+    "price": 2250,
+    "discount": 0,
+    "size": "10*6*5",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина сидит на шпагате/лежит",
+    "image_path": "/ФОТО/Балерина сидит на шпагате лежит.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "9*13*9",
+    "category": "figures"
+  },
+  {
+    "title": "Балерина сидит на шпагате/лежит",
+    "image_path": "/ФОТО/Балерина сидит на шпагате лежит.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "10*12*12,5",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "15*10*16",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16*8,5*14",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "16,5*9,5*11",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел полненькая музыкант",
+    "image_path": "/ФОТО/Ангел полненькая музыкант.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "18*7,5*14",
+    "category": "figures"
+  }, {
+    "title": "Кузнечик золотой на металл ножках",
+    "image_path": "/ФОТО/Кузнечик золотой на металл ножках.jpeg",
+    "price": 2900,
+    "discount": 0,
+    "size": "8,5*21*8",
+    "category": "figures"
+  },
+  {
+    "title": "Ангел хранитель фарфор",
+    "image_path": "/ФОТО/Ангел хранитель фарфор.jpeg",
+    "price": 23500,
+    "discount": 0,
+    "size": "19*8*8",
+    "category": "figures"
+  },
+  {
+    "title": "Собака белая французский бульдог",
+    "image_path": "/ФОТО/Собака белая французский бульдог.jpeg",
+    "price": 5900,
+    "discount": 0,
+    "size": "24*26*12",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура NAO малыш в пеленке",
+    "image_path": "/ФОТО/Фигура NAO малыш в пеленке.jpeg",
+    "price": 29500,
+    "discount": 0,
+    "size": "16*13,5*8,5",
+    "category": "figures"
+  },
+  {
+    "title": "Ребенок на качалке фарфор",
+    "image_path": "/ФОТО/Ребенок на качалке фарфор.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "14*11*2,5",
+    "category": "figures"
+  },
+  {
+    "title": "Мальчик на скейте со щенком фарфор",
+    "image_path": "/ФОТО/Мальчик на скейте со щенком фарфор.jpeg",
+    "price": 1850,
+    "discount": 0,
+    "size": "12*8*3",
+    "category": "figures"
+  },
+  {
+    "title": "Девочка со скрипкой",
+    "image_path": "/ФОТО/Девочка со скрипкой.jpeg",
+    "price": 7200,
+    "discount": 0,
+    "size": "30*9*17",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик фиалка",
+    "image_path": "/ФОТО/Кролик фиалка.jpeg",
+    "price": 5990,
+    "discount": 0,
+    "size": "27*9,5*8",
+    "category": "figures"
+  },
+  {
+    "title": "Ребенок на коне качалке фарфор",
+    "image_path": "/ФОТО/Ребенок на коне качалке фарфор.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "14*11*2,5",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура NAO щенок",
+    "image_path": "/ФОТО/Фигура NAO щенок.jpeg",
+    "price": 25500,
+    "discount": 0,
+    "size": "10*9*8",
+    "category": "figures"
+  },
+  {
+    "title": "Мама с ребенком",
+    "image_path": "/ФОТО/Мама с ребенком.jpeg",
+    "price": 31000,
+    "discount": 0,
+    "size": "18*20*14",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун майолика в асс",
+    "image_path": "/ФОТО/Клоун майолика в асс.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "16*4*5",
+    "category": "figures"
+  },
+  {
+    "title": "Фигурка семья сидят читают беж",
+    "image_path": "/ФОТО/Фигурка семья сидят читают беж.jpeg",
+    "price": 3200,
+    "discount": 0,
+    "size": "10*7*10",
+    "category": "figures"
+  },
+  {
+    "title": "Французский бульдог космонавт",
+    "image_path": "/ФОТО/Французский бульдог космонавт.jpeg",
+    "price": 4500,
+    "discount": 0,
+    "size": "18*18*14",
+    "category": "figures"
+  },
+  {
+    "title": "Кот космонавт",
+    "image_path": "/ФОТО/Кот космонавт.jpeg",
+    "price": 2900,
+    "discount": 0,
+    "size": "23*9,5*14",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура мама с дочкой пастель",
+    "image_path": "/ФОТО/Фигура мама с дочкой пастель.jpeg",
+    "price": 5750,
+    "discount": 0,
+    "size": "34*14*9",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура папа с дочкой",
+    "image_path": "/ФОТО/Фигура папа с дочкой.jpeg",
+    "price": 5300,
+    "discount": 0,
+    "size": "35*16*9",
+    "category": "figures"
+  },
+  {
+    "title": "Клоун белый фарфор",
+    "image_path": "/ФОТО/Клоун белый фарфор.jpeg",
+    "price": 3200,
+    "discount": 0,
+    "size": "16*7*7,5",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус сидит в ассортим",
+    "image_path": "/ФОТО/Микки маус сидит в ассортим.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "14*17*23",
+    "category": "figures"
+  },
+  {
+    "title": "Микки маус в ассортим",
+    "image_path": "/ФОТО/Микки маус в ассортим.jpeg",
+    "price": 4900,
+    "discount": 0,
+    "size": "20,5*9*13,5",
+    "category": "figures"
+  }, {
+    "title": "Африканский мальчик с подносом",
+    "image_path": "/ФОТО/Африканский мальчик с подносом.jpeg",
+    "price": 10500,
+    "discount": 0,
+    "size": "47",
+    "category": "figures"
+  },
+  {
+    "title": "Лягушка джентельмен с зонтом",
+    "image_path": "/ФОТО/Лягушка джентельмен с зонтом.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "27,5",
+    "category": "figures"
+  },
+  {
+    "title": "Носорог в камзоле с саблей",
+    "image_path": "/ФОТО/Носорог в камзоле с саблей.jpeg",
+    "price": 11800,
+    "discount": 0,
+    "size": "36",
+    "category": "figures"
+  },
+  {
+    "title": "Птица во фраке музыкант на мет ножках",
+    "image_path": "/ФОТО/Птица во фраке музыкант на мет ножках.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "35",
+    "category": "figures"
+  },
+  {
+    "title": "Птица во фраке музыкант на мет ножках (другой размер)",
+    "image_path": "/ФОТО/Птица во фраке музыкант на мет ножках.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "35",
+    "category": "figures"
+  },
+  {
+    "title": "Французский бульдог рыжий сидит",
+    "image_path": "/ФОТО/Французский бульдог рыжий сидит.jpeg",
+    "price": 9000,
+    "discount": 0,
+    "size": "28*24,5*18,5",
+    "category": "figures"
+  },
+  {
+    "title": "Девочка с игрушками военок и зайчик",
+    "image_path": "/ФОТО/Девочка с игрушками военок и зайчик.jpeg",
+    "price": 2700,
+    "discount": 0,
+    "size": "15,5*9*6",
+    "category": "figures"
+  },
+  {
+    "title": "Гусь бел с цветами в клюве",
+    "image_path": "/ФОТО/Гусь бел с цветами в клюве.jpeg",
+    "price": 1750,
+    "discount": 0,
+    "size": "20*9*8",
+    "category": "figures"
+  },
+  {
+    "title": "Зайчик БЕЗ НАДПИСЕЙ",
+    "image_path": "/ФОТО/Зайчик БЕЗ НАДПИСЕЙ.jpeg",
+    "price": null,
+    "discount": 0,
+    "size": "20,5*11*8",
+    "category": "figures"
+  },
+  {
+    "title": "Девочка с игрушками утенок и зайчик",
+    "image_path": "/ФОТО/Девочка с игрушками утенок и зайчик.jpeg",
+    "price": 2700,
+    "discount": 0,
+    "size": "14,5*5,5*4,5",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик беж с зайчиком с мини кашпо",
+    "image_path": "/ФОТО/Кролик беж с зайчиком с мини кашпо.jpeg",
+    "price": 4600,
+    "discount": 0,
+    "size": "24,5*12*8",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик беж с зайчонком с мини кашпо",
+    "image_path": "/ФОТО/Кролик беж с зайчонком с мини кашпо.jpeg",
+    "price": 4600,
+    "discount": 0,
+    "size": "23*10*7",
+    "category": "figures"
+  },
+  {
+    "title": "Конь античный с седлом патина",
+    "image_path": "/ФОТО/Конь античный с седлом патина.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "36*42*12,5",
+    "category": "figures"
+  },
+  {
+    "title": "Зайчик с тележкой тюльпанов",
+    "image_path": "/ФОТО/Зайчик с тележкой тюльпанов.jpeg",
+    "price": 1450,
+    "discount": 0,
+    "size": "12*11*4,5",
+    "category": "figures"
+  },
+  {
+    "title": "Зайчик с розовым зонтом",
+    "image_path": "/ФОТО/Зайчик с розовым зонтом.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "15,5*6,5*7,5",
+    "category": "figures"
+  },
+  {
+    "title": "Заяц бюст м/д зел/гол",
+    "image_path": "/ФОТО/Заяц бюст м:д зел:гол.jpeg",
+    "price": 2900,
+    "discount": 0,
+    "size": "19*10*9,5",
+    "category": "figures"
+  },
+  {
+    "title": "Улитка золотая",
+    "image_path": "/ФОТО/Улитка золотая.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "9*20*9",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик белый с корзинкой коричневый",
+    "image_path": "/ФОТО/Кролик белый с корзинкой коричневый.jpeg",
+    "price": 5750,
+    "discount": 0,
+    "size": "26*20,5*15",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик мама с малышом корич",
+    "image_path": "/ФОТО/Кролик мама с малышом корич.jpeg",
+    "price": 3100,
+    "discount": 0,
+    "size": "21*14*8,5",
+    "category": "figures"
+  },
+  {
+    "title": "Кролик мятный состаренный",
+    "image_path": "/ФОТО/Кролик мятный состаренный.jpeg",
+    "price": 4450,
+    "discount": 0,
+    "size": "27*19*10,5",
+    "category": "figures"
+  },{
+    "title": "Французский бульдог белый сетка в клетку",
+    "image_path": "/ФОТО/Французский бульдог белый сетка в клетку.jpeg",
+    "price": 5800,
+    "discount": 0,
+    "size": "17",
+    "category": "figures"
+  },
+  {
+    "title": "Французский бульдог белый сетка в клетку сидит",
+    "image_path": "/ФОТО/Французский бульдог белый сетка в клетку сидит.jpeg",
+    "price": 5800,
+    "discount": 0,
+    "size": "20",
+    "category": "figures"
+  },
+  {
+    "title": "Индус сидит",
+    "image_path": "/ФОТО/Индус сидит.jpeg",
+    "price": 9000,
+    "discount": 0,
+    "size": "32,5",
+    "category": "figures"
+  },
+  {
+    "title": "Индус стоит с опахалом",
+    "image_path": "/ФОТО/Индус стоит с опахалом.jpeg",
+    "price": 8500,
+    "discount": 0,
+    "size": "39,5",
+    "category": "figures"
+  },
+  {
+    "title": "Микки Мауса в шоколад",
+    "image_path": "/ФОТО/Микки Мауса в шоколад.jpeg",
+    "price": 8800,
+    "discount": 0,
+    "size": "28,5",
+    "category": "figures"
+  },
+  {
+    "title": "Мики Макс сидит в ассорти",
+    "image_path": "/ФОТО/Мики Макс сидит в ассорти.jpeg",
+    "price": 3900,
+    "discount": 0,
+    "size": "14",
+    "category": "figures"
+  },
+  {
+    "title": "Заяц сидит свесив ноги металл (малый)",
+    "image_path": "/ФОТО/Заяц сидит свесив ноги металл.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "16,5",
+    "category": "figures"
+  },
+  {
+    "title": "Заяц сидит свесив ноги металл (большой)",
+    "image_path": "/ФОТО/Заяц сидит свесив ноги металл.jpeg",
+    "price": 5900,
+    "discount": 0,
+    "size": "23",
+    "category": "figures"
+  },
+  {
+    "title": "Африканский мальчик на леопарде с зонтом",
+    "image_path": "/ФОТО/Африканский мальчик на леопарде с зонтом.jpeg",
+    "price": 10500,
+    "discount": 0,
+    "size": "33",
+    "category": "figures"
+  },
+  {
+    "title": "Близнецы друг на друге пирамида мята",
+    "image_path": "/ФОТО/Близнецы друг на друге пирамида мята.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "21,5",
+    "category": "figures"
+  },
+  {
+    "title": "Будда коричневый блаженный сидит",
+    "image_path": "/ФОТО/Будда коричневый блаженный сидит.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "23,5",
+    "category": "figures"
+  },
+  {
+    "title": "Будда в коричневом",
+    "image_path": "/ФОТО/Будда в коричневом.jpeg",
+    "price": 7500,
+    "discount": 0,
+    "size": "32",
+    "category": "figures"
+  },
+  {
+    "title": "Фигура скелетон рыбы",
+    "image_path": "/ФОТО/Фигура скелетон рыбы.jpeg",
+    "price": 13000,
+    "discount": 0,
+    "size": "36",
+    "category": "figures"
+  },
+  {
+    "title": "Декор динозавр",
+    "image_path": "/ФОТО/Декор динозавр.jpeg",
+    "price": 20000,
+    "discount": 0,
+    "size": "35",
+    "category": "figures"
+  },
+  {
+    "title": "Бюст купидона",
+    "image_path": "/ФОТО/Бюст купидона.jpeg",
+    "price": 6000,
+    "discount": 0,
+    "size": "23,5",
+    "category": "figures"
+  },
+  {
+    "title": "Орел бронзовый с тростью в костюме",
+    "image_path": "/ФОТО/Орел бронзовый с тростью в костюме.jpeg",
+    "price": 8300,
+    "discount": 0,
+    "size": "36,5",
+    "category": "figures"
+  },
+  {
+    "title": "Лис бронзовый с тростью в костюме",
+    "image_path": "/ФОТО/Лис бронзовый с тростью в костюме.jpeg",
+    "price": 8300,
+    "discount": 0,
+    "size": "41,5",
+    "category": "figures"
+  },
+  {
+    "title": "Французский бульдог пятнистый",
+    "image_path": "/ФОТО/Французский бульдог пятнистый.jpeg",
+    "price": 8800,
+    "discount": 0,
+    "size": "27,5",
+    "category": "figures"
+  },
+  {
+    "title": "Мишка паддинктон в ассортим",
+    "image_path": "/ФОТО/Мишка паддинктон в ассортим.jpeg",
+    "price": 2950,
+    "discount": 0,
+    "size": "13",
+    "category": "figures"
+  },
+  {
+    "title": "Французский бульдог рыжий лежит",
+    "image_path": "/ФОТО/Французский бульдог рыжий лежит.jpeg",
+    "price": 7600,
+    "discount": 0,
+    "size": "21,5",
+    "category": "figures"
+  },{
+    "title": "Гортензия гол бел роз силикон",
+    "image_path": "/ФОТО/Гортензия гол бел роз силикон.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия гол бел роз силикон (2)",
+    "image_path": "",
+    "price": 1200,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Ин розовый коралловый силикон",
+    "image_path": "/ФОТО/Ин розовый коралловый силикон.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Ин розовый коралловый силикон (2)",
+    "image_path": "",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза увядающая мини",
+    "image_path": "/ФОТО/Роза увядающая мини.jpeg",
+    "price": 310,
+    "discount": 0,
+    "size": "43",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза увядающая мини (2)",
+    "image_path": "",
+    "price": 310,
+    "discount": 0,
+    "size": "43",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза увядающая мини (3)",
+    "image_path": "",
+    "price": 310,
+    "discount": 0,
+    "size": "43",
+    "category": "flowers"
+  },
+  {
+    "title": "Белый цветок",
+    "image_path": "/ФОТО/Белый цветок.jpeg",
+    "price": 550,
+    "discount": 0,
+    "size": "80",
+    "category": "flowers"
+  },
+  {
+    "title": "Фиолетовый цветок",
+    "image_path": "/ФОТО/Фиолетовый цветок.jpeg",
+    "price": 550,
+    "discount": 0,
+    "size": "80",
+    "category": "flowers"
+  },{
+    "title": "Тюльпан махровый силикон",
+    "image_path": "/ФОТО/Тюльпан махровый силикон.jpeg",
+    "price": 2300,
+    "discount": 0,
+    "size": "74",
+    "category": "flowers"
+  },
+  {
+    "title": "Эустома белая",
+    "image_path": "/ФОТО/Эустома розовая.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "72",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион увядающий розовый",
+    "image_path": "/ФОТО/Пион с бутоном розовый силикон.jpeg",
+    "price": 890,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза чайно розовая крупная",
+    "image_path": "/ФОТО/Роза кустовая розовая чайно-розовая.jpeg",
+    "price": 1300,
+    "discount": 0,
+    "size": "65",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион гибрид фуксия бел",
+    "image_path": "/ФОТО/Пион белый распускающийся.jpeg",
+    "price": 2000,
+    "discount": 0,
+    "size": "30",
+    "category": "flowers"
+  },
+  {
+    "title": "Эустома розовая",
+    "image_path": "/ФОТО/Эустома розовая.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Лотос белый Франция",
+    "image_path": "/ФОТО/Лотос белый Франция.jpeg",
+    "price": 2600,
+    "discount": 0,
+    "size": "94",
+    "category": "flowers"
+  },
+  {
+    "title": "Сирень бел/фиолет",
+    "image_path": "",
+    "price": 8900,
+    "discount": 0,
+    "size": "63",
+    "category": "flowers"
+  },
+  {
+    "title": "Яблоня нежно розовая цветущая",
+    "image_path": "",
+    "price": 950,
+    "discount": 0,
+    "size": "87",
+    "category": "flowers"
+  },
+  {
+    "title": "Лотос зеленый кубышка",
+    "image_path": "",
+    "price": 450,
+    "discount": 0,
+    "size": "80",
+    "category": "flowers"
+  },
+  {
+    "title": "Дендробиум желтый",
+    "image_path": "",
+    "price": 850,
+    "discount": 0,
+    "size": "106",
+    "category": "flowers"
+  },
+  {
+    "title": "Акация желтая",
+    "image_path": "",
+    "price": 1200,
+    "discount": 0,
+    "size": "105",
+    "category": "flowers"
+  },{
+    "title": "Роза кустовая розовая чайно-розовая",
+    "image_path": "/ФОТО/Роза кустовая розовая чайно-розовая.jpeg",
+    "price": 1150,
+    "discount": 0,
+    "size": "66",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза дамская розовая",
+    "image_path": "/ФОТО/Роза дамская розовая.jpeg",
+    "price": 600,
+    "discount": 0,
+    "size": "68",
+    "category": "flowers"
+  },
+  {
+    "title": "Эустома розовая",
+    "image_path": "/ФОТО/Эустома розовая.jpeg",
+    "price": 900,
+    "discount": 0,
+    "size": "72",
+    "category": "flowers"
+  },
+  {
+    "title": "Эустома белая",
+    "image_path": "/ФОТО/Эустома белая.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "72",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза увядающая мини",
+    "image_path": "/ФОТО/Роза увядающая мини.jpeg",
+    "price": 310,
+    "discount": 0,
+    "size": "43",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза увядающая мини (2)",
+    "image_path": "/ФОТО/Роза увядающая мини 2.jpeg",
+    "price": 310,
+    "discount": 0,
+    "size": "43",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза увядающая мини (3)",
+    "image_path": "/ФОТО/Роза увядающая мини 3.jpeg",
+    "price": 310,
+    "discount": 0,
+    "size": "43",
+    "category": "flowers"
+  },
+  {
+    "title": "Георгин матовые листья в ассортим",
+    "image_path": "/ФОТО/Георгин матовые листья в ассортим.jpeg",
+    "price": 800,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Эремрус белый",
+    "image_path": "/ФОТО/Эремрус белый.jpeg",
+    "price": 900,
+    "discount": 0,
+    "size": "92",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза чайно розовая крупная",
+    "image_path": "/ФОТО/Роза чайно розовая крупная.jpeg",
+    "price": 1300,
+    "discount": 0,
+    "size": "65",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион с бутоном белый силикон",
+    "image_path": "/ФОТО/Пион с бутоном белый силикон.jpeg",
+    "price": 1500,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза малиновидная пионовидная",
+    "image_path": "/ФОТО/Роза малиновидная пионовидная.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Эустома розовая (2)",
+    "image_path": "/ФОТО/Эустома розовая 2.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Яблоня нежно розовая цветущая",
+    "image_path": "/ФОТО/Яблоня нежно розовая цветущая.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "87",
+    "category": "flowers"
+  },
+  {
+    "title": "Тюльпан махровый желтый",
+    "image_path": "/ФОТО/Тюльпан махровый желтый.jpeg",
+    "price": 800,
+    "discount": 0,
+    "size": "48",
+    "category": "flowers"
+  },
+  {
+    "title": "Дендробиум желтый",
+    "image_path": "/ФОТО/Дендробиум желтый.jpeg",
+    "price": 850,
+    "discount": 0,
+    "size": "106",
+    "category": "flowers"
+  },
+  {
+    "title": "Акация желтая",
+    "image_path": "/ФОТО/Акация желтая.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "105",
+    "category": "flowers"
+  },
+  {
+    "title": "Лотос белый Франция",
+    "image_path": "/ФОТО/Лотос белый Франция.jpeg",
+    "price": 2600,
+    "discount": 0,
+    "size": "94",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион увядающий розовый",
+    "image_path": "/ФОТО/Пион увядающий розовый.jpeg",
+    "price": 890,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Тюльпан махровый силикон",
+    "image_path": "/ФОТО/Тюльпан махровый силикон.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "61",
+    "category": "flowers"
+  },{
+    "title": "Роза белая с зелеными листьями",
+    "image_path": "/ФОТО/Роза белая с зелеными листьями.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "68",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион бордовый пышный",
+    "image_path": "/ФОТО/Пион бордовый пышный.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион темный пышный",
+    "image_path": "/ФОТО/Пион темный пышный.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион розовый пышный",
+    "image_path": "/ФОТО/Пион розовый пышный.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза персиковая без бутона",
+    "image_path": "/ФОТО/Роза персиковая без бутона.jpeg",
+    "price": 850,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза кремовая пышная",
+    "image_path": "/ФОТО/Роза кремовая пышная.jpeg",
+    "price": 980,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Орхидея розовая",
+    "image_path": "/ФОТО/Орхидея розовая.jpeg",
+    "price": 670,
+    "discount": 0,
+    "size": "65",
+    "category": "flowers"
+  },
+  {
+    "title": "Орхидея фиолетовая",
+    "image_path": "/ФОТО/Орхидея фиолетовая.jpeg",
+    "price": 670,
+    "discount": 0,
+    "size": "65",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия зеленая",
+    "image_path": "/ФОТО/Гортензия зеленая.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия пышная светлая",
+    "image_path": "/ФОТО/Гортензия пышная светлая.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион розовый с белым",
+    "image_path": "/ФОТО/Пион розовый с белым.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион с бутоном крем",
+    "image_path": "/ФОТО/Пион с бутоном крем.jpeg",
+    "price": 1500,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Цветок пушистый серый",
+    "image_path": "/ФОТО/Цветок пушистый серый.jpeg",
+    "price": 590,
+    "discount": 0,
+    "size": "66",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза молочная с бутоном",
+    "image_path": "/ФОТО/Роза молочная с бутоном.jpeg",
+    "price": 1650,
+    "discount": 0,
+    "size": "62",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза чайная с бутоном",
+    "image_path": "/ФОТО/Роза чайная с бутоном.jpeg",
+    "price": 1650,
+    "discount": 0,
+    "size": "62",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия сиреневая силикон",
+    "image_path": "/ФОТО/Гортензия сиреневая силикон.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия белая силикон",
+    "image_path": "/ФОТО/Гортензия белая силикон.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия розовая силикон",
+    "image_path": "/ФОТО/Гортензия розовая силикон.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион розовый с зеленью",
+    "image_path": "/ФОТО/Пион розовый с зеленью.jpeg",
+    "price": 1350,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион белый с зеленью",
+    "image_path": "/ФОТО/Пион белый с зеленью.jpeg",
+    "price": 1350,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  }, {
+    "title": "Калина белая",
+    "image_path": "/ФОТО/Калина белая.jpeg",
+    "price": 1600,
+    "discount": 0,
+    "size": "88",
+    "category": "flowers"
+  },
+  {
+    "title": "Ветка калины голубая",
+    "image_path": "/ФОТО/Ветка калины голубая.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия гол бел роз силикон",
+    "image_path": "/ФОТО/Гортензия гол бел роз силикон.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия гол бел роз силикон 2",
+    "image_path": "/ФОТО/Гортензия гол бел роз силикон 2.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия метельчатая синяя",
+    "image_path": "/ФОТО/Гортензия метельчатая синяя.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "90",
+    "category": "flowers"
+  },
+  {
+    "title": "Ин розовый коралловый силикон",
+    "image_path": "/ФОТО/Ин розовый коралловый силикон.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Ин розовый коралловый силикон 2",
+    "image_path": "/ФОТО/Ин розовый коралловый силикон 2.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Белый цветок",
+    "image_path": "/ФОТО/Белый цветок.jpeg",
+    "price": 550,
+    "discount": 0,
+    "size": "80",
+    "category": "flowers"
+  },
+  {
+    "title": "Георгин",
+    "image_path": "/ФОТО/Георгин.jpeg",
+    "price": 800,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Фиолетовый цветок",
+    "image_path": "/ФОТО/Фиолетовый цветок.jpeg",
+    "price": 550,
+    "discount": 0,
+    "size": "80",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион лиловый 2 цветка с бутоном",
+    "image_path": "/ФОТО/Пион лиловый 2 цветка с бутоном.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион французский белый",
+    "image_path": "/ФОТО/Пион французский белый.jpeg",
+    "price": 4850,
+    "discount": 0,
+    "size": "78",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион желтый",
+    "image_path": "/ФОТО/Пион желтый.jpeg",
+    "price": 4100,
+    "discount": 0,
+    "size": "51",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион белый распускающийся",
+    "image_path": "/ФОТО/Пион белый распускающийся.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "57",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион с бутоном розовый силикон",
+    "image_path": "/ФОТО/Пион с бутоном розовый силикон.jpeg",
+    "price": 1500,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза персиковая с бутоном",
+    "image_path": "/ФОТО/Роза персиковая с бутоном.jpeg",
+    "price": 1650,
+    "discount": 0,
+    "size": "62",
+    "category": "flowers"
+  },
+  {
+    "title": "Орхидея белая",
+    "image_path": "/ФОТО/Орхидея белая.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "61",
+    "category": "flowers"
+  },
+  {
+    "title": "Георгин белый",
+    "image_path": "/ФОТО/Георгин белый.jpeg",
+    "price": 670,
+    "discount": 0,
+    "size": "56",
+    "category": "flowers"
+  },
+  {
+    "title": "Горошек",
+    "image_path": "/ФОТО/Горошек.jpeg",
+    "price": 490,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза пионовидная бел крем",
+    "image_path": "/ФОТО/Роза пионовидная бел крем.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  }, {
+    "title": "Гортензия розовая",
+    "image_path": "/ФОТО/Гортензия розовая.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "90",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия синяя",
+    "image_path": "/ФОТО/Гортензия синяя.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "90",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион красный",
+    "image_path": "/ФОТО/Пион красный.jpeg",
+    "price": 4100,
+    "discount": 0,
+    "size": "51",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион розовый",
+    "image_path": "/ФОТО/Пион розовый.jpeg",
+    "price": 4100,
+    "discount": 0,
+    "size": "51",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза красная",
+    "image_path": "/ФОТО/Роза красная.jpeg",
+    "price": 1650,
+    "discount": 0,
+    "size": "62",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза белая",
+    "image_path": "/ФОТО/Роза белая.jpeg",
+    "price": 1650,
+    "discount": 0,
+    "size": "62",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза розовая",
+    "image_path": "/ФОТО/Роза розовая.jpeg",
+    "price": 1650,
+    "discount": 0,
+    "size": "62",
+    "category": "flowers"
+  },
+  {
+    "title": "Орхидея розовая",
+    "image_path": "/ФОТО/Орхидея розовая.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "61",
+    "category": "flowers"
+  },
+  {
+    "title": "Орхидея фиолетовая",
+    "image_path": "/ФОТО/Орхидея фиолетовая.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "61",
+    "category": "flowers"
+  },
+  {
+    "title": "Георгин розовый",
+    "image_path": "/ФОТО/Георгин розовый.jpeg",
+    "price": 670,
+    "discount": 0,
+    "size": "56",
+    "category": "flowers"
+  },
+  {
+    "title": "Георгин красный",
+    "image_path": "/ФОТО/Георгин красный.jpeg",
+    "price": 670,
+    "discount": 0,
+    "size": "56",
+    "category": "flowers"
+  },
+  {
+    "title": "Горошек белый",
+    "image_path": "/ФОТО/Горошек белый.jpeg",
+    "price": 490,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза пионовидная красная",
+    "image_path": "/ФОТО/Роза пионовидная красная.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза пионовидная розовая",
+    "image_path": "/ФОТО/Роза пионовидная розовая.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза пионовидная кремовая",
+    "image_path": "/ФОТО/Роза пионовидная кремовая.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Тюльпан красный",
+    "image_path": "/ФОТО/Тюльпан красный.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "50",
+    "category": "flowers"
+  },
+  {
+    "title": "Тюльпан желтый",
+    "image_path": "/ФОТО/Тюльпан желтый.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "50",
+    "category": "flowers"
+  },
+  {
+    "title": "Тюльпан розовый",
+    "image_path": "/ФОТО/Тюльпан розовый.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "50",
+    "category": "flowers"
+  },
+  {
+    "title": "Лилия белая",
+    "image_path": "/ФОТО/Лилия белая.jpeg",
+    "price": 1300,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Лилия розовая",
+    "image_path": "/ФОТО/Лилия розовая.jpeg",
+    "price": 1300,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },{
+    "title": "Гвоздика розовая",
+    "image_path": "/ФОТО/Гвоздика розовая.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "50",
+    "category": "flowers"
+  },
+  {
+    "title": "Гвоздика белая",
+    "image_path": "/ФОТО/Гвоздика белая.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "50",
+    "category": "flowers"
+  },
+  {
+    "title": "Гвоздика бордовая",
+    "image_path": "/ФОТО/Гвоздика бордовая.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "50",
+    "category": "flowers"
+  },
+  {
+    "title": "Астра белая",
+    "image_path": "/ФОТО/Астра белая.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "55",
+    "category": "flowers"
+  },
+  {
+    "title": "Астра розовая",
+    "image_path": "/ФОТО/Астра розовая.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "55",
+    "category": "flowers"
+  },
+  {
+    "title": "Астра фиолетовая",
+    "image_path": "/ФОТО/Астра фиолетовая.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "55",
+    "category": "flowers"
+  },
+  {
+    "title": "Плющ зеленый",
+    "image_path": "/ФОТО/Плющ зеленый.jpeg",
+    "price": 400,
+    "discount": 0,
+    "size": "40",
+    "category": "flowers"
+  },
+  {
+    "title": "Папоротник зеленый",
+    "image_path": "/ФОТО/Папоротник зеленый.jpeg",
+    "price": 450,
+    "discount": 0,
+    "size": "45",
+    "category": "flowers"
+  },
+  {
+    "title": "Эвкалипт",
+    "image_path": "/ФОТО/Эвкалипт.jpeg",
+    "price": 500,
+    "discount": 0,
+    "size": "50",
+    "category": "flowers"
+  },
+  {
+    "title": "Лаванда",
+    "image_path": "/ФОТО/Лаванда.jpeg",
+    "price": 600,
+    "discount": 0,
+    "size": "45",
+    "category": "flowers"
+  },
+  {
+    "title": "Гвоздика кустовая белая",
+    "image_path": "/ФОТО/Гвоздика кустовая белая.jpeg",
+    "price": 750,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Гвоздика кустовая розовая",
+    "image_path": "/ФОТО/Гвоздика кустовая розовая.jpeg",
+    "price": 750,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Гвоздика кустовая бордовая",
+    "image_path": "/ФОТО/Гвоздика кустовая бордовая.jpeg",
+    "price": 750,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Калина красная",
+    "image_path": "/ФОТО/Калина красная.jpeg",
+    "price": 1600,
+    "discount": 0,
+    "size": "88",
+    "category": "flowers"
+  },
+  {
+    "title": "Ветка калины красная",
+    "image_path": "/ФОТО/Ветка калины красная.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Лист каллы зеленый",
+    "image_path": "/ФОТО/Лист каллы зеленый.jpeg",
+    "price": 350,
+    "discount": 0,
+    "size": "40",
+    "category": "flowers"
+  },
+  {
+    "title": "Калла белая",
+    "image_path": "/ФОТО/Калла белая.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Калла желтая",
+    "image_path": "/ФОТО/Калла желтая.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Калла розовая",
+    "image_path": "/ФОТО/Калла розовая.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия белая",
+    "image_path": "/ФОТО/Гортензия белая.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "90",
+    "category": "flowers"
+  },{
+    "title": "Роза пионовидная желтая",
+    "image_path": "/ФОТО/Роза пионовидная желтая.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза красная с бутоном",
+    "image_path": "/ФОТО/Роза красная с бутоном.jpeg",
+    "price": 1650,
+    "discount": 0,
+    "size": "62",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза бордовая",
+    "image_path": "/ФОТО/Роза бордовая.jpeg",
+    "price": 1650,
+    "discount": 0,
+    "size": "62",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза красная распускающаяся",
+    "image_path": "/ФОТО/Роза красная распускающаяся.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "57",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза персиковая распускающаяся",
+    "image_path": "/ФОТО/Роза персиковая распускающаяся.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "57",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза кремовая распускающаяся",
+    "image_path": "/ФОТО/Роза кремовая распускающаяся.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "57",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза белая распускающаяся",
+    "image_path": "/ФОТО/Роза белая распускающаяся.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "57",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза пионовидная красная",
+    "image_path": "/ФОТО/Роза пионовидная красная.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза пионовидная розовая",
+    "image_path": "/ФОТО/Роза пионовидная розовая.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза пионовидная персиковая",
+    "image_path": "/ФОТО/Роза пионовидная персиковая.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Тюльпан красный",
+    "image_path": "/ФОТО/Тюльпан красный.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "55",
+    "category": "flowers"
+  },
+  {
+    "title": "Тюльпан желтый",
+    "image_path": "/ФОТО/Тюльпан желтый.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "55",
+    "category": "flowers"
+  },
+  {
+    "title": "Тюльпан розовый",
+    "image_path": "/ФОТО/Тюльпан розовый.jpeg",
+    "price": 700,
+    "discount": 0,
+    "size": "55",
+    "category": "flowers"
+  },
+  {
+    "title": "Лилия белая",
+    "image_path": "/ФОТО/Лилия белая.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Лилия оранжевая",
+    "image_path": "/ФОТО/Лилия оранжевая.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Лилия розовая",
+    "image_path": "/ФОТО/Лилия розовая.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Хризантема белая",
+    "image_path": "/ФОТО/Хризантема белая.jpeg",
+    "price": 800,
+    "discount": 0,
+    "size": "65",
+    "category": "flowers"
+  },
+  {
+    "title": "Хризантема желтая",
+    "image_path": "/ФОТО/Хризантема желтая.jpeg",
+    "price": 800,
+    "discount": 0,
+    "size": "65",
+    "category": "flowers"
+  },
+  {
+    "title": "Хризантема оранжевая",
+    "image_path": "/ФОТО/Хризантема оранжевая.jpeg",
+    "price": 800,
+    "discount": 0,
+    "size": "65",
+    "category": "flowers"
+  },
+  {
+    "title": "Гвоздика красная",
+    "image_path": "/ФОТО/Гвоздика красная.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "50",
+    "category": "flowers"
+  },{
+    "title": "Калина белая",
+    "image_path": "/ФОТО/Калина белая.jpeg",
+    "price": 1600,
+    "discount": 0,
+    "size": "88",
+    "category": "flowers"
+  },
+  {
+    "title": "Ветка калины голубая",
+    "image_path": "/ФОТО/Ветка калины голубая.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия гол/бел/роз силикон",
+    "image_path": "/ФОТО/Гортензия гол бел роз силикон.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия гол/бел/роз силикон (2)",
+    "image_path": "/ФОТО/Гортензия гол бел роз силикон 2.jpeg",
+    "price": 1200,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Гортензия метельчатая синяя",
+    "image_path": "/ФОТО/Гортензия метельчатая синяя.jpeg",
+    "price": 4700,
+    "discount": 0,
+    "size": "90",
+    "category": "flowers"
+  },
+  {
+    "title": "Ин розовый/коралловый силикон",
+    "image_path": "/ФОТО/Ин розовый коралловый силикон.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Ин розовый/коралловый силикон (2)",
+    "image_path": "/ФОТО/Ин розовый коралловый силикон 2.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Белый цветок какой то",
+    "image_path": "/ФОТО/Белый цветок.jpeg",
+    "price": 550,
+    "discount": 0,
+    "size": "80",
+    "category": "flowers"
+  },
+  {
+    "title": "Георгин",
+    "image_path": "/ФОТО/Георгин.jpeg",
+    "price": 800,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Фиолетовый какой то",
+    "image_path": "/ФОТО/Фиолетовый цветок.jpeg",
+    "price": 550,
+    "discount": 0,
+    "size": "80",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион лиловый 2 цветка с бутоном",
+    "image_path": "/ФОТО/Пион лиловый 2 цветка с бутоном.jpeg",
+    "price": 1100,
+    "discount": 0,
+    "size": "75",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион французский белый",
+    "image_path": "/ФОТО/Пион французский белый.jpeg",
+    "price": 4850,
+    "discount": 0,
+    "size": "78",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион желтый",
+    "image_path": "/ФОТО/Пион желтый.jpeg",
+    "price": 4100,
+    "discount": 0,
+    "size": "51",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион белый распускающийся",
+    "image_path": "/ФОТО/Пион белый распускающийся.jpeg",
+    "price": 1250,
+    "discount": 0,
+    "size": "57",
+    "category": "flowers"
+  },
+  {
+    "title": "Пион с бутоном розовый силикон",
+    "image_path": "/ФОТО/Пион с бутоном розовый силикон.jpeg",
+    "price": 1500,
+    "discount": 0,
+    "size": "70",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза персиковая с бутоном",
+    "image_path": "/ФОТО/Роза персиковая с бутоном.jpeg",
+    "price": 1650,
+    "discount": 0,
+    "size": "62",
+    "category": "flowers"
+  },
+  {
+    "title": "Орхидея белая",
+    "image_path": "/ФОТО/Орхидея белая.jpeg",
+    "price": 650,
+    "discount": 0,
+    "size": "61",
+    "category": "flowers"
+  },
+  {
+    "title": "Георгин белый",
+    "image_path": "/ФОТО/Георгин белый.jpeg",
+    "price": 670,
+    "discount": 0,
+    "size": "56",
+    "category": "flowers"
+  },
+  {
+    "title": "Горошек",
+    "image_path": "/ФОТО/Горошек.jpeg",
+    "price": 490,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  },
+  {
+    "title": "Роза пионовидная бел/крем",
+    "image_path": "/ФОТО/Роза пионовидная бел крем.jpeg",
+    "price": 950,
+    "discount": 0,
+    "size": "60",
+    "category": "flowers"
+  }, {
+    "title": "Ваза белая с золотой веткой",
+    "image_path": "/ФОТО/Белое пламя и разноцветные дырочки.jpeg",
+    "price": 27000,
+    "discount": 0,
+    "size": "25*35*35",
+    "category": "vases",
+    "note": "Фото не соответствует названию (оригинал: 'Белое пламя и разноцветные дырочки')"
+  },
+  {
+    "title": "Ваза акварельные разводы голубая",
+    "image_path": "/ФОТО/Акварельные разводы голубая.jpeg",
+    "price": 4000,
+    "discount": 0,
+    "size": "22*13*13",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза белая мятая с зелено-коричневыми кругами 3",
+    "image_path": "/ФОТО/Белая мятая зелено коричневые круги.jpeg",
+    "price": 9000,
+    "discount": 0,
+    "size": "26*14*20",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза разноцветная",
+    "image_path": "/ФОТО/Разноцветная.jpeg",
+    "price": null,
+    "discount": 0,
+    "size": "28*17*17",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза белая с зелеными и коричневыми кругами",
+    "image_path": "/ФОТО/Белая мятая зелено коричневые круги.jpeg",
+    "price": 9000,
+    "discount": 0,
+    "size": "26*14*20",
+    "category": "vases",
+    "note": "Возможный дубликат с ID 43"
+  },
+  {
+    "title": "Ваза прозрачная кракелюр с золотой веткой",
+    "image_path": "/ФОТО/Ваза прозрачная кракелюр с золотой веткой M.jpeg",
+    "price": 7500,
+    "discount": 0,
+    "size": "22*23",
+    "category": "vases",
+    "note": "Уточните фото: возможно, дубликат позиции 13"
+  },{
+    "title": "Ваза голубые разводы рефленая бутыль",
+    "image_path": "/ФОТО/Ваза голубые разводы рефленная бутыль.jpeg",
+    "price": 9500,
+    "discount": 0,
+    "size": "31*22*22",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза белая мятая с зелено-коричневыми кругами",
+    "image_path": "/ФОТО/Ваза белая мятая зелено коричневые круги.jpeg",
+    "price": 7500,
+    "discount": 0,
+    "size": "21*12*20",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза белая мятая с зелено-коричневыми кругами 2",
+    "image_path": "/ФОТО/Ваза белая мятая зелено коричневые круги 2.jpeg",
+    "price": 11500,
+    "discount": 0,
+    "size": "32*17*25",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза прозрачная с бабочками",
+    "image_path": "/ФОТО/Ваза прозрачная с бабочками.jpeg",
+    "price": 5100,
+    "discount": 0,
+    "size": "25*15*15",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза изумрудная рифленая геометрия",
+    "image_path": "/ФОТО/Ваза изумрудная рифленая геометрия.jpeg",
+    "price": 5000,
+    "discount": 0,
+    "size": "23*16*16",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза изумрудная матовая с гранями",
+    "image_path": "/ФОТО/Ваза изумрудная матовая грани.jpeg",
+    "price": 9000,
+    "discount": 0,
+    "size": "27*17*15",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза кофейная мешок глянцевая",
+    "image_path": "/ФОТО/Ваза кофейная мешок глянец.jpeg",
+    "price": 6900,
+    "discount": 0,
+    "size": "27*21*21",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза дымчатая с гранями",
+    "image_path": "/ФОТО/Ваза дымчатая грани стекло.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "12.5*13*13",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза дымчатая с гранями 2",
+    "image_path": "/ФОТО/Ваза дымчатая грани стекло 2.jpeg",
+    "price": 4000,
+    "discount": 0,
+    "size": null,
+    "category": "vases"
+  },
+  {
+    "title": "Ваза дымчатая с гранями 3",
+    "image_path": "/ФОТО/Ваза дымчатая грани стекло 3.jpeg",
+    "price": 7500,
+    "discount": 0,
+    "size": "34*18*18",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза коричневая с этническим узором",
+    "image_path": "/ФОТО/Ваза коричневая этнический узор.jpeg",
+    "price": 8000,
+    "discount": 0,
+    "size": "25*20*20",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза коричневая с этническим узором 2",
+    "image_path": "/ФОТО/Ваза коричневая этнический узор 2.jpeg",
+    "price": 10500,
+    "discount": 0,
+    "size": "41*15*15",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза с лимонами и узким горлом",
+    "image_path": "/ФОТО/Ваза с лимонами узкое горло.jpeg",
+    "price": 15000,
+    "discount": 0,
+    "size": "30*22*22",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза ледяная прозрачная с лепестками внутри",
+    "image_path": "/ФОТО/Ледяная прозрачная лепестки внутри.jpeg",
+    "price": 11500,
+    "discount": 0,
+    "size": "14.5*18*12",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза зелено-коричневые круги",
+    "image_path": "/ФОТО/Ваза зелено коричневые круги.jpeg",
+    "price": null,
+    "discount": 0,
+    "size": null,
+    "category": "vases"
+  },
+  {
+    "title": "Ваза коричневые разводы рефленая бутыль",
+    "image_path": "/ФОТО/Ваза коричневые разводы рефленная бутыль.jpeg",
+    "price": null,
+    "discount": 0,
+    "size": null,
+    "category": "vases"
+  },
+  {
+    "title": "Ваза сиреневый туман цветок",
+    "image_path": "/ФОТО/Сиреневый туман цветок.jpeg",
+    "price": 3100,
+    "discount": 0,
+    "size": "15.5*15*15",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза сиреневый туман цветок 2",
+    "image_path": "/ФОТО/Сиреневый туман цветок 2.jpeg",
+    "price": 3500,
+    "discount": 0,
+    "size": "24.5*13*13",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза фарфоровая с цветами матовая",
+    "image_path": "/ФОТО/Фарфоровая с цветами матовая.jpeg",
+    "price": 8300,
+    "discount": 0,
+    "size": "25*9*9",
+    "category": "vases"
+  }, {
+    "title": "Ваза банка розовая (стекло) L",
+    "image_path": "/ФОТО/Ваза банка розовая (стекло) L.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "37*23",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза золотая на ножке Колосок",
+    "image_path": "/ФОТО/Ваза золотая на ножке Колосок.jpeg",
+    "price": 9300,
+    "discount": 0,
+    "size": "25*22",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза серая с пятнами M",
+    "image_path": "/ФОТО/Ваза серая пятна M.jpeg",
+    "price": 7800,
+    "discount": 0,
+    "size": "34*17",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза кувшин металл серый",
+    "image_path": "/ФОТО/Ваза кувшин металл серый.jpeg",
+    "price": 2500,
+    "discount": 0,
+    "size": "18*12",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза коричневая стеклянная дерево с птичкой S",
+    "image_path": "/ФОТО/Ваза коричневая стеклян.дерево с птичкой S.jpeg",
+    "price": 7000,
+    "discount": 0,
+    "size": "27*9",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза банка розовая (стекло) L",
+    "image_path": "/ФОТО/Ваза банка розовая (стекло) L.jpeg",
+    "price": 5500,
+    "discount": 0,
+    "size": "37*23",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза золотая на ножке Колосок",
+    "image_path": "/ФОТО/Ваза золотая на ножке Колосок.jpeg",
+    "price": 9300,
+    "discount": 0,
+    "size": "25*22",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза серая с пятнами M",
+    "image_path": "/ФОТО/Ваза серая пятна M.jpeg",
+    "price": 7800,
+    "discount": 0,
+    "size": "34*17",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза кувшин металл серый",
+    "image_path": "/ФОТО/Ваза кувшин металл серый.jpeg",
+    "price": 2500,
+    "discount": 0,
+    "size": "18*12",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза коричневая стеклянная дерево с птичкой S",
+    "image_path": "/ФОТО/Ваза коричневая стеклян.дерево с птичкой S.jpeg",
+    "price": 7000,
+    "discount": 0,
+    "size": "27*9",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза коричневая стеклянная дерево с птичкой M",
+    "image_path": "/ФОТО/Ваза коричневая стеклян.дерево с птичкой M.jpeg",
+    "price": 7500,
+    "discount": 0,
+    "size": "32*10",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза ярко-оранжевая колба",
+    "image_path": "/ФОТО/Ваза ярко-оранжевая колба.jpeg",
+    "price": 6500,
+    "discount": 0,
+    "size": "30*22",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза клубника красная M",
+    "image_path": "/ФОТО/Ваза клубника красная М.jpeg",
+    "price": 3000,
+    "discount": 0,
+    "size": "16*17",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза клубника красная L",
+    "image_path": "/ФОТО/Ваза клубника красная L.jpeg",
+    "price": 6000,
+    "discount": 0,
+    "size": "25*23",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза мешок белая",
+    "image_path": "/ФОТО/Ваза мешок белая.jpeg",
+    "price": 10500,
+    "discount": 0,
+    "size": "29*18",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза белая с зелеными вертикальными полосами",
+    "image_path": "/ФОТО/Ваза белая с зеленыи вертикальными полосами.jpeg",
+    "price": 8500,
+    "discount": 0,
+    "size": "33*16",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза прозрачная кракелюр с золотой веткой S",
+    "image_path": "/ФОТО/Ваза прозрачная кракелюр с золотой веткой S.jpeg",
+    "price": 12000,
+    "discount": 0,
+    "size": "33*23",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза прозрачная кракелюр с золотой веткой M",
+    "image_path": "/ФОТО/Ваза прозрачная кракелюр с золотой веткой M.jpeg",
+    "price": 7500,
+    "discount": 0,
+    "size": "22*23",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза голубая с гранями",
+    "image_path": "/ФОТО/Ваза голубая грани.jpeg",
+    "price": 2100,
+    "discount": 0,
+    "size": "16.5*14",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза лиловая со стеклянными шарами по краям",
+    "image_path": "/ФОТО/Ваза лиловая стеклянные шары по краям.jpeg",
+    "price": 7000,
+    "discount": 0,
+    "size": "29*17*17",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза розовая ромашка",
+    "image_path": "/ФОТО/Ваза розовая ромашка.jpeg",
+    "price": 11000,
+    "discount": 0,
+    "size": "27.5*13*16",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза серая с белыми цветами",
+    "image_path": "/ФОТО/Ваза серая с цветами белыми.jpeg",
+    "price": 17000,
+    "discount": 0,
+    "size": "31*20*20",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза розовая ромашка 2",
+    "image_path": "/ФОТО/Ваза розовая ромашка 2.jpeg",
+    "price": 14000,
+    "discount": 0,
+    "size": "34*13*17",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза перламутровая розовая жемчужина",
+    "image_path": "/ФОТО/Ваза перламутровая розовая жемчужина.jpeg",
+    "price": 7500,
+    "discount": 0,
+    "size": "25*22*25",
+    "category": "vases"
+  },
+  {
+    "title": "Ваза перламутровая розовая жемчужина 2",
+    "image_path": "/ФОТО/Ваза перламутровая розовая жемчужина 2.jpeg",
+    "price": 7500,
+    "discount": 0,
+    "size": "30*18*18",
+    "category": "vases"
+  },{
+      "title": "Держатель для книг лягушка в короне",
+      "image_path": "/ФОТО/Держатель для книг лягушка в короне.jpeg",
+      "price": 4650,
+      "discount": 0,
+      "size": "22*26*10"
+    },
+    {
+      "title": "Держатель для книг мишка коричневый",
+      "image_path": "/ФОТО/Держатель для книг мишка коричневый.jpeg",
+      "price": 2500,
+      "discount": 0,
+      "size": "15*19*10"
+    },
+    {
+      "title": "Книгодержатели пара античные руины",
+      "image_path": "/ФОТО/Книгодержатели пара античные руины.jpeg",
+      "price": 7500,
+      "discount": 0,
+      "size": "15*22*7"
+    },
+    {
+      "title": "Книгодержатель зеркальный лист",
+      "image_path": "/ФОТО/Книгодержатель зеркальный лист.jpeg",
+      "price": 8000,
+      "discount": 0,
+      "size": "18*12*10"
+    },
+    {
+      "title": "Книгодержатель розовый с зайцами",
+      "image_path": "/ФОТО/Книгодержатель розовый с зайцами.jpeg",
+      "price": 2800,
+      "discount": 0,
+      "size": "16.5*21.5*7.5"
+    },
+    {
+      "title": "Книгодержатель фазан золотой на ветке",
+      "image_path": "/ФОТО/Книгодержатель фазан золотой на ветке.jpeg",
+      "price": 6500,
+      "discount": 0,
+      "size": "21*10.5*13"
+    },
+    {
+      "title": "Книгодержатель кит черный",
+      "image_path": "/ФОТО/Книгодержатель кит черный.jpeg",
+      "price": 9500,
+      "discount": 0,
+      "size": "13*42*14"
+    },{
+      "title": "Шкатулка белая кожа крокодил",
+      "image_path": "/ФОТО/Шкатулка белая кожа крокодил.jpeg",
+      "price": 3500,
+      "discount": 0,
+      "size": "8.5*14.5*20",
+      "material": "кожа",
+      "color": "белый"
+    },
+    {
+      "title": "Шкатулка велюр узкая в ассортим",
+      "image_path": "/ФОТО/Шкатулка велюр узкая в ассортим.jpeg",
+      "price": 3100,
+      "discount": 0,
+      "size": "10*12*26",
+      "material": "велюр",
+      "color": "разные"
+    },
+    {
+      "title": "Шкатулка велюр узкая в ассортим 2",
+      "image_path": "/ФОТО/Шкатулка велюр узкая в ассортим 2.jpeg",
+      "price": 3100,
+      "discount": 0,
+      "size": "10*12*26",
+      "material": "велюр",
+      "color": "разные"
+    },
+    {
+      "title": "Шкатулка графитовая кожа плетеная",
+      "image_path": "/ФОТО/Шкатулка графитовая кожа плетеная.jpeg",
+      "price": 7000,
+      "discount": 0,
+      "size": "9.5*18*36",
+      "material": "кожа",
+      "color": "графитовый"
+    },
+    {
+      "title": "Шкатулка змеиная кожа серая",
+      "image_path": "/ФОТО/Шкатулка змеиная кожа серая.jpeg",
+      "price": 8000,
+      "discount": 0,
+      "size": "7.5*18*36",
+      "material": "кожа",
+      "color": "серый"
+    },
+    {
+      "title": "Шкатулка из стекла черно белая",
+      "image_path": "/ФОТО/Шкатулка из стекла черно белая.jpeg",
+      "price": 5950,
+      "discount": 0,
+      "size": "10*18*28",
+      "material": "стекло",
+      "color": "черно-белый"
+    },
+    {
+      "title": "Шкатулка серая джинс с золотым камнем",
+      "image_path": "/ФОТО/Шкатулка серая джинс с золотым камнем.jpeg",
+      "price": 5300,
+      "discount": 0,
+      "size": "7.7*12.5*25.5",
+      "material": "джинс",
+      "color": "серый"
+    },
+    {
+      "title": "Шкатулка шоколадная кожа с бронзовым",
+      "image_path": "/ФОТО/Шкатулка шоколадная кожа с бронзовым.jpeg",
+      "price": 4500,
+      "discount": 0,
+      "size": "10.5*16*25",
+      "material": "кожа",
+      "color": "шоколадный"
+    }
+  ]
+}

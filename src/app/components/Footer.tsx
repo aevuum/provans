@@ -30,11 +30,11 @@ export const Footer = () => {
           <div  className="lg:ml-16">
             <h4 className="font-semibold  mb-3 text-gray-800">Навигация</h4>
             <ul className="space-y-2">
-              <li><Link href="/catalog" className="hover:text-pink-500">Каталог</Link></li>
-              <li><Link href="/discount" className="hover:text-pink-500">Скидки</Link></li>
-              <li><Link href="/new" className="hover:text-pink-500">Новинки</Link></li>
-              <li><Link href="/about" className="hover:text-pink-500">О компании</Link></li>
-              <li><Link href="/contacts" className="hover:text-pink-500">Контакты</Link></li>
+              <li><Link href="/catalog/все-категории" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Каталог</Link></li>
+              <li><Link href="/catalog/акции" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Акции</Link></li>
+              <li><Link href="/catalog/новинки" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Новинки</Link></li>
+              <li><Link href="/about" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">О компании</Link></li>
+              <li><Link href="/contacts" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Контакты</Link></li>
             </ul>
           </div>
 
@@ -43,12 +43,12 @@ export const Footer = () => {
             <h4 className="font-semibold mb-3 text-gray-800">Контакты</h4>
             <ul className="space-y-2">
               <li>
-                <a href="tel:88007771872" className="hover:text-pink-500">
+                <a href="tel:88007771872" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">
                   8 (800) 777-18-72
                 </a>
               </li>
               <li>
-                <a href="mailto:info@provans.ru" className="hover:text-pink-500">
+                <a href="mailto:info@provans.ru" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">
                   info@provans.ru
                 </a>
               </li>
@@ -62,13 +62,13 @@ export const Footer = () => {
           <div>
             <h4 className="font-semibold mb-3 text-gray-800">Мы в соцсетях</h4>
             <div className="flex gap-5 mb-4">
-              <a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="text-gray-400 hover:text-gray-600">
+              <a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="text-gray-400 hover:text-[#7C5C27]">
                 <FaVk size={24} />
               </a>
-              <a href="https://t.me" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-gray-400 hover:text-gray-600">
+              <a href="https://t.me" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-gray-400 hover:text-[#7C5C27]">
                 <FaTelegram size={24} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-gray-600">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-[#7C5C27]">
                 <FaInstagram size={24} />
               </a>
             </div>
@@ -80,7 +80,6 @@ export const Footer = () => {
       src="/icons/visa_card2.png"
       alt="Visa"
       fill
-      // className=""
       sizes="48px"
     />
   </div>
@@ -91,7 +90,6 @@ export const Footer = () => {
       src="/icons/mastercard.png"
       alt="Mastercard"
       fill
-      // className="object-contain"
       sizes="48px"
     />
   </div>
@@ -102,7 +100,6 @@ export const Footer = () => {
       src="/icons/mir_card2.png"
       alt="Мир"
       fill
-      // className="object-contain"
       sizes="48px"
     />
   </div>

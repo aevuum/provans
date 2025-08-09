@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '@/lib/hooks';
-import { removeNotification } from '@/lib/features/notifications/notificationSlice';
+import { useAppSelector, useAppDispatch } from '../../lib/hooks';
+import { removeNotification } from '../../lib/features/notifications/notificationSlice';
 import { FaCheck, FaExclamationTriangle, FaInfo, FaTimes } from 'react-icons/fa';
 
 export default function NotificationContainer() {

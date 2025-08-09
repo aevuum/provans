@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface UseApiOptions {
   immediate?: boolean;
@@ -26,7 +26,7 @@ export function useApi<T = unknown>(
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const execute = async () => {
+  const execute = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -51,12 +51,11 @@ export function useApi<T = unknown>(
       if (onError) {
         onError(error);
       }
+      
     } finally {
       setLoading(false);
     }
-  };
-
-  const reset = () => {
+  }, [url, onSuccess, onError]);  const reset = () => {
     setData(null);
     setError(null);
     setLoading(false);
@@ -66,7 +65,7 @@ export function useApi<T = unknown>(
     if (immediate) {
       execute();
     }
-  }, [url, immediate]);
+  }, [url, immediate, execute]);
 
   return {
     data,

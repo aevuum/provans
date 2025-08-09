@@ -144,8 +144,8 @@ export default function CheckoutPage() {
           message: 'Ошибка при оформлении заказа: ' + orderResult.error
         }));
       }
-    } catch (error) {
-      console.error('Checkout error:', error);
+    } catch (_error) {
+      console.error('Checkout error:', _error);
       dispatch(addNotification({
         type: 'error',
         message: 'Произошла ошибка при оформлении заказа'
@@ -175,7 +175,7 @@ export default function CheckoutPage() {
           <h1 className="text-2xl font-bold mb-4">Корзина пуста</h1>
           <p className="text-gray-600 mb-6">Добавьте товары в корзину для оформления заказа</p>
           <button
-            onClick={() => router.push('/catalog/allshop')}
+            onClick={() => router.push('/catalog/все-категории')}
             className="bg-[#B8835A] text-white px-6 py-3 rounded-lg hover:bg-[#9d6e47] transition-colors"
           >
             Перейти к покупкам
@@ -207,7 +207,7 @@ export default function CheckoutPage() {
 
           <div className="flex gap-4 justify-center">
             <button
-              onClick={() => router.push('/catalog/allshop')}
+              onClick={() => router.push('/catalog/все-категории')}
               className="bg-[#B8835A] text-white px-6 py-3 rounded-lg hover:bg-[#9d6e47] transition-colors"
             >
               Продолжить покупки

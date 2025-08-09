@@ -15,7 +15,13 @@ export default function ProductEditModal({ product, onClose }: Props) {
   const [form, setForm] = useState(product);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, type } = e.target as HTMLInputElement;
+    // Для числовых полей приводим к числу
+    if (type === 'number' && name in form) {
+      setForm({ ...form, [name]: Number(value) });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
 
   const handleSave = () => {
@@ -54,16 +60,15 @@ export default function ProductEditModal({ product, onClose }: Props) {
           className="w-full mb-2 p-2 border rounded"
         >
           <option value="">Выберите категорию</option>
-          <option value="decor">Декор</option>
+          <option value="vases">Вазы</option>
+          <option value="candlesticks">Подсвечники</option>
+          <option value="frames">Рамки</option>
           <option value="flowers">Цветы</option>
-          <option value="textile">Текстиль</option>
-          <option value="dishes">Посуда</option>
-          <option value="furniture">Мебель</option>
-          <option value="scents">Ароматы</option>
-          <option value="easter">Пасха</option>
-          <option value="newyear">Новый год</option>
+          <option value="jewelry-boxes">Шкатулки</option>
+          <option value="figurines">Фигурки</option>
+          <option value="bookends">Книгодержатели</option>
         </select>
-        {/* Добавь остальные поля по необходимости */}
+        {/* Остальные поля при необходимости */}
         <div className="flex gap-2 mt-4">
           <button onClick={handleSave} className="bg-blue-600 text-white px-4 py-2 rounded">Сохранить</button>
           <button onClick={handleConfirm} className="bg-green-600 text-white px-4 py-2 rounded">Подтвердить</button>

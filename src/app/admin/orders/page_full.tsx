@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Order, OrderStatus } from '@/types/order';
+import { Order, OrderStatus } from '@/types/order'; // Импортируйте типы Order и OrderStatus из вашего проекта
 import { FaEye, FaTrash, FaSearch, FaFilter } from 'react-icons/fa';
 import Link from 'next/link';
 
@@ -29,22 +29,22 @@ export default function AdminOrdersPage() {
   const fetchOrders = useCallback(async () => {
     setLoading(true);
     try {
-      const params = new URLSearchParams({
+      const _params = new URLSearchParams({
         page: filters.page.toString(),
         limit: '10',
         ...(filters.status && { status: filters.status }),
         ...(filters.search && { search: filters.search })
       });
 
-      const response = await fetch(`/api/orders?${params}`);
+      const response = await fetch(`/api/orders?${_params}`);
       const data = await response.json();
       
       if (data.success) {
         setOrders(data.orders);
         setPagination(data.pagination);
       }
-    } catch (error) {
-      console.error('Error fetching orders:', error);
+    } catch (_error) {
+      console.error('Error fetching orders:', _error);
     } finally {
       setLoading(false);
     }
@@ -76,8 +76,8 @@ export default function AdminOrdersPage() {
       } else {
         alert('Ошибка при обновлении статуса заказа');
       }
-    } catch (error) {
-      console.error('Error updating order status:', error);
+    } catch (_error) {
+      console.error('Error updating order status:', _error);
       alert('Ошибка при обновлении статуса заказа');
     }
   };
@@ -96,8 +96,8 @@ export default function AdminOrdersPage() {
       } else {
         alert('Ошибка при удалении заказа');
       }
-    } catch (error) {
-      console.error('Error deleting order:', error);
+    } catch (_error) {
+      console.error('Error deleting order:', _error);
       alert('Ошибка при удалении заказа');
     }
   };

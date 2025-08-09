@@ -32,26 +32,25 @@ export default function SimilarProducts({ currentProductId, category }: SimilarP
       try {
         setLoading(true);
         
-        // Ищем товары той же категории или просто случайные товары
         const searchParams = new URLSearchParams({
           limit: '12',
-          ...(category && { category })
+          ...(category ? { category } : {})
         });
 
         const response = await fetch(`/api/products?${searchParams}`);
-        const data = await response.json();
+        const result = await response.json();
         
-        if (data.success) {
-          // Исключаем текущий товар и перемешиваем результат
-          const filteredProducts = data.products
+        if (result.success) {
+          const list: Product[] = result.data?.products ?? [];
+          const filteredProducts = list
             .filter((product: Product) => product.id !== currentProductId)
             .sort(() => Math.random() - 0.5)
             .slice(0, 8);
           
           setProducts(filteredProducts);
         }
-      } catch (error) {
-        console.error('Error fetching similar products:', error);
+      } catch (_error) {
+        console.error('Error fetching similar products:', _error);
       } finally {
         setLoading(false);
       }

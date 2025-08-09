@@ -1,13 +1,13 @@
 // app/api/admin/products/bulk/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth/next';
-import prisma from '@/lib/prisma';
+import { getAdminSession } from '@/lib/authUtils';
+import { prisma } from '@/lib/prisma';
 
 // POST - массовые операции
 export async function POST(req: NextRequest) {
   try {
-    const session = await getServerSession();
-    if (!session || (session.user as { role?: string })?.role !== 'admin') {
+    const session = await getAdminSession();
+    if (!session || session.user?.role !== 'admin') {
       return NextResponse.json({ error: 'Нет доступа' }, { status: 403 });
     }
 
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Валидируем ID
-    const validIds = productIds.filter(id => Number.isInteger(id) && id > 0);
+    const validIds = productIds.filter((id: unknown) => Number.isInteger(id) && (id as number) > 0);
     if (validIds.length === 0) {
       return NextResponse.json(
         { error: 'Нет валидных ID продуктов' },

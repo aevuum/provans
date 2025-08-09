@@ -85,11 +85,11 @@ export default function Admin1CPage() {
         lastCheck: new Date().toISOString(),
         error: response.ok ? undefined : data.error
       });
-    } catch (error) {
+    } catch (_error) {
       setConnectionStatus({
         connected: false,
         lastCheck: new Date().toISOString(),
-        error: error instanceof Error ? error.message : 'Connection failed'
+        error: _error instanceof Error ? _error.message : 'Connection failed'
       });
     }
   };
@@ -135,13 +135,13 @@ export default function Admin1CPage() {
       } else {
         throw new Error(result.error || 'Sync failed');
       }
-    } catch (error) {
-      const errorMessage = `${new Date().toLocaleTimeString()}: Ошибка синхронизации ${type}: ${error}`;
+    } catch (_error) {
+      const errorMessage = `${new Date().toLocaleTimeString()}: Ошибка синхронизации ${type}: ${_error}`;
       setLogs(prev => [errorMessage, ...prev.slice(0, 49)]);
       
       setSyncStatuses(prev => prev.map(status => 
         status.type === type 
-          ? { ...status, status: 'error', lastError: error instanceof Error ? error.message : String(error) }
+          ? { ...status, status: 'error', lastError: _error instanceof Error ? _error.message : String(_error) }
           : status
       ));
     }

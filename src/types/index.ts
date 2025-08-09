@@ -16,14 +16,12 @@ export interface Product {
   article?: string | null;
   pillowcases?: string | null;
   count?: number;
-  material?: string | null;
   rating?: {
     rate: number;
     count: number;
   };
   images?: string[];
   isConfirmed?: boolean;
-  country?: string | null;
   barcode?: string | null;
   comment?: string | null;
   quantity?: number; // Количество на складе
@@ -82,18 +80,16 @@ export interface ProductFilters {
   maxPrice?: number;
   priceFrom?: number;
   priceTo?: number;
-  material?: string;
-  country?: string;
   isConfirmed?: string;
   sortBy?: 'price' | 'title' | 'createdAt' | 'updatedAt';
   sortOrder?: 'asc' | 'desc';
   page?: number;
   limit?: number;
+  // Добавлено: фильтрация по категориям (slug или список slug)
+  categories?: string | string[];
 }
 
 export interface FilterOptions {
-  materials: string[];
-  countries: string[];
   priceRange: {
     min: number;
     max: number;
@@ -113,22 +109,18 @@ export const isProduct = (item: unknown): item is Product => {
 /**
  * Хелпер для безопасного получения изображения
  */
-export const getProductImage = (product: Product, fallback = '/placeholder.jpg') => {
+export const getProductImage = (product: Product, fallback = '/fon.png') => {
   // Сначала проверяем массив изображений
   if (Array.isArray(product.images) && product.images.length > 0 && typeof product.images[0] === 'string') {
     const imagePath = product.images[0];
-    // Если путь начинается с /uploads, то это уже правильный путь для public
     return imagePath;
   }
   
-  // Затем проверяем основное изображение
   if (typeof product.image === 'string' && product.image.length > 0) {
     const imagePath = product.image;
-    // Если путь начинается с /uploads, то это уже правильный путь для public
     return imagePath;
   }
   
-  // Возвращаем fallback
   return fallback;
 };
 
@@ -152,3 +144,6 @@ export const formatProductTitle = (title: string): string => {
     })
     .join(' ');
 };
+
+// Реэкспорт типов заказов для удобства импорта из '@/types'
+export * from './order';

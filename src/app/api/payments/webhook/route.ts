@@ -2,7 +2,7 @@
 // Обработка вебхуков от ЮKassa
 
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 
 interface YooKassaWebhook {
   type: string;

@@ -30,20 +30,12 @@
 }
 
 /* Улучшенная адаптивность для карточек товаров */
-.product-card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.product-card:hover {
-  transform: translateY(-2px);
-}
+/* Перенесено в design-system.css: правила .product-card и :hover удалены из responsive.css
+   чтобы избежать дублирования и конфликтов теней/трансформаций. */
 
 /* Оптимизация для touch устройств */
 @media (hover: none) {
-  .product-card:hover {
-    transform: none;
-  }
-  
+  /* Поддерживаем явную видимость hover-элементов на touch */
   .group:hover .group-hover\\:opacity-100 {
     opacity: 1;
   }
@@ -125,6 +117,7 @@
 /* Оптимизация для iOS Safari */
 @supports (-webkit-touch-callout: none) {
   .ios-fix {
+    appearance: none;
     -webkit-appearance: none;
     border-radius: 0;
   }

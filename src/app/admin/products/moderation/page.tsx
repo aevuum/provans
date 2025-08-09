@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { FaCheck, FaTimes, FaEdit, FaEye } from 'react-icons/fa';
 import { Product } from '@/types';
-import PhotoMatchingComponent from '@/components/PhotoMatchingComponent';
 
 export default function ModerationPage() {
   const { data: session } = useSession();
@@ -30,8 +29,8 @@ export default function ModerationPage() {
           router.push('/admin');
         }
       }
-    } catch (error) {
-      console.error('Error fetching products:', error);
+    } catch (_error) {
+      console.error('Error fetching products:', _error);
     } finally {
       setLoading(false);
     }
@@ -70,8 +69,8 @@ export default function ModerationPage() {
         const data = await response.json();
         alert(`Ошибка при одобрении: ${data.message || 'Неизвестная ошибка'}`);
       }
-    } catch (error) {
-      console.error('Error approving product:', error);
+    } catch (_error) {
+      console.error('Error approving product:', _error);
       alert('Ошибка при одобрении товара');
     } finally {
       setModerating(null);
@@ -88,8 +87,8 @@ export default function ModerationPage() {
       if (response.ok) {
         setProducts(products.filter(p => p.id !== productId));
       }
-    } catch (error) {
-      console.error('Error rejecting product:', error);
+    } catch (_error) {
+      console.error('Error rejecting product:', _error);
     } finally {
       setModerating(null);
     }
@@ -121,9 +120,6 @@ export default function ModerationPage() {
           </div>
         </div>
 
-        {/* Photo Matching Component */}
-        <PhotoMatchingComponent onComplete={fetchPendingProducts} />
-
         {/* Products List */}
         {products.length === 0 ? (
           <div className="bg-white shadow rounded-lg p-12 text-center">
@@ -146,7 +142,7 @@ export default function ModerationPage() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       onError={(e) => {
                         console.error('Image failed to load:', product.image);
-                        e.currentTarget.style.display = 'none';
+                        (e.currentTarget as HTMLImageElement).style.display = 'none';
                       }}
                     />
                   ) : (
@@ -174,18 +170,6 @@ export default function ModerationPage() {
                         <span className="font-medium">{product.category}</span>
                       </div>
                     )}
-                    {product.material && (
-                      <div className="flex justify-between">
-                        <span>Материал:</span>
-                        <span className="font-medium">{product.material}</span>
-                      </div>
-                    )}
-                    {product.country && (
-                      <div className="flex justify-between">
-                        <span>Страна:</span>
-                        <span className="font-medium">{product.country}</span>
-                      </div>
-                    )}
                     <div className="flex justify-between">
                       <span>Артикул:</span>
                       <span className="font-medium">{product.barcode}</span>
@@ -203,7 +187,7 @@ export default function ModerationPage() {
                       <span>Одобрить</span>
                     </button>
                     <button
-                      onClick={() => router.push(`/admin/products/edit/${product.id}`)}
+                      onClick={() => router.push(`/admin/products/${product.id}/edit`)}
                       className="bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700 flex items-center justify-center"
                     >
                       <FaEdit />

@@ -49,19 +49,15 @@ export default function Home() {
   const [specialProducts, setSpecialProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Убираем анимацию смены фонов, так как теперь только один фон
     setCurrentBg(0);
-    
-    // Загружаем данные
     fetchHomeData();
   }, []);
 
   const fetchHomeData = async () => {
     try {      
-      // Параллельно загружаем новинки и акции
       const [newResponse, discountResponse] = await Promise.all([
-        fetch('/api/products-new?type=new&limit=10&sortBy=createdAt&sortOrder=desc'),
-        fetch('/api/products-new?type=discount&limit=8&sortBy=discount&sortOrder=desc')
+        fetch('/api/products?type=new&limit=10&sortBy=createdAt&sortOrder=desc'),
+        fetch('/api/products?type=discount&limit=8&sortBy=discount&sortOrder=desc')
       ]);
 
       const [newData, discountData] = await Promise.all([
@@ -69,12 +65,12 @@ export default function Home() {
         discountResponse.json()
       ]);
 
-      if (newData.success && newData.data) {
-        setNewProducts(newData.data);
+      if (newData.success && newData.data?.products) {
+        setNewProducts(newData.data.products);
       }
 
-      if (discountData.success && discountData.data) {
-        setSpecialProducts(discountData.data);  
+      if (discountData.success && discountData.data?.products) {
+        setSpecialProducts(discountData.data.products);  
       }
 
     } catch (error) {
@@ -87,7 +83,7 @@ export default function Home() {
     { title: "Подсвечники", image: "/популярные категории/подсвечик.jpg", href: "/catalog/candlesticks" },
     { title: "Рамки", image: "/популярные категории/рамки.jpg", href: "/catalog/frames" },
     { title: "Цветы", image: "/популярные категории/цветы.jpg", href: "/catalog/flowers" },
-    { title: "Шкатулки", image: "/популярные категории/шкатулка1.jpg", href: "/catalog/boxes" },
+    { title: "Шкатулки", image: "/популярные категории/шкатулка1.jpg", href: "/catalog/jewelry-boxes" },
     { title: "Фигурки", image: "/популярные категории/фигурки.jpg", href: "/catalog/figurines" }
   ];
 
@@ -114,7 +110,7 @@ export default function Home() {
             </h1>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/catalog/promotions"
+                href="/catalog/акции"
                 className="inline-flex items-center justify-center bg-[#E5D3B3] hover:bg-[#D4C2A1] border-2 border-[#D4C2A1] hover:border-[#C3B190] text-[#7C5C27] font-bold py-4 px-10 rounded-full text-lg tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Подробнее
@@ -141,7 +137,7 @@ export default function Home() {
 
       {/* Новинки */}
       {newProducts.length > 0 && (
-        <section className="container mx-auto px-4 pt-6 pb-16 md:pb-20">
+        <section className="container mx-auto px-4 pt-6 pb-16 md:pb-20 bg-mint-50 rounded-2xl">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Новинки</h2>
           </div>

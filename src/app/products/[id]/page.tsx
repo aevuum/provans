@@ -36,8 +36,8 @@ export default function ProductDetailPage() {
       } else {
         router.push('/404');
       }
-    } catch (error) {
-      console.error('Error fetching product:', error);
+    } catch (_error) {
+      console.error('Error fetching product:', _error);
       router.push('/404');
     } finally {
       setLoading(false);
@@ -237,22 +237,10 @@ export default function ProductDetailPage() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Характеристики</h3>
               <div className="space-y-3">
-                {product.material && (
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Материал:</span>
-                    <span className="font-medium">{product.material}</span>
-                  </div>
-                )}
                 {product.size && (
                   <div className="flex justify-between">
                     <span className="text-gray-600">Размер:</span>
                     <span className="font-medium">{product.size}</span>
-                  </div>
-                )}
-                {product.country && (
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Страна:</span>
-                    <span className="font-medium">{product.country}</span>
                   </div>
                 )}
                 <div className="flex justify-between">

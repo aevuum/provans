@@ -1,26 +1,14 @@
 // app/api/1c/catalog/route.ts
 // Синхронизация каталога товаров с 1C
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
-
-interface C1Product {
-  id: string;
-  title: string;
-  price: number;
-  material?: string;
-  country?: string;
-  barcode?: string;
-  images?: string[];
-  stock?: number;
-  size?: string;
-  comment?: string;
-}
+import { prisma } from '@/lib/prisma';
+import { c1Integration } from '@/lib/1c-config';
 
 export async function GET(request: NextRequest) {
   try {
     // Проверка авторизации
     const authHeader = request.headers.get('authorization');
-    if (!isValidAuth(authHeader)) {
+    if (!c1Integration.validateAuth(authHeader)) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
@@ -42,13 +30,11 @@ export async function GET(request: NextRequest) {
       orderBy: { updatedAt: 'desc' }
     });
 
-    // Преобразуем в формат 1C
+    // Преобразуем в формат 1C (без material и country)
     const c1Products = products.map(product => ({
       id: product.id.toString(),
       title: product.title,
       price: product.price,
-      material: product.material,
-      country: product.country,
       barcode: product.barcode,
       size: product.size,
       comment: product.comment,
@@ -77,14 +63,22 @@ export async function POST(request: NextRequest) {
   try {
     // Проверка авторизации
     const authHeader = request.headers.get('authorization');
-    if (!isValidAuth(authHeader)) {
+    if (!c1Integration.validateAuth(authHeader)) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
       );
     }
 
-    const { products }: { products: C1Product[] } = await request.json();
+    const { products }: { products: Array<{
+      id: string;
+      title: string;
+      price: number;
+      barcode?: string;
+      images?: string[];
+      size?: string;
+      comment?: string;
+    }>; } = await request.json();
 
     if (!Array.isArray(products)) {
       return NextResponse.json(
@@ -112,11 +106,9 @@ export async function POST(request: NextRequest) {
         const productData = {
           title: c1Product.title,
           price: c1Product.price,
-          material: c1Product.material,
-          country: c1Product.country,
-          barcode: c1Product.barcode,
-          size: c1Product.size,
-          comment: c1Product.comment,
+          barcode: c1Product.barcode ?? null,
+          size: c1Product.size ?? null,
+          comment: c1Product.comment ?? null,
           images: c1Product.images || [],
           isConfirmed: true // Товары из 1C автоматически подтверждены
         };
@@ -138,7 +130,7 @@ export async function POST(request: NextRequest) {
 
       } catch (productError) {
         console.error(`Error processing product ${c1Product.id}:`, productError);
-        errors.push(`Product ${c1Product.id}: ${productError}`);
+        errors.push(`Product ${c1Product.id}: ${productError}` as string);
       }
     }
 
@@ -161,24 +153,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-// Проверка авторизации (общая функция)
-function isValidAuth(authHeader: string | null): boolean {
-  if (!authHeader) return false;
-  
-  // Проверяем API ключ из переменных окружения
-  const apiKey = process.env.NEXT_1C_API_KEY;
-  if (apiKey && authHeader === `Bearer ${apiKey}`) {
-    return true;
-  }
-
-  // Проверяем Basic Auth
-  const basicAuth = process.env.NEXT_1C_BASIC_AUTH;
-  if (basicAuth && authHeader === `Basic ${basicAuth}`) {
-    return true;
-  }
-
-  // Временная заглушка для разработки
-  return authHeader.startsWith('Bearer test') || authHeader.startsWith('Basic test');
 }
