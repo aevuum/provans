@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/admin/products/moderation/page": "app/admin/products/moderation/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/products/[id]/edit/page": "app/admin/products/[id]/edit/page.js",
-  "/admin/products/page": "app/admin/products/page.js"
-}
