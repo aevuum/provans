@@ -120,7 +120,7 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
       </div>
 
       {/* Изображение товара */}
-      <div className="relative aspect-square overflow-hidden bg-gray-100">
+      <Link href={`/products/${product.id}`} className="relative aspect-square overflow-hidden bg-gray-100 block">
         <Image
           src={mainImage}
           alt={product.title}
@@ -131,12 +131,14 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
         />
-      </div>
+      </Link>
       
       {/* Информация о товаре */}
       <div className="p-3 sm:p-4 flex flex-col justify-between flex-grow">
         <div className="font-semibold text-xs sm:text-sm mb-2 text-center min-h-[2.5rem] overflow-hidden">
-          <div className="line-clamp-2">{formatProductTitle(product.title)}</div>
+          <Link href={`/products/${product.id}`} className="line-clamp-2 hover:underline">
+            {formatProductTitle(product.title)}
+          </Link>
         </div>
         {hasDiscount ? (
           <div className="flex flex-col items-center mb-2">
