@@ -76,12 +76,12 @@ export default function ReusableFilters({
       {/* Фоновая затемненная область при открытых фильтрах */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-[60] lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
       
-      <div className={`bg-white rounded-lg shadow-md sticky top-4 ${isOpen ? 'z-50 relative' : ''}`}>
+      <div className={`bg-white rounded-lg shadow-md sticky top-4 ${isOpen ? 'z-[70] relative' : ''}`}>
         {/* Заголовок фильтров */}
         <div 
           className="flex items-center justify-between p-4 md:p-6 cursor-pointer border-b bg-mint-50"

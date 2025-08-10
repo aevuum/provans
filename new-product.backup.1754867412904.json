@@ -1716,7 +1716,7 @@
       "price": 5500,
       "discount": 0,
       "size": "21*10,5*24",
-      "category": "figurines",
+      "category": "frames",
       "id": 191
     },
     {
@@ -1725,7 +1725,7 @@
       "price": 29500,
       "discount": 0,
       "size": "16*13,5*8,5",
-      "category": "figurines",
+      "category": "frames",
       "id": 192
     },
     {
@@ -1779,7 +1779,7 @@
       "price": 25500,
       "discount": 0,
       "size": "10*9*8",
-      "category": "figurines",
+      "category": "frames",
       "id": 198
     },
     {
@@ -1806,7 +1806,7 @@
       "price": 3200,
       "discount": 0,
       "size": "10*7*10",
-      "category": "figurines",
+      "category": "frames",
       "id": 201
     },
     {
@@ -1833,7 +1833,7 @@
       "price": 5750,
       "discount": 0,
       "size": "34*14*9",
-      "category": "figurines",
+      "category": "frames",
       "id": 204
     },
     {
@@ -1842,7 +1842,7 @@
       "price": 5300,
       "discount": 0,
       "size": "35*16*9",
-      "category": "figurines",
+      "category": "frames",
       "id": 205
     },
     {
@@ -2148,7 +2148,7 @@
       "price": 1450,
       "discount": 0,
       "size": "12*11*4,5",
-      "category": "flowers",
+      "category": null,
       "id": 239
     },
     {
@@ -2301,7 +2301,7 @@
       "price": 13000,
       "discount": 0,
       "size": "36",
-      "category": "figurines",
+      "category": "frames",
       "id": 256
     },
     {
@@ -2454,7 +2454,7 @@
       "price": 2300,
       "discount": 0,
       "size": "74",
-      "category": "flowers",
+      "category": null,
       "id": 273
     },
     {
@@ -2652,7 +2652,7 @@
       "price": 800,
       "discount": 0,
       "size": "48",
-      "category": "flowers",
+      "category": null,
       "id": 295
     },
     {
@@ -3111,7 +3111,7 @@
       "price": 700,
       "discount": 0,
       "size": "50",
-      "category": "flowers",
+      "category": null,
       "id": 346
     },
     {
@@ -3120,7 +3120,7 @@
       "price": 700,
       "discount": 0,
       "size": "50",
-      "category": "flowers",
+      "category": null,
       "id": 347
     },
     {
@@ -3228,7 +3228,7 @@
       "price": 500,
       "discount": 0,
       "size": "50",
-      "category": "flowers",
+      "category": null,
       "id": 359
     },
     {
@@ -3453,7 +3453,7 @@
       "price": 27000,
       "discount": 0,
       "size": "25*35*35",
-      "category": "vases",
+      "category": "flowers",
       "id": 384
     },
     {
@@ -3471,7 +3471,7 @@
       "price": 9000,
       "discount": 0,
       "size": "26*14*20",
-      "category": "vases",
+      "category": null,
       "id": 386
     },
     {
