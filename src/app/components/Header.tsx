@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useMemo, lazy, Suspense, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -13,14 +13,12 @@ import {
   FaBars,
   FaTimes,
 } from 'react-icons/fa';
-import { useAppDispatch, useAppSelector } from '../../lib/hooks';
-import { toggleSearch } from '../../lib/features/ui/uiSlice';
+import { useAppSelector } from '../../lib/hooks';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { getProductImage } from '../../types';
-
-// Lazy load компонентов
-const AuthModal = lazy(() => import("./AuthModal"));
+import AuthModal from './AuthModal';
+import { SearchBar } from './SearchBar';
 
 interface ExtendedUser {
   id?: string;
@@ -40,16 +38,14 @@ export const Header = React.memo(() => {
   const [cartPopoverOpen, setCartPopoverOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const { data: session } = useSession() as { data: ExtendedSession | null };
-  const dispatch = useAppDispatch();
   const router = useRouter();
   // Добавляем флаг монтирования клиента, чтобы избежать SSR/CSR рассинхронизации
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  
+
   // Используем селекторы с мемоизацией
   const cart = useAppSelector((state) => state.cart.items);
   const favorites = useAppSelector((state) => state.favorites.items);
-  const showSearch = useAppSelector((state) => state.ui.showSearch);
 
   // Мемоизируем вычисления
   const cartTotal = useMemo(() => 
@@ -60,21 +56,6 @@ export const Header = React.memo(() => {
   // Оптимизированные обработчики
   const toggleMenu = useCallback(() => setIsMenuOpen(prev => !prev), []);
 
-  // Обработчик поиска
-  const handleSearch = (query: string) => {
-    if (query.trim()) {
-      router.push(`/catalog/все-категории?search=${encodeURIComponent(query.trim())}`);
-      dispatch(toggleSearch());
-    }
-  };
-
-  const handleMobileSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const query = (formData.get('mobileSearch') as string) || '';
-    handleSearch(query);
-  };
-
   const onUserIconClick = () => {
     if (session) {
       router.push('/profile');
@@ -83,11 +64,16 @@ export const Header = React.memo(() => {
     }
   };
 
+  const closeCartWithDelay = useCallback(() => {
+    // небольшая задержка, чтобы можно было перевести курсор на поповер
+    setTimeout(() => setCartPopoverOpen(false), 120);
+  }, []);
+
   return (
     <header className="bg-white sticky top-0 z-50 shadow-sm">
       {/* Top Bar */}
       <div className="px-4 sm:px-6 py-3">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           {/* Burger + Adaptive Logo */}
           <div className="flex items-center gap-4">
             <button
@@ -115,41 +101,39 @@ export const Header = React.memo(() => {
                 sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, (max-width: 1400px) 120px, 128px"
               />
             </Link>
-          </div>
-          {/* Краткий телефон рядом с логотипом на маленьких экранах */}
-          <a
-            href="tel:88007771872"
-            className="md:hidden inline-flex items-center gap-2 text-gray-600 text-sm"
-          >
-            <FaPhone className="text-gray-500 text-sm" />
-            <span>8 (800) 777-18-72</span>
-          </a>
 
-          {/* Desktop Contact */}
-          <div className="hidden lg:flex flex-col ml-8">
-            <div className="flex items-center gap-2">
-              <FaPhone className="text-gray-500 text-sm" />
-              <a
-                href="tel:88007771872"
-                className="font-medium text-gray-500 text-sm hover:text-[#7C5C27] transition-colors"
-              >
-                8 (800) 777-18-72
-              </a>
+            {/* Desktop Contact рядом с логотипом */}
+            <div className="hidden lg:flex flex-col ml-4">
+              <div className="flex items-center gap-2">
+                <FaPhone className="text-gray-500 text-sm" />
+                <a
+                  href="tel:88007771872"
+                  className="font-medium text-gray-500 text-sm hover:text-[#7C5C27] transition-colors"
+                >
+                  <span className="tabular-nums">8 (800) 777-18-72</span>
+                </a>
+              </div>
+              <p className="text-gray-400 text-xs mt-1 ml-5">с 09:00 до 21:00</p>
             </div>
-            <p className="text-gray-400 text-xs mt-1 ml-5">с 09:00 до 21:00</p>
           </div>
 
-          {/* Icons */}
-          <div className="flex items-center justify-between gap-7 max-w-[180px] sm:max-w-[200px]">
-            {/* Search icon (на всех разрешениях) */}
+          {/* Правый блок: поиск + иконки в одной линии с равными отступами */}
+          <div className="flex items-center justify-end gap-6 flex-1">
+            {/* Десктопный поиск */}
+            <div className="hidden lg:block w-full max-w-xl">
+              <SearchBar placeholder="Поиск товаров..." />
+            </div>
+
+            {/* Иконка поиска (только мобильный) */}
             <button
-              className="text-gray-600 hover:text-[#7C5C27] transition-colors"
-              onClick={() => dispatch(toggleSearch())}
+              className="text-gray-600 hover:text-[#7C5C27] transition-colors lg:hidden"
+              onClick={() => router.push('/catalog/all')}
               aria-label="Поиск"
             >
               <FaSearch className="w-5 h-5 cursor-pointer" />
             </button>
-            {/* Heart */}
+
+            {/* Избранное */}
             <button
               className="relative text-gray-600 hover:text-[#7C5C27] transition-colors"
               onClick={() => router.push('/favorites')}
@@ -162,7 +146,8 @@ export const Header = React.memo(() => {
                 </span>
               )}
             </button>
-            {/* User */}
+
+            {/* Профиль */}
             <div className="relative group">
               <button
                 className="text-gray-600 hover:text-[#7C5C27] transition-colors"
@@ -171,13 +156,21 @@ export const Header = React.memo(() => {
               >
                 <FaUser className="w-6 h-6 cursor-pointer" />
               </button>
-              {/* Убрано ховер-меню пользователя */}
+              {/* Ховер-меню профиля (десктоп) */}
+              <div className="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <nav className="py-2">
+                  <Link href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Профиль</Link>
+                  <Link href="/favorites" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Избранное</Link>
+                  <Link href="/orders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Заказы</Link>
+                </nav>
+              </div>
             </div>
-            {/* Cart Popover */}
+
+            {/* Корзина */}
             <div
               className="relative"
               onMouseEnter={() => setCartPopoverOpen(true)}
-              onMouseLeave={() => setCartPopoverOpen(false)}
+              onMouseLeave={closeCartWithDelay}
             >
               <button
                 className="relative text-gray-600 hover:text-[#7C5C27] transition-colors"
@@ -194,7 +187,11 @@ export const Header = React.memo(() => {
               </button>
               {/* Popover */}
               {cartPopoverOpen && (
-                <div className="absolute right-0 mt-2 w-96 bg-white shadow-lg rounded-lg z-50 p-4 min-w-[320px]">
+                <div
+                  className="absolute right-0 mt-2 w-96 bg-white shadow-lg rounded-lg z-50 p-4 min-w-[320px]"
+                  onMouseEnter={() => setCartPopoverOpen(true)}
+                  onMouseLeave={closeCartWithDelay}
+                >
                   <h3 className="font-bold mb-2 text-lg">Корзина</h3>
                   {cart.length === 0 ? (
                     <div className="text-gray-400 text-sm">Корзина пуста</div>
@@ -256,7 +253,7 @@ export const Header = React.memo(() => {
               </button>
               <div className="invisible absolute left-0 top-full z-50 mt-1 w-56 rounded-md bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
                 {[
-                  { name: 'Все категории', href: '/catalog/все-категории' },
+                  { name: 'Все категории', href: '/catalog/all' },
                   { name: 'Вазы', href: '/catalog/vases' },
                   { name: 'Подсвечники', href: '/catalog/candlesticks' },
                   { name: 'Рамки', href: '/catalog/frames' },
@@ -276,8 +273,8 @@ export const Header = React.memo(() => {
               </div>
             </li>
             {[
-              { name: 'Акции', href: '/catalog/акции' },
-              { name: 'Новинки', href: '/catalog/новинки' },
+              { name: 'Акции', href: '/discount' },
+              { name: 'Новинки', href: '/catalog/new' },
               { name: 'О компании', href: '/about' },
               { name: 'Контакты', href: '/contacts' },
             ].map((link) => (
@@ -310,7 +307,7 @@ export const Header = React.memo(() => {
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Каталог</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {[
-                    { name: 'Все категории', href: '/catalog/все-категории' },
+                    { name: 'Все категории', href: '/catalog/all' },
                     { name: 'Вазы', href: '/catalog/vases' },
                     { name: 'Подсвечники', href: '/catalog/candlesticks' },
                     { name: 'Рамки', href: '/catalog/frames' },
@@ -332,8 +329,8 @@ export const Header = React.memo(() => {
               </div>
 
               {[
-                { name: 'Акции', href: '/catalog/акции' },
-                { name: 'Новинки', href: '/catalog/новинки' },
+                { name: 'Акции', href: '/discount' },
+                { name: 'Новинки', href: '/catalog/new' },
                 { name: 'О компании', href: '/about' },
                 { name: 'Контакты', href: '/contacts' },
               ].map((item) => (
@@ -351,46 +348,9 @@ export const Header = React.memo(() => {
         </div>
       )}
 
-      {/* Модальное окно авторизации */}
-      <Suspense fallback={<div className="hidden">Loading...</div>}>
+      {/* Модалка логина */}
+      {loginModalOpen && (
         <AuthModal isOpen={loginModalOpen} onClose={() => setLoginModalOpen(false)} />
-      </Suspense>
-
-      {/* Модальное окно поиска для мобильных и десктопа */}
-      {mounted && showSearch && (
-        <div className="fixed inset-0 z-50 bg-black/10 backdrop-blur-sm flex items-start justify-center pt-24 px-4">
-          <div className="bg-white p-4 rounded-lg shadow-xl w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">Поиск товаров</h3>
-              <button
-                onClick={() => dispatch(toggleSearch())}
-                className="text-gray-600 hover:text-gray-800"
-                aria-label="Закрыть поиск"
-              >
-                <FaTimes className="w-5 h-5" />
-              </button>
-            </div>
-            <form onSubmit={handleMobileSearchSubmit}>
-              <div className="relative">
-                <input
-                  type="text"
-                  name="mobileSearch"
-                  placeholder="Поиск товаров..."
-                  className="w-full py-3 px-4 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5D3B3] text-base"
-                  autoComplete="off"
-                  autoFocus
-                />
-                <button
-                  type="submit"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#7C5C27] w-6 h-6"
-                  aria-label="Поиск"
-                >
-                  <FaSearch />
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
       )}
     </header>
   );

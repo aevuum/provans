@@ -19,7 +19,7 @@ const AVAILABLE_CATEGORIES: CategoryOption[] = [
   { label: 'Рамки', value: 'frames' },
   { label: 'Цветы', value: 'flowers' },
   { label: 'Шкатулки', value: 'jewelry-boxes' },
-  { label: 'Фигурки', value: 'figures' },
+  { label: 'Фигурки', value: 'figurines' },
   { label: 'Книгодержатели', value: 'bookends' },
 ];
 
@@ -46,11 +46,14 @@ export default function ReusableFilters({
     
     Object.entries(filters).forEach(([key, value]) => {
       if (value) {
-        params.set(key, String(value))
+        // Приводим к строке и обрезаем пробелы
+        params.set(key, String(value).trim())
       }
     })
 
-    router.push(`${baseUrl}?${params.toString()}`)
+    // Навигация на нормализованный ASCII-путь
+    const normalizedBase = decodeURIComponent(baseUrl).replace('/catalog/все-категории', '/catalog/all')
+    router.push(`${normalizedBase}?${params.toString()}`)
   }
 
   const resetFilters = () => {
@@ -60,10 +63,13 @@ export default function ReusableFilters({
       minPrice: '',
       maxPrice: '',
     })
-    router.push(baseUrl)
+    const normalizedBase = decodeURIComponent(baseUrl).replace('/catalog/все-категории', '/catalog/all')
+    router.push(normalizedBase)
   }
 
-  const showCategorySelect = showCategory && ['/catalog/акции','/catalog/новинки','/catalog/все-категории'].includes(baseUrl)
+  // Обновлено: показываем селект категории только на нужных ASCII-страницах
+  const decodedBase = typeof window !== 'undefined' ? decodeURIComponent(baseUrl) : baseUrl
+  const showCategorySelect = showCategory && ['/discount','/catalog/all','/catalog/new'].includes(decodedBase.replace('/catalog/все-категории', '/catalog/all'))
 
   return (
     <div>
@@ -108,7 +114,7 @@ export default function ReusableFilters({
                 value={filters.search}
                 onChange={(e) => setFilters({...filters, search: e.target.value})}
                 placeholder="Введите название товара..."
-                className="w-full px-3 md:px-4 py-2.5 md:py-3 border border-gray-300 rounded-md focus:ring-[#E5D3B3] focus:border-[#E5D3B3] text-base"
+                className="w-full sm:w-64 md:w-72 lg:w-80 max-w-full px-3 md:px-4 py-2.5 md:py-3 border border-gray-300 rounded-md focus:ring-[#E5D3B3] focus:border-[#E5D3B3] text-base"
               />
             </div>
           )}

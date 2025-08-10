@@ -1,6 +1,15 @@
-import { redirect } from 'next/navigation';
+'use client';
 
-export default function PromotionsPage() {
-  const target = encodeURI('/catalog/акции');
-  redirect(target);
+import CatalogPage from '@/app/components/CatalogPage';
+
+export default function PromotionsAsciiPage() {
+  return (
+    <CatalogPage
+      apiEndpoint="/api/products?type=discount"
+      title="🔥 Акции и скидки"
+      description="Товары со скидками — не упустите выгодные предложения!"
+      showCategoryFilter={true}
+      emptyAlign="right"
+    />
+  );
 }

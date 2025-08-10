@@ -12,14 +12,7 @@ export default function FavoritesPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
         {favorites.length === 0 ? (
           <div className="col-span-full text-center py-12">
-            <div className="bg-[#F5F1E8] p-8 rounded-lg">
-              <p className="text-xl text-gray-600 mb-4">
-                Список избранного пуст
-              </p>
-              <p className="text-gray-500">
-                Добавьте товары в избранное, чтобы они появились здесь
-              </p>
-            </div>
+            <p className="text-gray-400">Спикок избраных товаров пуст</p>
           </div>
         ) : (
           favorites.map((product) => (

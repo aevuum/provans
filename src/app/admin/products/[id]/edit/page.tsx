@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Product } from '@/types'
+import PhotoUploader from '@/components/PhotoUploader'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -304,6 +305,17 @@ export default function AdminProductEditPage({ params }: PageProps) {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              {/* Загрузка фото с компьютера */}
+              <div>
+                <PhotoUploader
+                  productId={Number(id) || 0}
+                  currentImage={(product.image as string) || undefined}
+                  currentImages={(Array.isArray(product.images) ? product.images : []) as string[]}
+                  onImageUpdate={(newUrl) => setProduct(prev => ({ ...prev, image: newUrl }))}
+                  onImagesUpdate={(arr) => setProduct(prev => ({ ...prev, images: arr }))}
+                />
               </div>
 
               <div>

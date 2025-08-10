@@ -1,13 +1,7 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-
-// Динамический импорт для компонента, использующего useSearchParams
-const SearchContent = dynamic(() => import('@/app/components/SearchContent'), {
-  ssr: false,
-  loading: () => <div className="text-center py-8">Загрузка поиска...</div>
-})
+import SearchContent from '@/app/components/SearchContent'
 
 export default function SearchPage() {
   return (

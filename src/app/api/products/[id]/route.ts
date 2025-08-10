@@ -6,11 +6,11 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
   try {
     const { id } = await context.params;
 
-    const product = await prisma.product.findUnique({
-      where: { 
+    const product = await prisma.product.findFirst({
+      where: {
         id: parseInt(id),
-        isConfirmed: true // Показываем только подтвержденные товары
-      }
+        isConfirmed: true,
+      },
     });
 
     if (!product) {

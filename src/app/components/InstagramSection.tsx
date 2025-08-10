@@ -1,7 +1,7 @@
 'use client';
 
 import { FaInstagram } from 'react-icons/fa';
-import Image from 'next/image';
+import { SafeImage } from '@/components/SafeImage';
 
 interface InstagramCardProps {
   src: string;
@@ -20,13 +20,12 @@ function InstagramCard({ src, alt }: InstagramCardProps) {
     >
       {/* Изображение */}
       <div className="relative aspect-square overflow-hidden rounded-2xl">
-        <Image
+        <SafeImage
           src={src}
           alt={alt}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-110"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-          unoptimized={true}
         />
         
         {/* Оверлей при наведении */}

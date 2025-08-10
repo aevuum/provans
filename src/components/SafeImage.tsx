@@ -14,6 +14,7 @@ interface SafeImageProps {
   sizes?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
+  aboveTheFold?: boolean; // новые: для контента в первом экране
 }
 
 const SafeImage = memo<SafeImageProps>(({ 
@@ -26,7 +27,8 @@ const SafeImage = memo<SafeImageProps>(({
   priority = false, 
   sizes,
   style,
-  onClick
+  onClick,
+  aboveTheFold = false
 }) => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -65,19 +67,23 @@ const SafeImage = memo<SafeImageProps>(({
     );
   }
 
+  const effectivePriority = priority || aboveTheFold;
+
   const imageProps = {
     src: imageSrc,
     alt: alt || '',
-    priority,
-    className: `${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300 ${className}`,
+    priority: effectivePriority,
+    className: `${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-200 ${className}`,
     onLoad: handleLoad,
     onError: handleError,
     style,
+    loading: effectivePriority ? ('eager' as const) : ('lazy' as const),
+    decoding: 'async' as const,
     ...(fill 
       ? { fill: true, sizes: sizes || '100vw' }
       : { width, height }
     )
-  };
+  } as const;
 
   return (
     <div 
@@ -89,7 +95,7 @@ const SafeImage = memo<SafeImageProps>(({
           className={`absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center z-10 ${fill ? '' : 'rounded'}`}
           style={fill ? {} : { width, height }}
         >
-          <div className="w-6 h-6 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+          <div className="w-5 h-5 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
         </div>
       )}
       <Image 

@@ -107,18 +107,49 @@ export const isProduct = (item: unknown): item is Product => {
 };
 
 /**
+ * Нормализация путей к изображениям.
+ * - убирает абсолютный localhost:3001
+ * - нормализует обратные слэши и добавляет ведущий слэш
+ */
+export const normalizeImageUrl = (input?: string | null, fallback = '/fon.png'): string => {
+  let url = (input || '').trim();
+  if (!url) return fallback;
+
+  // Приводим старые пути инста к новым
+  try {
+    const decoded = decodeURIComponent(url);
+    if (decoded.startsWith('/инста/')) {
+      url = decoded.replace('/инста/', '/instagram/');
+    }
+  } catch {
+    if (url.startsWith('/инста/')) {
+      url = url.replace('/инста/', '/instagram/');
+    }
+  }
+
+  if (url.startsWith('http://localhost:3001/инста/')) {
+    url = url.replace('http://localhost:3001/инста/', '/instagram/');
+  }
+
+  // Если это относительный путь — оставляем как есть для next/image
+  if (url.startsWith('/')) return url;
+
+  // Страховка
+  if (!/^https?:\/\//i.test(url)) return fallback;
+  return url;
+};
+
+/**
  * Хелпер для безопасного получения изображения
  */
 export const getProductImage = (product: Product, fallback = '/fon.png') => {
   // Сначала проверяем массив изображений
   if (Array.isArray(product.images) && product.images.length > 0 && typeof product.images[0] === 'string') {
-    const imagePath = product.images[0];
-    return imagePath;
+    return normalizeImageUrl(product.images[0], fallback);
   }
   
   if (typeof product.image === 'string' && product.image.length > 0) {
-    const imagePath = product.image;
-    return imagePath;
+    return normalizeImageUrl(product.image, fallback);
   }
   
   return fallback;

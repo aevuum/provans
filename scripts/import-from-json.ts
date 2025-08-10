@@ -46,7 +46,7 @@ function normalizeImagePath(raw?: string | null): string | null {
 }
 
 async function main() {
-  const jsonFile = process.env.JSON_FILE || 'products.json';
+  const jsonFile = process.env.JSON_FILE || 'new-product.json';
   const jsonPath = path.join(process.cwd(), jsonFile);
   const raw = await fs.readFile(jsonPath, 'utf-8');
   const parsed = JSON.parse(raw) as { products?: JsonProduct[] } | JsonProduct[];

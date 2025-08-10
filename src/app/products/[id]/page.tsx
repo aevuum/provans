@@ -29,16 +29,20 @@ export default function ProductDetailPage() {
   const fetchProduct = useCallback(async (id: string) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/products/${id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setProduct(data);
+      // В едином API нет эндпоинта /products/:id — получаем все и ищем нужный
+      const response = await fetch(`/api/products?limit=2000`);
+      if (!response.ok) throw new Error('Failed to load');
+      const data = await response.json();
+      const items = (data?.data?.products || []) as Product[];
+      const found = items.find((p) => String(p.id) === String(id));
+      if (found) {
+        setProduct(found);
       } else {
-        router.push('/404');
+        router.push('/catalog/all');
       }
     } catch (_error) {
       console.error('Error fetching product:', _error);
-      router.push('/404');
+      router.push('/catalog/all');
     } finally {
       setLoading(false);
     }
@@ -187,11 +191,11 @@ export default function ProductDetailPage() {
               <div className="flex items-center space-x-4 mb-6">
                 <div className="flex items-center border border-gray-300 rounded-lg">
                   <button
-                    onClick={() => (product.quantity || 1) > 1 && setQuantity(Math.max(1, quantity - 1))}
-                    disabled={(product.quantity || 1) <= 1}
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    disabled={quantity <= 1}
                     className={`px-4 py-2 transition-colors ${
-                      (product.quantity || 1) <= 1 
-                        ? 'text-gray-300 cursor-not-allowed' 
+                      quantity <= 1
+                        ? 'text-gray-300 cursor-not-allowed'
                         : 'text-gray-600 hover:bg-gray-100 cursor-pointer'
                     }`}
                   >
@@ -199,11 +203,11 @@ export default function ProductDetailPage() {
                   </button>
                   <span className="px-4 py-2 border-x border-gray-300">{quantity}</span>
                   <button
-                    onClick={() => (product.quantity || 1) > 1 && quantity < (product.quantity || 1) && setQuantity(quantity + 1)}
-                    disabled={(product.quantity || 1) <= 1 || quantity >= (product.quantity || 1)}
+                    onClick={() => setQuantity(Math.min((product.quantity || 1), quantity + 1))}
+                    disabled={quantity >= (product.quantity || 1)}
                     className={`px-4 py-2 transition-colors ${
-                      (product.quantity || 1) <= 1 || quantity >= (product.quantity || 1)
-                        ? 'text-gray-300 cursor-not-allowed' 
+                      quantity >= (product.quantity || 1)
+                        ? 'text-gray-300 cursor-not-allowed'
                         : 'text-gray-600 hover:bg-gray-100 cursor-pointer'
                     }`}
                   >

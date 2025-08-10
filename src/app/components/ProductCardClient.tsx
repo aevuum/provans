@@ -77,7 +77,9 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
       {/* Бейджи */}
       <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
         {isNew && (
-          <span className="bg-mint-400 text-white text-xs px-2 py-1 rounded uppercase tracking-wide">new</span>
+          <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-full uppercase tracking-wider  ring-1 ring-white/60">
+            NEW
+          </span>
         )}
         {hasDiscount && (
           <span className="text-white bg-red-500 text-xs px-2 py-1 rounded">-{discount}%</span>

@@ -1,8 +1,7 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import { Product } from '@/types';
 import ProductCardClient from '@/app/components/ProductCardClient';
 import LoadingSpinner from './LoadingSpinner';
@@ -14,23 +13,14 @@ import ReusableFilters from '@/app/components/ReusableFilters';
 interface CatalogPageProps {
   title: string;
   description?: string;
-  apiEndpoint?: string;
+  apiEndpoint?: string; // при необходимости можно задать тип (new/discount и т.п.)
   showCounter?: boolean;
   emptyMessage?: string;
-  category?: string; // slug для хлебных крошек
-  showCategoryFilter?: boolean; // показывать ли выбор категории в фильтрах
-}
-
-export function CatalogPage(props: CatalogPageProps) {
-  return (
-    <Suspense fallback={
-      <div className="container mx-auto px-4 py-12 text-center">
-        <LoadingSpinner />
-      </div>
-    }>
-      <CatalogPageInner {...props} />
-    </Suspense>
-  );
+  category?: string; 
+  showCategoryFilter?: boolean; 
+  emptyAlign?: 'left' | 'center' | 'right';
+  pageSize?: number; // новый проп: размер страницы (по умолчанию 24)
+  highlightNew?: boolean; // помечать карточки бейджем NEW
 }
 
 function CatalogPageInner({
@@ -40,8 +30,13 @@ function CatalogPageInner({
   showCounter = true,
   emptyMessage = 'Мы работаем над наполнением категории.',
   category,
-  showCategoryFilter = false
+  showCategoryFilter = false,
+  emptyAlign = 'center',
+  pageSize = 24,
+  highlightNew = false,
 }: CatalogPageProps) {
+  const searchParams = useSearchParams();
+
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -49,219 +44,231 @@ function CatalogPageInner({
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
-  const searchParams = useSearchParams();
-  
-  const PRODUCTS_PER_PAGE = 24;
+
+  // Поиск (простое includes, без регистра и пробелов)
+  const searchQuery = (searchParams.get('search') || '').toString();
+  const isSearchMode = searchQuery.trim().length > 0;
+  const PAGE_LIMIT = isSearchMode ? 1000 : pageSize;
+
+  // Исправление: ASCII fallback пути
+  const baseUrl = typeof window !== 'undefined' ? window.location.pathname : '/catalog/all-shop';
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
         setError(null);
-        
-        // Базовый endpoint: либо переданный вручную, либо унифицированный /api/products
+
         const endpoint = apiEndpoint || '/api/products';
         const url = new URL(endpoint, window.location.origin);
 
-        // Если apiEndpoint не задан, и есть slug категории — используем categories
-        if (!apiEndpoint && category) {
-          url.searchParams.set('categories', category);
-        }
-
         // Пагинация
-        url.searchParams.set('page', currentPage.toString());
-        url.searchParams.set('limit', PRODUCTS_PER_PAGE.toString());
+        url.searchParams.set('page', isSearchMode ? '1' : String(currentPage));
+        url.searchParams.set('limit', String(PAGE_LIMIT));
 
-        // Фильтры из URL
-        // Поддерживаем и новый key 'categories', и устаревший 'category' (маппим в categories)
-        const rawCategory = searchParams.get('category');
-        const categories = searchParams.get('categories') || rawCategory;
+        // Фильтры из URL передаём как есть
         const pass = (key: string) => {
           const val = searchParams.get(key);
           if (val) url.searchParams.set(key, val);
         };
-        ['search', 'minPrice', 'maxPrice'].forEach(pass);
-        if (categories) {
-          url.searchParams.set('categories', categories);
+        ['search', 'categories', 'minPrice', 'maxPrice'].forEach(pass);
+
+       
+        const categoryFromUrl = searchParams.get('categories');
+        if (category && !categoryFromUrl) {
+          url.searchParams.set('categories', category);
         }
 
-        // Сортировка маппинг
-        // API поддерживает: sortBy=createdAt|discount|price и sortOrder
+        // Сортировка
         if (currentSort === 'price-asc') {
           url.searchParams.set('sortBy', 'price');
           url.searchParams.set('sortOrder', 'asc');
         } else if (currentSort === 'price-desc') {
           url.searchParams.set('sortBy', 'price');
           url.searchParams.set('sortOrder', 'desc');
-        } else if (currentSort === 'popular') {
-          // "Популярность" маппим на createdAt desc как дефолт (или позже добавим реальную логику)
-          url.searchParams.set('sortBy', 'createdAt');
-          url.searchParams.set('sortOrder', 'desc');
         } else if (currentSort === 'name-asc') {
-          // Серверной сортировки по названию нет — оставляем дефолт
+          url.searchParams.set('sortBy', 'title');
+          url.searchParams.set('sortOrder', 'asc');
+        } else if (currentSort === 'popular') {
           url.searchParams.set('sortBy', 'createdAt');
           url.searchParams.set('sortOrder', 'desc');
         } else {
           url.searchParams.set('sortBy', 'createdAt');
           url.searchParams.set('sortOrder', 'desc');
         }
-        
+
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000);
-        const response = await fetch(url.toString(), {
-          signal: controller.signal,
-          cache: 'no-store'
-        });
+        const response = await fetch(url.toString(), { signal: controller.signal, cache: 'no-store' });
         clearTimeout(timeoutId);
-        
+
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
           throw new Error(errorData.message || `HTTP ${response.status}: Ошибка загрузки товаров`);
         }
-        
+
         const data = await response.json();
+
         let productsData: Product[] = [];
         let total = 0;
-        
-        if (data.success && data.data) {
-          productsData = data.data.products;
-          total = data.data.pagination.total;
-        } else if (data.products) {
-          productsData = data.products;
-          total = data.total || data.products.length;
-        } else if (data.data) {
-          productsData = data.data.filter((product: Product) => product.isConfirmed);
-          total = data.total || productsData.length;
+        if (data?.success && data?.data) {
+          productsData = data.data.products || [];
+          total = data.data.pagination?.total ?? productsData.length;
         } else if (Array.isArray(data)) {
           productsData = data;
           total = data.length;
+        } else if (data?.products) {
+          productsData = data.products;
+          total = data.total || data.products.length;
+        } else if (data?.data) {
+          productsData = data.data;
+          total = data.total || productsData.length;
         }
+
         
-        setProducts(productsData);
-        setTotalProducts(total);
-        setTotalPages(Math.ceil(total / PRODUCTS_PER_PAGE));
-      } catch (fetchError) {
-        console.error('Error fetching products:', fetchError);
-        setError(fetchError instanceof Error ? fetchError.message : 'Произошла ошибка');
+        if (isSearchMode) {
+          const norm = (s: string) => s.toLowerCase().replace(/\s+/g, '');
+          const q = norm(searchQuery);
+          const filtered = productsData.filter((p: Product) => norm(p.title || '').includes(q));
+          setProducts(filtered);
+          setTotalProducts(filtered.length);
+          setTotalPages(1);
+        } else {
+          setProducts(productsData);
+          setTotalProducts(total);
+          setTotalPages(Math.max(1, Math.ceil(total / PAGE_LIMIT)));
+        }
+      } catch (e) {
+        console.error(e);
+        setError(e instanceof Error ? e.message : 'Произошла ошибка');
       } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
-  }, [apiEndpoint, category, currentSort, currentPage, searchParams]);
+  }, [apiEndpoint, currentPage, currentSort, searchParams, isSearchMode, PAGE_LIMIT, searchQuery, category]);
 
   const handleSortChange = (sort: SortOption) => {
     setCurrentSort(sort);
     setCurrentPage(1);
   };
 
-  const hasPrevPage = currentPage > 1;
-  const hasNextPage = currentPage < totalPages;
-
   const handlePageChange = (page: number) => {
+    if (isSearchMode) return;
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
-  const handleRetry = () => {
-    setError(null);
-    setLoading(true);
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
-  };
+  const hasPrevPage = !isSearchMode && currentPage > 1;
+  const hasNextPage = !isSearchMode && currentPage < totalPages;
 
-  const baseUrl = typeof window !== 'undefined' ? window.location.pathname : '/catalog/все-категории';
+  const breadcrumbs = useMemo(() => generateCatalogBreadcrumbs(category), [category]);
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-12 text-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   if (error) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center py-16">
-          <div className="text-6xl text-red-300 mb-4">⚠️</div>
-          <h3 className="text-xl font-medium text-gray-900 mb-2">Ошибка загрузки</h3>
-          <p className="text-gray-600 mb-6">{error}</p>
+      <div className="container mx-auto px-4 py-12">
+        <div className="text-center text-red-600 mb-4">{error}</div>
+        <div className="text-center">
           <button
-            onClick={handleRetry}
-            className="bg-[#E5D3B3] hover:bg-[#D4C2A1] text-gray-800 px-6 py-3 rounded-lg font-medium transition-colors"
+            onClick={() => typeof window !== 'undefined' && window.location.reload()}
+            className="bg-[#E5D3B3] hover:bg-[#D4C2A1] text-gray-800 py-2 px-4 rounded-md"
           >
-            Попробовать снова
+            Повторить
           </button>
         </div>
       </div>
     );
   }
 
+  const emptyAlignClass = emptyAlign === 'left' ? 'text-left' : emptyAlign === 'right' ? 'text-right' : 'text-center';
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Breadcrumbs 
-        items={generateCatalogBreadcrumbs(category)}
-        className="mb-6"
-      />
-      
-      <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">{title}</h1>
+    <div className="container mx-auto px-4 py-6 md:py-10">
+      {/* Хлебные крошки */}
+      <Breadcrumbs items={breadcrumbs} className="mb-4 md:mb-6" />
+
+      {/* Заголовок */}
+      <div className="flex flex-col gap-2 md:gap-3 mb-4 md:mb-6">
+        <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">{title}</h1>
         {description && (
-          <p className="text-gray-600 text-lg mb-2">{description}</p>
+          <p className="text-gray-600 text-sm md:text-base max-w-3xl">{description}</p>
         )}
-        {showCounter && !loading && (
-          <p className="text-gray-500">Всего товаров: {totalProducts}</p>
+        {showCounter && (
+          <span className="text-sm text-gray-500">Найдено: {totalProducts}</span>
         )}
       </div>
 
-      <div className="grid lg:grid-cols-5 gap-8">
-        {/* Левая колонка — фильтры */}
-        <div className="lg:col-span-2 space-y-6">
-          <ReusableFilters baseUrl={baseUrl} showCategory={showCategoryFilter} />
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
+        {/* Левая колонка: фильтры */}
+        <aside className="lg:col-span-3">
+          <ReusableFilters
+            baseUrl={baseUrl}
+            showSearch={true}
+            showCategory={showCategoryFilter}
+            showPrice={true}
+          />
+        </aside>
 
-        {/* Правая колонка — список товаров */}
-        <div className="lg:col-span-3">
-          {!loading && products.length > 0 && (
+        {/* Правая колонка: список */}
+        <section className="lg:col-span-9">
+          {/* Сортировка */}
+          <div className="flex items-center justify-end mb-4">
+            <ProductSort currentSort={currentSort} onSortChange={handleSortChange} />
+          </div>
+
+          {/* Пусто */}
+          {products.length === 0 ? (
+            <div className={`${emptyAlignClass} text-gray-600 py-10`}>{emptyMessage}</div>
+          ) : (
             <>
-              <div className="flex items-center justify-between mb-6">
-                <div className="text-gray-600">Сортировка:</div>
-                <ProductSort currentSort={currentSort} onSortChange={handleSortChange} />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Сетка товаров */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
                 {products.map((product) => (
-                  <ProductCardClient key={product.id} product={product} />
+                  <ProductCardClient key={product.id} product={product} isNew={highlightNew} />
                 ))}
               </div>
 
-              <div className="mt-8 flex items-center justify-center">
+              {/* Пагинация */}
+              {!isSearchMode && (
                 <Pagination
+                  className="mt-6"
                   currentPage={currentPage}
                   totalPages={totalPages}
-                  hasPrevPage={hasPrevPage}
                   hasNextPage={hasNextPage}
+                  hasPrevPage={hasPrevPage}
                   onPageChange={handlePageChange}
                 />
-              </div>
+              )}
             </>
           )}
-
-          {loading && (
-            <div className="flex items-center justify-center py-16">
-              <LoadingSpinner />
-            </div>
-          )}
-
-          {!loading && products.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-gray-600 mb-6">{emptyMessage}</p>
-              <Link
-                href="/catalog/все-категории"
-                className="inline-flex items-center justify-center bg-[#E5D3B3] hover:bg-[#D4C2A1] text-[#7C5C27] font-semibold py-3 px-6 rounded-lg transition-colors"
-              >
-                Перейти в каталог
-              </Link>
-            </div>
-          )}
-        </div>
+        </section>
       </div>
     </div>
+  );
+}
+
+export function CatalogPage(props: CatalogPageProps) {
+  return (
+    <Suspense
+      fallback={
+        <div className="container mx-auto px-4 py-12 text-center">
+          <LoadingSpinner />
+        </div>
+      }
+    >
+      <CatalogPageInner {...props} />
+    </Suspense>
   );
 }
 

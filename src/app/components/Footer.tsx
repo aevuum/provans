@@ -30,9 +30,9 @@ export const Footer = () => {
           <div  className="lg:ml-16">
             <h4 className="font-semibold  mb-3 text-gray-800">Навигация</h4>
             <ul className="space-y-2">
-              <li><Link href="/catalog/все-категории" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Каталог</Link></li>
-              <li><Link href="/catalog/акции" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Акции</Link></li>
-              <li><Link href="/catalog/новинки" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Новинки</Link></li>
+              <li><Link href="/catalog/all" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Каталог</Link></li>
+              <li><Link href="/discount" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Акции</Link></li>
+              <li><Link href="/catalog/new" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Новинки</Link></li>
               <li><Link href="/about" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">О компании</Link></li>
               <li><Link href="/contacts" className="hover:text-[#7C5C27] hover:bg-[#E5D3B3] px-1 rounded">Контакты</Link></li>
             </ul>

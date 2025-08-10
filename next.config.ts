@@ -14,12 +14,6 @@ const nextConfig: NextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         port: '3001',
-        pathname: '/инста/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '3001',
         pathname: '/ФОТО/**',
       },
       {
@@ -45,11 +39,27 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    domains: ['localhost'],
+    // удалено: domains (deprecated)
     unoptimized: false,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  
+  async redirects() {
+    return [
+      // Совместимость старых URL
+      { source: '/инста/:path*', destination: '/instagram/:path*', permanent: true },
+      { source: '/инстаграм/:path*', destination: '/instagram/:path*', permanent: true },
+      // Каталог
+      { source: '/catalog/акции', destination: '/discount', permanent: true },
+      { source: '/акции', destination: '/discount', permanent: true },
+      { source: '/новинки', destination: '/catalog/новинки', permanent: true },
+      { source: '/все-категории', destination: '/catalog/все-категории', permanent: true },
+    ];
+  },
+
+  // Рерайты не требуются для статики в public
+  async rewrites() { return []; },
   
   // Оптимизация компиляции
   compiler: {
@@ -64,10 +74,10 @@ const nextConfig: NextConfig = {
   
   // Экспериментальные функции  
   experimental: {
-    // Убираем optimizeCss так как нет critters
+    // убираем optimizeCss так как нет critters
   },
   
-  // Заголовки для кэширования
+  // Заголовки для кеширования
   async headers() {
     return [
       {
@@ -99,7 +109,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  
+
   eslint: {
     ignoreDuringBuilds: false,
     dirs: ['src'],

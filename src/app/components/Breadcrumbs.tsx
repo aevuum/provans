@@ -72,7 +72,7 @@ export function generateCatalogBreadcrumbs(category?: string, productTitle?: str
   // Добавляем каталог
   breadcrumbs.push({
     name: 'Каталог',
-    href: '/catalog/все-категории'
+    href: '/catalog/all'
   });
 
   // Добавляем категорию если есть
