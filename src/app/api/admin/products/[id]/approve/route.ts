@@ -52,7 +52,7 @@ export async function POST(
       }
     });
 
-    // Синхронизируем подтвержденные товары в products.json
+    // Синхронизируем подтвержденные товары в archive/products.json
     try {
       const confirmed = await prisma.product.findMany({ where: { isConfirmed: true } });
       const payload = {
@@ -67,7 +67,7 @@ export async function POST(
           comment: p.comment ?? null,
         })),
       };
-      const filePath = path.join(process.cwd(), 'products.json');
+      const filePath = path.join(process.cwd(), 'archive', 'products.json');
       await fs.writeFile(filePath, JSON.stringify(payload, null, 2), 'utf-8');
     } catch (e) {
       console.warn('JSON sync after approve failed:', e);

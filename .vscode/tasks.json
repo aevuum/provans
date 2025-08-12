@@ -1,13 +1,37 @@
 {
 	"version": "2.0.0",
 	"tasks": [
-    {
-      "label": "start-dev-server",
-      "type": "shell",
-      "command": "npm run dev",
-      "group": "serve",
-      "isBackground": true,
-      "problemMatcher": []
-    }
-  ]
+		{
+			"label": "start-dev-server",
+			"type": "shell",
+			"command": "npm run dev",
+			"group": "serve",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "categories:analyze (once)",
+			"type": "shell",
+			"command": "npm run categories:analyze",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "categories:normalize (once)",
+			"type": "shell",
+			"command": "npm run categories:normalize",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "import:json (once)",
+			"type": "shell",
+			"command": "npm run import:json",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
 }

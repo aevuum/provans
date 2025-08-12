@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-// Синхронизация БД -> products.json (экспорт текущих подтвержденных товаров)
+// Синхронизация БД -> archive/products.json (экспорт текущих подтвержденных товаров, архивная копия)
 export async function POST() {
   try {
     const session = await getAdminSession();
@@ -27,7 +27,7 @@ export async function POST() {
       })),
     };
 
-    const filePath = path.join(process.cwd(), 'products.json');
+    const filePath = path.join(process.cwd(), 'archive', 'products.json');
     await fs.writeFile(filePath, JSON.stringify(payload, null, 2), 'utf-8');
 
     return NextResponse.json({ success: true, data: { count: products.length } });

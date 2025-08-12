@@ -17,13 +17,13 @@ export default function SimilarProducts({ currentProductId, category }: SimilarP
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: -320, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: 320, behavior: 'smooth' });
     }
   };
 
@@ -84,13 +84,15 @@ export default function SimilarProducts({ currentProductId, category }: SimilarP
     <div className="bg-white rounded-lg shadow-sm p-6">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Похожие товары</h2>
       <div className="relative">
-        {/* Кнопка влево */}
+        {/* Кнопка влево (увеличены размеры) */}
         <button
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors cursor-pointer"
-          style={{ marginLeft: '-20px' }}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-xl rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+          style={{ width: 48, height: 48, marginLeft: '-24px' }}
+          aria-label="Прокрутить влево"
+          type="button"
         >
-          <FaChevronLeft className="text-gray-600" />
+          <FaChevronLeft className="text-gray-700 w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
         {/* Контейнер с товарами */}
@@ -106,13 +108,15 @@ export default function SimilarProducts({ currentProductId, category }: SimilarP
           ))}
         </div>
 
-        {/* Кнопка вправо */}
+        {/* Кнопка вправо (увеличены размеры) */}
         <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors cursor-pointer"
-          style={{ marginRight: '-20px' }}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-xl rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+          style={{ width: 48, height: 48, marginRight: '-24px' }}
+          aria-label="Прокрутить вправо"
+          type="button"
         >
-          <FaChevronRight className="text-gray-600" />
+          <FaChevronRight className="text-gray-700 w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       </div>
     </div>

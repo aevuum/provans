@@ -1,6 +1,7 @@
 'use client';
 
-import Image from 'next/image';
+// import Image from 'next/image';
+import { LazyImage } from './LazyImage';
 import Link from 'next/link';
 import { FaHeart, FaRegHeart, FaShoppingBag, FaCheck, FaEye, FaEdit } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
@@ -37,7 +38,7 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
   // Новая логика скидки
   const discount = product.discount || 0;
   const hasDiscount = discount > 0;
-  const discountedPrice = hasDiscount 
+  const discountedPrice = hasDiscount
     ? Math.round((product.price * (1 - discount / 100)) * 100) / 100
     : product.price;
 
@@ -121,15 +122,13 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
 
       {/* Изображение товара */}
       <Link href={`/products/${product.id}`} className="relative aspect-square overflow-hidden bg-gray-100 block">
-        <Image
+        <LazyImage
           src={mainImage}
           alt={product.title}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
           sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-          loading="lazy"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+          priority={false}
         />
       </Link>
       
@@ -142,11 +141,11 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
         </div>
         {hasDiscount ? (
           <div className="flex flex-col items-center mb-2">
-            <span className="text-gray-400 text-xs sm:text-sm line-through">{product.price.toLocaleString('ru-RU')} ₽</span>
-            <span className="text-black font-bold text-lg sm:text-xl">{discountedPrice.toLocaleString('ru-RU')} ₽</span>
+            <span className="text-gray-400 text-xs sm:text-sm line-through">{product.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽</span>
+            <span className="text-black font-bold text-lg sm:text-xl">{discountedPrice.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽</span>
           </div>
         ) : (
-          <div className="text-black font-bold mb-2 text-center text-lg sm:text-xl">{product.price.toLocaleString('ru-RU')} ₽</div>
+          <div className="text-black font-bold mb-2 text-center text-lg sm:text-xl">{product.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽</div>
         )}
 
         {/* Кастомный футер, например панель модерации */}

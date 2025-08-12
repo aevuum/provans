@@ -15,6 +15,7 @@ interface FileProduct {
   images?: string[];
   size?: string | null;
   comment?: string | null;
+  barcode?: string | null;
 }
 
 // Нормализация строки для поиска: нижний регистр + убрать пробелы
@@ -59,6 +60,8 @@ async function loadProductsFromFile(): Promise<FileProduct[]> {
 
     const images: string[] = Array.isArray(imagesVal) && typeof imagesVal[0] === 'string' ? (imagesVal as string[]) : (image ? [image] : []);
 
+    const barcode = rec.barcode ? String(rec.barcode) : (rec.article ? String(rec.article) : null);
+
     return {
       id,
       title: String(rec.title || ''),
@@ -70,6 +73,7 @@ async function loadProductsFromFile(): Promise<FileProduct[]> {
       images,
       size: rec.size ? String(rec.size) : null,
       comment: rec.comment ? String(rec.comment) : null,
+      barcode,
     } as FileProduct;
   });
 }
@@ -89,12 +93,15 @@ function applyFilters(
     maxPrice,
     categories,
     type,
-  }: { search?: string | null; minPrice?: string | null; maxPrice?: string | null; categories?: string[]; type?: string | null }
+    includeNoImage,
+  }: { search?: string | null; minPrice?: string | null; maxPrice?: string | null; categories?: string[]; type?: string | null; includeNoImage?: boolean }
 ) {
   let res = products.slice();
 
   // ИСКЛЮЧАЕМ товары без фото из публичной выдачи
-  res = res.filter(hasAnyImage);
+  if (!includeNoImage) {
+    res = res.filter(hasAnyImage);
+  }
 
   // Тип подбора
   if (type === 'discount') {
@@ -187,11 +194,16 @@ export async function GET(req: NextRequest) {
       ? categoriesParam.split(',').map((s) => s.trim()).filter(Boolean)
       : undefined;
 
+    const includeNoImage = (() => {
+      const v = (searchParams.get('includeNoImage') || '').toLowerCase();
+      return v === '1' || v === 'true' || v === 'yes';
+    })();
+
     // Данные
     const products = await loadProductsFromFile();
 
     // Фильтры
-    let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type });
+    let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type, includeNoImage });
 
     // Сортировка
     filtered = applySort(filtered, sortBy, sortOrder);
@@ -219,7 +231,7 @@ export async function GET(req: NextRequest) {
       isConfirmed: true,
       quantity: undefined,
       reserved: undefined,
-      barcode: undefined,
+      barcode: p.barcode || undefined,
       image: p.image || undefined,
       images: Array.isArray(p.images) ? p.images : (p.image ? [p.image] : []),
       createdAt: undefined,
@@ -266,9 +278,19 @@ export async function POST(req: NextRequest) {
       ? categoriesInput.split(',').map((s) => s.trim()).filter(Boolean)
       : undefined;
 
+    const includeNoImage = (() => {
+      const vRaw = body.includeNoImage;
+      if (typeof vRaw === 'boolean') return vRaw;
+      if (typeof vRaw === 'string') {
+        const v = vRaw.toLowerCase();
+        return v === '1' || v === 'true' || v === 'yes';
+      }
+      return false;
+    })();
+
     const products = await loadProductsFromFile();
 
-    let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type });
+    let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type, includeNoImage });
 
     filtered = applySort(filtered, sortBy, sortOrder);
 
@@ -291,7 +313,7 @@ export async function POST(req: NextRequest) {
       isConfirmed: true,
       quantity: undefined,
       reserved: undefined,
-      barcode: undefined,
+      barcode: p.barcode || undefined,
       image: p.image || undefined,
       images: Array.isArray(p.images) ? p.images : (p.image ? [p.image] : []),
       createdAt: undefined,

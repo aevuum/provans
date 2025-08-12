@@ -11,7 +11,6 @@ export async function GET() {
         OR: [
           { category: null },
           { category: '' },
-          { categoryId: null }
         ],
         isConfirmed: true, // Только подтвержденные товары
       },

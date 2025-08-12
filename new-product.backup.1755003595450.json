@@ -2661,7 +2661,7 @@
       "price": 850,
       "discount": 0,
       "size": "106",
-      "category": "flowers",
+      "category": null,
       "id": 296
     },
     {

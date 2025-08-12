@@ -145,8 +145,7 @@ export default function Home() {
           </div>
           <div className="relative">
             <button
-              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow"
-              style={{ width: 48, height: 48, left: '8px', top: '50%', transform: 'translateY(-50%)' }}
+              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-12 h-12 left-2 md:left-[-24px] top-1/2 -translate-y-1/2"
               onClick={() => scrollByCard('new-products-scroll', -1)}
               aria-label="Прокрутить влево"
               type="button"
@@ -169,8 +168,7 @@ export default function Home() {
             </div>
 
             <button
-              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow"
-              style={{ width: 48, height: 48, right: '8px', top: '50%', transform: 'translateY(-50%)' }}
+              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-12 h-12 right-2 md:right-[-24px] top-1/2 -translate-y-1/2"
               onClick={() => scrollByCard('new-products-scroll', 1)}
               aria-label="Прокрутить вправо"
               type="button"
@@ -196,14 +194,13 @@ export default function Home() {
           </div>
         <div className="relative">
           <button
-            className="hidden md:flex items-center justify-center cursor-pointer bg-white shadow rounded-full absolute z-20"
-            style={{ width: 44, height: 44, left: '-32px', top: '50%', transform: 'translateY(-50%)' }}
+            className="flex items-center justify-center cursor-pointer bg-white shadow rounded-full absolute z-20 w-12 h-12 left-2 md:left-[-24px] top-1/2 -translate-y-1/2"
             onClick={() => { document.getElementById('special-products-scroll')?.scrollBy({ left: -300, behavior: 'smooth' }); }}
             aria-label="Прокрутить влево"
             type="button"
           >
-            <svg width="24" height="24" fill="none">
-              <path d="M15 6l-6 6 6 6" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg width="20" height="20" fill="none">
+              <path d="M12 4l-6 6 6 6" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
           <div id="special-products-scroll" className="flex gap-4 overflow-x-auto pb-2 md:pb-4 scroll-smooth scrollbar-hide" style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none' }}>
@@ -212,14 +209,13 @@ export default function Home() {
             ))}
           </div>
           <button
-            className="hidden md:flex items-center justify-center cursor-pointer bg-white shadow rounded-full absolute z-20"
-            style={{ width: 44, height: 44, right: '-32px', top: '50%', transform: 'translateY(-50%)' }}
+            className="flex items-center justify-center cursor-pointer bg-white shadow rounded-full absolute z-20 w-12 h-12 right-2 md:right-[-24px] top-1/2 -translate-y-1/2"
             onClick={() => { document.getElementById('special-products-scroll')?.scrollBy({ left: 300, behavior: 'smooth' }); }}
             aria-label="Прокрутить вправо"
             type="button"
           >
-            <svg width="24" height="24" fill="none">
-              <path d="M9 6l6 6-6 6" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg width="20" height="20" fill="none">
+              <path d="M8 4l6 6-6 6" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
         </div>

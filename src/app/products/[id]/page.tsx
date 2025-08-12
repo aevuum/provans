@@ -3,10 +3,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { FaHeart, FaShoppingCart } from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaShoppingBag, FaCheck } from 'react-icons/fa';
 import { Product, getProductImage } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { addToCart } from '@/lib/features/cart/cartSlice';
+import { addToCart, removeFromCart } from '@/lib/features/cart/cartSlice';
 import { addToFavorites, removeFromFavorites } from '@/lib/features/favorites/favoritesSlice';
 import SimilarProducts from '@/app/components/SimilarProducts';
 import { AdminEditButton } from '@/app/components/AdminEditButton';
@@ -24,29 +24,42 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
   
   const { items: favorites } = useAppSelector((state) => state.favorites);
+  const cartItems = useAppSelector((state) => state.cart.items);
   const isFavorite = favorites.some(item => item.id === product?.id);
+  const inCart = cartItems.some((c) => c.id === product?.id);
 
-  const fetchProduct = useCallback(async (id: string) => {
+  const fetchProduct = useCallback(async (idRaw: string) => {
     try {
       setLoading(true);
-      // В едином API нет эндпоинта /products/:id — получаем все и ищем нужный
-      const response = await fetch(`/api/products?limit=2000`);
+      const idStr = String(idRaw).trim();
+      const idNum = Number(idStr);
+
+      // Включаем includeNoImage=1, чтобы детальная страница находила товар даже без фото
+      const response = await fetch(`/api/products?limit=2000&includeNoImage=1`);
       if (!response.ok) throw new Error('Failed to load');
       const data = await response.json();
       const items = (data?.data?.products || []) as Product[];
-      const found = items.find((p) => String(p.id) === String(id));
+
+      // Ищем по id (числовое или строковое совпадение)
+      let found = items.find((p) => String(p.id) === idStr);
+
+      // Запасной вариант: если id в URL – штрихкод, попробуем по barcode
+      if (!found && !Number.isNaN(idNum)) {
+        found = items.find((p) => String(p.barcode || '') === idStr);
+      }
+
       if (found) {
         setProduct(found);
       } else {
-        router.push('/catalog/all');
+        setProduct(null);
       }
     } catch (_error) {
       console.error('Error fetching product:', _error);
-      router.push('/catalog/all');
+      setProduct(null);
     } finally {
       setLoading(false);
     }
-  }, [router]);
+  }, []);
 
   useEffect(() => {
     if (params.id) {
@@ -54,8 +67,11 @@ export default function ProductDetailPage() {
     }
   }, [params.id, fetchProduct]);
 
-  const handleAddToCart = () => {
-    if (product) {
+  const handleCartToggle = () => {
+    if (!product) return;
+    if (inCart) {
+      dispatch(removeFromCart(product.id));
+    } else {
       for (let i = 0; i < quantity; i++) {
         dispatch(addToCart(product));
       }
@@ -86,10 +102,10 @@ export default function ProductDetailPage() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Товар не найден</h1>
           <button
-            onClick={() => router.back()}
+            onClick={() => router.push('/catalog/all')}
             className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600"
           >
-            Назад
+            В каталог
           </button>
         </div>
       </div>
@@ -188,7 +204,7 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Количество и кнопки */}
-              <div className="flex items-center space-x-4 mb-6">
+              <div className="flex items-center justify-between mb-6 gap-4">
                 <div className="flex items-center border border-gray-300 rounded-lg">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -214,27 +230,44 @@ export default function ProductDetailPage() {
                     +
                   </button>
                 </div>
+
+                {/* Иконки действий в едином стиле */}
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={handleCartToggle}
+                    className={`p-3 sm:p-4 rounded-full transition-colors cursor-pointer ${
+                      inCart 
+                        ? 'bg-green-500 hover:bg-red-500 text-white' 
+                        : 'bg-[#E5D3B3] hover:bg-[#D4C2A1] text-gray-800'
+                    }`}
+                    title={inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
+                    aria-label={inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
+                    type="button"
+                  >
+                    {inCart ? (
+                      <FaCheck className="w-4 h-4 sm:w-5 sm:h-5" />
+                    ) : (
+                      <FaShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
+                    )}
+                  </button>
+
+                  <button
+                    onClick={handleToggleFavorite}
+                    className="p-3 sm:p-4 rounded-full bg-white/90 hover:bg-white transition-colors cursor-pointer"
+                    title={isFavorite ? 'Убрать из избранного' : 'Добавить в избранное'}
+                    aria-label={isFavorite ? 'Убрать из избранного' : 'Добавить в избранное'}
+                    type="button"
+                  >
+                    {isFavorite ? (
+                      <FaHeart className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
+                    ) : (
+                      <FaRegHeart className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                    )}
+                  </button>
+                </div>
               </div>
 
-              <div className="flex space-x-4">
-                <button
-                  onClick={handleAddToCart}
-                  className="flex-1 bg-[#E5D3B3] hover:bg-[#D4C2A1] text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2 cursor-pointer"
-                >
-                  <FaShoppingCart />
-                  <span>Добавить в корзину</span>
-                </button>
-                <button
-                  onClick={handleToggleFavorite}
-                  className={`p-3 rounded-lg border-2 transition-colors cursor-pointer ${
-                    isFavorite
-                      ? 'border-[#E5D3B3] text-[#E5D3B3] bg-[#F5F1E8]'
-                      : 'border-gray-300 text-gray-400 hover:border-[#E5D3B3] hover:text-[#E5D3B3]'
-                  }`}
-                >
-                  <FaHeart className="text-xl" />
-                </button>
-              </div>
+              {/* Убраны старые большие кнопки */}
             </div>
 
             {/* Характеристики */}

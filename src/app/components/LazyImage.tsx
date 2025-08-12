@@ -43,7 +43,7 @@ export function LazyImage({
       },
       { 
         threshold: 0.1,
-        rootMargin: '50px' // Загружаем за 50px до появления
+        rootMargin: '200px' // Ранняя подгрузка: начинаем за 200px до появления
       }
     );
 

@@ -1,0 +1,167 @@
+{
+  "total": 441,
+  "counts": {
+    "candlesticks": 67,
+    "flowers": 110,
+    "frames": 68,
+    "vases": 47,
+    "": 29,
+    "figurines": 105,
+    "bookends": 7,
+    "jewelry-boxes": 8
+  },
+  "empty": 29,
+  "invalid": 0,
+  "mismatches": 0,
+  "samples": {
+    "empty": [
+      {
+        "id": 82,
+        "title": "Перламутр металл большая с chance",
+        "guess": null
+      },
+      {
+        "id": 155,
+        "title": "Ракушка белая декоративная",
+        "guess": null
+      },
+      {
+        "id": 176,
+        "title": "Птичка перламутр белый",
+        "guess": null
+      },
+      {
+        "id": 209,
+        "title": "Микки маус сидит в ассортим",
+        "guess": null
+      },
+      {
+        "id": 210,
+        "title": "Мини маус в ассортим",
+        "guess": null
+      },
+      {
+        "id": 214,
+        "title": "Панда белая золото/серебро",
+        "guess": null
+      },
+      {
+        "id": 218,
+        "title": "Декор молекула бел/чер",
+        "guess": null
+      },
+      {
+        "id": 219,
+        "title": "Панда белая золото/серебро",
+        "guess": null
+      },
+      {
+        "id": 220,
+        "title": "Микки маус сидит черн/бел",
+        "guess": null
+      },
+      {
+        "id": 222,
+        "title": "Цыпленок с фиалкой",
+        "guess": null
+      },
+      {
+        "id": 234,
+        "title": "Зайчик БЕЗ НАДПИСЕЙ",
+        "guess": null
+      },
+      {
+        "id": 282,
+        "title": "Дендробиум желтый",
+        "guess": null
+      },
+      {
+        "id": 297,
+        "title": "Акация желтая",
+        "guess": null
+      },
+      {
+        "id": 341,
+        "title": "Георгин красный",
+        "guess": null
+      },
+      {
+        "id": 342,
+        "title": "Горошек белый",
+        "guess": null
+      },
+      {
+        "id": 352,
+        "title": "Гвоздика белая",
+        "guess": null
+      },
+      {
+        "id": 353,
+        "title": "Гвоздика бордовая",
+        "guess": null
+      },
+      {
+        "id": 354,
+        "title": "Астра белая",
+        "guess": null
+      },
+      {
+        "id": 356,
+        "title": "Астра фиолетовая",
+        "guess": null
+      },
+      {
+        "id": 357,
+        "title": "Плющ зеленый",
+        "guess": null
+      },
+      {
+        "id": 358,
+        "title": "Папоротник зеленый",
+        "guess": null
+      },
+      {
+        "id": 361,
+        "title": "Гвоздика кустовая белая",
+        "guess": null
+      },
+      {
+        "id": 363,
+        "title": "Гвоздика кустовая бордовая",
+        "guess": null
+      },
+      {
+        "id": 364,
+        "title": "Калина красная",
+        "guess": null
+      },
+      {
+        "id": 365,
+        "title": "Ветка калины красная",
+        "guess": null
+      },
+      {
+        "id": 366,
+        "title": "Лист каллы зеленый",
+        "guess": null
+      },
+      {
+        "id": 367,
+        "title": "Калла белая",
+        "guess": null
+      },
+      {
+        "id": 368,
+        "title": "Калла желтая",
+        "guess": null
+      },
+      {
+        "id": 383,
+        "title": "Гвоздика красная",
+        "guess": null
+      }
+    ],
+    "invalid": [],
+    "mismatches": []
+  }
+}

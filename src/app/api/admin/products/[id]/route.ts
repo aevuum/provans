@@ -148,7 +148,7 @@ export async function PUT(
       }
     });
 
-    // Синхронизация JSON после обновления
+    // Синхронизация JSON после обновления (в архив)
     try {
       const confirmed = await prisma.product.findMany({ where: { isConfirmed: true } });
       const payload = {
@@ -163,7 +163,7 @@ export async function PUT(
           comment: p.comment ?? null,
         }))
       };
-      const filePath = path.join(process.cwd(), 'products.json');
+      const filePath = path.join(process.cwd(), 'archive', 'products.json');
       await fs.writeFile(filePath, JSON.stringify(payload, null, 2), 'utf-8');
     } catch (e) {
       console.warn('JSON sync after update failed:', e);
@@ -238,7 +238,7 @@ export async function DELETE(
       console.warn('Failed to delete image files:', e);
     }
 
-    // Синхронизация JSON после удаления
+    // Синхронизация JSON после удаления (в архив)
     try {
       const confirmed = await prisma.product.findMany({ where: { isConfirmed: true } });
       const payload = {
@@ -253,7 +253,7 @@ export async function DELETE(
           comment: p.comment ?? null,
         }))
       };
-      const jsonPath = path.join(process.cwd(), 'products.json');
+      const jsonPath = path.join(process.cwd(), 'archive', 'products.json');
       await fs.writeFile(jsonPath, JSON.stringify(payload, null, 2), 'utf-8');
     } catch (e) {
       console.warn('JSON sync after delete failed:', e);

@@ -1599,7 +1599,7 @@
       "price": 2250,
       "discount": 0,
       "size": "10*5*5",
-      "category": "figurines",
+      "category": null,
       "id": 178
     },
     {
@@ -1635,7 +1635,7 @@
       "price": 2250,
       "discount": 0,
       "size": "10*6*5",
-      "category": "figurines",
+      "category": null,
       "id": 182
     },
     {
@@ -2661,7 +2661,7 @@
       "price": 850,
       "discount": 0,
       "size": "106",
-      "category": "flowers",
+      "category": null,
       "id": 296
     },
     {

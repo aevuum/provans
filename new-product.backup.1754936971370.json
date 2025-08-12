@@ -672,7 +672,7 @@
       "price": 4900,
       "discount": 0,
       "size": "22,5*17,5*18*13",
-      "category": "vases",
+      "category": null,
       "id": 75
     },
     {
@@ -681,7 +681,7 @@
       "price": 5200,
       "discount": 0,
       "size": "26*21*20,5*15,5",
-      "category": "vases",
+      "category": null,
       "id": 76
     },
     {
@@ -690,7 +690,7 @@
       "price": 6500,
       "discount": 0,
       "size": "30,5*25,5*25,5*20,5",
-      "category": "vases",
+      "category": null,
       "id": 77
     },
     {
@@ -708,7 +708,7 @@
       "price": 2000,
       "discount": 0,
       "size": "19,5*14,5*15,5*10,5",
-      "category": "frames",
+      "category": null,
       "id": 79
     },
     {
@@ -717,7 +717,7 @@
       "price": 4500,
       "discount": 0,
       "size": "24*19*15*10",
-      "category": "frames",
+      "category": null,
       "id": 80
     },
     {
@@ -726,7 +726,7 @@
       "price": 5500,
       "discount": 0,
       "size": "26*21*17,5*12,5",
-      "category": "frames",
+      "category": null,
       "id": 81
     },
     {
@@ -1365,7 +1365,7 @@
       "price": 6500,
       "discount": 0,
       "size": "14,5*14*14",
-      "category": "figurines",
+      "category": null,
       "id": 152
     },
     {
@@ -1374,7 +1374,7 @@
       "price": 6900,
       "discount": 0,
       "size": "29*8*19",
-      "category": "figurines",
+      "category": null,
       "id": 153
     },
     {
@@ -1383,7 +1383,7 @@
       "price": 5200,
       "discount": 0,
       "size": "20,5*25*8",
-      "category": "figurines",
+      "category": null,
       "id": 154
     },
     {
@@ -1401,7 +1401,7 @@
       "price": 2650,
       "discount": 0,
       "size": "19*8*14",
-      "category": "figurines",
+      "category": null,
       "id": 156
     },
     {
@@ -1410,7 +1410,7 @@
       "price": 10000,
       "discount": 0,
       "size": "36*45*9",
-      "category": "figurines",
+      "category": null,
       "id": 157
     },
     {
@@ -1464,7 +1464,7 @@
       "price": 3000,
       "discount": 0,
       "size": "7*5*9",
-      "category": "figurines",
+      "category": null,
       "id": 163
     },
     {
@@ -1473,7 +1473,7 @@
       "price": 4000,
       "discount": 0,
       "size": "10*7*11,5",
-      "category": "figurines",
+      "category": null,
       "id": 164
     },
     {
@@ -1491,7 +1491,7 @@
       "price": 6500,
       "discount": 0,
       "size": "15*18*14,5",
-      "category": "figurines",
+      "category": null,
       "id": 166
     },
     {
@@ -1500,7 +1500,7 @@
       "price": 6500,
       "discount": 0,
       "size": "13*23*11",
-      "category": "figurines",
+      "category": null,
       "id": 167
     },
     {
@@ -1509,7 +1509,7 @@
       "price": 15000,
       "discount": 0,
       "size": "22*9*16,5",
-      "category": "figurines",
+      "category": null,
       "id": 168
     },
     {
@@ -1518,7 +1518,7 @@
       "price": 11500,
       "discount": 0,
       "size": "22*16*16",
-      "category": "figurines",
+      "category": null,
       "id": 169
     },
     {
@@ -1527,7 +1527,7 @@
       "price": 4300,
       "discount": 0,
       "size": "26*12*12",
-      "category": "figurines",
+      "category": null,
       "id": 170
     },
     {
@@ -1554,7 +1554,7 @@
       "price": 6900,
       "discount": 0,
       "size": "28,5*10,5*18,5",
-      "category": "figurines",
+      "category": null,
       "id": 173
     },
     {
@@ -1563,7 +1563,7 @@
       "price": 1200,
       "discount": 0,
       "size": "12*4,5*5,5",
-      "category": "figurines",
+      "category": null,
       "id": 174
     },
     {
@@ -1599,7 +1599,7 @@
       "price": 2250,
       "discount": 0,
       "size": "10*5*5",
-      "category": "figurines",
+      "category": null,
       "id": 178
     },
     {
@@ -1608,7 +1608,7 @@
       "price": 3500,
       "discount": 0,
       "size": "16,5*18*16,5",
-      "category": "figurines",
+      "category": null,
       "id": 179
     },
     {
@@ -1617,7 +1617,7 @@
       "price": 8800,
       "discount": 0,
       "size": "28,5*14*18",
-      "category": "figurines",
+      "category": null,
       "id": 180
     },
     {
@@ -1626,7 +1626,7 @@
       "price": 3900,
       "discount": 0,
       "size": "15,5*4,5*8",
-      "category": "figurines",
+      "category": null,
       "id": 181
     },
     {
@@ -1635,7 +1635,7 @@
       "price": 2250,
       "discount": 0,
       "size": "10*6*5",
-      "category": "figurines",
+      "category": null,
       "id": 182
     },
     {
@@ -1734,7 +1734,7 @@
       "price": 3500,
       "discount": 0,
       "size": "14*11*2,5",
-      "category": "figurines",
+      "category": null,
       "id": 193
     },
     {
@@ -1761,7 +1761,7 @@
       "price": 5990,
       "discount": 0,
       "size": "27*9,5*8",
-      "category": "figurines",
+      "category": null,
       "id": 196
     },
     {
@@ -1770,7 +1770,7 @@
       "price": 3500,
       "discount": 0,
       "size": "14*11*2,5",
-      "category": "figurines",
+      "category": null,
       "id": 197
     },
     {
@@ -1788,7 +1788,7 @@
       "price": 31000,
       "discount": 0,
       "size": "18*20*14",
-      "category": "figurines",
+      "category": null,
       "id": 199
     },
     {
@@ -1860,7 +1860,7 @@
       "price": 3900,
       "discount": 0,
       "size": "14*17*23",
-      "category": "figurines",
+      "category": null,
       "id": 207
     },
     {
@@ -1869,7 +1869,7 @@
       "price": 4900,
       "discount": 0,
       "size": "20,5*9*13,5",
-      "category": "figurines",
+      "category": null,
       "id": 208
     },
     {
@@ -1896,7 +1896,7 @@
       "price": 7900,
       "discount": 0,
       "size": "21*8*21,5",
-      "category": "figurines",
+      "category": null,
       "id": 211
     },
     {
@@ -1932,7 +1932,7 @@
       "price": 6900,
       "discount": 0,
       "size": "29*8*19",
-      "category": "figurines",
+      "category": null,
       "id": 215
     },
     {
@@ -1941,7 +1941,7 @@
       "price": 5200,
       "discount": 0,
       "size": "20,5*25*8",
-      "category": "figurines",
+      "category": null,
       "id": 216
     },
     {
@@ -2013,7 +2013,7 @@
       "price": 2900,
       "discount": 0,
       "size": "8,5*21*8",
-      "category": "figurines",
+      "category": null,
       "id": 224
     },
     {
@@ -2049,7 +2049,7 @@
       "price": 3900,
       "discount": 0,
       "size": "27,5",
-      "category": "figurines",
+      "category": null,
       "id": 228
     },
     {
@@ -2058,7 +2058,7 @@
       "price": 11800,
       "discount": 0,
       "size": "36",
-      "category": "figurines",
+      "category": null,
       "id": 229
     },
     {
@@ -2121,7 +2121,7 @@
       "price": 4600,
       "discount": 0,
       "size": "24,5*12*8",
-      "category": "figurines",
+      "category": null,
       "id": 236
     },
     {
@@ -2130,7 +2130,7 @@
       "price": 4600,
       "discount": 0,
       "size": "23*10*7",
-      "category": "figurines",
+      "category": null,
       "id": 237
     },
     {
@@ -2139,7 +2139,7 @@
       "price": 12000,
       "discount": 0,
       "size": "36*42*12,5",
-      "category": "figurines",
+      "category": null,
       "id": 238
     },
     {
@@ -2166,7 +2166,7 @@
       "price": 2900,
       "discount": 0,
       "size": "19*10*9,5",
-      "category": "figurines",
+      "category": null,
       "id": 241
     },
     {
@@ -2175,7 +2175,7 @@
       "price": 6500,
       "discount": 0,
       "size": "9*20*9",
-      "category": "figurines",
+      "category": null,
       "id": 242
     },
     {
@@ -2184,7 +2184,7 @@
       "price": 5750,
       "discount": 0,
       "size": "26*20,5*15",
-      "category": "figurines",
+      "category": null,
       "id": 243
     },
     {
@@ -2193,7 +2193,7 @@
       "price": 3100,
       "discount": 0,
       "size": "21*14*8,5",
-      "category": "figurines",
+      "category": null,
       "id": 244
     },
     {
@@ -2202,7 +2202,7 @@
       "price": 4450,
       "discount": 0,
       "size": "27*19*10,5",
-      "category": "figurines",
+      "category": null,
       "id": 245
     },
     {
@@ -2220,7 +2220,7 @@
       "price": 9000,
       "discount": 0,
       "size": "32,5",
-      "category": "figurines",
+      "category": null,
       "id": 247
     },
     {
@@ -2229,7 +2229,7 @@
       "price": 8500,
       "discount": 0,
       "size": "39,5",
-      "category": "figurines",
+      "category": null,
       "id": 248
     },
     {
@@ -2238,7 +2238,7 @@
       "price": 8800,
       "discount": 0,
       "size": "28,5",
-      "category": "figurines",
+      "category": null,
       "id": 249
     },
     {
@@ -2247,7 +2247,7 @@
       "price": 3900,
       "discount": 0,
       "size": "14",
-      "category": "figurines",
+      "category": null,
       "id": 250
     },
     {
@@ -2256,7 +2256,7 @@
       "price": 3500,
       "discount": 0,
       "size": "16,5",
-      "category": "figurines",
+      "category": null,
       "id": 251
     },
     {
@@ -2274,7 +2274,7 @@
       "price": 3500,
       "discount": 0,
       "size": "21,5",
-      "category": "figurines",
+      "category": null,
       "id": 253
     },
     {
@@ -2283,7 +2283,7 @@
       "price": 5500,
       "discount": 0,
       "size": "23,5",
-      "category": "figurines",
+      "category": null,
       "id": 254
     },
     {
@@ -2292,7 +2292,7 @@
       "price": 7500,
       "discount": 0,
       "size": "32",
-      "category": "figurines",
+      "category": null,
       "id": 255
     },
     {
@@ -2310,7 +2310,7 @@
       "price": 20000,
       "discount": 0,
       "size": "35",
-      "category": "figurines",
+      "category": null,
       "id": 257
     },
     {
@@ -2319,7 +2319,7 @@
       "price": 6000,
       "discount": 0,
       "size": "23,5",
-      "category": "figurines",
+      "category": null,
       "id": 258
     },
     {
@@ -2328,7 +2328,7 @@
       "price": 8300,
       "discount": 0,
       "size": "36,5",
-      "category": "figurines",
+      "category": null,
       "id": 259
     },
     {
@@ -2337,7 +2337,7 @@
       "price": 8300,
       "discount": 0,
       "size": "41,5",
-      "category": "figurines",
+      "category": null,
       "id": 260
     },
     {
@@ -2355,7 +2355,7 @@
       "price": 2950,
       "discount": 0,
       "size": "13",
-      "category": "figurines",
+      "category": null,
       "id": 262
     },
     {
@@ -2499,7 +2499,7 @@
       "price": 2600,
       "discount": 0,
       "size": "94",
-      "category": "flowers",
+      "category": null,
       "id": 278
     },
     {
@@ -2508,7 +2508,7 @@
       "price": 8900,
       "discount": 0,
       "size": "63",
-      "category": "flowers",
+      "category": null,
       "id": 279
     },
     {
@@ -2526,7 +2526,7 @@
       "price": 450,
       "discount": 0,
       "size": "80",
-      "category": "flowers",
+      "category": null,
       "id": 281
     },
     {
@@ -2544,7 +2544,7 @@
       "price": 1200,
       "discount": 0,
       "size": "105",
-      "category": "flowers",
+      "category": null,
       "id": 283
     },
     {
@@ -2562,7 +2562,7 @@
       "price": 950,
       "discount": 0,
       "size": "72",
-      "category": "flowers",
+      "category": null,
       "id": 285
     },
     {
@@ -2589,7 +2589,7 @@
       "price": 800,
       "discount": 0,
       "size": "70",
-      "category": "flowers",
+      "category": null,
       "id": 288
     },
     {
@@ -2598,7 +2598,7 @@
       "price": 900,
       "discount": 0,
       "size": "92",
-      "category": "flowers",
+      "category": null,
       "id": 289
     },
     {
@@ -2661,7 +2661,7 @@
       "price": 850,
       "discount": 0,
       "size": "106",
-      "category": "flowers",
+      "category": null,
       "id": 296
     },
     {
@@ -2868,7 +2868,7 @@
       "price": 1600,
       "discount": 0,
       "size": "88",
-      "category": "flowers",
+      "category": null,
       "id": 319
     },
     {
@@ -2913,7 +2913,7 @@
       "price": 800,
       "discount": 0,
       "size": "70",
-      "category": "flowers",
+      "category": null,
       "id": 324
     },
     {
@@ -2967,7 +2967,7 @@
       "price": 670,
       "discount": 0,
       "size": "56",
-      "category": "flowers",
+      "category": null,
       "id": 330
     },
     {
@@ -2976,7 +2976,7 @@
       "price": 490,
       "discount": 0,
       "size": "60",
-      "category": "flowers",
+      "category": null,
       "id": 331
     },
     {
