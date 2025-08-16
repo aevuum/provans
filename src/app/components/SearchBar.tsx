@@ -189,7 +189,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   // Мобильная версия с модальным окном
   if (isMobile && showSearch) {
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
+  <div className="fixed inset-0 bg-black/30 z-50">
         <div className="bg-white m-4 rounded-lg p-6 mt-20">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">Поиск товаров</h3>

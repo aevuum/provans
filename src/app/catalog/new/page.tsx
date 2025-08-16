@@ -1,6 +1,11 @@
-'use client';
+import type { Metadata } from 'next';
 
 import CatalogPage from '@/app/components/CatalogPage';
+
+export const metadata: Metadata = {
+  title: 'Новинки — Provans Decor',
+  description: 'Последние поступления — свежие модели прямо со склада',
+};
 
 export default function NewProductsAsciiPage() {
   return (
@@ -10,7 +15,7 @@ export default function NewProductsAsciiPage() {
       apiEndpoint="/api/products?type=new"
       pageSize={100}
       highlightNew
-      showCategoryFilter={true}
+      showCategoryFilter={false}
     />
   );
 }

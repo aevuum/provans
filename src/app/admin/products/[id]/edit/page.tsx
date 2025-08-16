@@ -7,13 +7,13 @@ import { Product } from '@/types'
 import PhotoUploader from '@/components/PhotoUploader'
 
 interface PageProps {
-  params: Promise<{ id: string }>
+  params: { id: string }
 }
 
 export default function AdminProductEditPage({ params }: PageProps) {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   const router = useRouter()
-  const [id, setId] = useState<string>('')
+  const id = params.id
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [product, setProduct] = useState<Partial<Product>>({
@@ -28,14 +28,6 @@ export default function AdminProductEditPage({ params }: PageProps) {
     discount: 0,
     category: ''
   })
-
-  useEffect(() => {
-    async function getParams() {
-      const resolvedParams = await params
-      setId(resolvedParams.id)
-    }
-    getParams()
-  }, [params])
 
   useEffect(() => {
     if (!id) return
@@ -59,6 +51,15 @@ export default function AdminProductEditPage({ params }: PageProps) {
 
     fetchProduct()
   }, [id])
+
+  // Ждем, пока сессия загрузится, чтобы не редиректить раньше времени
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    )
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   if (!session || (session.user as any)?.role !== 'admin') {
@@ -261,10 +262,10 @@ export default function AdminProductEditPage({ params }: PageProps) {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Изображение (основное, URL)
+                  Изображение (основное)
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   name="image"
                   value={(product.image as string) || ''}
                   onChange={handleChange}
@@ -290,7 +291,7 @@ export default function AdminProductEditPage({ params }: PageProps) {
                   {(Array.isArray(product.images) ? product.images : []).map((img, idx) => (
                     <div key={idx} className="flex gap-2">
                       <input
-                        type="url"
+                        type="text"
                         value={img || ''}
                         onChange={(e) => handleImageChange(idx, e.target.value)}
                         className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

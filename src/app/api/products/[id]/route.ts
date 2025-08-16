@@ -1,23 +1,88 @@
 // app/api/products/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import path from 'path';
+import { promises as fs } from 'fs';
 
 export async function GET(request: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await context.params;
 
-    const product = await prisma.product.findFirst({
+  const product = await prisma.product.findFirst({
       where: {
         id: parseInt(id),
         isConfirmed: true,
       },
     });
 
+    // Fallback: если нет в БД, ищем в new-product.json (file-based)
     if (!product) {
-      return NextResponse.json(
-        { error: 'Товар не найден' },
-        { status: 404 }
-      );
+      try {
+        const filePath = path.join(process.cwd(), 'new-product.json');
+        const content = await fs.readFile(filePath, 'utf8');
+        const parsed: unknown = JSON.parse(content);
+        const arr: unknown[] = Array.isArray(parsed)
+          ? parsed as unknown[]
+          : (Array.isArray((parsed as { products?: unknown[] })?.products) ? (parsed as { products: unknown[] }).products : []);
+        const idNum = parseInt(id);
+        let found = arr.find((p) => {
+          const rec = (p ?? {}) as Record<string, unknown>;
+          return Number(rec.id) === idNum;
+        }) as Record<string, unknown> | undefined;
+
+        // Если в файле нет явного id, используем индекс (1-based), как это делает список
+        if (!found && idNum >= 1 && idNum <= arr.length) {
+          const byIndex = arr[idNum - 1];
+          if (byIndex && typeof byIndex === 'object') {
+            found = byIndex as Record<string, unknown>;
+          }
+        }
+        if (found) {
+          const jp = found as {
+            id: number | string;
+            title?: string;
+            price?: number | string;
+            size?: string | null;
+            material?: string | null;
+            country?: string | null;
+            barcode?: string | null;
+            article?: string | null;
+            comment?: string | null;
+            image?: string | null;
+            images?: unknown;
+            discount?: number | string;
+            category?: string | null;
+            quantity?: number;
+            reserved?: number;
+            originalPrice?: number | string;
+            subcategory?: string | null;
+          };
+          return NextResponse.json({
+            id: Number(jp.id),
+            title: String(jp.title || ''),
+            price: Number(jp.price ?? 0),
+            size: jp.size ?? null,
+            material: jp.material ?? null,
+            country: jp.country ?? null,
+            barcode: jp.barcode ?? jp.article ?? null,
+            comment: jp.comment ?? null,
+            image: jp.image ?? null,
+            images: Array.isArray(jp.images) ? (jp.images as string[]) : (jp.image ? [jp.image] : []),
+            isConfirmed: true,
+            discount: Number(jp.discount ?? 0),
+            category: jp.category ?? null,
+            quantity: jp.quantity ?? 1,
+            reserved: jp.reserved ?? 0,
+            createdAt: null,
+            updatedAt: null,
+            categoryId: null,
+            originalPrice: jp.originalPrice != null ? Number(jp.originalPrice) : Number(jp.price ?? 0),
+            subcategory: jp.subcategory ?? null,
+            subcategoryId: null,
+          });
+        }
+      } catch {}
+      return NextResponse.json({ error: 'Товар не найден' }, { status: 404 });
     }
 
     return NextResponse.json(product);

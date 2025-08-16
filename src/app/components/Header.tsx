@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -65,9 +65,28 @@ export const Header = React.memo(() => {
   };
 
   const closeCartWithDelay = useCallback(() => {
-    // небольшая задержка, чтобы можно было перевести курсор на поповер
-    setTimeout(() => setCartPopoverOpen(false), 120);
+    // увеличенная задержка закрытия поповера корзины
+    setTimeout(() => setCartPopoverOpen(false), 2000);
   }, []);
+
+  // Задержки для дропдаунов (каталог/профиль)
+  const [catalogOpen, setCatalogOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const hoverTimers = useRef<{ catalog?: ReturnType<typeof setTimeout>; profile?: ReturnType<typeof setTimeout> }>({});
+  const openWithDelay = (key: 'catalog' | 'profile') => {
+    if (hoverTimers.current[key]) clearTimeout(hoverTimers.current[key]);
+    hoverTimers.current[key] = setTimeout(() => {
+      if (key === 'catalog') setCatalogOpen(true);
+      else setProfileOpen(true);
+    }, 120);
+  };
+  const closeWithDelay = (key: 'catalog' | 'profile') => {
+    if (hoverTimers.current[key]) clearTimeout(hoverTimers.current[key]);
+    hoverTimers.current[key] = setTimeout(() => {
+      if (key === 'catalog') setCatalogOpen(false);
+      else setProfileOpen(false);
+    }, 2000);
+  };
 
   return (
     <header className="bg-white sticky top-0 z-50 shadow-sm">
@@ -148,7 +167,11 @@ export const Header = React.memo(() => {
             </button>
 
             {/* Профиль */}
-            <div className="relative group">
+            <div
+              className="relative"
+              onMouseEnter={() => openWithDelay('profile')}
+              onMouseLeave={() => closeWithDelay('profile')}
+            >
               <button
                 className="text-gray-600 hover:text-[#7C5C27] transition-colors"
                 onClick={onUserIconClick}
@@ -157,13 +180,15 @@ export const Header = React.memo(() => {
                 <FaUser className="w-6 h-6 cursor-pointer" />
               </button>
               {/* Ховер-меню профиля (десктоп) */}
-              <div className="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                <nav className="py-2">
-                  <Link href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Профиль</Link>
-                  <Link href="/favorites" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Избранное</Link>
-                  <Link href="/orders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Заказы</Link>
-                </nav>
-              </div>
+              {profileOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                  <nav className="py-2">
+                    <Link href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Профиль</Link>
+                    <Link href="/favorites" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Избранное</Link>
+                    <Link href="/orders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Заказы</Link>
+                  </nav>
+                </div>
+              )}
             </div>
 
             {/* Корзина */}
@@ -243,15 +268,24 @@ export const Header = React.memo(() => {
       <div className="hidden lg:block border-t border-gray-100">
         <div className="container mx-auto px-4 py-2">
           <nav className="flex items-center justify-center gap-8">
-            <li className="group relative list-none">
+            <li
+              className="relative list-none"
+              onMouseEnter={() => openWithDelay('catalog')}
+              onMouseLeave={() => closeWithDelay('catalog')}
+            >
               <button
                 type="button"
                 className="flex items-center gap-1 rounded-md px-4 py-2 text-gray-800 transition-colors hover:bg-white/10"
+                onClick={() => setCatalogOpen(v => !v)}
               >
                 Каталог
-                <FaChevronDown className="ml-1 h-3 w-3 transition-transform group-hover:rotate-180 cursor-pointer" />
+                <FaChevronDown className={`ml-1 h-3 w-3 transition-transform ${catalogOpen ? 'rotate-180' : ''} cursor-pointer`} />
               </button>
-              <div className="invisible absolute left-0 top-full z-50 mt-1 w-56 rounded-md bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
+              <div
+                className={`absolute left-0 top-full z-50 mt-1 w-56 rounded-md bg-white py-2 shadow-lg transition-opacity duration-150 ${catalogOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+                onMouseEnter={() => openWithDelay('catalog')}
+                onMouseLeave={() => closeWithDelay('catalog')}
+              >
                 {[
                   { name: 'Все категории', href: '/catalog/all' },
                   { name: 'Вазы', href: '/catalog/vases' },
@@ -266,6 +300,7 @@ export const Header = React.memo(() => {
                     key={item.href}
                     href={item.href}
                     className="block px-4 py-2 text-gray-700 hover:bg-[#E5D3B3] hover:text-[#7C5C27]"
+                    onClick={() => setCatalogOpen(false)}
                   >
                     {item.name}
                   </Link>

@@ -1,7 +1,19 @@
-/*
-ARCHIVED: Используйте канонический путь /catalog/все-категории
-*/
+// 'use client';
 
-export default function ArchivedAllCategoriesRedirect() {
-  return null;
-}
+// import type { Metadata } from 'next';
+// import CatalogPage from '@/app/components/CatalogPage';
+
+// export const metadata: Metadata = {
+//   title: 'Все категории - Provans Decor'
+// };
+
+// export default function AllCategoriesPage() {
+//   return (
+//     <CatalogPage
+//       title="Все категории"
+//       description={undefined}
+//       category={undefined}
+//       showCategoryFilter={true}
+//     />
+//   );
+// }

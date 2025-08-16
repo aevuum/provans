@@ -59,7 +59,28 @@ export const authOptions = {
   session: { strategy: 'jwt' as const },
   callbacks: {
     async jwt({ token, user }: any) {
-      if (user) token.role = user.role;
+      // При первом входе user есть; проставим роль из user
+      if (user && (user as any).role) {
+        token.role = (user as any).role;
+        return token;
+      }
+      // Если роль ещё не определена (например, при входе через OAuth без Prisma Adapter),
+      // подтянем её из нашей таблицы пользователей по email
+      if (!token.role && token?.email) {
+        try {
+          const dbUser = await prisma.user.findFirst({
+            where: {
+              OR: [
+                { email: token.email.toLowerCase() },
+                { username: token.email.toLowerCase() },
+              ],
+            },
+          });
+          if (dbUser) token.role = dbUser.role;
+        } catch (e) {
+          console.error('JWT role fetch error:', e);
+        }
+      }
       return token;
     },
     async session({ session, token }: any) {
@@ -68,6 +89,54 @@ export const authOptions = {
         (session.user as any).role = token.role;
       }
       return session;
+    },
+    async signIn({ user, account }: any) {
+      // Для OAuth провайдеров создаём/обновляем пользователя в нашей таблице User
+      if (account && account.provider !== 'credentials') {
+        try {
+          const email = (user.email || '').toLowerCase();
+          const username = (user.name || email || 'user').toLowerCase();
+          if (!email && !username) return true; // пропускаем, если данных нет
+
+          const existing = await prisma.user.findFirst({
+            where: {
+              OR: [
+                email ? { email } : undefined,
+                username ? { username } : undefined,
+              ].filter(Boolean) as any,
+            },
+          });
+
+          if (existing) {
+            // Обновим e-mail/имя при необходимости
+            await prisma.user.update({
+              where: { id: existing.id },
+              data: {
+                email: email || existing.email,
+                username: existing.username || username,
+              },
+            });
+            // Проставим роль в user, чтобы попала в JWT
+            (user as any).role = existing.role;
+          } else {
+            const created = await prisma.user.create({
+              data: {
+                username: username || email || `user_${Date.now()}`,
+                email: email || null,
+                // Пароль обязателен по схеме; ставим заглушку, OAuth его не использует
+                password: 'oauth',
+                role: 'user',
+              },
+            });
+            (user as any).role = created.role;
+          }
+        } catch (e) {
+          console.error('OAuth signIn upsert error:', e);
+          // Разрешаем вход даже если апсертом не удалось, чтобы не блокировать пользователей
+          return true;
+        }
+      }
+      return true;
     },
   },
   pages: {

@@ -14,7 +14,7 @@ export function ForgotPasswordModal({ open, onClose }: Props) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
       <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-xl relative">
         <button
           className="absolute top-4 right-4 text-gray-400 hover:text-black"

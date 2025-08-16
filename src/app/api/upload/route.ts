@@ -1,69 +1,56 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAdminSession } from '@/lib/authUtils';
-import { writeFile } from 'fs/promises';
-import { join } from 'path';
-import { v4 as uuidv4 } from 'uuid';
+import path from 'node:path';
+import fs from 'node:fs/promises';
 
-export async function POST(request: NextRequest) {
+export const dynamic = 'force-dynamic';
+
+function normalizeFilename(name: string) {
+  // Заменяем пробелы на _, убираем опасные символы
+  return name
+    .replace(/[\\/:*?"<>|]+/g, '-')
+    .replace(/\s+/g, '_')
+    .replace(/_+/g, '_')
+    .toLowerCase();
+}
+
+export async function POST(req: NextRequest) {
   try {
-    // Проверяем авторизацию
     const session = await getAdminSession();
     if (!session || session.user?.role !== 'admin') {
       return NextResponse.json({ error: 'Нет доступа' }, { status: 403 });
     }
 
-    const data = await request.formData();
-    const file: File | null = data.get('file') as unknown as File;
-
-    if (!file) {
-      return NextResponse.json(
-        { error: 'Файл не найден' },
-        { status: 400 }
-      );
+    const formData = await req.formData();
+    const file = formData.get('file');
+    if (!file || typeof file === 'string') {
+      return NextResponse.json({ error: 'Файл не передан' }, { status: 400 });
     }
 
-    // Проверяем тип файла
-    if (!file.type.startsWith('image/')) {
-      return NextResponse.json(
-        { error: 'Можно загружать только изображения' },
-        { status: 400 }
-      );
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+    await fs.mkdir(uploadsDir, { recursive: true });
+
+    const origName = (file as File).name || 'image';
+    const ext = path.extname(origName) || '.jpg';
+    const base = path.basename(origName, ext);
+    const safe = normalizeFilename(base);
+    const fname = `${Date.now()}_${safe}${ext.toLowerCase()}`;
+
+    const absPath = path.join(uploadsDir, fname);
+    // Защита на выход за пределы /public/uploads
+    if (!absPath.startsWith(uploadsDir)) {
+      return NextResponse.json({ error: 'Неверный путь' }, { status: 400 });
     }
 
-    // Проверяем размер файла (максимум 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      return NextResponse.json(
-        { error: 'Размер файла не должен превышать 5MB' },
-        { status: 400 }
-      );
-    }
+    await fs.writeFile(absPath, buffer);
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
-    // Генерируем уникальное имя файла
-    const extension = file.name.split('.').pop();
-    const fileName = `${uuidv4()}.${extension}`;
-    
-    // Путь для сохранения в public/uploads
-    const uploadDir = join(process.cwd(), 'public', 'uploads');
-    const filePath = join(uploadDir, fileName);
-
-    await writeFile(filePath, buffer);
-
-    // Возвращаем URL для доступа к файлу
-    const fileUrl = `/uploads/${fileName}`;
-
-    return NextResponse.json({
-      url: fileUrl,
-      message: 'Файл успешно загружен'
-    });
-
+    const url = `/uploads/${fname}`;
+    return NextResponse.json({ url, filename: fname });
   } catch (error) {
     console.error('Upload error:', error);
-    return NextResponse.json(
-      { error: 'Ошибка загрузки файла' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Ошибка загрузки файла' }, { status: 500 });
   }
 }

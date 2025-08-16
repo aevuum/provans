@@ -49,8 +49,8 @@ const SafeImage = memo<SafeImageProps>(({
     }
   }, [onClick, isLoading, error]);
 
-  // Если есть кириллица или пробелы в пути, используем наш API
-  const needsProxy = /[а-яё\s]/i.test(src);
+  // Если есть кириллица или пробелы (включая %20) в пути, используем наш API
+  const needsProxy = /[а-яё\s]/i.test(src) || /%20/.test(src);
   const imageSrc = needsProxy 
     ? `/api/image?path=${encodeURIComponent(src)}`
     : src;
@@ -79,7 +79,7 @@ const SafeImage = memo<SafeImageProps>(({
     style,
     loading: effectivePriority ? ('eager' as const) : ('lazy' as const),
     decoding: 'async' as const,
-    ...(fill 
+    ...(fill || (!width && !height)
       ? { fill: true, sizes: sizes || '100vw' }
       : { width, height }
     )
@@ -87,7 +87,7 @@ const SafeImage = memo<SafeImageProps>(({
 
   return (
     <div 
-      className={`relative ${fill ? 'w-full h-full' : ''} ${onClick ? 'cursor-pointer' : ''}`}
+      className={`relative ${(fill || (!width && !height)) ? 'w-full h-full' : ''} ${onClick ? 'cursor-pointer' : ''}`}
       onClick={handleClick}
     >
       {isLoading && (

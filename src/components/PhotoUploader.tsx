@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaUpload, FaSpinner, FaTrash, FaPlus } from 'react-icons/fa';
 import Image from 'next/image';
 
@@ -22,6 +22,15 @@ export default function PhotoUploader({
   const [uploading, setUploading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(currentImage || null);
   const [images, setImages] = useState<string[]>(currentImages);
+
+  // Синхронизация локального состояния при изменении пропсов снаружи
+  useEffect(() => {
+    setPreviewUrl(currentImage || null);
+  }, [currentImage]);
+
+  useEffect(() => {
+    setImages(currentImages || []);
+  }, [currentImages]);
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;

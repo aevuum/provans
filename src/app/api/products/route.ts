@@ -94,7 +94,8 @@ function applyFilters(
     categories,
     type,
     includeNoImage,
-  }: { search?: string | null; minPrice?: string | null; maxPrice?: string | null; categories?: string[]; type?: string | null; includeNoImage?: boolean }
+    onlyDiscounts,
+  }: { search?: string | null; minPrice?: string | null; maxPrice?: string | null; categories?: string[]; type?: string | null; includeNoImage?: boolean; onlyDiscounts?: boolean }
 ) {
   let res = products.slice();
 
@@ -104,7 +105,7 @@ function applyFilters(
   }
 
   // Тип подбора
-  if (type === 'discount') {
+  if (type === 'discount' || onlyDiscounts) {
     res = res.filter((p) => (p.discount || 0) > 0);
   }
   // Для type=new просто сортируем по id desc ниже и обрежем лимитом — последние добавленные
@@ -181,7 +182,7 @@ export async function GET(req: NextRequest) {
 
     // Параметры
     const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '24');
+  const limit = parseInt(searchParams.get('limit') || (searchParams.get('type') === 'new' ? '100' : '24'));
     const type = searchParams.get('type'); // new | discount | popular | all
     const search = searchParams.get('search');
     const minPrice = searchParams.get('minPrice');
@@ -189,13 +190,36 @@ export async function GET(req: NextRequest) {
     const sortBy = searchParams.get('sortBy') || (type === 'new' ? 'createdAt' : 'createdAt');
     const sortOrder = (searchParams.get('sortOrder') as 'asc' | 'desc') || (type === 'new' ? 'desc' : 'desc');
 
-    const categoriesParam = searchParams.get('categories') || searchParams.get('category') || '';
-    const categories = categoriesParam
+  const categoriesParam = searchParams.get('categories') || searchParams.get('category') || '';
+    let categories = categoriesParam
       ? categoriesParam.split(',').map((s) => s.trim()).filter(Boolean)
       : undefined;
 
+    // Fallback: если клиент не передал категорию, попробуем извлечь её из Referer /catalog/{slug}
+    if (!categories || categories.length === 0) {
+      const ref = req.headers.get('referer') || '';
+      try {
+        const u = new URL(ref);
+        const parts = u.pathname.split('/').filter(Boolean);
+        const idx = parts.indexOf('catalog');
+        if (idx !== -1 && parts[idx + 1]) {
+          const slug = parts[idx + 1];
+          const ignore = new Set(['all', 'все-категории', 'new', 'новинки', 'promotions', 'акции']);
+          if (!ignore.has(slug)) {
+            categories = [slug];
+          }
+        }
+      } catch {
+        // ignore
+      }
+    }
+
     const includeNoImage = (() => {
       const v = (searchParams.get('includeNoImage') || '').toLowerCase();
+      return v === '1' || v === 'true' || v === 'yes';
+    })();
+    const onlyDiscounts = (() => {
+      const v = (searchParams.get('onlyDiscounts') || '').toLowerCase();
       return v === '1' || v === 'true' || v === 'yes';
     })();
 
@@ -203,7 +227,7 @@ export async function GET(req: NextRequest) {
     const products = await loadProductsFromFile();
 
     // Фильтры
-    let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type, includeNoImage });
+  let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type, includeNoImage, onlyDiscounts });
 
     // Сортировка
     filtered = applySort(filtered, sortBy, sortOrder);
@@ -263,7 +287,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const page = parseInt(String(body.page ?? '1'));
-    const limit = parseInt(String(body.limit ?? '24'));
+  const limit = parseInt(String(body.limit ?? (body.type === 'new' ? '100' : '24')));
     const type = (body.type as string | undefined) || undefined;
     const search = (body.search as string | undefined) || undefined;
     const minPrice = body.minPrice != null ? String(body.minPrice) : undefined;
@@ -287,10 +311,19 @@ export async function POST(req: NextRequest) {
       }
       return false;
     })();
+    const onlyDiscounts = (() => {
+      const vRaw = body.onlyDiscounts;
+      if (typeof vRaw === 'boolean') return vRaw;
+      if (typeof vRaw === 'string') {
+        const v = vRaw.toLowerCase();
+        return v === '1' || v === 'true' || v === 'yes';
+      }
+      return false;
+    })();
 
     const products = await loadProductsFromFile();
 
-    let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type, includeNoImage });
+  let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type, includeNoImage, onlyDiscounts });
 
     filtered = applySort(filtered, sortBy, sortOrder);
 

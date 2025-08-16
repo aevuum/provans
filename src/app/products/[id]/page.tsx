@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import Head from 'next/head';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { FaHeart, FaRegHeart, FaShoppingBag, FaCheck } from 'react-icons/fa';
@@ -120,6 +121,29 @@ export default function ProductDetailPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Head>
+        <title>{`${product.title} — Provans Decor`}</title>
+        <meta name="description" content={product.comment || product.title} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Product',
+              name: product.title,
+              description: product.comment || undefined,
+              sku: product.barcode || undefined,
+              image: [getProductImage(product), ...(product.images || []).slice(0, 3)],
+              offers: {
+                '@type': 'Offer',
+                priceCurrency: 'RUB',
+                price: product.price,
+                availability: (product.quantity || 0) > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+              },
+            }),
+          }}
+        />
+      </Head>
       <div className="container mx-auto px-4 py-8">
         {/* Хлебные крошки */}
         <Breadcrumbs 
@@ -196,7 +220,7 @@ export default function ProductDetailPage() {
                 {product.originalPrice && product.originalPrice > product.price && (
                   <span className="text-xl line-through text-gray-500">{product.originalPrice.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽</span>
                 )}
-                {product.discount && (
+                {(product.discount ?? 0) > 0 && (
                   <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                     -{product.discount}%
                   </span>
@@ -259,9 +283,9 @@ export default function ProductDetailPage() {
                     type="button"
                   >
                     {isFavorite ? (
-                      <FaHeart className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
+                      <FaHeart className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" />
                     ) : (
-                      <FaRegHeart className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                      <FaRegHeart className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400" />
                     )}
                   </button>
                 </div>

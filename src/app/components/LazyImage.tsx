@@ -28,6 +28,10 @@ export function LazyImage({
   const [isInView, setIsInView] = useState(false);
   const imgRef = useRef<HTMLDivElement>(null);
 
+  // Прокси для путей с кириллицей/пробелами, чтобы избежать проблем с кодировкой URL
+  const needsProxy = /[\u0400-\u04FF\s]/.test(src);
+  const imageSrc = needsProxy ? `/api/image?path=${encodeURIComponent(src)}` : src;
+
   useEffect(() => {
     if (priority) {
       setIsInView(true);
@@ -54,8 +58,11 @@ export function LazyImage({
     return () => observer.disconnect();
   }, [priority]);
 
+  // Обертка должна иметь размеры при fill={true}
+  const wrapperClasses = `relative ${fill ? 'w-full h-full' : ''}`;
+
   return (
-    <div ref={imgRef} className={`relative ${className}`}>
+    <div ref={imgRef} className={wrapperClasses}>
       {/* Скелетон загрузки */}
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse rounded" />
@@ -64,13 +71,13 @@ export function LazyImage({
       {/* Изображение загружается только когда видно */}
       {isInView && (
         <Image
-          src={src}
+          src={imageSrc}
           alt={alt}
           width={width}
           height={height}
           fill={fill}
           className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${className}`}
-          sizes={sizes}
+          sizes={sizes || (fill ? '100vw' : undefined)}
           priority={priority}
           onLoad={() => setIsLoaded(true)}
           loading={priority ? 'eager' : 'lazy'}

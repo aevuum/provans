@@ -32,6 +32,24 @@
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "build"
+		},
+		{
+			"label": "fix: recategorize-specific",
+			"type": "shell",
+			"command": "tsx scripts/fixes/recategorize-specific.ts",
+			"group": "build"
+		},
+		{
+			"label": "fix: recategorize-specific (ts-node)",
+			"type": "shell",
+			"command": "node --loader ts-node/esm scripts/fixes/recategorize-specific.ts",
+			"group": "build"
+		},
+		{
+			"label": "fix: recategorize-specific (node ts transpile)",
+			"type": "shell",
+			"command": "node -e \"require('esbuild').transformSync(require('fs').readFileSync('scripts/fixes/recategorize-specific.ts','utf8'),{loader:'ts'}) && require('fs').writeFileSync('scripts/fixes/.tmp.js',require('esbuild').transformSync(require('fs').readFileSync('scripts/fixes/recategorize-specific.ts','utf8'),{loader:'ts'}).code)\" && node scripts/fixes/.tmp.js && rm scripts/fixes/.tmp.js",
+			"group": "build"
 		}
 	]
 }

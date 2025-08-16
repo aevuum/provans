@@ -1,4 +1,4 @@
-'use client';
+import type { Metadata } from 'next';
 
 import { CatalogPage } from '@/app/components/CatalogPage';
 
@@ -12,3 +12,8 @@ export default function VasesPage() {
     />
   );
 }
+
+export const metadata: Metadata = {
+  title: 'Вазы — Provans Decor',
+  description: 'Элегантные вазы в стиле Прованс. Большой выбор, быстрая доставка по России.',
+};

@@ -1,7 +1,5 @@
-/*
-ARCHIVED: Используйте канонический путь /discount
-*/
+import { redirect } from 'next/navigation';
 
-export default function ArchivedDiscountRedirect() {
-  return null;
+export default function PromotionsCyrPage() {
+  redirect('/discount');
 }

@@ -31,23 +31,29 @@ export async function POST(
       );
     }
 
-    // Проверяем, что у товара есть хотя бы одно изображение
+  // Проверяем обязательные условия одобрения
     const current = await prisma.product.findUnique({ where: { id: productId } });
     if (!current) {
       return NextResponse.json({ error: 'Товар не найден' }, { status: 404 });
     }
-    const images = current.images || [];
-    const hasAnyImage = (current.image && current.image.trim() !== '') || images.some((i) => i && i.trim() !== '');
-    if (!hasAnyImage) {
-      return NextResponse.json({ error: 'Нельзя одобрить товар без фото' }, { status: 400 });
-    }
+    const images = (current.images || []).filter(Boolean);
+    const isPlaceholder = (src?: string | null) => {
+      const s = (src || '').toString().toLowerCase();
+      if (!s) return true; // пустое значение считаем отсутствием
+      return s.endsWith('/fon.png') || s.endsWith('/fonb.png') || s.endsWith('/fonc.png') || s.endsWith('/placeholder.jpg');
+    };
+    const hasAnyImage = (!!current.image && !isPlaceholder(current.image) && current.image.trim() !== '') || images.some((i) => !!i && !isPlaceholder(i) && (i as string).trim() !== '');
+  if (!hasAnyImage) return NextResponse.json({ error: 'Нельзя одобрить товар без фото' }, { status: 400 });
+  if (!current.price || current.price <= 0) return NextResponse.json({ error: 'Нельзя одобрить товар без цены' }, { status: 400 });
+  const cat = (category ?? current.category ?? '').toString().trim();
+  if (!cat) return NextResponse.json({ error: 'Нельзя одобрить товар без категории' }, { status: 400 });
 
     // Обновляем товар - подтверждаем и при необходимости помечаем как новый
     const updatedProduct = await prisma.product.update({
       where: { id: productId },
       data: {
         isConfirmed: true,
-        category: category ? category : current.category, // обновляем категорию если задана
+  category: cat || null, // обновляем категорию если задана
         ...(isNew ? { createdAt: new Date() } : {}),
       }
     });

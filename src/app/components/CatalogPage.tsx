@@ -71,12 +71,14 @@ function CatalogPageInner({
           const val = searchParams.get(key);
           if (val) url.searchParams.set(key, val);
         };
-        ['search', 'categories', 'minPrice', 'maxPrice'].forEach(pass);
+  ['search', 'categories', 'minPrice', 'maxPrice', 'onlyDiscounts'].forEach(pass);
 
-       
-        const categoryFromUrl = searchParams.get('categories');
-        if (category && !categoryFromUrl) {
+        // Жёстко фиксируем категорию для страниц категории: всегда передаем slug
+        if (category) {
+          url.searchParams.delete('categories');
+          url.searchParams.delete('category');
           url.searchParams.set('categories', category);
+          url.searchParams.set('category', category);
         }
 
         // Сортировка
@@ -209,9 +211,9 @@ function CatalogPageInner({
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 md:gap-6">
         {/* Левая колонка: фильтры */}
-        <aside className="lg:col-span-3">
+        <aside className="xl:col-span-3 xl:sticky xl:top-6 xl:self-start">
           <ReusableFilters
             baseUrl={baseUrl}
             showSearch={true}
@@ -221,7 +223,7 @@ function CatalogPageInner({
         </aside>
 
         {/* Правая колонка: список */}
-        <section className="lg:col-span-9">
+  <section className="xl:col-span-9">
           {/* Сортировка */}
           <div className="flex items-center justify-end mb-4">
             <ProductSort currentSort={currentSort} onSortChange={handleSortChange} />

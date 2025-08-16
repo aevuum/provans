@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { FaCheck, FaTimes, FaEdit, FaEye } from 'react-icons/fa';
+import { FaCheck, FaTimes, FaEdit, FaEye, FaTrash, FaCheckDouble } from 'react-icons/fa';
 import { Product } from '@/types';
 
 export default function ModerationPage() {
@@ -13,6 +13,9 @@ export default function ModerationPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [moderating, setModerating] = useState<number | null>(null);
+  const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [targetCategory, setTargetCategory] = useState<string>("");
+  const [confirmedIndex, setConfirmedIndex] = useState<{ titles: Map<string, number>; barcodes: Map<string, number> } | null>(null);
 
   const fetchPendingProducts = useCallback(async () => {
     try {
@@ -44,7 +47,114 @@ export default function ModerationPage() {
     }
 
     fetchPendingProducts();
+    // подтянем индекс подтвержденных для подсветки дублей
+    (async () => {
+      try {
+        const res = await fetch('/api/admin/products?status=confirmed&limit=1000');
+        if (!res.ok) return;
+        const data = await res.json();
+        const list: Product[] = data?.data || [];
+        const titles = new Map<string, number>();
+        const barcodes = new Map<string, number>();
+        const norm = (t?: string|null) => (t||'').toLowerCase().replace(/\s+/g,' ').trim();
+        for (const p of list) {
+          titles.set(`${norm(p.title)}|${p.price}`, p.id);
+          if (p.barcode) barcodes.set(p.barcode, p.id);
+        }
+        setConfirmedIndex({ titles, barcodes });
+      } catch {}
+    })();
   }, [session, router, fetchPendingProducts]);
+
+  const toggleSelect = (id: number) => {
+    setSelected(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
+
+  const selectAll = () => {
+    setSelected(new Set(products.map(p => p.id)));
+  };
+
+  const clearSelection = () => setSelected(new Set());
+
+  const bulkAction = async (action: 'confirm' | 'delete') => {
+    const ids = [...selected];
+    if (ids.length === 0) return;
+    try {
+      const res = await fetch('/api/admin/products/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, productIds: ids })
+      });
+      if (res.ok) {
+        if (action === 'confirm' || action === 'delete') {
+          setProducts(prev => prev.filter(p => !selected.has(p.id)));
+          clearSelection();
+        }
+      }
+    } catch (e) {
+      console.error('Bulk error', e);
+    }
+  };
+
+  const bulkMoveCategory = async () => {
+    const ids = [...selected];
+    if (ids.length === 0 || !targetCategory) return;
+    try {
+      const res = await fetch('/api/admin/products/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'move-category', productIds: ids, category: targetCategory })
+      });
+      if (res.ok) {
+        // локально обновим категории
+        setProducts(prev => prev.map((p) => selected.has(p.id) ? ({ ...p, category: targetCategory }) : p));
+      }
+    } catch (e) {
+      console.error('Bulk move error', e);
+    }
+  };
+
+  const bulkMoveAndConfirm = async () => {
+    const ids = [...selected];
+    if (ids.length === 0 || !targetCategory) return;
+    try {
+      const res = await fetch('/api/admin/products/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'move-and-confirm', productIds: ids, category: targetCategory })
+      });
+      if (res.ok) {
+        // удалим одобренные из списка
+        const data = await res.json();
+        const skipped: number[] = data?.skipped || [];
+        setProducts(prev => prev.filter(p => skipped.includes(p.id) ? true : !selected.has(p.id)));
+        clearSelection();
+      }
+    } catch (e) {
+      console.error('Bulk move+confirm error', e);
+    }
+  };
+
+  const deleteDuplicates = async () => {
+    try {
+      const res = await fetch('/api/admin/products/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'delete-duplicates' })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || 'Ошибка удаления дублей');
+      alert(`Дубликаты удалены: ${data.affected || 0}`);
+      setProducts(prev => prev.filter(p => !(data.deletedIds || []).includes(p.id)));
+    } catch (e) {
+      console.error('Delete duplicates error', e);
+      alert('Не удалось удалить дубликаты');
+    }
+  };
 
   const handleApprove = async (productId: number) => {
     // Найдем товар для проверки
@@ -102,6 +212,12 @@ export default function ModerationPage() {
     );
   }
 
+  const isPlaceholder = (src?: string | null) => {
+    if (!src) return true;
+    const s = src.trim().toLowerCase();
+    return s.endsWith('/fon.png') || s.endsWith('/fonc.png') || s.endsWith('/fonb.png') || s.endsWith('/placeholder.jpg');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -120,6 +236,31 @@ export default function ModerationPage() {
           </div>
         </div>
 
+        {/* Bulk actions */}
+  <div className="bg-white shadow rounded-lg p-4 mb-4 flex items-center gap-2 flex-wrap">
+          <button onClick={selectAll} className="px-3 py-2 text-sm bg-gray-100 rounded">Выбрать все</button>
+          <button onClick={clearSelection} className="px-3 py-2 text-sm bg-gray-100 rounded">Сбросить</button>
+          <div className="flex items-center gap-2">
+            <select value={targetCategory} onChange={e=>setTargetCategory(e.target.value)} className="px-2 py-2 text-sm border rounded">
+              <option value="">Переместить в категорию…</option>
+              <option value="vases">Вазы</option>
+              <option value="candlesticks">Подсвечники</option>
+              <option value="frames">Рамки</option>
+              <option value="flowers">Цветы</option>
+              <option value="jewelry-boxes">Шкатулки</option>
+              <option value="figurines">Фигурки</option>
+              <option value="bookends">Книгодержатели</option>
+            </select>
+            <button onClick={bulkMoveCategory} disabled={selected.size===0 || !targetCategory} className="px-3 py-2 text-sm bg-indigo-600 text-white rounded disabled:opacity-50">Переместить</button>
+            <button onClick={bulkMoveAndConfirm} disabled={selected.size===0 || !targetCategory} className="px-3 py-2 text-sm bg-indigo-700 text-white rounded disabled:opacity-50">Переместить и одобрить</button>
+          </div>
+          <div className="ml-auto flex gap-2">
+            <button onClick={() => bulkAction('confirm')} disabled={selected.size===0} className="px-3 py-2 text-sm bg-green-600 text-white rounded inline-flex items-center gap-1 disabled:opacity-50"><FaCheckDouble/> Одобрить выбранные</button>
+            <button onClick={() => bulkAction('delete')} disabled={selected.size===0} className="px-3 py-2 text-sm bg-red-600 text-white rounded inline-flex items-center gap-1 disabled:opacity-50"><FaTrash/> Удалить выбранные</button>
+            <button onClick={deleteDuplicates} className="px-3 py-2 text-sm bg-orange-600 text-white rounded inline-flex items-center gap-1"><FaTrash/> Удалить дубликаты</button>
+          </div>
+        </div>
+
         {/* Products List */}
         {products.length === 0 ? (
           <div className="bg-white shadow rounded-lg p-12 text-center">
@@ -131,9 +272,13 @@ export default function ModerationPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
               <div key={product.id} className="bg-white shadow rounded-lg overflow-hidden">
+                <div className="flex items-center px-4 pt-3">
+                  <input type="checkbox" className="mr-2" checked={selected.has(product.id)} onChange={() => toggleSelect(product.id)} />
+                  <span className="text-sm text-gray-500">#{product.id}</span>
+                </div>
                 {/* Product Image */}
                 <div className="relative h-56 bg-gray-100 flex items-center justify-center">
-                  {product.image && product.image.startsWith('/') ? (
+                  {product.image && product.image.startsWith('/') && !isPlaceholder(product.image) ? (
                     <Image
                       src={product.image}
                       alt={product.title}
@@ -149,7 +294,7 @@ export default function ModerationPage() {
                     <div className="flex flex-col items-center justify-center text-gray-400">
                       <FaEye className="w-8 h-8 mb-2" />
                       <span className="text-sm">
-                        {product.image ? 'Неверный путь к изображению' : 'Нет изображения'}
+                        {'Нет изображения'}
                       </span>
                     </div>
                   )}
@@ -174,6 +319,16 @@ export default function ModerationPage() {
                       <span>Артикул:</span>
                       <span className="font-medium">{product.barcode}</span>
                     </div>
+                    {confirmedIndex && (
+                      (() => {
+                        const norm = (t?: string|null) => (t||'').toLowerCase().replace(/\s+/g,' ').trim();
+                        const key = `${norm(product.title)}|${product.price}`;
+                        const dupId = (product.barcode && confirmedIndex.barcodes.get(product.barcode)) || confirmedIndex.titles.get(key);
+                        return dupId ? (
+                          <div className="text-xs text-orange-600">Похож на подтверждённый #{dupId}</div>
+                        ) : null;
+                      })()
+                    )}
                   </div>
 
                   {/* Actions */}

@@ -41,7 +41,7 @@ const CategoryCard = ({
 };
 
 const backgrounds = [
-  { image: '/fon-q.png', text: 'ДО 30% НА ИСКУССТВО СОЗДАНИЯ УЮТА', color: 'text-white' }
+  { image: '/фон1.png', text: 'ДО 30% НА ИСКУССТВО СОЗДАНИЯ УЮТА', color: 'text-white' }
 ];
 
 export default function Home() {
@@ -145,7 +145,7 @@ export default function Home() {
           </div>
           <div className="relative">
             <button
-              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-12 h-12 left-2 md:left-[-24px] top-1/2 -translate-y-1/2"
+              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-10 h-10 sm:w-12 sm:h-12 left-2 sm:left-2 md:left-[-24px] top-1/2 -translate-y-1/2"
               onClick={() => scrollByCard('new-products-scroll', -1)}
               aria-label="Прокрутить влево"
               type="button"
@@ -168,13 +168,13 @@ export default function Home() {
             </div>
 
             <button
-              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-12 h-12 right-2 md:right-[-24px] top-1/2 -translate-y-1/2"
+              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-10 h-10 sm:w-12 sm:h-12 right-2 sm:right-2 md:right-[-24px] top-1/2 -translate-y-1/2"
               onClick={() => scrollByCard('new-products-scroll', 1)}
               aria-label="Прокрутить вправо"
               type="button"
             >
               <svg width="20" height="20" fill="none">
-                <path d="M8 4l6 6-6 6" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M8 4l6 6-6 7" stroke="#667" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </div>
@@ -215,7 +215,7 @@ export default function Home() {
             type="button"
           >
             <svg width="20" height="20" fill="none">
-              <path d="M8 4l6 6-6 6" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 4l6 6-6 7" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
         </div>

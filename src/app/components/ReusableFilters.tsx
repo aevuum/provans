@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { FaFilter, FaChevronDown, FaChevronUp } from 'react-icons/fa'
 
@@ -13,16 +13,6 @@ interface ReusableFiltersProps {
 
 type CategoryOption = { label: string; value: string };
 
-const AVAILABLE_CATEGORIES: CategoryOption[] = [
-  { label: 'Вазы', value: 'vases' },
-  { label: 'Подсвечники', value: 'candlesticks' },
-  { label: 'Рамки', value: 'frames' },
-  { label: 'Цветы', value: 'flowers' },
-  { label: 'Шкатулки', value: 'jewelry-boxes' },
-  { label: 'Фигурки', value: 'figurines' },
-  { label: 'Книгодержатели', value: 'bookends' },
-];
-
 export default function ReusableFilters({
   showSearch = true,
   showCategory = true,
@@ -32,11 +22,25 @@ export default function ReusableFilters({
   const router = useRouter()
   const searchParams = useSearchParams()
   
+  const [categoryOptions, setCategoryOptions] = useState<CategoryOption[]>([])
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch('/api/categories/available', { cache: 'no-store' })
+        if (!res.ok) return
+        const data = await res.json()
+        const cats: CategoryOption[] = (data?.categories || []).map((c: any) => ({ label: c.name || c.slug, value: c.slug }))
+        setCategoryOptions(cats)
+      } catch {}
+    })()
+  }, [])
+
   const [filters, setFilters] = useState({
     search: searchParams.get('search') || '',
     categories: searchParams.get('categories') || '',
     minPrice: searchParams.get('minPrice') || '',
     maxPrice: searchParams.get('maxPrice') || '',
+  onlyDiscounts: searchParams.get('onlyDiscounts') || '',
   })
 
   const [isOpen, setIsOpen] = useState(false)
@@ -61,7 +65,8 @@ export default function ReusableFilters({
       search: '',
       categories: '',
       minPrice: '',
-      maxPrice: '',
+  maxPrice: '',
+  onlyDiscounts: '',
     })
     const normalizedBase = decodeURIComponent(baseUrl).replace('/catalog/все-категории', '/catalog/all')
     router.push(normalizedBase)
@@ -76,7 +81,7 @@ export default function ReusableFilters({
       {/* Фоновая затемненная область при открытых фильтрах */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-[60] lg:hidden"
+          className="fixed inset-0 bg-black/30 z-[60] lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
@@ -101,7 +106,7 @@ export default function ReusableFilters({
         </div>
 
         {/* Содержимое фильтров */}
-        <div className={`transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-screen p-4 md:p-6' : 'max-h-0'}`}>
+  <div className={`transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-screen p-4 md:p-6' : 'max-h-0'}`}>
           {/* Поиск */}
           {showSearch && (
             <div className="mb-4 md:mb-6">
@@ -120,7 +125,7 @@ export default function ReusableFilters({
           )}
 
           {/* Категория (только нужные страницы) */}
-          {showCategorySelect && (
+          {showCategorySelect && categoryOptions.length > 0 && (
             <div className="mb-4 md:mb-6">
               <label htmlFor="categories" className="block text-sm font-medium text-gray-700 mb-2">
                 Категория
@@ -132,7 +137,7 @@ export default function ReusableFilters({
                 className="w-full px-3 md:px-4 py-2.5 md:py-3 border border-gray-300 rounded-md focus:ring-[#E5D3B3] focus:border-[#E5D3B3] text-base"
               >
                 <option value="">Все категории</option>
-                {AVAILABLE_CATEGORIES.map((c: CategoryOption) => (
+                {categoryOptions.map((c) => (
                   <option key={c.value} value={c.value}>{c.label}</option>
                 ))}
               </select>
@@ -165,6 +170,18 @@ export default function ReusableFilters({
               </div>
             </div>
           )}
+
+          {/* Только со скидкой */}
+          <div className="mb-4 md:mb-6">
+            <label className="inline-flex items-center gap-2 text-sm text-gray-700">
+              <input
+                type="checkbox"
+                checked={filters.onlyDiscounts === '1'}
+                onChange={(e) => setFilters({ ...filters, onlyDiscounts: e.target.checked ? '1' : '' })}
+              />
+              Только товары со скидкой
+            </label>
+          </div>
 
           {/* Кнопки */}
           <div className="flex flex-col md:flex-row gap-3 pt-4 md:pt-6">

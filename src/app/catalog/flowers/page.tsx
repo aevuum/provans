@@ -1,5 +1,3 @@
-'use client';
-
 import { CatalogPage } from '@/app/components/CatalogPage';
 
 export default function FlowersPage() {

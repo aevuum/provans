@@ -25,8 +25,17 @@ export async function POST(req: NextRequest) {
 
     const mode = req.nextUrl.searchParams.get('mode') || 'replace'; // replace | upsert
 
-    const filePath = path.join(process.cwd(), 'products.json');
-    const raw = await fs.readFile(filePath, 'utf-8');
+    // Поддерживаем импорт из archive/products.json, если корневой файл отсутствует или пуст
+    const primary = path.join(process.cwd(), 'products.json');
+    const fallback = path.join(process.cwd(), 'archive', 'products.json');
+    let raw: string | null = null;
+    try {
+      raw = await fs.readFile(primary, 'utf-8');
+      if (!raw || raw.trim().length === 0) raw = null;
+    } catch {}
+    if (!raw) {
+      raw = await fs.readFile(fallback, 'utf-8');
+    }
     const parsed = JSON.parse(raw) as { products?: JsonProduct[] } | JsonProduct[];
 
     const products: JsonProduct[] = Array.isArray(parsed)

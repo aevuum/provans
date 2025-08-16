@@ -13,7 +13,10 @@
   "categories:normalize": "node scripts/normalize-categories.js",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "update:categories": "tsx scripts/update-categories-from-old.ts"
+  "update:categories": "tsx scripts/update-categories-from-old.ts",
+  "moderation:find-dups": "tsx scripts/moderation/find-duplicates.ts",
+  "moderation:remove-dups": "tsx scripts/moderation/remove-duplicates.ts --apply",
+  "moderation:cleanup-placeholders": "tsx scripts/moderation/cleanup-placeholders.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",

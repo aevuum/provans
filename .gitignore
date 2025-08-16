@@ -14,3 +14,8 @@ yarn-debug.log*
 pnpm-debug.log*
 .vercel
 .turbo
+
+# Local data backups (do not track)
+new-product.backup.*.json
+archive/docs/backups/*.json
+docs/backups/*.json
