@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/admin/photos.js": {
+      "excludeFiles": "public/фото/**"
+    }
+  }
+}
