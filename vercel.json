@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/admin/photos.js": {
+    "src/app/api/admin/photos/route.ts": {
       "excludeFiles": "public/фото/**"
     }
   }
