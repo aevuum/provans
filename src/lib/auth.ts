@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
@@ -59,13 +58,10 @@ export const authOptions = {
   session: { strategy: 'jwt' as const },
   callbacks: {
     async jwt({ token, user }: any) {
-      // При первом входе user есть; проставим роль из user
       if (user && (user as any).role) {
         token.role = (user as any).role;
         return token;
       }
-      // Если роль ещё не определена (например, при входе через OAuth без Prisma Adapter),
-      // подтянем её из нашей таблицы пользователей по email
       if (!token.role && token?.email) {
         try {
           const dbUser = await prisma.user.findFirst({
@@ -91,12 +87,11 @@ export const authOptions = {
       return session;
     },
     async signIn({ user, account }: any) {
-      // Для OAuth провайдеров создаём/обновляем пользователя в нашей таблице User
       if (account && account.provider !== 'credentials') {
         try {
           const email = (user.email || '').toLowerCase();
           const username = (user.name || email || 'user').toLowerCase();
-          if (!email && !username) return true; // пропускаем, если данных нет
+          if (!email && !username) return true;
 
           const existing = await prisma.user.findFirst({
             where: {
@@ -108,7 +103,6 @@ export const authOptions = {
           });
 
           if (existing) {
-            // Обновим e-mail/имя при необходимости
             await prisma.user.update({
               where: { id: existing.id },
               data: {
@@ -116,14 +110,12 @@ export const authOptions = {
                 username: existing.username || username,
               },
             });
-            // Проставим роль в user, чтобы попала в JWT
             (user as any).role = existing.role;
           } else {
             const created = await prisma.user.create({
               data: {
                 username: username || email || `user_${Date.now()}`,
                 email: email || null,
-                // Пароль обязателен по схеме; ставим заглушку, OAuth его не использует
                 password: 'oauth',
                 role: 'user',
               },
@@ -132,17 +124,13 @@ export const authOptions = {
           }
         } catch (e) {
           console.error('OAuth signIn upsert error:', e);
-          // Разрешаем вход даже если апсертом не удалось, чтобы не блокировать пользователей
           return true;
         }
       }
       return true;
     },
   },
-  pages: {
-    signIn: '/auth/signin',
-    error: '/auth/error',
-  },
+  // pages: { error: '/auth/error' }, // Можно оставить только error, но signIn не указывать!
   secret: process.env.NEXTAUTH_SECRET,
 };
 

@@ -1,5 +1,5 @@
 // scripts/check-all-admins.ts
-import { prisma } from '../src/lib/prisma';
+import { prisma } from '../../src/lib/prisma';
 import * as bcrypt from 'bcryptjs';
 
 async function main() {

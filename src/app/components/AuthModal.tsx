@@ -48,16 +48,19 @@ const AuthModal: React.FC<AuthModalProps> = ({
       if (activeTab === 'register') {
         if (!agreeToPolicy) {
           setError('Необходимо согласиться с политикой конфиденциальности');
+          setIsLoading(false);
           return;
         }
 
         if (formData.password !== formData.confirmPassword) {
           setError('Пароли не совпадают');
+          setIsLoading(false);
           return;
         }
 
         if (formData.password.length < 6) {
           setError('Пароль должен содержать минимум 6 символов');
+          setIsLoading(false);
           return;
         }
 
@@ -128,9 +131,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
   const handleOAuthSignIn = async (provider: 'google' | 'yandex') => {
     setIsLoading(true);
     try {
-      await signIn(provider, { 
-        callbackUrl: window.location.href 
-      });
+      await signIn(provider); // Без callbackUrl, чтобы не было лишних редиректов
     } catch (error) {
       console.error('Social auth error:', error);
       setError('Ошибка входа через ' + provider);

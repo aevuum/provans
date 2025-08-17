@@ -2,13 +2,14 @@ import type { Metadata } from 'next';
 import CatalogPage from '@/app/components/CatalogPage';
 
 export const metadata: Metadata = {
-  title: 'Все категории - Provans Decor',
+  title: 'Все товары - Provans Decor',
 };
 
 export default function AllCategoriesAsciiPage() {
   return (
     <CatalogPage
-      title="Все категории"
+      category="all"
+      title="Все товары"
       showCategoryFilter={true}
     />
   );
