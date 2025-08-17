@@ -49,9 +49,9 @@ const SafeImage = memo<SafeImageProps>(({
     }
   }, [onClick, isLoading, error]);
 
-  // Если есть кириллица или пробелы (включая %20) в пути, используем наш API
-  const needsProxy = /[а-яё\s]/i.test(src) || /%20/.test(src);
-  const imageSrc = needsProxy 
+  // Проксируем только если есть кириллица или пробелы (не латиница и не дефис/подчёркивание/точка/цифры)
+  const needsProxy = /[а-яёА-ЯЁ\s]/.test(src);
+  const imageSrc = needsProxy
     ? `/api/image?path=${encodeURIComponent(src)}`
     : src;
 
