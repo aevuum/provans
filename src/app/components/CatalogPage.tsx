@@ -71,7 +71,7 @@ function CatalogPageInner({
           const val = searchParams.get(key);
           if (val) url.searchParams.set(key, val);
         };
-  ['search', 'categories', 'minPrice', 'maxPrice', 'onlyDiscounts'].forEach(pass);
+  ['search', 'categories', 'minPrice', 'maxPrice', 'onlyDiscounts', 'available'].forEach(pass);
 
         // Жёстко фиксируем категорию для страниц категории: всегда передаем slug
         if (category) {

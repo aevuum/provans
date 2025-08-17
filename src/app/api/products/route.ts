@@ -227,7 +227,18 @@ export async function GET(req: NextRequest) {
     const products = await loadProductsFromFile();
 
     // Фильтры
-  let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type, includeNoImage, onlyDiscounts });
+    let filtered = applyFilters(products, { search, minPrice, maxPrice, categories, type, includeNoImage, onlyDiscounts });
+
+    // Фильтр по наличию (quantity > 0)
+    const availableParam = searchParams.get('available');
+    const available = availableParam === '1' || availableParam === 'true';
+    if (available) {
+      filtered = filtered.filter((p: any) => {
+        const q = p.quantity;
+        const num = typeof q === 'number' ? q : (typeof q === 'string' ? parseInt(q) : 0);
+        return num > 0;
+      });
+    }
 
     // Сортировка
     filtered = applySort(filtered, sortBy, sortOrder);

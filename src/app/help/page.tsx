@@ -114,10 +114,10 @@ export default function HelpPage() {
                   </summary>
                   <div className="text-gray-600 text-sm mt-2 pl-4">
                     <ul className="list-disc list-inside space-y-1">
-                      <li>Курьерская доставка по Москве и МО</li>
+                      <li>Курьерская доставка по Владимиру</li>
                       <li>Доставка транспортными компаниями по России</li>
                       <li>Почта России для небольших товаров</li>
-                      <li>Самовывоз из пунктов выдачи</li>
+                      <li>Самовывоз из пунктов выдачи во Владимире</li>
                     </ul>
                   </div>
                 </details>
@@ -128,10 +128,9 @@ export default function HelpPage() {
                   </summary>
                   <div className="text-gray-600 text-sm mt-2 pl-4">
                     <ul className="list-disc list-inside space-y-1">
-                      <li>Бесплатная доставка при заказе от 5000 ₽</li>
-                      <li>По Москве в пределах МКАД — 500 ₽</li>
-                      <li>За МКАД — 500 ₽ + 30 ₽/км</li>
+                      <li>По Владимиру — 350 ₽</li>
                       <li>По России — от 300 ₽ (зависит от региона и веса)</li>
+                      <li>Самовывоз — бесплатно</li>
                     </ul>
                   </div>
                 </details>
@@ -142,9 +141,8 @@ export default function HelpPage() {
                   </summary>
                   <div className="text-gray-600 text-sm mt-2 pl-4">
                     <ul className="list-disc list-inside space-y-1">
-                      <li>По Москве и МО — 1-2 рабочих дня</li>
-                      <li>Крупные города России — 3-5 рабочих дней</li>
-                      <li>Отдаленные регионы — 5-10 рабочих дней</li>
+                      <li>По Владимиру — 1-2 рабочих дня</li>
+                      <li>По России — 3-7 рабочих дней (в зависимости от региона)</li>
                     </ul>
                   </div>
                 </details>
@@ -292,7 +290,7 @@ export default function HelpPage() {
                 ✉️ info@provans.ru
               </a>
             </div>
-            <p className="text-sm mt-4 opacity-90">Работаем ежедневно с 9:00 до 21:00 (МСК)</p>
+            <p className="text-sm mt-4 opacity-90">Работаем ежедневно с 9:00 до 21:00 (по Владимирскому времени)</p>
           </div>
         </div>
       </div>

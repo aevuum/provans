@@ -29,7 +29,8 @@ export default function ReusableFilters({
         const res = await fetch('/api/categories/available', { cache: 'no-store' })
         if (!res.ok) return
         const data = await res.json()
-        const cats: CategoryOption[] = (data?.categories || []).map((c: any) => ({ label: c.name || c.slug, value: c.slug }))
+  type ApiCategory = { slug: string; name: string; count: number; sortOrder: number };
+  const cats: CategoryOption[] = (data?.categories || []).map((c: ApiCategory) => ({ label: c.name || c.slug, value: c.slug }))
         setCategoryOptions(cats)
       } catch {}
     })()
@@ -40,7 +41,8 @@ export default function ReusableFilters({
     categories: searchParams.get('categories') || '',
     minPrice: searchParams.get('minPrice') || '',
     maxPrice: searchParams.get('maxPrice') || '',
-  onlyDiscounts: searchParams.get('onlyDiscounts') || '',
+    onlyDiscounts: searchParams.get('onlyDiscounts') || '',
+    available: searchParams.get('available') === '1' ? '1' : '',
   })
 
   const [isOpen, setIsOpen] = useState(false)
@@ -49,8 +51,7 @@ export default function ReusableFilters({
     const params = new URLSearchParams()
     
     Object.entries(filters).forEach(([key, value]) => {
-      if (value) {
-        // Приводим к строке и обрезаем пробелы
+      if (value && !(key === 'available' && value !== '1')) {
         params.set(key, String(value).trim())
       }
     })
@@ -65,9 +66,21 @@ export default function ReusableFilters({
       search: '',
       categories: '',
       minPrice: '',
-  maxPrice: '',
-  onlyDiscounts: '',
+      maxPrice: '',
+      onlyDiscounts: '',
+      available: '',
     })
+          {/* В наличии */}
+          <div className="mb-4 md:mb-6">
+            <label className="inline-flex items-center gap-2 text-sm text-gray-700">
+              <input
+                type="checkbox"
+                checked={filters.available === '1'}
+                onChange={(e) => setFilters({ ...filters, available: e.target.checked ? '1' : '' })}
+              />
+              Только в наличии
+            </label>
+          </div>
     const normalizedBase = decodeURIComponent(baseUrl).replace('/catalog/все-категории', '/catalog/all')
     router.push(normalizedBase)
   }

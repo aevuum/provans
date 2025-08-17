@@ -37,7 +37,9 @@ export default function CheckoutPage() {
 
   // Расчет стоимости
   const subtotal = cart.reduce((sum, item) => sum + item.price * (item.count || 1), 0);
-  const shippingCost = subtotal >= 5000 ? 0 : 500;
+  // Доставка по Владимиру — 350 ₽, по России — от 300 ₽ (зависит от региона и веса)
+  // Бесплатная доставка и порог убраны
+  const shippingCost = 350;
   const total = subtotal + shippingCost;
 
   // Валидация формы
@@ -348,7 +350,7 @@ export default function CheckoutPage() {
                     className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#B8835A] ${
                       errors.city ? 'border-red-500' : 'border-gray-300'
                     }`}
-                    placeholder="Москва"
+                    placeholder="Владимир"
                   />
                   {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city}</p>}
                 </div>
@@ -377,7 +379,7 @@ export default function CheckoutPage() {
                     value={formData.region}
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B8835A]"
-                    placeholder="Московская область"
+                    placeholder="Владимирская область"
                   />
                 </div>
               </div>
@@ -542,15 +544,8 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between">
                 <span>Доставка:</span>
-                <span className={shippingCost === 0 ? 'text-green-600' : ''}>
-                  {shippingCost === 0 ? 'Бесплатно' : `${shippingCost.toLocaleString('ru-RU')} ₽`}
-                </span>
+                <span>{shippingCost.toLocaleString('ru-RU')} ₽</span>
               </div>
-              {subtotal >= 5000 && shippingCost === 0 && (
-                <p className="text-xs text-green-600">
-                  🎉 Бесплатная доставка от 5000 ₽
-                </p>
-              )}
               <div className="flex justify-between font-bold text-lg border-t pt-2">
                 <span>Итого:</span>
                 <span>{total.toLocaleString('ru-RU')} ₽</span>
