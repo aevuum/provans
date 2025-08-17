@@ -68,7 +68,7 @@ export const Footer = () => {
               <a href="https://t.me/provancebutik" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-gray-400 hover:text-[#7C5C27]">
                 <FaTelegram size={24} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-[#7C5C27]">
+              <a href="https://www.instagram.com/provance33/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-[#7C5C27]">
                 <FaInstagram size={24} />
               </a>
             </div>
