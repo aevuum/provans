@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+  "dev": "next dev",
+  "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "import:products": "tsx scripts/import-products.ts",
@@ -19,6 +19,7 @@
     "moderation:cleanup-placeholders": "tsx scripts/moderation/cleanup-placeholders.ts"
   },
   "dependencies": {
+    "build": "prisma generate && next build",
     "@auth/prisma-adapter": "^2.10.0",
     "@prisma/client": "^6.13.0",
     "@react-icons/all-files": "^4.1.0",
