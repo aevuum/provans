@@ -65,7 +65,7 @@ export const Footer = () => {
               <a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="text-gray-400 hover:text-[#7C5C27]">
                 <FaVk size={24} />
               </a>
-              <a href="https://t.me" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-gray-400 hover:text-[#7C5C27]">
+              <a href="https://t.me/provancebutik" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-gray-400 hover:text-[#7C5C27]">
                 <FaTelegram size={24} />
               </a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-[#7C5C27]">
