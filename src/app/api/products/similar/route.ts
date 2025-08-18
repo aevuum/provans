@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
       isConfirmed: true,
     };
 
-    // Исключаем текущий товар
+    
     if (excludeId) {
       whereClause.id = {
         not: parseInt(excludeId)

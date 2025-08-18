@@ -108,7 +108,6 @@ function applyFilters(
   if (type === 'discount' || onlyDiscounts) {
     res = res.filter((p) => (p.discount || 0) > 0);
   }
-  // Для type=new просто сортируем по id desc ниже и обрежем лимитом — последние добавленные
 
   // Цена
   const min = minPrice ? parseInt(minPrice) : undefined;
@@ -116,8 +115,13 @@ function applyFilters(
   if (typeof min === 'number') res = res.filter((p) => p.price >= min);
   if (typeof max === 'number') res = res.filter((p) => p.price <= max);
 
-  // Категории (точное совпадение по slug/значению из файла, без синонимов)
-  if (categories && categories.length > 0) {
+  // --- Исправление: если категория "all" или её синонимы — не фильтруем по категории ---
+  const ignoreCategories = new Set(['all', 'все-категории', 'all-shop', 'allshop']);
+  if (
+    categories &&
+    categories.length > 0 &&
+    !categories.some((c) => ignoreCategories.has(c.toLowerCase()))
+  ) {
     const set = new Set(categories.map((c) => c.toLowerCase().trim()));
     res = res.filter((p) => (p.category ? set.has(p.category.toLowerCase().trim()) : false));
   }
