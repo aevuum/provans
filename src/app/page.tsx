@@ -72,12 +72,12 @@ export default function Home() {
   }, []);
 
   const categories = [
-    { title: "Vases", image: "/popular-categories/vases.jpg", href: "/catalog/vases" },
-    { title: "Candlesticks", image: "/popular-categories/candlesticks.jpg", href: "/catalog/candlesticks" },
-    { title: "Frames", image: "/popular-categories/frames.jpg", href: "/catalog/frames" },
-    { title: "Flowers", image: "/popular-categories/flowers.jpg", href: "/catalog/flowers" },
-    { title: "Jewelry Boxes", image: "/popular-categories/jewelry-boxes.jpg", href: "/catalog/jewelry-boxes" },
-    { title: "Figurines", image: "/popular-categories/figurines.jpg", href: "/catalog/figurines" }
+    { title: "Вазы", image: "/popular-categories/vases.jpg", href: "/catalog/vases" },
+    { title: "Подсвечники", image: "/popular-categories/candlesticks.jpg", href: "/catalog/candlesticks" },
+    { title: "Рамки", image: "/popular-categories/frames.jpg", href: "/catalog/frames" },
+    { title: "Цветы", image: "/popular-categories/flowers.jpg", href: "/catalog/flowers" },
+    { title: "Шкатулки", image: "/popular-categories/jewelry-boxes.jpg", href: "/catalog/jewelry-boxes" },
+    { title: "Фигурки", image: "/popular-categories/figurines.jpg", href: "/catalog/figurines" }
   ];
 
   const scrollByCard = (containerId: string, direction: 1 | -1) => {

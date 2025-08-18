@@ -1,13 +1,12 @@
 'use client';
 
-// import Image from 'next/image';
 import { LazyImage } from './LazyImage';
 import Link from 'next/link';
 import { FaHeart, FaRegHeart, FaShoppingBag, FaCheck, FaEye, FaEdit } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { addToCart, removeFromCart } from '@/lib/features/cart/cartSlice';
 import { toggleFavorite } from '@/lib/features/favorites/favoritesSlice';
-import { Product, getProductImage, formatProductTitle } from '@/types';
+import { Product, formatProductTitle } from '@/types';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import type { ReactNode } from 'react';
@@ -15,41 +14,48 @@ import type { ReactNode } from 'react';
 interface ProductCardClientProps {
   product: Product;
   isNew?: boolean;
-  // Дополнительно для модерации
   renderFooter?: ReactNode;
   hideAdminEditIcon?: boolean;
   hideCartButton?: boolean;
 }
 
-export function ProductCardClient({ product, isNew = false, renderFooter, hideAdminEditIcon = false, hideCartButton = false }: ProductCardClientProps) {
+export function ProductCardClient({
+  product,
+  isNew = false,
+  renderFooter,
+  hideAdminEditIcon = false,
+  hideCartButton = false,
+}: ProductCardClientProps) {
   const dispatch = useAppDispatch();
-  const cart = useAppSelector(state => state.cart.items);
-  const favorites = useAppSelector(state => state.favorites.items);
+  const cart = useAppSelector((state) => state.cart.items);
+  const favorites = useAppSelector((state) => state.favorites.items);
   const { data: session } = useSession();
   const router = useRouter();
-  
-  const isFavorite = favorites.some(f => f.id === product.id);
-  const inCart = cart.some(c => c.id === product.id);
-  
+
+  const isFavorite = favorites.some((f) => f.id === product.id);
+  const inCart = cart.some((c) => c.id === product.id);
+
   // Проверяем, является ли пользователь админом по роли из сессии
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const isAdmin = (session?.user as any)?.role === 'admin';
 
-  // Новая логика скидки
+  // Логика скидки
   const discount = product.discount || 0;
   const hasDiscount = discount > 0;
   const discountedPrice = hasDiscount
-    ? Math.round((product.price * (1 - discount / 100)) * 100) / 100
+    ? Math.round(product.price * (1 - discount / 100) * 100) / 100
     : product.price;
 
-  // Используем хелпер для получения главного изображения
-  const mainImage = getProductImage(product);
+  // Используем только поле image для главного изображения
+  const mainImage = product.image || '/placeholder.jpg';
 
   const handleAddToCart = () => {
-    dispatch(addToCart({
-      ...product,
-      count: 1
-    }));
+    dispatch(
+      addToCart({
+        ...product,
+        count: 1,
+      })
+    );
   };
 
   const handleRemoveFromCart = () => {
@@ -65,12 +71,14 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
   };
 
   const handleToggleFavorite = () => {
-    dispatch(toggleFavorite({
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      image: mainImage
-    }));
+    dispatch(
+      toggleFavorite({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: mainImage,
+      })
+    );
   };
 
   return (
@@ -131,7 +139,7 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
           priority={false}
         />
       </Link>
-      
+
       {/* Информация о товаре */}
       <div className="p-3 sm:p-4 flex flex-col justify-between flex-grow">
         <div className="font-semibold text-xs sm:text-sm mb-2 text-center min-h-[2.5rem] overflow-hidden">
@@ -141,19 +149,21 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
         </div>
         {hasDiscount ? (
           <div className="flex flex-col items-center mb-2">
-            <span className="text-gray-400 text-xs sm:text-sm line-through">{product.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽</span>
-            <span className="text-black font-bold text-lg sm:text-xl">{discountedPrice.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽</span>
+            <span className="text-gray-400 text-xs sm:text-sm line-through">
+              {product.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽
+            </span>
+            <span className="text-black font-bold text-lg sm:text-xl">
+              {discountedPrice.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽
+            </span>
           </div>
         ) : (
-          <div className="text-black font-bold mb-2 text-center text-lg sm:text-xl">{product.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽</div>
+          <div className="text-black font-bold mb-2 text-center text-lg sm:text-xl">
+            {product.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽
+          </div>
         )}
 
         {/* Кастомный футер, например панель модерации */}
-        {renderFooter && (
-          <div className="mt-2">
-            {renderFooter}
-          </div>
-        )}
+        {renderFooter && <div className="mt-2">{renderFooter}</div>}
       </div>
 
       {/* Кнопка корзины */}
@@ -162,13 +172,17 @@ export function ProductCardClient({ product, isNew = false, renderFooter, hideAd
           <button
             onClick={handleCartToggle}
             className={`p-2 sm:p-3 rounded-full transition-colors cursor-pointer ${
-              inCart 
-                ? 'bg-green-500 hover:bg-red-500 text-white' 
+              inCart
+                ? 'bg-green-500 hover:bg-red-500 text-white'
                 : 'bg-[#E5D3B3] hover:bg-[#D4C2A1] text-gray-800'
             }`}
             title={inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
           >
-            {inCart ? <FaCheck className="w-3 h-3 sm:w-4 sm:h-4" /> : <FaShoppingBag className="w-3 h-3 sm:w-4 sm:h-4" />}
+            {inCart ? (
+              <FaCheck className="w-3 h-3 sm:w-4 sm:h-4" />
+            ) : (
+               <FaShoppingBag className="w-3 h-3 sm:w-4 sm:h-4" />
+            )}
           </button>
         </div>
       )}
