@@ -14,17 +14,17 @@ interface SafeImageProps {
   sizes?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
-  aboveTheFold?: boolean; // новые: для контента в первом экране
+  aboveTheFold?: boolean; // для контента в первом экране
 }
 
-const SafeImage = memo<SafeImageProps>(({ 
-  src, 
-  alt, 
-  width, 
-  height, 
-  className = '', 
-  fill, 
-  priority = false, 
+const SafeImage = memo<SafeImageProps>(({
+  src,
+  alt,
+  width,
+  height,
+  className = '',
+  fill,
+  priority = false,
   sizes,
   style,
   onClick,
@@ -33,7 +33,6 @@ const SafeImage = memo<SafeImageProps>(({
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Мемоизируем обработчики
   const handleLoad = useCallback(() => {
     setIsLoading(false);
   }, []);
@@ -49,15 +48,12 @@ const SafeImage = memo<SafeImageProps>(({
     }
   }, [onClick, isLoading, error]);
 
-  // Проксируем только если есть кириллица или пробелы (не латиница и не дефис/подчёркивание/точка/цифры)
-  const needsProxy = /[а-яёА-ЯЁ\s]/.test(src);
-  const imageSrc = needsProxy
-    ? `/api/image?path=${encodeURIComponent(src)}`
-    : src;
+  // Используем только прямой путь, без проксирования через /api/image
+  const imageSrc = src;
 
   if (error) {
     return (
-      <div 
+      <div
         className={`bg-gray-200 flex items-center justify-center ${className}`}
         style={fill ? { position: 'absolute', inset: 0, ...style } : { width, height, ...style }}
         onClick={handleClick}
@@ -86,20 +82,20 @@ const SafeImage = memo<SafeImageProps>(({
   } as const;
 
   return (
-    <div 
+    <div
       className={`relative ${(fill || (!width && !height)) ? 'w-full h-full' : ''} ${onClick ? 'cursor-pointer' : ''}`}
       onClick={handleClick}
     >
       {isLoading && (
-        <div 
+        <div
           className={`absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center z-10 ${fill ? '' : 'rounded'}`}
           style={fill ? {} : { width, height }}
         >
           <div className="w-5 h-5 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
         </div>
       )}
-      <Image 
-        {...imageProps} 
+      <Image
+        {...imageProps}
         alt={alt || ''}
       />
     </div>
