@@ -47,7 +47,10 @@ export function ProductCardClient({
     : product.price;
 
   // Используем только поле image для главного изображения
-  const mainImage = product.image || '/placeholder.jpg';
+  // Внутри компонента ProductCardClient
+  const mainImage = product.image 
+    ? encodeURI(product.image) 
+    : '/placeholder.jpg';
 
   const handleAddToCart = () => {
     dispatch(
