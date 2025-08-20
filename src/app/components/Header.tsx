@@ -13,12 +13,13 @@ import {
   FaBars,
   FaTimes,
 } from 'react-icons/fa';
-import { useAppSelector } from '../../lib/hooks';
+import { useAppSelector, useAppDispatch } from '../../lib/hooks';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { getProductImage } from '../../types';
 import AuthModal from './AuthModal';
 import { SearchBar } from './SearchBar';
+import { toggleSearch } from '../../lib/features/ui/uiSlice';
 
 interface ExtendedUser {
   id?: string;
@@ -39,6 +40,8 @@ export const Header = React.memo(() => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const { data: session } = useSession() as { data: ExtendedSession | null };
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const showSearch = useAppSelector((state) => state.ui.showSearch);
   // Добавляем флаг монтирования клиента, чтобы избежать SSR/CSR рассинхронизации
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -90,6 +93,21 @@ export const Header = React.memo(() => {
 
   return (
     <header className="bg-white sticky top-0 z-50 shadow-sm">
+      {/* Мобильное модальное окно поиска */}
+      {showSearch && (
+        <div className="fixed inset-0 z-[9999] bg-black/40 flex items-start justify-center pt-24 px-2">
+          <div className="w-full max-w-xl bg-white rounded-2xl shadow-xl p-4 relative">
+            <SearchBar isMobile />
+            <button
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-700"
+              onClick={() => dispatch(toggleSearch(false))}
+              aria-label="Закрыть поиск"
+            >
+              <FaTimes className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      )}
       {/* Top Bar */}
       <div className="px-4 sm:px-6 py-3">
         <div className="flex items-center justify-between gap-4">
@@ -146,7 +164,7 @@ export const Header = React.memo(() => {
             {/* Иконка поиска (только мобильный) */}
             <button
               className="text-gray-600 hover:text-[#7C5C27] transition-colors lg:hidden"
-              onClick={() => router.push('/catalog/all')}
+              onClick={() => dispatch(toggleSearch(true))}
               aria-label="Поиск"
             >
               <FaSearch className="w-5 h-5 cursor-pointer" />

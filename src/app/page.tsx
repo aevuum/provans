@@ -143,9 +143,10 @@ export default function Home() {
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Новинки</h2>
           </div>
-          <div className="relative">
+          <div className="relative min-h-[320px]">
+            {/* Левая стрелка */}
             <button
-              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-10 h-10 sm:w-12 sm:h-12 left-2 sm:left-2 md:left-[-24px] top-1/2 -translate-y-1/2"
+              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-10 h-10 sm:w-12 sm:h-12 left-0 -translate-x-1/2 top-1/2 -translate-y-1/2"
               onClick={() => scrollByCard('new-products-scroll', -1)}
               aria-label="Прокрутить влево"
               type="button"
@@ -167,8 +168,9 @@ export default function Home() {
               ))}
             </div>
 
+            {/* Правая стрелка */}
             <button
-              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-10 h-10 sm:w-12 sm:h-12 right-2 sm:right-2 md:right-[-24px] top-1/2 -translate-y-1/2"
+              className="flex items-center justify-center cursor-pointer bg-white shadow-lg rounded-full absolute z-20 hover:shadow-xl transition-shadow w-10 h-10 sm:w-12 sm:h-12 right-0 translate-x-1/2 top-1/2 -translate-y-1/2"
               onClick={() => scrollByCard('new-products-scroll', 1)}
               aria-label="Прокрутить вправо"
               type="button"
