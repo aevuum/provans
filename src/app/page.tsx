@@ -8,6 +8,7 @@ import ProductCardClient from '@/app/components/ProductCardClient';
 import { Product } from '@/types';
 import { SafeImage } from '@/components/SafeImage';
 import InstagramSection from '@/app/components/InstagramSection';
+import Hero from '@/app/components/Hero'; 
 
 const CategoryCard = ({
   title,
@@ -40,10 +41,6 @@ const CategoryCard = ({
   );
 };
 
-const backgrounds = [
-  { image: '/фон1.png', text: 'ДО 30% НА ИСКУССТВО СОЗДАНИЯ УЮТА', color: 'text-white' }
-];
-
 export default function Home() {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
   const [specialProducts, setSpecialProducts] = useState<Product[]>([]);
@@ -73,10 +70,10 @@ export default function Home() {
 
   const categories = [
     { title: "Вазы", image: "/popular-categories/vases.jpg", href: "/catalog/vases" },
-    { title: "Подсвечники", image: "/popular-categories/candlesticks.jpg", href: "/catalog/candlesticks" },
-    { title: "Рамки", image: "/popular-categories/frames.jpg", href: "/catalog/frames" },
+    { title: "Текстиль", image: "/popular-categories/textiles.jpg", href: "/catalog/textiles" },
+    { title: "Посуда", image: "/popular-categories/dishes.jpg", href: "/catalog/dishes" },
     { title: "Цветы", image: "/popular-categories/flowers.jpg", href: "/catalog/flowers" },
-    { title: "Шкатулки", image: "/popular-categories/jewelry-boxes.jpg", href: "/catalog/jewelry-boxes" },
+    { title: "Освещение", image: "/popular-categories/lighting.jpg", href: "/catalog/lighting" },
     { title: "Фигурки", image: "/popular-categories/figurines.jpg", href: "/catalog/figurines" }
   ];
 
@@ -91,7 +88,8 @@ export default function Home() {
 
   return (
     <main className="font-sans">
-      {/* Hero Section */}
+     
+      {/*
       <section className="relative h-[80vh] md:h-screen">
         <div className="absolute inset-0 overflow-hidden">
           {backgrounds.map((bg, index) => (
@@ -121,6 +119,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
+
+      {/* Новый компонент Hero с видеофоном */}
+      <Hero />
 
       {/* Популярные Категории */}
       <section className="container mx-auto px-4 py-12 md:py-16">

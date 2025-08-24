@@ -14,7 +14,7 @@ import {
   FaTimes,
 } from 'react-icons/fa';
 import { useAppSelector, useAppDispatch } from '../../lib/hooks';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { getProductImage } from '../../types';
 import AuthModal from './AuthModal';
@@ -34,6 +34,17 @@ interface ExtendedSession {
   expires: string;
 }
 
+interface Subcategory {
+  name: string;
+  href: string;
+}
+
+interface Category {
+  name: string;
+  href: string;
+  subcategories?: Subcategory[];
+}
+
 export const Header = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartPopoverOpen, setCartPopoverOpen] = useState(false);
@@ -42,40 +53,50 @@ export const Header = React.memo(() => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const showSearch = useAppSelector((state) => state.ui.showSearch);
-  // Добавляем флаг монтирования клиента, чтобы избежать SSR/CSR рассинхронизации
   const [mounted, setMounted] = useState(false);
+
+  const pathname = usePathname();
+
   useEffect(() => setMounted(true), []);
 
-  // Используем селекторы с мемоизацией
+  // Определяем, находимся ли мы на главной странице
+  const isHome = pathname === '/';
+
+  // Состояние скролла только для главной
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    if (!isHome) return;
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isHome]);
+
   const cart = useAppSelector((state) => state.cart.items);
   const favorites = useAppSelector((state) => state.favorites.items);
 
-  // Мемоизируем вычисления
-  const cartTotal = useMemo(() => 
-    cart.reduce((sum, item) => sum + (item.price * (item.count || 1)), 0), 
+  const cartTotal = useMemo(
+    () => cart.reduce((sum, item) => sum + (item.price * (item.count || 1)), 0),
     [cart]
   );
 
-  // Оптимизированные обработчики
-  const toggleMenu = useCallback(() => setIsMenuOpen(prev => !prev), []);
+  const toggleMenu = useCallback(() => setIsMenuOpen((prev) => !prev), []);
 
   const onUserIconClick = () => {
-    if (session) {
-      router.push('/profile');
-    } else {
-      setLoginModalOpen(true);
-    }
+    if (session) router.push('/profile');
+    else setLoginModalOpen(true);
   };
 
   const closeCartWithDelay = useCallback(() => {
-    // увеличенная задержка закрытия поповера корзины
     setTimeout(() => setCartPopoverOpen(false), 2000);
   }, []);
 
-  // Задержки для дропдаунов (каталог/профиль)
+  // Каталог
   const [catalogOpen, setCatalogOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeCategoryRef, setActiveCategoryRef] = useState<HTMLDivElement | null>(null);
   const [profileOpen, setProfileOpen] = useState(false);
   const hoverTimers = useRef<{ catalog?: ReturnType<typeof setTimeout>; profile?: ReturnType<typeof setTimeout> }>({});
+
   const openWithDelay = (key: 'catalog' | 'profile') => {
     if (hoverTimers.current[key]) clearTimeout(hoverTimers.current[key]);
     hoverTimers.current[key] = setTimeout(() => {
@@ -86,14 +107,105 @@ export const Header = React.memo(() => {
   const closeWithDelay = (key: 'catalog' | 'profile') => {
     if (hoverTimers.current[key]) clearTimeout(hoverTimers.current[key]);
     hoverTimers.current[key] = setTimeout(() => {
-      if (key === 'catalog') setCatalogOpen(false);
-      else setProfileOpen(false);
-    }, 2000);
+      if (key === 'catalog') {
+        setCatalogOpen(false);
+        setActiveCategory(null);
+        setActiveCategoryRef(null);
+      } else setProfileOpen(false);
+    }, 200);
   };
 
+  const catalogStructure: Category[] = [
+    {
+      name: 'Декор',
+      href: '/catalog/decor',
+      subcategories: [
+        { name: 'Фоторамки', href: '/catalog/decor?subcategory=frames' },
+        { name: 'Вазы', href: '/catalog/decor?subcategory=vases' },
+        { name: 'Зеркала', href: '/catalog/decor?subcategory=mirrors' },
+        { name: 'Подсвечники', href: '/catalog/decor?subcategory=candlesticks' },
+        { name: 'Шкатулки', href: '/catalog/decor?subcategory=jewelry-boxes' },
+        { name: 'Интерьерные фигуры', href: '/catalog/decor?subcategory=figurines' },
+        { name: 'Часы', href: '/catalog/decor?subcategory=clocks' },
+        { name: 'Садовый декор и фигуры', href: '/catalog/decor?subcategory=garden' },
+      ]
+    },
+    {
+      name: 'Искусственные цветы',
+      href: '/catalog/artificial-flowers',
+      subcategories: [
+        { name: 'Искусственные цветы', href: '/catalog/artificial-flowers' },
+        { name: 'Интерьерные композиции', href: '/catalog/artificial-flowers?subcategory=arrangements' },
+      ]
+    },
+    {
+      name: 'Текстиль',
+      href: '/catalog/textiles',
+      subcategories: [
+        { name: 'Покрывала и пледы', href: '/catalog/textiles?subcategory=blankets' },
+        { name: 'Скатерти и салфетки', href: '/catalog/textiles?subcategory=tablecloths' },
+        { name: 'Косметички', href: '/catalog/textiles?subcategory=cosmetic-bags' },
+        { name: 'Подушки и наволочки', href: '/catalog/textiles?subcategory=pilows' },
+        { name: 'Полотенца', href: '/catalog/textiles?subcategory=towels' },
+      ]
+    },
+    {
+      name: 'Посуда и бокалы',
+      href: '/catalog/tableware',
+      subcategories: [
+        { name: 'Посуда и сервизы', href: '/catalog/tableware?subcategory=dishes' },
+        { name: 'Столовые приборы', href: '/catalog/tableware?subcategory=cutlery' },
+        { name: 'Бокалы для напитков', href: '/catalog/tableware?subcategory=glasses' },
+        { name: 'Предметы для сервировки', href: '/catalog/tableware?subcategory=serving' },
+      ]
+    },
+    {
+      name: 'Мебель',
+      href: '/catalog/furniture',
+      subcategories: []
+    },
+    {
+      name: 'Ароматы для дома',
+      href: '/catalog/home-fragrances',
+      subcategories: [
+        { name: 'Диффузоры', href: '/catalog/home-fragrances?subcategory=diffusers' },
+        { name: 'Ароматные букеты', href: '/catalog/home-fragrances?subcategory=bouquets' },
+        { name: 'Ароматные свечи', href: '/catalog/home-fragrances?subcategory=candles' },
+        { name: 'Спреи для дома', href: '/catalog/home-fragrances?subcategory=sprays' },
+      ]
+    },
+    {
+      name: 'Пасхальная коллекция',
+      href: '/catalog/easter-collection',
+      subcategories: []
+    },
+    {
+      name: 'Новый год',
+      href: '/catalog/new-year',
+      subcategories: [
+        { name: 'Фигуры и статуэтки', href: '/catalog/new-year?subcategory=figures' },
+        { name: 'Ветки и композиции', href: '/catalog/new-year?subcategory=branches' },
+        { name: 'Елочные игрушки', href: '/catalog/new-year?subcategory=toys' },
+        { name: 'Елочные шары', href: '/catalog/new-year?subcategory=balls' },
+        { name: 'Елки', href: '/catalog/new-year?subcategory=trees' },
+        { name: 'Гирлянды', href: '/catalog/new-year?subcategory=garlands' },
+      ]
+    }
+  ];
+
+  // Определяем стили для хедера и элементов в зависимости от страницы и скролла
+  const headerBg = isHome && !isScrolled ? 'bg-transparent' : 'bg-white shadow-sm';
+  const textColor = isHome && !isScrolled ? 'text-white' : 'text-gray-800';
+  const iconColor = isHome && !isScrolled ? 'text-white' : 'text-gray-600';
+  
+  // Определяем путь к логотипу
+  const logoSrc = isHome && !isScrolled 
+    ? '/icons/provans-white5.png' // Белый логотип только на главной без скролла
+    : '/icons/provans-b2.png'; // Черный логотип по умолчанию
+
   return (
-    <header className="bg-white sticky top-0 z-50 shadow-sm">
-      {/* Мобильное модальное окно поиска */}
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBg}`}>
+      {/* Мобильный поиск */}
       {showSearch && (
         <div className="fixed inset-0 z-[9999] bg-black/40 flex items-start justify-center pt-24 px-2">
           <div className="w-full max-w-xl bg-white rounded-2xl shadow-xl p-4 relative">
@@ -108,71 +220,62 @@ export const Header = React.memo(() => {
           </div>
         </div>
       )}
+
       {/* Top Bar */}
       <div className="px-4 sm:px-6 py-3">
         <div className="flex items-center justify-between gap-4">
-          {/* Burger + Adaptive Logo */}
+          {/* Burger + Logo */}
           <div className="flex items-center gap-4">
             <button
               onClick={toggleMenu}
-              className="text-gray-600 lg:hidden"
+              className={`lg:hidden ${iconColor}`}
               aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
             >
-              {isMenuOpen ? (
-                <FaTimes className="w-6 h-6" />
-              ) : (
-                <FaBars className="w-6 h-6" />
-              )}
+              {isMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
             </button>
-
             <Link
               href="/"
               className="relative h-12 w-20 sm:w-24 md:w-28 lg:w-[88px] xl:w-[96px] 2xl:w-32 transition-all duration-300 flex-shrink-0 cursor-pointer ml-0 lg:ml-6"
             >
               <Image
-                src="/icons/provans-b2.png"
+                src={logoSrc}
                 alt="Логотип"
                 fill
-                className="object-contain"
+                className={`object-contain ${isHome && !isScrolled ? 'scale-100' : ''}`}
                 priority
                 sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, (max-width: 1400px) 120px, 128px"
               />
             </Link>
-
-            {/* Desktop Contact рядом с логотипом */}
+            {/* Контакты */}
             <div className="hidden lg:flex flex-col ml-4">
               <div className="flex items-center gap-2">
-                <FaPhone className="text-gray-500 text-sm" />
+                <FaPhone className={`text-sm ${textColor}`} />
                 <a
                   href="tel:88007771872"
-                  className="font-medium text-gray-500 text-sm hover:text-[#7C5C27] transition-colors"
+                  className={`font-medium text-sm transition-colors ${textColor} hover:text-[#7C5C27]`}
                 >
                   <span className="tabular-nums">8 (800) 777-18-72</span>
                 </a>
               </div>
-              <p className="text-gray-400 text-xs mt-1 ml-5">с 09:00 до 21:00</p>
+              <p className={`text-xs mt-1 ml-5 ${isHome && !isScrolled ? 'text-white/70' : 'text-gray-400'}`}>
+                с 09:00 до 21:00
+              </p>
             </div>
           </div>
-
-          {/* Правый блок: поиск + иконки в одной линии с равными отступами */}
+          {/* Icons */}
           <div className="flex items-center justify-end gap-6 flex-1">
-            {/* Десктопный поиск */}
             <div className="hidden lg:block w-full max-w-xl">
               <SearchBar placeholder="Поиск товаров..." />
             </div>
-
-            {/* Иконка поиска (только мобильный) */}
             <button
-              className="text-gray-600 hover:text-[#7C5C27] transition-colors lg:hidden"
+              className={`transition-colors lg:hidden ${iconColor} hover:text-[#7C5C27]`}
               onClick={() => dispatch(toggleSearch(true))}
               aria-label="Поиск"
             >
               <FaSearch className="w-5 h-5 cursor-pointer" />
             </button>
-
-            {/* Избранное */}
             <button
-              className="relative text-gray-600 hover:text-[#7C5C27] transition-colors"
+              className={`relative transition-colors ${iconColor} hover:text-[#7C5C27]`}
               onClick={() => router.push('/favorites')}
               aria-label="Избранное"
             >
@@ -183,21 +286,18 @@ export const Header = React.memo(() => {
                 </span>
               )}
             </button>
-
-            {/* Профиль */}
             <div
               className="relative"
               onMouseEnter={() => openWithDelay('profile')}
               onMouseLeave={() => closeWithDelay('profile')}
             >
               <button
-                className="text-gray-600 hover:text-[#7C5C27] transition-colors"
+                className={`transition-colors ${iconColor} hover:text-[#7C5C27]`}
                 onClick={onUserIconClick}
                 aria-label="Профиль"
               >
                 <FaUser className="w-6 h-6 cursor-pointer" />
               </button>
-              {/* Ховер-меню профиля (десктоп) */}
               {profileOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                   <nav className="py-2">
@@ -208,15 +308,13 @@ export const Header = React.memo(() => {
                 </div>
               )}
             </div>
-
-            {/* Корзина */}
             <div
               className="relative"
               onMouseEnter={() => setCartPopoverOpen(true)}
               onMouseLeave={closeCartWithDelay}
             >
               <button
-                className="relative text-gray-600 hover:text-[#7C5C27] transition-colors"
+                className={`relative transition-colors ${iconColor} hover:text-[#7C5C27]`}
                 aria-label="Корзина"
                 tabIndex={0}
                 onClick={() => router.push('/cart')}
@@ -228,7 +326,6 @@ export const Header = React.memo(() => {
                   </span>
                 )}
               </button>
-              {/* Popover */}
               {cartPopoverOpen && (
                 <div
                   className="absolute right-0 mt-2 w-96 bg-white shadow-lg rounded-lg z-50 p-4 min-w-[320px]"
@@ -283,7 +380,7 @@ export const Header = React.memo(() => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden lg:block border-t border-gray-100">
+      <div className={`hidden lg:block border-t transition-all duration-300 ${isHome && !isScrolled ? 'border-white/20' : 'border-gray-100'}`}>
         <div className="container mx-auto px-4 py-2">
           <nav className="flex items-center justify-center gap-8">
             <li
@@ -293,38 +390,94 @@ export const Header = React.memo(() => {
             >
               <button
                 type="button"
-                className="flex items-center gap-1 rounded-md px-4 py-2 text-gray-800 transition-colors hover:bg-white/10"
+                className={`flex items-center gap-1 rounded-md px-4 py-2 transition-colors ${textColor} ${isHome && !isScrolled ? 'hover:bg-white/10' : 'hover:bg-gray-50'}`}
                 onClick={() => setCatalogOpen(v => !v)}
               >
                 Каталог
-                <FaChevronDown className={`ml-1 h-3 w-3 transition-transform ${catalogOpen ? 'rotate-180' : ''} cursor-pointer`} />
+                <FaChevronDown className={`ml-1 h-3 w-3 transition-transform ${catalogOpen ? 'rotate-180' : ''} cursor-pointer ${isHome && !isScrolled ? 'text-white' : 'text-gray-600'}`} />
               </button>
-              <div
-                className={`absolute left-0 top-full z-50 mt-1 w-56 rounded-md bg-white py-2 shadow-lg transition-opacity duration-150 ${catalogOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
-                onMouseEnter={() => openWithDelay('catalog')}
-                onMouseLeave={() => closeWithDelay('catalog')}
-              >
-                {[
-                  { name: 'Все категории', href: '/catalog/all' },
-                  { name: 'Вазы', href: '/catalog/vases' },
-                  { name: 'Подсвечники', href: '/catalog/candlesticks' },
-                  { name: 'Рамки', href: '/catalog/frames' },
-                  { name: 'Цветы', href: '/catalog/flowers' },
-                  { name: 'Шкатулки', href: '/catalog/jewelry-boxes' },
-                  { name: 'Фигурки', href: '/catalog/figurines' },
-                  { name: 'Книгодержатели', href: '/catalog/bookends' },
-                ].map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block px-4 py-2 text-gray-700 hover:bg-[#E5D3B3] hover:text-[#7C5C27]"
-                    onClick={() => setCatalogOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
+              
+              {/* Выпадающее меню каталога */}
+              {catalogOpen && (
+                <div
+                  className="absolute left-0 top-full z-50 bg-white rounded-md shadow-lg py-2" // Убрал mt-2 чтобы подкатегории были ближе
+                  style={{ width: '340px' }}
+                  onMouseEnter={() => {
+                    if (hoverTimers.current.catalog) {
+                      clearTimeout(hoverTimers.current.catalog);
+                    }
+                  }}
+                  onMouseLeave={() => closeWithDelay('catalog')}
+                >
+                  <div className="relative">
+                    {/* Основные категории */}
+                    <div>
+                      {catalogStructure.map((category) => (
+                        <div
+                          key={category.href}
+                          ref={(el) => {
+                            if (activeCategory === category.name && el) {
+                              setActiveCategoryRef(el);
+                            }
+                          }}
+                          className="relative group"
+                          onMouseEnter={() => {
+                            if (hoverTimers.current.catalog) {
+                              clearTimeout(hoverTimers.current.catalog);
+                            }
+                            setActiveCategory(category.name);
+                          }}
+                          onMouseLeave={() => {
+                            // Не очищаем активную категорию сразу
+                          }}
+                        >
+                          <Link
+                            href={category.href}
+                            className={`block px-4 py-2 transition-colors rounded ${activeCategory === category.name ? 'bg-[#E5D3B3] text-[#7C5C27]' : 'text-gray-800 hover:bg-[#E5D3B3] hover:text-[#7C5C27]'}`}
+                            onClick={() => setCatalogOpen(false)}
+                          >
+                            {category.name}
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Подкатегории - показываются справа от активной категории */}
+                    {activeCategory && activeCategoryRef && (() => {
+                      const activeCat = catalogStructure.find(cat => cat.name === activeCategory);
+                      return activeCat?.subcategories && activeCat.subcategories.length > 0;
+                    })() && (
+                      <div 
+                        className="absolute left-full top-0 bg-white border border-gray-200 rounded-md shadow-lg py-2 z-50 min-w-[200px]"
+                        style={{
+                          top: activeCategoryRef.offsetTop,
+                        }}
+                        onMouseEnter={() => {
+                          if (hoverTimers.current.catalog) {
+                            clearTimeout(hoverTimers.current.catalog);
+                          }
+                        }}
+                        onMouseLeave={() => closeWithDelay('catalog')}
+                      >
+                        {catalogStructure
+                          .find(cat => cat.name === activeCategory)
+                          ?.subcategories?.map((subcategory) => (
+                            <Link
+                              key={subcategory.href}
+                              href={subcategory.href}
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#E5D3B3] hover:text-[#7C5C27] transition-colors"
+                              onClick={() => setCatalogOpen(false)}
+                            >
+                              {subcategory.name}
+                            </Link>
+                          ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </li>
+
             {[
               { name: 'Акции', href: '/discount' },
               { name: 'Новинки', href: '/catalog/new' },
@@ -334,7 +487,7 @@ export const Header = React.memo(() => {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-700 hover:text-[#7C5C27] transition-colors"
+                className={`transition-colors ${textColor} hover:text-[#7C5C27]`}
               >
                 {link.name}
               </Link>
@@ -353,34 +506,35 @@ export const Header = React.memo(() => {
           >
             <FaTimes className="w-6 h-6" />
           </button>
-
           <div className="container mx-auto">
             <nav className="flex flex-col gap-1 py-4">
               <div className="mb-4">
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Каталог</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { name: 'Все категории', href: '/catalog/all' },
-                    { name: 'Вазы', href: '/catalog/vases' },
-                    { name: 'Подсвечники', href: '/catalog/candlesticks' },
-                    { name: 'Рамки', href: '/catalog/frames' },
-                    { name: 'Цветы', href: '/catalog/flowers' },
-                    { name: 'Шкатулки', href: '/catalog/jewelry-boxes' },
-                    { name: 'Фигурки', href: '/catalog/figurines' },
-                    { name: 'Книгодержатели', href: '/catalog/bookends' },
-                  ].map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="text-gray-700 py-2 px-3 rounded hover:bg-[#E5D3B3] hover:text-[#7C5C27]"
-                      onClick={toggleMenu}
-                    >
-                      {item.name}
-                    </Link>
+                <div className="flex flex-col gap-2">
+                  {catalogStructure.map((category) => (
+                    <details key={category.href}>
+                      <summary className="font-semibold cursor-pointer py-2">
+                        {category.name}
+                      </summary>
+                      {category.subcategories && category.subcategories.length > 0 && (
+                        <ul className="pl-4 text-sm text-gray-700">
+                          {category.subcategories.map((subcategory) => (
+                            <li key={subcategory.href}>
+                              <Link 
+                                href={subcategory.href}
+                                className="block py-1"
+                                onClick={toggleMenu}
+                              >
+                                {subcategory.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </details>
                   ))}
                 </div>
               </div>
-
               {[
                 { name: 'Акции', href: '/discount' },
                 { name: 'Новинки', href: '/catalog/new' },

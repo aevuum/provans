@@ -1,6 +1,6 @@
 'use client';
 
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaVk, FaTelegramPlane } from 'react-icons/fa';
 import { SafeImage } from '@/components/SafeImage';
 
 interface InstagramCardProps {
@@ -40,7 +40,6 @@ function InstagramCard({ src, alt }: InstagramCardProps) {
 }
 
 export default function InstagramSection() {
-  // Правильные пути к изображениям Instagram — соответствуют файлам в public/инста
   const instagramImages = [
     '/instagram/IMG_1.png',
     '/instagram/IMG_2.png',
@@ -55,24 +54,46 @@ export default function InstagramSection() {
   const handleInstagramClick = () => {
     window.open('https://www.instagram.com/provance33/', '_blank');
   };
+  const handleVkClick = () => {
+    window.open('https://vk.com/provance_33', '_blank');
+  };
+  const handleTelegramClick = () => {
+    window.open('https://t.me/provancebutik', '_blank');
+  };
 
   return (
     <section className="container mx-auto px-4 py-12 bg-gradient-to-r ">
       {/* Заголовок секции */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Следите за нами в Instagram
+          Подпишись на нас
         </h2>
         <p className="text-gray-600 text-lg mb-8">
-          Вдохновляйтесь идеями декора и следите за новинками
+          Следите за нашими новинками
         </p>
-        <button 
-          onClick={handleInstagramClick}
-          className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-        >
-          <FaInstagram className="text-2xl" />
-          @provance33
-        </button>
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <button 
+            onClick={handleInstagramClick}
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-7 py-4 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base"
+          >
+            <FaInstagram className="text-2xl" />
+            @provance33
+          </button>
+          <button
+            onClick={handleVkClick}
+            className="inline-flex items-center gap-3 bg-[#2787F5] text-white px-9 py-4 rounded-full font-semibold hover:bg-[#1966b3] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base"
+          >
+            <FaVk className="text-2xl" />
+            ВКонтакте
+          </button>
+          <button
+            onClick={handleTelegramClick}
+            className="inline-flex items-center gap-3 bg-[#229ED9] text-white px-11 py-4 rounded-full font-semibold hover:bg-[#157fa3] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base"
+          >
+            <FaTelegramPlane className="text-2xl" />
+            Telegram
+          </button>
+        </div>
       </div>
 
       {/* Сетка изображений */}
@@ -88,9 +109,9 @@ export default function InstagramSection() {
 
       {/* Дополнительная информация */}
       <div className="text-center mt-8">
-        <p className="text-gray-500 text-sm">
+        {/* <p className="text-gray-500 text-sm">
           Нажмите на любое фото, чтобы перейти в наш Instagram
-        </p>
+        </p> */}
       </div>
     </section>
   );
