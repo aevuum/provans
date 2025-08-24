@@ -132,10 +132,10 @@ export const Header = React.memo(() => {
     },
     {
       name: 'Искусственные цветы',
-      href: '/catalog/artificial-flowers',
+      href: '/catalog/flowers',
       subcategories: [
-        { name: 'Искусственные цветы', href: '/catalog/artificial-flowers' },
-        { name: 'Интерьерные композиции', href: '/catalog/artificial-flowers?subcategory=arrangements' },
+        { name: 'Искусственные цветы', href: '/catalog/flowers' },
+        { name: 'Интерьерные композиции', href: '/catalog/flowers' },
       ]
     },
     {
