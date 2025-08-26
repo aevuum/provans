@@ -120,11 +120,11 @@ export const Header = React.memo(() => {
       name: 'Декор',
       href: '/catalog/decor',
       subcategories: [
-        { name: 'Фоторамки', href: '/catalog/decor?subcategory=frames' },
-        { name: 'Вазы', href: '/catalog/decor?subcategory=vases' },
+        { name: 'Фоторамки', href: '/catalog/frames' },
+        { name: 'Вазы', href: '/catalog/vases' },
         { name: 'Зеркала', href: '/catalog/decor?subcategory=mirrors' },
-        { name: 'Подсвечники', href: '/catalog/decor?subcategory=candlesticks' },
-        { name: 'Шкатулки', href: '/catalog/decor?subcategory=jewelry-boxes' },
+        { name: 'Подсвечники', href: '/catalog/candlesticks' },
+        { name: 'Шкатулки', href: '/catalog/jewelry-boxes' },
         { name: 'Интерьерные фигуры', href: '/catalog/decor?subcategory=figurines' },
         { name: 'Часы', href: '/catalog/decor?subcategory=clocks' },
         { name: 'Садовый декор и фигуры', href: '/catalog/decor?subcategory=garden' },
@@ -134,10 +134,10 @@ export const Header = React.memo(() => {
       name: 'Искусственные цветы',
       href: '/catalog/flowers',
       subcategories: [
-        { name: 'Искусственные цветы', href: '/catalog/flowers' },
-        { name: 'Интерьерные композиции', href: '/catalog/flowers' },
-      ]
-    },
+    // { name: 'Искусственные цветы', href: '/catalog/flowers' },
+    { name: 'Интерьерные композиции', href: '/catalog/flowers?subcategory=arrangements' },
+  ]
+},
     {
       name: 'Текстиль',
       href: '/catalog/textiles',
@@ -194,7 +194,7 @@ export const Header = React.memo(() => {
   ];
 
   // Определяем стили для хедера и элементов в зависимости от страницы и скролла
-  const headerBg = isHome && !isScrolled ? 'bg-transparent' : 'bg-white shadow-sm';
+  const headerBg = isHome && !isScrolled ? 'bg-transparent' : 'bg-[var(--color-primary-50)] shadow-sm';
   const textColor = isHome && !isScrolled ? 'text-white' : 'text-gray-800';
   const iconColor = isHome && !isScrolled ? 'text-white' : 'text-gray-600';
   

@@ -1,9 +1,25 @@
 @import "tailwindcss";
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap');
 
 :root {
-  --background: #ffffff;
+  --footer-heading: 'Cormorant Garamond', serif;
+
+  --background: var(--color-primary-50);
   --foreground: #171717;
+    --color-primary-50:  #F5F1E8;
+  --color-primary-100: #E5D3B3;
+  --color-primary-200: #D4C2A1;
+  --color-primary-300: #C4B08E;
+  --color-primary-400: #B39E7C;
+  --color-primary-500: #A38C6A;
+  --color-primary-600: #927A58;
+  --color-primary-700: #7C5C27;
+  --color-primary-800: #6A4F23;
+  --color-primary-900: #58421E;
+
+  --color-olive-100: #556B2F;
+  --color-olive-200: #4A5B2F;
+  --color-olive-300: #3E4A2F;
 }
 
 /* @theme inline {
@@ -22,7 +38,7 @@
 
 body {
   margin: 0;
-  background: var(--background);
+  background: var(--color-primary-50);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;

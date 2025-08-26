@@ -19,7 +19,7 @@ const Hero = () => {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover z-0"
-        src="/video/move-provance.mp4"
+        src="/video/7s-move.mp4"
         autoPlay
         loop
         muted

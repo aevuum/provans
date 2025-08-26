@@ -197,7 +197,7 @@ function CatalogPageInner({
 
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
-      {/* Хлебные крошки */}
+   
       <Breadcrumbs items={breadcrumbs} className="mb-4 md:mb-6" />
 
       {/* Заголовок */}
@@ -229,7 +229,7 @@ function CatalogPageInner({
             <ProductSort currentSort={currentSort} onSortChange={handleSortChange} />
           </div>
 
-          {/* Пусто */}
+         
           {products.length === 0 ? (
             <div className={`${emptyAlignClass} text-gray-600 py-10`}>{emptyMessage}</div>
           ) : (

@@ -6,7 +6,7 @@ import { Footer } from "./components/Footer";
 import NotificationContainer from "./components/NotificationContainer";
 
 export const metadata: Metadata = {
-  title: "Provans Decor | Эксклюзивный декор для дома и подарков – Ручная работа",
+  title: "Provance Decor | Эксклюзивный декор для дома и подарков – Ручная работа",
   description:
     "Купить авторский декор для интерьера: фоторамки, вазы, зеркала, текстиль, посуда, ароматы для дома. Натуральные материалы, доставка по всей России.",
   keywords: [
@@ -43,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" suppressHydrationWarning data-scroll-behavior="smooth">
-      <body className="antialiased flex flex-col min-h-screen">
+      <body className=" antialiased flex flex-col min-h-screen ">
         {/* Провайдеры приложения (NextAuth + Redux) */}
         <Providers>
           <Header />

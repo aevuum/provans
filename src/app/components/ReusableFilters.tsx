@@ -234,7 +234,7 @@ export default function ReusableFilters({
                 checked={filters.available === '1'}
                 onChange={(e) => setFilters({ ...filters, available: e.target.checked ? '1' : '' })}
               />
-              Только в наличии
+              Новинки
             </label>
           </div>
 

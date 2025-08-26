@@ -9,6 +9,7 @@ import { Product } from '@/types';
 import { SafeImage } from '@/components/SafeImage';
 import InstagramSection from '@/app/components/InstagramSection';
 import Hero from '@/app/components/Hero'; 
+import  SectionBlog from './components/SectionBlog';
 
 const CategoryCard = ({
   title,
@@ -33,7 +34,7 @@ const CategoryCard = ({
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
       <div className="absolute bottom-5 left-4 right-4">
-        <div className="bg-white/10 p-3 rounded-xl backdrop-blur-sm w-max">
+        <div className="bg-white/20 p-3 rounded-xl backdrop-blur-sm w-max">
           <h3 className="text-white font-bold text-lg">{title}</h3>
         </div>
       </div>
@@ -70,10 +71,10 @@ export default function Home() {
 
   const categories = [
     { title: "Вазы", image: "/popular-categories/vases.jpg", href: "/catalog/vases" },
-    { title: "Текстиль", image: "/popular-categories/textiles.jpg", href: "/catalog/textiles" },
+    { title: "Текстиль", image: "/popular-categories/textiless.jpg", href: "/catalog/textiles" },
     { title: "Посуда", image: "/popular-categories/dishes.jpg", href: "/catalog/dishes" },
     { title: "Цветы", image: "/popular-categories/flowers.jpg", href: "/catalog/flowers" },
-    { title: "Освещение", image: "/popular-categories/lighting.jpg", href: "/catalog/lighting" },
+    { title: "Декор", image: "/popular-categories/decor.jpg", href: "/catalog/decor" },
     { title: "Фигурки", image: "/popular-categories/figurines.jpg", href: "/catalog/figurines" }
   ];
 
@@ -231,8 +232,9 @@ export default function Home() {
       )}
 
       {/* Instagram секция */}
-      <section className="container mx-auto px-4 mb-16">
-        <InstagramSection />
+      <section className="container mx-auto px-1 mb-16">
+        {/* <InstagramSection /> */}
+        <SectionBlog />
       </section>
     </main>
   );

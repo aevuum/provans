@@ -10,6 +10,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        olive: {
+          100: '#556B2F',
+          200: '#4A5B2F',
+          300: '#3E4A2F',
+        },
         primary: {
           50: '#F5F1E8',
           100: '#E5D3B3',
