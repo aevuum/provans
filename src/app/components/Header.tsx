@@ -54,6 +54,7 @@ export const Header = React.memo(() => {
   const dispatch = useAppDispatch();
   const showSearch = useAppSelector((state) => state.ui.showSearch);
   const [mounted, setMounted] = useState(false);
+  const [isSearchLight, setIsSearchLight] = useState(true);
 
   const pathname = usePathname();
 
@@ -62,12 +63,22 @@ export const Header = React.memo(() => {
   // Определяем, находимся ли мы на главной странице
   const isHome = pathname === '/';
 
-  // Состояние скролла только для главной
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
-    if (!isHome) return;
-    const onScroll = () => setIsScrolled(window.scrollY > 40);
+    if (!isHome) {
+      setIsSearchLight(false);
+      return;
+    }
+
+    const onScroll = () => {
+      const scrolled = window.scrollY > 40;
+      setIsScrolled(scrolled);
+      setIsSearchLight(!scrolled);
+    };
+
     window.addEventListener('scroll', onScroll);
+    onScroll();
+
     return () => window.removeEventListener('scroll', onScroll);
   }, [isHome]);
 
@@ -265,7 +276,16 @@ export const Header = React.memo(() => {
           {/* Icons */}
           <div className="flex items-center justify-end gap-6 flex-1">
             <div className="hidden lg:block w-full max-w-xl">
-              <SearchBar placeholder="Поиск товаров..." />
+              {/* Desktop Search */}
+              <div className="hidden lg:block w-full max-w-xl">
+                <SearchBar 
+                  placeholder="Поиск товаров..." 
+                  className={isSearchLight 
+                    ? 'text-white placeholder-white focus:ring-white/50 focus:border-white border-white/30 hover:border-white/50' 
+                    : 'text-gray-900 placeholder-[#7F7D79] border-gray-300'
+                  }
+                />
+              </div>
             </div>
             <button
               className={`transition-colors lg:hidden ${iconColor} hover:text-[#7C5C27]`}

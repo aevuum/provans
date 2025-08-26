@@ -3836,7 +3836,8 @@
       "discount": 0,
       "size": "30*18*18",
       "category": "vases",
-      "id": 426
+      "id": 426,
+      "adminNote": "Ограниченная серия"
     },
     {
       "title": "Книгодержатель Держатель для книг лягушка в короне",
@@ -3845,7 +3846,8 @@
       "discount": 0,
       "size": "22*26*10",
       "id": 427,
-      "category": "bookends"
+      "category": "bookends",
+      "adminNote": "Ограниченная серия"
     },
     {
       "title": "Книгодержатель Держатель для книг мишка коричневый",
@@ -3854,7 +3856,9 @@
       "discount": 0,
       "size": "15*19*10",
       "id": 428,
-      "category": "bookends"
+      "category": "bookends",
+      "adminNote": "Ограниченная серия"
+
     },
     {
       "title": "Книгодержатель Книгодержатели пара античные руины",
@@ -3962,7 +3966,8 @@
       "discount": 0,
       "size": "7.7*12.5*25.5",
       "id": 440,
-      "category": "jewelry-boxes"
+      "category": "jewelry-boxes",
+      "adminNote": "Ограниченная серия"
     },
     {
       "title": "Шкатулка шоколадная кожа с бронзовым",
@@ -3971,7 +3976,8 @@
       "discount": 0,
       "size": "10.5*16*25",
       "id": 441,
-      "category": "jewelry-boxes"
+      "category": "jewelry-boxes",
+      "adminNote": "Ограниченная серия"
     }
   ]
 }

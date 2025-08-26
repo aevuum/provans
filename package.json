@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev",
-  "build": "prisma generate && next build",
+    "dev": "next dev",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "import:products": "tsx scripts/import-products.ts",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
+    "@nestjs/mapped-types": "*",
     "@prisma/client": "^6.13.0",
     "@react-icons/all-files": "^4.1.0",
     "@reduxjs/toolkit": "^2.8.2",
@@ -29,6 +30,8 @@
     "bcryptjs": "^3.0.2",
     "csv-parse": "^6.1.0",
     "lucide-react": "^0.536.0",
+    "nestjs": "^0.0.1",
+    "nestjs-yookassa": "^1.1.28",
     "next": "^15.4.6",
     "next-auth": "^4.24.11",
     "nodemailer": "^6.10.1",

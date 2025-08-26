@@ -9,7 +9,7 @@ import { toggleFavorite } from '@/lib/features/favorites/favoritesSlice';
 import { Product, formatProductTitle } from '@/types';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 
 interface ProductCardClientProps {
   product: Product;
@@ -35,30 +35,25 @@ export function ProductCardClient({
   const isFavorite = favorites.some((f) => f.id === product.id);
   const inCart = cart.some((c) => c.id === product.id);
 
-  // Проверяем, является ли пользователь админом по роли из сессии
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const isAdmin = (session?.user as any)?.role === 'admin';
 
-  // Логика скидки
   const discount = product.discount || 0;
   const hasDiscount = discount > 0;
   const discountedPrice = hasDiscount
     ? Math.round(product.price * (1 - discount / 100) * 100) / 100
     : product.price;
 
-  // Используем только поле image для главного изображения
-  // Внутри компонента ProductCardClient
   const mainImage = product.image 
     ? encodeURI(product.image) 
     : '/placeholder.jpg';
 
+  useEffect(() => {
+    console.log('Product with adminNote:', product.id, product.adminNote);
+  }, [product]);
+
   const handleAddToCart = () => {
-    dispatch(
-      addToCart({
-        ...product,
-        count: 1,
-      })
-    );
+    dispatch(addToCart({ ...product, count: 1 }));
   };
 
   const handleRemoveFromCart = () => {
@@ -84,107 +79,127 @@ export function ProductCardClient({
     );
   };
 
+  // Определяем adminNote и его отображаемый текст
+  const adminNote = product.adminNote || '';
+  const shortNote = adminNote.length > 11 ? `${adminNote.slice(0, 11)}...` : adminNote;
+
+
   return (
-    <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden h-full flex flex-col">
+    <div className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col max-w-xs mx-auto">
       {/* Бейджи */}
-      <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
+      <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
         {isNew && (
-          <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-full uppercase tracking-wider  ring-1 ring-white/60">
+          <span className="bg-gradient-to-r from-emerald-500 to-emerald-700 text-white text-xs px-3 py-1.5 rounded-full uppercase font-bold tracking-wide ring-1 ring-white/60">
             NEW
           </span>
         )}
         {hasDiscount && (
-          <span className="text-white bg-red-500 text-xs px-2 py-1 rounded">-{discount}%</span>
+          <span className="text-white bg-red-600 text-sm px-3 py-1.5 rounded-full font-bold">
+            -{discount}%
+          </span>
         )}
       </div>
 
       {/* Кнопки в углах */}
-      <div className="absolute top-2 right-2 z-10 flex flex-col gap-2">
-        {/* Кнопка избранного */}
+      <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
         <button
           onClick={handleToggleFavorite}
-          className="p-2 sm:p-3 rounded-full bg-white/80 hover:bg-white transition-colors cursor-pointer"
+          className="p-3 rounded-full bg-white/90 hover:bg-white transition-all duration-200 shadow-md"
         >
           {isFavorite ? (
-            <FaHeart className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
+            <FaHeart className="w-5 h-5 text-red-500" />
           ) : (
-            <FaRegHeart className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+            <FaRegHeart className="w-5 h-5 text-gray-500" />
           )}
         </button>
 
-        {/* Кнопка просмотра */}
         <Link href={`/products/${product.id}`}>
-          <button className="p-2 sm:p-3 rounded-full bg-white/80 hover:bg-white transition-colors cursor-pointer">
-            <FaEye className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500" />
+          <button className="p-3 rounded-full bg-white/90 hover:bg-white transition-all duration-200 shadow-md">
+            <FaEye className="w-5 h-5 text-gray-600" />
           </button>
         </Link>
 
-        {/* Кнопка редактирования для админа */}
         {!hideAdminEditIcon && isAdmin && (
           <button
             onClick={() => router.push(`/admin/products/${product.id}/edit`)}
-            className="p-2 sm:p-3 rounded-full bg-white/80 hover:bg-white transition-colors cursor-pointer"
+            className="p-3 rounded-full bg-white/90 hover:bg-white transition-all duration-200 shadow-md"
             title="Редактировать товар"
           >
-            <FaEdit className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+            <FaEdit className="w-5 h-5 text-blue-600" />
           </button>
         )}
       </div>
 
-      {/* Изображение товара */}
-      <Link href={`/products/${product.id}`} className="relative aspect-square overflow-hidden bg-gray-100 block">
+      {/* Изображение товара — больше */}
+      <Link href={`/products/${product.id}`} className="relative aspect-square overflow-hidden bg-gray-50 block">
         <LazyImage
           src={mainImage}
           alt={product.title}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          className="object-cover group-hover:scale-110 transition-transform duration-500"
           sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-          priority={false}
         />
+
+        {/* Оверлей админского комментария */}
+        {adminNote && (
+          <div
+            className="absolute top-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-200 cursor-pointer z-20"
+            title={adminNote}
+            style={{
+              maxWidth: '80px',
+              minWidth: 'auto',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {shortNote}
+          </div>
+        )}
       </Link>
 
       {/* Информация о товаре */}
-      <div className="p-3 sm:p-4 flex flex-col justify-between flex-grow">
-        <div className="font-semibold text-xs sm:text-sm mb-2 text-center min-h-[2.5rem] overflow-hidden">
-          <Link href={`/products/${product.id}`} className="line-clamp-2 hover:underline">
+      <div className="p-5 flex flex-col justify-between flex-grow">
+        <div className="font-semibold text-sm sm:text-base mb-3 text-center min-h-[3rem]">
+          <Link href={`/products/${product.id}`} className="line-clamp-2 hover:underline text-gray-800 text-lg">
             {formatProductTitle(product.title)}
           </Link>
         </div>
+
         {hasDiscount ? (
-          <div className="flex flex-col items-center mb-2">
-            <span className="text-gray-400 text-xs sm:text-sm line-through">
+          <div className="flex flex-col items-center mb-3">
+            <span className="text-gray-500 text-sm line-through">
               {product.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽
             </span>
-            <span className="text-black font-bold text-lg sm:text-xl">
+            <span className="text-black font-bold text-2xl">
               {discountedPrice.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽
             </span>
           </div>
         ) : (
-          <div className="text-black font-bold mb-2 text-center text-lg sm:text-xl">
+          <div className="text-black font-bold text-center text-2xl mb-3">
             {product.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽
           </div>
         )}
 
-        {/* Кастомный футер, например панель модерации */}
-        {renderFooter && <div className="mt-2">{renderFooter}</div>}
+        {renderFooter && <div className="mt-3">{renderFooter}</div>}
       </div>
 
-      {/* Кнопка корзины */}
+      {/* Кнопка корзины — больше */}
       {!hideCartButton && (
-        <div className="absolute bottom-2 right-2">
+        <div className="absolute bottom-3 right-3">
           <button
             onClick={handleCartToggle}
-            className={`p-2 sm:p-3 rounded-full transition-colors cursor-pointer ${
+            className={`p-3 rounded-full transition-all duration-200 cursor-pointer shadow-lg transform hover:scale-105 ${
               inCart
-                ? 'bg-green-500 hover:bg-red-500 text-white'
-                : 'bg-[#E5D3B3] hover:bg-[#D4C2A1] text-gray-800'
+                ? 'bg-green-600 hover:bg-red-600 text-white'
+                : 'bg-[#E5D3B3] hover:bg-[#C5B3A3] text-gray-800'
             }`}
             title={inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
           >
             {inCart ? (
-              <FaCheck className="w-3 h-3 sm:w-4 sm:h-4" />
+              <FaCheck className="w-5 h-5" />
             ) : (
-               <FaShoppingBag className="w-3 h-3 sm:w-4 sm:h-4" />
+              <FaShoppingBag className="w-5 h-5" />
             )}
           </button>
         </div>

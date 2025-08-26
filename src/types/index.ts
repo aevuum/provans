@@ -33,6 +33,7 @@ export interface Product {
   subcategoryId?: number | null;
   categoryModel?: Category | null;
   subcategoryModel?: Subcategory | null;
+  adminNote?: string;
 }
 
 export interface Category {
