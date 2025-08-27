@@ -10,6 +10,7 @@ import { SafeImage } from '@/components/SafeImage';
 import InstagramSection from '@/app/components/InstagramSection';
 import Hero from '@/app/components/Hero'; 
 import  SectionBlog from './components/SectionBlog';
+import PromotionsContent from './discount/PromotionsContent';
 
 const CategoryCard = ({
   title,
@@ -191,51 +192,15 @@ export default function Home() {
         </section>
       )}
 
-      {/* Специальные предложения */}
-      {specialProducts.length > 0 && (
-        <section className="container mx-auto px-4 pt-6 pb-16 md:pb-20">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Специальное предложение</h2>
-          </div>
-        <div className="relative">
-          <button
-            className="flex items-center justify-center cursor-pointer bg-white shadow rounded-full absolute z-20 w-12 h-12 left-2 md:left-[-24px] top-1/2 -translate-y-1/2"
-            onClick={() => { document.getElementById('special-products-scroll')?.scrollBy({ left: -300, behavior: 'smooth' }); }}
-            aria-label="Прокрутить влево"
-            type="button"
-          >
-            <svg width="20" height="20" fill="none">
-              <path d="M12 4l-6 6 6 6" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <div id="special-products-scroll" className="flex gap-4 overflow-x-auto pb-2 md:pb-4 scroll-smooth scrollbar-hide" style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none' }}>
-            {specialProducts.map((product) => (
-              <ProductCardClient key={product.id} product={product} />
-            ))}
-          </div>
-          <button
-            className="flex items-center justify-center cursor-pointer bg-white shadow rounded-full absolute z-20 w-12 h-12 right-2 md:right-[-24px] top-1/2 -translate-y-1/2"
-            onClick={() => { document.getElementById('special-products-scroll')?.scrollBy({ left: 300, behavior: 'smooth' }); }}
-            aria-label="Прокрутить вправо"
-            type="button"
-          >
-            <svg width="20" height="20" fill="none">
-              <path d="M8 4l6 6-6 7" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
-        <style jsx global>{`
-          #special-products-scroll::-webkit-scrollbar { display: none; }
-          #special-products-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-        `}</style>
-      </section>
-      )}
 
-      {/* Instagram секция */}
+      {/* Блог секция */}
       <section className="container mx-auto px-1 mb-16">
-        {/* <InstagramSection /> */}
+       
         <SectionBlog />
+        {/* Специальные предложения */}
       </section>
+
+      <PromotionsContent />
     </main>
   );
 }

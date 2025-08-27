@@ -11,7 +11,7 @@ export default function DiscountPage() {
     <CatalogPage
       apiEndpoint="/api/products?type=discount"
       title="🔥 Акции и скидки"
-      description="Товары со скидками — не упустите выгодные предложения!"
+      // description="Товары со скидками — не упустите выгодные предложения!"
       showCategoryFilter={true}
       emptyAlign="right"
     />

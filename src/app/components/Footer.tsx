@@ -55,7 +55,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link href="/about" className="hover:text-[var(--color-primary-200)] transition-colors duration-200">
-                  О компании
+                  О нас
                 </Link>
               </li>
               <li>

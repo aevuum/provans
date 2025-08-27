@@ -4,7 +4,7 @@
       "title": "Подсвечник золотой узкий",
       "image": "/фото/Подсвечник золотой узкий.jpeg",
       "price": 500,
-      "discount": 0,
+      "discount": 5,
       "size": "22*8*8",
       "category": "candlesticks",
       "id": 1
@@ -13,7 +13,7 @@
       "title": "Подсвечник золотой узкий",
       "image": "/фото/Подсвечник золотой узкий 2.jpeg",
       "price": 900,
-      "discount": 0,
+      "discount": 5,
       "size": "32*8*8",
       "category": "candlesticks",
       "id": 2
@@ -22,7 +22,7 @@
       "title": "Подсвечник розовый антик",
       "image": "/фото/Подсвечник розовый антик.jpeg",
       "price": 1100,
-      "discount": 0,
+      "discount": 5,
       "size": "12*11*11",
       "category": "candlesticks",
       "id": 3
@@ -31,7 +31,7 @@
       "title": "Подсвечник арт элемент бирюзовый",
       "image": null,
       "price": 6100,
-      "discount": 0,
+      "discount": 5,
       "size": "33*10*10",
       "category": "candlesticks",
       "id": 4
@@ -40,7 +40,7 @@
       "title": "Подсвечник разное стекло в ассортим",
       "image": "/фото/Подсвечник разное стекло в ассортим .jpeg",
       "price": 1150,
-      "discount": 0,
+      "discount": 5,
       "size": "27*8*8",
       "category": "candlesticks",
       "id": 5
@@ -49,7 +49,7 @@
       "title": "Подсвечник бокал золотой витой",
       "image": "/фото/Подсвечник бокал золотой витой .jpeg",
       "price": 2900,
-      "discount": 0,
+      "discount": 5,
       "size": "29,5*11*11",
       "category": "candlesticks",
       "id": 6
@@ -58,7 +58,7 @@
       "title": "Подсвечник бокал Шампань",
       "image": "/фото/Подсвечник бокал шампань.jpeg",
       "price": 3000,
-      "discount": 0,
+      "discount": 10,
       "size": "35*11*11",
       "category": "candlesticks",
       "id": 7
@@ -67,7 +67,7 @@
       "title": "Подсвечник бокал Шампань",
       "image": "/фото/Подсвечник бокал шампань 2.jpeg",
       "price": 3500,
-      "discount": 0,
+      "discount": 10,
       "size": "40*13*13",
       "category": "candlesticks",
       "id": 8
@@ -76,7 +76,7 @@
       "title": "Подсвечник голубой с золотым градиентом",
       "image": "/фото/Подсвечник голубой с золотым градиентом.jpeg",
       "price": 3000,
-      "discount": 0,
+      "discount": 10,
       "size": "35*12*12",
       "category": "candlesticks",
       "id": 9
@@ -85,7 +85,7 @@
       "title": "Подсвечник серебро винтажное стекло",
       "image": "/фото/Подсвечник серебро винтажное стекло.jpeg",
       "price": 2900,
-      "discount": 0,
+      "discount": 10,
       "size": "27*10*10",
       "category": "candlesticks",
       "id": 10
@@ -94,7 +94,7 @@
       "title": "Подсвечник металл мятый золотой",
       "image": "/фото/Подсвечник металл мятый золотой.jpeg",
       "price": 4750,
-      "discount": 0,
+      "discount": 10,
       "size": "39*11,5*11,5",
       "category": "candlesticks",
       "id": 11
