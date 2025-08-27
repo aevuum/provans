@@ -100,7 +100,7 @@ export const Footer = () => {
               <div className="flex items-center gap-4 text-xl md:text-2xl text-white/90 mb-8">
                 <FaMapMarkerAlt className="text-[var(--color-primary-400)]" size={32} />
                 <span>
-                  Владимир, ул.Примерная 1
+                  Владимир, Большая Московская 19
                 </span>
               </div>
               <div className="flex gap-4">

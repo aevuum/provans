@@ -128,7 +128,7 @@ export default function Home() {
 
       {/* Популярные Категории */}
       <section className="container mx-auto px-4 py-12 md:py-16">
-        <h2 className="text-2xl md:text-3xl font-bold tracking-wider text-center mb-8 text-gray-800">Популярные Категории</h2>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-wider text-center mb-8 text-gray-800">Популярные Категории</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {categories.map((category) => (
             <CategoryCard
