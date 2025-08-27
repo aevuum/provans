@@ -120,7 +120,7 @@ export default function ProductDetailPage() {
   ].filter(Boolean);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       <Head>
         <title>{`${product.title} — Provans Decor`}</title>
         <meta name="description" content={product.comment || product.title} />
