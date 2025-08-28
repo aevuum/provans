@@ -1,8 +1,6 @@
 import CatalogPage from "@/components/CatalogPage";
 
-
-
-export default function ArtificialFlowersPage()  {
+export default function ArtificialFlowersPage() {
   return (
       <CatalogPage
         category="artificial-flowers"
