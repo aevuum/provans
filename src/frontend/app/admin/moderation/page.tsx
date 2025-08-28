@@ -1,8 +1,8 @@
 'use client';
 
-import { Product } from '@prisma/client';
 import { useState, useEffect } from 'react';
 import { SafeImage } from '../../components/SageImage';
+import { Product } from '../../../types';
 
 
 const CATEGORIES = [

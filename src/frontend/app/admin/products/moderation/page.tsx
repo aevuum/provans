@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { FaCheck, FaTimes, FaEdit, FaEye, FaTrash, FaCheckDouble } from 'react-icons/fa';
-import { Product } from '@/types';
+import { Product } from '../../../../types';
 
 export default function ModerationPage() {
   const { data: session } = useSession();

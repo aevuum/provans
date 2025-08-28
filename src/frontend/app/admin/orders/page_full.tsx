@@ -3,9 +3,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Order, OrderStatus } from '@/types/order'; // Импортируйте типы Order и OrderStatus из вашего проекта
 import { FaEye, FaTrash, FaSearch, FaFilter } from 'react-icons/fa';
 import Link from 'next/link';
+import { Order, OrderStatus } from '../../../types';
 
 export default function AdminOrdersPage() {
   const { data: session } = useSession();

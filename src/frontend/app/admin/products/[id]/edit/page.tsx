@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useParams } from 'next/navigation';
-import { Product } from '@/types';
+import { Product } from '../../../../../types';
 
 export default function AdminProductEditPage() {
   const { data: session } = useSession();

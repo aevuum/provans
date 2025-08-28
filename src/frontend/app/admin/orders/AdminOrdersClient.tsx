@@ -5,12 +5,12 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { FaEye, FaTrash, FaSearch, FaFilter } from 'react-icons/fa';
 import Link from 'next/link';
-import { Order, OrderStatus } from '@prisma/client';
+import { OrderStatus } from '@prisma/client';
+import { Order } from '../../../types';
 
 export default function AdminOrdersClient() {
   const { data: session } = useSession();
   const router = useRouter();
-  
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({

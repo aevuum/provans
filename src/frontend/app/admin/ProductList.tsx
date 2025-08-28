@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useAppSelector } from '@/lib/hooks';
 import ProductCardAdmin from '../components/ProductCardAdmin';
 import ProductEditModal from './ProductEditModal';
-import { Product } from '@/types'; // Импортируй тип Product
+import { useAppSelector } from '../../lib/hooks';
+import { Product } from '../../types';
 
 export default function ProductList() {
   const products = useAppSelector((state) => state.products.items);
