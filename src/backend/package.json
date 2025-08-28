@@ -8,7 +8,7 @@
   "scripts": {
     "build": "npx nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "node dist/main",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -21,11 +21,13 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.1.6",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.1.6",
     "nestjs": "^0.0.1",
     "nestjs-yookassa": "^1.1.28",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
