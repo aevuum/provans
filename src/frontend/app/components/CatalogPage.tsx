@@ -202,10 +202,10 @@ function CatalogPageInner({
 
       {/* Заголовок */}
       <div className="flex flex-col gap-2 md:gap-3 mb-4 md:mb-6">
-        <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">{title}</h1>
+        {/* <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">{title}</h1>
         {description && (
           <p className="text-gray-600 text-sm md:text-base max-w-3xl">{description}</p>
-        )}
+        )} */}
         {showCounter && (
           <span className="text-sm text-gray-500">Найдено: {totalProducts}</span>
         )}

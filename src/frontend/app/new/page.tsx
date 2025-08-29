@@ -11,7 +11,7 @@ export default function NewProductsAsciiPage() {
   return (
     <CatalogPage
       title="Новинки"
-  // description="Самые свежие поступления"
+      // description="Самые свежие поступления"
       apiEndpoint="/api/products?type=new"
       pageSize={100}
       highlightNew
