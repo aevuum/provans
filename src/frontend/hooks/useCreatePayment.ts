@@ -26,6 +26,7 @@ const createPayment = async (data: CreatePaymentDto): Promise<PaymentResponse> =
     body: JSON.stringify(data),
   });
 
+
   if (!response.ok) {
     const error = await response.json().catch(() => ({}));
     throw new Error(error.message || 'Ошибка при создании платежа');

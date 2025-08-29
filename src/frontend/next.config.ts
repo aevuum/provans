@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
         port: '3001',
         pathname: '/**',
-      }
+      },
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24 * 7,
@@ -23,23 +23,22 @@ const nextConfig: NextConfig = {
     unoptimized: false,
     dangerouslyAllowSVG: true,
   },
+
   eslint: {
     ignoreDuringBuilds: true,
   },
-  
+
   async redirects() {
-    return [
-    
-    ];
+    return [];
   },
 
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  
+
   compress: true,
   serverExternalPackages: ['sharp'],
-  
+
   async headers() {
     return [
       {
@@ -49,6 +48,14 @@ const nextConfig: NextConfig = {
       {
         source: '/_next/static/(.*)',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://backend:3001/api/:path*',
       },
     ];
   },
