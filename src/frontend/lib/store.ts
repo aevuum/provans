@@ -1,3 +1,4 @@
+// lib/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from '@reduxjs/toolkit';
 import { notificationsReducer } from './features/notifications/notificationSlice';
@@ -24,12 +25,12 @@ export const loadState = (): Partial<RootState> | undefined => {
     if (!stored) return undefined;
 
     const parsed = JSON.parse(stored);
+
     localStorage.removeItem('app_state');
 
     if (typeof parsed !== 'object' || parsed === null) return undefined;
 
     const { ui, cart, favorites, products, notifications } = parsed;
-
     const state: Partial<RootState> = {};
 
     if (ui && typeof ui === 'object') state.ui = ui;
@@ -66,19 +67,25 @@ export const saveState = (state: RootState): void => {
   }
 };
 
-const preloadedState = loadState();
+export const createStore = () => {
+  const preloadedState = loadState();
 
-export const store = configureStore({
-  reducer: rootReducer,
-  preloadedState,
-});
+  const store = configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
 
-let saveTimer: ReturnType<typeof setTimeout> | null = null;
-store.subscribe(() => {
-  if (saveTimer) clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => {
-    saveState(store.getState());
-  }, 250);
-});
+  let saveTimer: ReturnType<typeof setTimeout> | null = null;
+  store.subscribe(() => {
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      saveState(store.getState());
+    }, 250);
+  });
+
+  return store;
+};
+
+export const store = createStore();
 
 export type AppDispatch = typeof store.dispatch;
