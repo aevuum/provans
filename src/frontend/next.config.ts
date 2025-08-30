@@ -1,6 +1,10 @@
 import type { NextConfig } from 'next';
+import path from 'path';
 
 const nextConfig: NextConfig = {
+  // Ensure Next traces files from the repository root when multiple lockfiles
+  // exist so client module ids in the RSC manifest are not absolute paths.
+  outputFileTracingRoot: path.resolve(__dirname, '..', '..'),
   images: {
     remotePatterns: [
       {

@@ -84,6 +84,20 @@ export function generateCatalogBreadcrumbs(category?: string, productTitle?: str
       'flowers': { name: 'Цветы', href: '/catalog/flowers' },
       'jewelry-boxes': { name: 'Шкатулки', href: '/catalog/jewelry-boxes' },
       'figurines': { name: 'Фигурки', href: '/catalog/figurines' },
+      'decor': { name: 'Декор', href: '/catalog/decor' },
+      'bookends': { name: 'Книгодержатели', href: '/catalog/bookends' },
+      'artificial-flowers': { name: 'Искусственные цветы', href: '/catalog/artificial-flowers' },
+      'textiles': { name: 'Текстиль', href: '/catalog/textiles' },
+      'tableware': { name: 'Посуда', href: '/catalog/tableware' },
+      'easter-collection': { name: 'Пасхальная коллекция', href: '/catalog/easter-collection' },
+      'new-year': { name: 'Новогодняя коллекция', href: '/catalog/new-year' },
+      'furniture': { name: 'Мебель', href: '/catalog/furniture' },
+      'home-fragrances': { name: 'Ароматы для дома', href: '/catalog/home-fragrances' },
+      'candle-holders': { name: 'Подставки для свечей', href: '/catalog/candle-holders' },
+      'promotions': { name: 'Акции', href: '/catalog/promotions' },
+      'all': { name: 'Все товары', href: '/catalog/all' },
+      'new': { name: 'Новинки', href: '/catalog/new' },
+      
     };
 
     const categoryInfo = categoryMap[category];

@@ -43,10 +43,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" suppressHydrationWarning data-scroll-behavior="smooth">
-      <body className="antialiased flex flex-col min-h-screen">
+  <body className="antialiased flex flex-col min-h-screen site-fabric-bg">
         <Providers>
           <Header />
-          <main className="mt-16">{children}</main>
+          <main className="mt-25 ">
+            {children}
+          </main>
           <Footer />
           <NotificationContainer />
         </Providers>

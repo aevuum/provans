@@ -184,12 +184,12 @@ export const Header = React.memo(() => {
   const navLinks = [
     { name: 'Акции', href: '/discount', style: '' },
     { name: 'Новинки', href: '/catalog/new', style: '' },
-    { name: 'О нас', href: '/about', style: 'italic font-serif', fontFamily: 'Georgia, Times, "Times New Roman", serif' },
-    { name: 'Контакты', href: '/contacts', style: '' },
+  { name: 'Контакты', href: '/contacts', style: '' },
+  { name: 'О нас', href: '/about', style: 'italic font-serif', fontFamily: 'Georgia, Times, "Times New Roman", serif' },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBg} font-sans`}>
+    <header className={`site-header fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBg} font-sans`}>
       {/* Мобильный поиск */}
       {showSearch && (
         <div className="fixed inset-0 z-[9999] bg-black/40 flex items-start justify-center pt-24 px-2">
@@ -384,17 +384,12 @@ export const Header = React.memo(() => {
             >
               <button
                 type="button"
-                className={`flex items-center gap-1 rounded-md px-4 py-2 transition-colors text-white hover:text-[var(--color-primary-200)]`}
+                className={`flex items-center gap-1 rounded-md px-4 py-2 transition-colors text-white hover:text-[var(--color-primary-200)] nav-link`}
                 onClick={() => setCatalogOpen(v => !v)}
-                style={{
-                  fontFamily: 'var(--footer-heading)',
-                  fontWeight: 400,
-                  fontSize: '1.1rem',
-                  letterSpacing: '0.08em',
-                }}
+                aria-expanded={catalogOpen}
               >
                 Каталог
-                <FaChevronDown className={`ml-1 h-3 w-3 transition-transform ${catalogOpen ? 'rotate-180' : ''} cursor-pointer`} />
+                <FaChevronDown className={`catalog-chevron ml-1 h-3 w-3 transition-transform ${catalogOpen ? 'rotate-180' : ''}`} />
               </button>
               {/* Выпадающее меню каталога */}
               {catalogOpen && (
@@ -481,19 +476,19 @@ export const Header = React.memo(() => {
                 </div>
               )}
             </li>
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`
-                  transition-colors text-white hover:text-[var(--color-primary-200)] px-4 py-2 rounded-md
-                  ${link.style}
-                `}
-                style={link.fontFamily ? { fontFamily: link.fontFamily, fontWeight: 500, fontSize: '1.1rem' } : { fontFamily: 'var(--footer-heading)', fontWeight: 400, fontSize: '1.1rem' }}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isSerif = link.name === 'О нас';
+              const linkClass = `${isSerif ? 'nav-link nav-link--serif' : 'nav-link'}`;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${linkClass} transition-colors text-white hover:text-[var(--color-primary-200)] px-4 py-2 rounded-md ${link.style}`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
            
           </nav>
         </div>
@@ -515,9 +510,12 @@ export const Header = React.memo(() => {
                 <h3 className="text-lg font-medium text-white mb-2" style={{ fontFamily: 'var(--footer-heading)' }}>Каталог</h3>
                 <div className="flex flex-col gap-2">
                   {catalogStructure.map((category) => (
-                    <details key={category.href}>
-                      <summary className="font-semibold cursor-pointer py-2 text-white" style={{ fontFamily: 'var(--footer-heading)' }}>
-                        {category.name}
+                    <details key={category.href} className="group" data-has-sub={category.subcategories && category.subcategories.length > 0}>
+                      <summary className="font-semibold cursor-pointer py-2 text-white flex items-center justify-between" style={{ fontFamily: 'var(--footer-heading)' }}>
+                        <Link href={category.href} onClick={toggleMenu} className="block">{category.name}</Link>
+                        {category.subcategories && category.subcategories.length > 0 && (
+                          <span className="ml-2 text-white/80 group-open:rotate-180 transition-transform"><FaChevronDown /></span>
+                        )}
                       </summary>
                       {category.subcategories && category.subcategories.length > 0 && (
                         <ul className="pl-4 text-sm text-white/80">

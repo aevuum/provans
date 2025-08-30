@@ -33,9 +33,9 @@ const CategoryCard = ({
         sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-      <div className="absolute bottom-5 left-4 right-4">
-        <div className="bg-white/20 p-3 rounded-xl backdrop-blur-sm w-max">
-          <h3 className="text-white font-bold text-lg">{title}</h3>
+      <div className="absolute bottom-3 left-2 right-2">
+        <div className="bg-white/20 px-2 py-1 sm:px-3 sm:py-2 rounded-xl backdrop-blur-sm w-max max-w-full">
+          <h3 className="text-white font-bold text-base sm:text-lg md:text-xl truncate max-w-[90vw] md:max-w-[180px]">{title}</h3>
         </div>
       </div>
     </Link>
@@ -88,46 +88,14 @@ export default function Home() {
   };
 
   return (
-    <main className="font-sans">
+    <main className="font-sans home-hero-shadow">
      
-      {/*
-      <section className="relative h-[80vh] md:h-screen">
-        <div className="absolute inset-0 overflow-hidden">
-          {backgrounds.map((bg, index) => (
-            <Image
-              key={bg.image}
-              src={bg.image}
-              alt="Provans Decor"
-              fill
-              className={`object-cover transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0 absolute'}`}
-              priority={index === 0}
-            />
-          ))}
-        </div>
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
-          <div className="backdrop-blur-sm bg-white/10 p-8 rounded-3xl max-w-2xl border border-white/20 mt-[-150px] md:mt-[-250px]">
-            <h1 className={`text-3xl md:text-4xl font-bold leading-[1.3] mb-8 ${backgrounds[0].color}`}>
-              {backgrounds[0].text}
-            </h1>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/discount"
-                className="inline-flex items-center justify-center bg-[#E5D3B3] hover:bg-[#D4C2A1] border-2 border-[#D4C2A1] hover:border-[#C3B190] text-[#7C5C27] font-bold py-4 px-10 rounded-full text-lg tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-              >
-                Подробнее
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      */}
-
-      {/* Новый компонент Hero с видеофоном */}
+      {/* Hero секция */}
       <Hero />
 
       {/* Популярные Категории */}
-      <section className="container mx-auto px-4 py-12 md:py-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-wider text-center mb-8 text-gray-800">Популярные Категории</h2>
+      <section className=" mt-20  md:mt-15 px-4 py-1 md:py-2">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-wider text-center mb-8 text-gray-800 font-script ">Популярные Категории</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {categories.map((category) => (
             <CategoryCard
@@ -155,7 +123,7 @@ export default function Home() {
               type="button"
             >
               <svg width="20" height="20" fill="none">
-                <path d="M12 4l-6 6 6 6" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12 4l-6 6 6 6" stroke="#667" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
 

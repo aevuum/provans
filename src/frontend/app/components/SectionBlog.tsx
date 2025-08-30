@@ -44,7 +44,7 @@ export default function AuthorDecorBlock() {
           </div>
 
           {/* Блок с текстом на тёмном фоне */}
-          <div className="bg-[#2e3526] text-white p-8 md:p-12 flex flex-col justify-center">
+          <div className="bg-[#2e3526] text-white p-8 md:p-18 flex flex-col justify-center">
             <h3 className="text-2xl md:text-3xl font-medium mb-4">
               «Декоративная посуда:<br />modern classic»
             </h3>
@@ -64,8 +64,9 @@ export default function AuthorDecorBlock() {
         </div>
       </div>
 
-      {/* Нижний блок с 3 изображениями */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 p-4 md:p-8">
+  {/* Нижний блок с 3 изображениями */}
+  {/* Используем колонки: 1 колонка на мобильных, 3 колонки на md+ */}
+  <div className=" grid grid-cols-3 md:grid-cols-3 gap-1 md:gap-1 p-0 md:p-0">
         <div className="relative w-full h-48 md:h-64">
           <Image
             src="/uploads/blog-left1.jpg"
