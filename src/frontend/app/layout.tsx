@@ -46,7 +46,7 @@ export default function RootLayout({
       <body className="antialiased flex flex-col min-h-screen">
         <Providers>
           <Header />
-          {children}
+          <main className="mt-16">{children}</main>
           <Footer />
           <NotificationContainer />
         </Providers>

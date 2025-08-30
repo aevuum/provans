@@ -5,7 +5,7 @@ export default function ArtificialFlowersPage() {
       <CatalogPage
         category="artificial-flowers"
         title="Искусственные цветы"
-        description="Яркие и реалистичные искусственные цветы для вашего интерьера."
+  // description="Яркие и реалистичные искусственные цветы для вашего интерьера."
         showCategoryFilter={false}
       />
   );

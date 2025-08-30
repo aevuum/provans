@@ -4,7 +4,7 @@ export default function HomeFragrancesPage() {
   return (
     <CatalogPage
       title="Ароматы для дома"
-      description="Изысканные ароматы для уюта и гармонии вашего пространства."
+  // description="Изысканные ароматы для уюта и гармонии вашего пространства."
       category="home-fragrances"
       showCategoryFilter={false}
     />

@@ -12,7 +12,7 @@ export default function BookendsPage() {
     <CatalogPage
       category="bookends"
       title="Книгодержатели"
-      description="Стильные и практичные книгодержатели для организации вашей домашней библиотеки."
+  // description="Стильные и практичные книгодержатели для организации вашей домашней библиотеки."
       showCategoryFilter={false}
     />
   );
