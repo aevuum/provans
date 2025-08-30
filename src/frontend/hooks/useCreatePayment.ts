@@ -16,7 +16,7 @@ export interface PaymentResponse {
 
 }
 
-// API-функция
+
 const createPayment = async (data: CreatePaymentDto): Promise<PaymentResponse> => {
   const response = await fetch('/api/payment/create', {
     method: 'POST',
@@ -35,7 +35,6 @@ const createPayment = async (data: CreatePaymentDto): Promise<PaymentResponse> =
   return response.json();
 };
 
-// Хук
 export const useCreatePayment = () => {
   return useMutation<PaymentResponse, Error, CreatePaymentDto>({
     mutationFn: createPayment,

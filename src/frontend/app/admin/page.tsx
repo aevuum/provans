@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fa';
 import { IconType } from 'react-icons';
 import type { Session } from 'next-auth';
+import { useGetPaymentsList } from '../../hooks/useGetPayments';
 
 interface AdminStats {
   products: {
@@ -28,6 +29,7 @@ export default function AdminDashboard() {
   const { data: session, status } = useSession();
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const { data, isLoading, isError } = useGetPaymentsList()
   const role = (session as (Session & { user?: { role?: string } }) | null)?.user?.role;
   const isAdmin = role === 'admin';
 
