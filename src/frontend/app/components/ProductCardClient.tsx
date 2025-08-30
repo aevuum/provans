@@ -85,7 +85,7 @@ export function ProductCardClient({
 
 
   return (
-    <div className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col max-w-xs mx-auto">
+    <div className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col max-w-xs mx-auto min-h-[400px]">
       {/* Бейджи */}
       <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
         {isNew && (
