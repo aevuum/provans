@@ -85,7 +85,7 @@ export function ProductCardClient({
 
 
   return (
-    <div className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col max-w-xs mx-auto min-h-[400px]">
+  <div className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col max-w-xs mx-auto min-h-[400px] w-[270px] min-w-[270px] max-w-[270px] min-h-[440px] max-h-[440px]">
       {/* Бейджи */}
       <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
         {isNew && (
@@ -131,7 +131,7 @@ export function ProductCardClient({
       </div>
 
       {/* Изображение товара — больше */}
-      <Link href={`/products/${product.id}`} className="relative aspect-square overflow-hidden bg-gray-50 block">
+  <Link href={`/products/${product.id}`} className="relative aspect-square overflow-hidden bg-gray-50 block w-full h-[270px] min-h-[270px] max-h-[270px]">
         <LazyImage
           src={mainImage}
           alt={product.title}
@@ -159,7 +159,7 @@ export function ProductCardClient({
       </Link>
 
       {/* Информация о товаре */}
-      <div className="p-5 flex flex-col justify-between flex-grow">
+  <div className="p-5 flex flex-col justify-between flex-grow min-h-[170px]">
         <div className="font-semibold text-sm sm:text-base mb-3 text-center min-h-[3rem]">
           <Link href={`/products/${product.id}`} className="line-clamp-2 hover:underline text-gray-800 text-lg">
             {formatProductTitle(product.title)}

@@ -88,7 +88,7 @@ export default function Home() {
   };
 
   return (
-    <main className="font-sans home-hero-shadow">
+    <main className="font-sans home-hero-shadow ">
      
       {/* Hero секция */}
       <Hero />
@@ -170,4 +170,4 @@ export default function Home() {
       <PromotionsContent />
     </main>
   );
-}
+};

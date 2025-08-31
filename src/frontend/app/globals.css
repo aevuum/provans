@@ -119,15 +119,16 @@ img, video {
 
 /* Глобальная тканевая подложка — должна быть под всем контентом */
 .site-fabric-bg::before {
-  content: "";
+  /* content: ""; */
   position: fixed;
   inset: 0;
+  
   pointer-events: none;
-  background-image: url('/uploads/bg-palmm.jpg'), url('/uploads/blurred-green-bg.jpg');
-  background-repeat: no-repeat, no-repeat;
-  background-position: center center, center center;
-  background-size: cover, cover;
-  opacity: 0.06;
+  background-image: url('/uploads/blurred-green-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 2;
   mix-blend-mode: multiply;
   z-index: -1; /* находится под всем контентом */
   transition: opacity 300ms ease;

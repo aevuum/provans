@@ -241,7 +241,7 @@ function CatalogPageInner({
   let showNewCheckbox = true;
 
   if (isDiscount || isNew || isCatalogRoot) {
-    // Акции, новинки, все товары — все категории с подкатегориями (вложенная структура)
+    // Для всех товаров, акций, новинок — всегда показываем категории с подкатегориями
     categoriesList = catalogStructure.map(cat => ({
       label: cat.name,
       value: cat.slug,
@@ -252,8 +252,9 @@ function CatalogPageInner({
     showAllCategoriesOption = true;
     onlySubcategories = false;
     showCategory = true;
-    if (isDiscount) showDiscountCheckbox = false;
-    if (isNew) showNewCheckbox = false;
+    // Категории всегда показываем для каталога, акций, новинок
+    showDiscountCheckbox = !isDiscount;
+    showNewCheckbox = !isNew;
   } else if (isMainCategory) {
     // Для главной категории: отдельный селектор подкатегорий
     categoriesList = [
@@ -275,7 +276,7 @@ function CatalogPageInner({
     showAllCategoriesOption = false;
   }
 
-  // Пропсы для фильтра
+  // Пропсы для фильтра (гарантируем передачу категорий)
   const filterProps = {
     baseUrl,
     showSearch: true,
@@ -285,10 +286,16 @@ function CatalogPageInner({
     open: filtersOpen,
     onClose: () => setFiltersOpen(false),
     showGrid: false,
-    categoriesList,   
+    categoriesList: categoriesList && categoriesList.length > 0 ? categoriesList : catalogStructure.map(cat => ({
+      label: cat.name,
+      value: cat.slug,
+      subcategories: cat.subcategories && cat.subcategories.length > 0
+        ? cat.subcategories.map(sub => ({ label: sub.name, value: sub.slug }))
+        : undefined,
+    })),
     showAllCategoriesOption,
     onlySubcategories,
-    showCategory,
+    showCategory: true,
     showDiscountCheckbox,
     showNewCheckbox,
     showSubcategory: isMainCategory,
