@@ -311,27 +311,29 @@ function CatalogPageInner({
   };
   
   function GridIcon({ size = 4, active = false }) {
-  const box = 20;
-  const cell = box / size - 2;
-  const gap = 2;
-  return (
-    <svg width={24} height={24} viewBox={`0 0 24 24`} fill="none">
-      {[...Array(size)].map((_, row) =>
-        [...Array(size)].map((_, col) => (
-          <rect
-            key={row + '-' + col}
-            x={gap + col * (cell + gap)}
-            y={gap + row * (cell + gap)}
-            width={cell}
-            height={cell}
-            rx="1"
-            fill={active ? "#8B5E3C" : "#D1BFA3"}
-          />
-        ))
-      )}
-    </svg>
-  );
-}
+    // box - размер svg, gap - минимальный отступ между квадратиками
+    const box = 24;
+    const gap = 0.7; // минимальный видимый отступ
+    // Размер квадратика так, чтобы ровно size штук в линию с gap между ними
+    const cell = (box - gap * (size + 1)) / size;
+    return (
+      <svg width={24} height={24} viewBox={`0 0 24 24`} fill="none">
+        {[...Array(size)].map((_, row) =>
+          [...Array(size)].map((_, col) => (
+            <rect
+              key={row + '-' + col}
+              x={gap + col * (cell + gap)}
+              y={gap + row * (cell + gap)}
+              width={cell}
+              height={cell}
+              rx="1"
+              fill={active ? "#8B5E3C" : "#D1BFA3"}
+            />
+          ))
+        )}
+      </svg>
+    );
+  }
   return (
     <div className="w-full px-3 md:px-6 py-6 md:py-10">
       <Breadcrumbs items={breadcrumbs} className="mb-4 md:mb-6" />
