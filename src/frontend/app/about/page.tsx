@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
-      <section className="container mx-auto px-4 pt-10 pb-16">
+      <section className="container mx-auto px-4 pt-10 pb-16 flex flex-col gap-16">
         <h1 className="text-4xl md:text-5xl font-serif font-bold mb-12 text-center">
           О нас!
         </h1>
 
         {/* Первый блок: видео слева + текст */}
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-16">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <video
             src="/video/IMG_6847.MP4"
             autoPlay
@@ -25,19 +25,17 @@ export default function AboutPage() {
             className="rounded-2xl shadow-lg w-full md:w-1/2 h-[220px] md:h-[400px] object-cover"
           />
           <div className="md:w-1/2 w-full text-lg md:text-xl text-gray-800 font-light leading-relaxed">
-            <p className="mb-6">
+            <p className="mb-4">
               Мы ценим эстетику, комфорт и индивидуальность в каждом предмете!
             </p>
             <p>
-              Наш «Прованс бутик» – это тщательно отобранный декор со всего
-              света: вазы, посуда, текстиль, ароматы, фоторамки, статуэтки и
-              многое другое, что наполнит ваш дом уютом и красотой!
+              Наш «Прованс бутик» — это тщательно отобранный декор со всего мира: вазы, посуда, текстиль, ароматы, фоторамки, статуэтки и многое другое, что наполнит ваш дом уютом и красотой.
             </p>
           </div>
         </div>
 
         {/* Второй блок: видео справа + текст */}
-        <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 mb-16">
+        <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
           <video
             src="/video/IMG_6848.MP4"
             autoPlay
@@ -47,12 +45,11 @@ export default function AboutPage() {
             className="rounded-2xl shadow-lg w-full md:w-1/2 h-[220px] md:h-[400px] object-cover"
           />
           <div className="md:w-1/2 w-full text-lg md:text-xl text-gray-800 font-light leading-relaxed">
-            <p className="mb-6">
-              Элегантность Парижа, сдержанность Японии, уют Тосканы и тепло
-              Португалии — в каждой детали.
+            <p className="mb-4">
+              Элегантность Парижа, сдержанность Японии, уют Тосканы и тепло Португалии — в каждой детали.
             </p>
             <p>
-              Превратите дом в отражение своего вкуса.
+              Мы помогаем превратить дом в отражение вашего вкуса, создавая гармоничное пространство с уютной атмосферой.
             </p>
           </div>
         </div>
@@ -71,11 +68,7 @@ export default function AboutPage() {
             </div>
             <div className="md:w-1/2 w-full text-lg md:text-xl text-gray-800 font-light leading-relaxed">
               <p>
-                В летний период наш «Прованс» напоминает цветущий сад. А все
-                потому, что он наполняется ботаническими копиями. Мы напрямую
-                работаем с одним из лучших мировых производителей из
-                Нидерландов. Качество настолько высоко, что их легко можно
-                принять за настоящие растения.
+                В летний период наш «Прованс» напоминает цветущий сад. Мы напрямую работаем с лучшими мировыми производителями искусственных растений из Нидерландов. Качество настолько высоко, что их легко можно принять за настоящие растения.
               </p>
             </div>
           </div>
@@ -91,44 +84,11 @@ export default function AboutPage() {
               />
             </div>
             <div className="md:w-1/2 w-full text-lg md:text-xl text-gray-800 font-light leading-relaxed">
-              <p className="mb-6">
-                А в новый год мы создаем невероятную сказку и пространство, в
-                котором начинаешь верить в чудеса, хочется наслаждаться
-                атмосферой и рассматривать каждую деталь!
+              <p className="mb-4">
+                В Новый год мы создаем невероятную сказку и атмосферу праздника. Елочные игрушки, гирлянды и декоративные композиции наполняют бутик магией и уютом.
               </p>
               <p>
-                Огромное количество елочных игрушек, гирлянд, декоративных фигур
-                и, конечно же, елок и новогодних композиций наполняют наш бутик!
-              </p>
-            </div>
-          </div>
-
-          {/* 3 */}
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="md:w-1/2 w-full">
-              <img
-                src="/uploads/blog-left3.jpg"
-                alt="О нас Provans Decor"
-                className="rounded-2xl w-full h-[260px] md:h-[340px] object-cover shadow-md"
-                draggable={false}
-              />
-            </div>
-            <div className="md:w-1/2 w-full text-lg md:text-xl text-gray-800 font-light leading-relaxed">
-              <p className="mb-6">
-                В нашем бутике вы найдете изящные искусственные цветы и
-                композиции, которые поражают своим сходством с живыми растениями.
-                Они сохраняют свою красоту долгие годы, даря интерьеру свежесть
-                весеннего сада в любое время года.
-              </p>
-              <p className="mb-6">
-                Каждый предмет у нас легко сочетается с другими, помогая
-                создавать гармоничные ансамбли в прованском стиле. Наши
-                консультанты помогут вам подобрать именно те детали, которые
-                сделают ваш дом по-настоящему уникальным и наполненным теплом.
-              </p>
-              <p>
-                Приходите в наш бутик за вдохновением и предметами, которые
-                расскажут вашу историю уюта и красоты без единого слова.
+                Каждая деталь помогает создавать праздничное настроение, которое хочется сохранить в интерьере вашего дома.
               </p>
             </div>
           </div>
@@ -137,6 +97,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
-
-           
