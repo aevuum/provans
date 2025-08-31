@@ -88,7 +88,7 @@ export default function Home() {
   };
 
   return (
-    <main className="font-sans home-hero-shadow ">
+    <main className="font-sans home-hero-shadow site-fabric-bg ">
      
       {/* Hero секция */}
       <Hero />
@@ -110,7 +110,7 @@ export default function Home() {
 
       {/* Новинки */}
       {newProducts.length > 0 && (
-        <section className="container mx-auto px-4 pt-6 pb-16 md:pb-20 bg-mint-50 rounded-2xl">
+        <section className="container mx-auto px-4 pt-6 pb-16 md:pb-20  rounded-2xl">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Новинки</h2>
           </div>
@@ -127,11 +127,11 @@ export default function Home() {
               </svg>
             </button>
 
-            <div
-              id="new-products-scroll"
-              className="flex gap-4 lg:gap-6 overflow-x-auto pb-2 md:pb-4 scroll-smooth scrollbar-hide"
-              style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none' }}
-            >
+              <div
+                id="new-products-scroll"
+                className="flex gap-2 lg:gap-3 overflow-x-auto pb-2 md:pb-4 scroll-smooth scrollbar-hide"
+                style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none' }}
+              >
               {newProducts.map((product) => (
                 <div key={product.id} className="new-card flex-none w-72">
                   <ProductCardClient product={product} isNew />
@@ -168,6 +168,6 @@ export default function Home() {
       </section>
 
       <PromotionsContent />
-    </main>
+      </main>
   );
 };

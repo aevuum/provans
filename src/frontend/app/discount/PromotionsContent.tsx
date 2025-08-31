@@ -40,7 +40,7 @@ export default function PromotionsContent() {
         </button>
         <div
           id="special-products-scroll"
-          className="flex gap-4 lg:gap-6 overflow-x-auto pb-2 md:pb-4 scroll-smooth scrollbar-hide"
+          className="flex gap-2 lg:gap-3 overflow-x-auto pb-2 md:pb-4 scroll-smooth scrollbar-hide"
           style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none' }}
         >
           {specialProducts.map((product) => (

@@ -330,19 +330,20 @@ export default function ReusableFilters({
                 onClick={() => handleGridChange(2)}
                 className={`p-2 rounded-md transition-colors ${gridCols === 2 ? 'bg-[#E5D3B3] text-gray-800' : 'bg-gray-100 hover:bg-gray-200'}`}
               >
-                <FaTh className="text-sm" />
+                <FaTh className="text-2xl" />
               </button>
               <button
-                onClick={() => handleGridChange(3)}
-                className={`p-2 rounded-md transition-colors ${gridCols === 3 ? 'bg-[#E5D3B3] text-gray-800' : 'bg-gray-100 hover:bg-gray-200'}`}
+                className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white text-lg font-medium shadow-sm hover:bg-mint-50 transition-all duration-200"
+                onClick={() => setIsOpen(true)}
               >
-                <FaThLarge className="text-sm" />
+                Фильтры
+                <FaFilter className="w-6 h-6" />
               </button>
               <button
                 onClick={() => handleGridChange(4)}
                 className={`p-2 rounded-md transition-colors ${gridCols === 4 ? 'bg-[#E5D3B3] text-gray-800' : 'bg-gray-100 hover:bg-gray-200'}`}
               >
-                <FaThList className="text-sm" />
+                <FaThList className="text-2xl" />
               </button>
             </div>
           </div>
@@ -385,8 +386,8 @@ export default function ReusableFilters({
 
   // Новый визуал: современный header, больше воздуха, акцентные цвета
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-0 md:p-0 max-w-full">
-      <div className="flex items-center justify-between px-6 py-5 border-b border-gray-200">
+    <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-0 md:p-0 max-w-full">
+      <div className="flex items-center justify-between px-8 py-5 border-b border-gray-200">
         <div className="flex items-center gap-3">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M3 5h18M6 12h12M10 19h4" stroke="#3B4756" strokeWidth="2" strokeLinecap="round"/></svg>
           <span className="text-2xl font-bold text-[#3B4756] tracking-tight">Фильтры</span>

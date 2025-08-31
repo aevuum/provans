@@ -256,7 +256,7 @@ function CatalogPageInner({
     showDiscountCheckbox = !isDiscount;
     showNewCheckbox = !isNew;
   } else if (isMainCategory) {
-    // Для главной категории: отдельный селектор подкатегорий
+    // Для главной категории: показываем все товары из подкатегорий
     categoriesList = [
       {
         label: currentCat.name,
@@ -269,6 +269,15 @@ function CatalogPageInner({
     onlySubcategories = false;
     showCategory = false;
     showAllCategoriesOption = false;
+    // Собираем все товары из подкатегорий
+    if (currentCat.subcategories && currentCat.subcategories.length > 0) {
+      const subSlugs = currentCat.subcategories.map(sub => sub.slug);
+      // Фильтруем продукты по всем подкатегориям этой категории
+      setProducts(prev => prev.filter(p => {
+        const cat = Array.isArray(p.category) ? p.category[0] : p.category;
+        return (cat && (subSlugs.includes(cat) || cat === currentCat.slug));
+      }));
+    }
   } else if (isSubcategory) {
     categoriesList = [];
     onlySubcategories = false;
@@ -341,10 +350,10 @@ function CatalogPageInner({
         {/* Мобильный (sm и меньше): вертикально */}
         <div className="flex flex-col gap-3 sm:hidden">
           <button
-            className="flex items-center gap-3 px-4 py-2 border rounded-md bg-white hover:shadow-sm w-full justify-center"
+            className="flex items-center gap-3 px-4 py-2 rounded-md bg-white hover:shadow-sm w-full justify-center"
             onClick={() => setFiltersOpen(true)}
           >
-            <span className="text-base">Все фильтры</span>
+            <span className="text-base">Фильтры</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18" stroke="#333" strokeWidth="2" strokeLinecap="round"/><path d="M6 12h12" stroke="#333" strokeWidth="2" strokeLinecap="round"/><path d="M10 19h4" stroke="#333" strokeWidth="2" strokeLinecap="round"/></svg>
           </button>
           <ProductSort currentSort={currentSort} onSortChange={handleSortChange} />
@@ -353,10 +362,10 @@ function CatalogPageInner({
         <div className="hidden sm:flex items-center justify-between">
           <div>
             <button
-              className="flex items-center gap-3 px-4 py-2 border rounded-md bg-white hover:shadow-sm"
+              className="flex items-center gap-3 px-4 py-2 rounded-md bg-white hover:shadow-sm"
               onClick={() => setFiltersOpen(true)}
             >
-              <span className="text-base">Все фильтры</span>
+              <span className="text-base">Фильтры</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18" stroke="#333" strokeWidth="2" strokeLinecap="round"/><path d="M6 12h12" stroke="#333" strokeWidth="2" strokeLinecap="round"/><path d="M10 19h4" stroke="#333" strokeWidth="2" strokeLinecap="round"/></svg>
             </button>
           </div>

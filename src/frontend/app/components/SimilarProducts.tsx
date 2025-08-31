@@ -92,7 +92,7 @@ export default function SimilarProducts({ currentProductId, category }: SimilarP
           aria-label="Прокрутить влево"
           type="button"
         >
-          <FaChevronLeft className="text-gray-700 w-5 h-5 sm:w-6 sm:h-6" />
+          <FaChevronLeft className="text-gray-500 w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
         {/* Контейнер с товарами */}
@@ -108,7 +108,7 @@ export default function SimilarProducts({ currentProductId, category }: SimilarP
           ))}
         </div>
 
-        {/* Кнопка вправо (увеличены размеры) */}
+        {/* Кнопка вправо  */}
         <button
           onClick={scrollRight}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-xl rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -116,7 +116,7 @@ export default function SimilarProducts({ currentProductId, category }: SimilarP
           aria-label="Прокрутить вправо"
           type="button"
         >
-          <FaChevronRight className="text-gray-700 w-5 h-5 sm:w-6 sm:h-6" />
+          <FaChevronRight className="text-gray-500 w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       </div>
     </div>

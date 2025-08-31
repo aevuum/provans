@@ -291,7 +291,7 @@ export default function ProductDetailPage() {
                 </div>
               </div>
 
-              {/* Убраны старые большие кнопки */}
+ 
             </div>
 
             {/* Характеристики */}

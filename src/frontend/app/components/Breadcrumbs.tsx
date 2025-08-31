@@ -70,10 +70,22 @@ export function generateCatalogBreadcrumbs(category?: string, productTitle?: str
   const breadcrumbs: BreadcrumbItem[] = [];
 
   // Добавляем каталог
-  breadcrumbs.push({
-    name: 'Каталог',
-    href: '/catalog/all'
-  });
+    breadcrumbs.push({
+      name: 'Главная',
+      href: '/'
+    });
+    if (category === 'promotions') {
+      breadcrumbs.push({ name: 'Акции', href: '/catalog/promotions' });
+      return breadcrumbs;
+    }
+    if (category === 'new') {
+      breadcrumbs.push({ name: 'Новинки', href: '/catalog/new' });
+      return breadcrumbs;
+    }
+    breadcrumbs.push({
+      name: 'Каталог',
+      href: '/catalog/all'
+    });
 
   // Добавляем категорию если есть
   if (category) {

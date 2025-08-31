@@ -117,20 +117,24 @@ img, video {
 /* Подключение дизайн-системы */
 @import '../styles/design-system.css';
 
+.site-fabric-bg {
+  /* position: relative; */
+  z-index: 0;
+}
 /* Глобальная тканевая подложка — должна быть под всем контентом */
 .site-fabric-bg::before {
-  /* content: ""; */
+  content: "";
   position: fixed;
+  margin-top: -100px;
   inset: 0;
-  
   pointer-events: none;
   background-image: url('/uploads/blurred-green-bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 2;
+  opacity: 0.5; /* или нужная тебе прозрачность */
   mix-blend-mode: multiply;
-  z-index: -1; /* находится под всем контентом */
+  z-index: -1;
   transition: opacity 300ms ease;
 }
 

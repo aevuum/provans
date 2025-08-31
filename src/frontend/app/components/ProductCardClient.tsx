@@ -85,11 +85,11 @@ export function ProductCardClient({
 
 
   return (
-  <div className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col max-w-xs mx-auto min-h-[400px] w-[270px] min-w-[270px] max-w-[270px] min-h-[440px] max-h-[440px]">
+  <div className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col w-full min-h-[400px]">
       {/* Бейджи */}
       <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
         {isNew && (
-          <span className="bg-gradient-to-r from-emerald-500 to-emerald-700 text-white text-xs px-3 py-1.5 rounded-full uppercase font-bold tracking-wide ring-1 ring-white/60">
+          <span className="bg-gradient-to-r from-emerald-500 to-emerald-700 text-white text-xs px-3 py-1.5 rounded-full uppercase font-bold tracking-wide ">
             NEW
           </span>
         )}
