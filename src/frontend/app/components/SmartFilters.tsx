@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FaFilter, FaChevronDown, FaChevronUp, FaTimes } from 'react-icons/fa';
-import { Product } from '../../types';
+import { Product } from '../../types/index';
 
 interface SmartFiltersProps {
   products: Product[];

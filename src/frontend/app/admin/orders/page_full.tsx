@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { FaEye, FaTrash, FaSearch, FaFilter } from 'react-icons/fa';
 import Link from 'next/link';
-import { Order, OrderStatus } from '../../../types';
+import { Order, OrderStatus } from '../../../types/index';
 
 export default function AdminOrdersPage() {
   const { data: session } = useSession();

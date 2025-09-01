@@ -8,7 +8,7 @@ import  SectionBlog from './components/SectionBlog';
 import { SafeImage } from '../components/SafeImage';
 import Hero from './components/Hero';
 import ProductCardClient from './components/ProductCardClient';
-import { Product } from '../types';
+import { Product } from '../types/index';
 import PromotionsContent from './discount/PromotionsContent';
 
 const CategoryCard = ({

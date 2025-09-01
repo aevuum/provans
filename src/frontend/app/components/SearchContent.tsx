@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation';
 
 import { useEffect, useMemo, useState } from 'react';
 import ProductCardClient from './ProductCardClient';
-import { Product } from '../../types';
+import { Product } from '../../types/index';
 interface ApiProduct { id: number | string; title: string; price: number; image?: string | null; images?: string[]; category?: string | null; }
 
 export default function SearchContent() {

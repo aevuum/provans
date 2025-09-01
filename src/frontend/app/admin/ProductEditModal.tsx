@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Product } from '../../types';
 import { useAppDispatch } from '../../lib/hooks';
 import { confirmProduct, updateProduct } from '../../lib/features/products/productsSlice';
+import { Product } from '../../types/index';
 
 
 interface Props {

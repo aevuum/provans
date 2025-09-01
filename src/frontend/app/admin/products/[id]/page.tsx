@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { Product } from '../../../../types'
+import { Product } from '../../../../types/index'
 
 interface PageProps {
 	params: Promise<{ id: string }>

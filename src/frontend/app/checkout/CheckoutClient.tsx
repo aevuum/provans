@@ -1,6 +1,6 @@
 'use client';
 
-import { getProductImage } from '../../types';
+import { getProductImage } from '../../types/index';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useAppSelector } from '../../lib/hooks';

@@ -6,7 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { FaHeart, FaRegHeart, FaShoppingBag, FaCheck } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '../../../lib/hooks';
-import { getProductImage, Product } from '../../../types';
+import { getProductImage, Product } from '../../../types/index';
 import { addToCart, removeFromCart } from '../../../lib/features/cart/cartSlice';
 import { addToFavorites, removeFromFavorites } from '../../../lib/features/favorites/favoritesSlice';
 import { Breadcrumbs, generateCatalogBreadcrumbs } from '@/components/Breadcrumbs';

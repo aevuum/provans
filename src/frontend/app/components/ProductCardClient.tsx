@@ -6,7 +6,7 @@ import { FaHeart, FaRegHeart, FaShoppingBag, FaCheck, FaEye, FaEdit } from 'reac
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, type ReactNode } from 'react';
-import { formatProductTitle, Product } from '../../types';
+import { formatProductTitle, Product } from '../../types/index';
 import { useAppDispatch, useAppSelector } from '../../lib/hooks';
 import { addToCart, removeFromCart } from '../../lib/features/cart/cartSlice';
 import { toggleFavorite } from '../../lib/features/favorites/favoritesSlice';

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ProductCardAdmin from '../components/ProductCardAdmin';
 import ProductEditModal from './ProductEditModal';
 import { useAppSelector } from '../../lib/hooks';
-import { Product } from '../../types';
+import { Product } from '../../types/index';
 
 export default function ProductList() {
   const products = useAppSelector((state) => state.products.items);

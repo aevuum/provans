@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { CreateOrderData } from '../../../types';
+import { CreateOrderData } from '../../../types/index';
 import { prisma } from '../../../lib/prisma';
 import { sendAdminOrderNotification, sendOrderConfirmation } from '../../../lib/email';
 

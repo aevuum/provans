@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { SafeImage } from '../../components/SageImage';
-import { Product } from '../../../types';
+import { Product } from '../../../types/index';
 
 
 const CATEGORIES = [

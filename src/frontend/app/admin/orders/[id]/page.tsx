@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { FaArrowLeft, FaPrint, FaEnvelope } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Order, OrderStatus } from '../../../../types';
+import { Order, OrderStatus } from '../../../../types/index';
 
 export default function AdminOrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();

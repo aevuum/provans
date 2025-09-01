@@ -1,6 +1,6 @@
 'use client';
 
-import { Product } from "../../types";
+import { Product } from "../../types/index";
 
 
 export default function ProductCardAdmin({ product, onEdit }: { product: Product, onEdit: () => void }) {

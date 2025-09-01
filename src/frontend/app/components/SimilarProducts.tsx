@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ProductCardClient from './ProductCardClient';
-import { Product } from '../../types';
+import { Product } from '../../types/index';
 
 interface SimilarProductsProps {
   currentProductId: number;

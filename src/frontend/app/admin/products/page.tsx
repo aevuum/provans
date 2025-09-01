@@ -15,7 +15,7 @@ import {
   FaClock
 } from 'react-icons/fa';
 import { useProducts } from '../../../lib/hooks/useProducts';
-import { Product } from '../../../types';
+import { Product } from '../../../types/index';
 import Pagination from '@/components/Pagination';
 
 
