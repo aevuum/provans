@@ -6,7 +6,7 @@ import LoadingSpinner from './LoadingSpinner';
 import { ProductSort, SortOption } from './ProductSort';
 import Pagination from './Pagination';
 import { Breadcrumbs, generateCatalogBreadcrumbs } from './Breadcrumbs';
-import { Product } from '../../types';
+import { Product } from '../../types/index';
 import ReusableFilters from './ReusableFilters';
 import { catalogStructure } from '../../lib/catalogStructure';
 import ProductCardClient from './ProductCardClient';
