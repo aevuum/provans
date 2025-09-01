@@ -1,6 +1,6 @@
 // lib/features/cart/cartSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../../../types';
+import { Product } from '../../../types/index';
 
 interface CartItem extends Product {
   count: number;
