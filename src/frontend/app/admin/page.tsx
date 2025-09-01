@@ -11,11 +11,13 @@ import {
   FaList,
   FaShoppingCart,
   FaWarehouse,
-  FaUpload
+  FaUpload,
+  FaCreditCard,
+  FaCalendar
 } from 'react-icons/fa';
 import { IconType } from 'react-icons';
 import type { Session } from 'next-auth';
-import { useGetPaymentsList } from '../../hooks/useGetPayments';
+import { useGetPaymentsList, PaymentItem } from '../../hooks/useGetPayments';
 
 interface AdminStats {
   products: {
@@ -29,7 +31,7 @@ export default function AdminDashboard() {
   const { data: session, status } = useSession();
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [loading, setLoading] = useState(true);
-  const { data, isLoading, isError } = useGetPaymentsList()
+  const { data: paymentsData, isLoading: paymentsLoading, isError: paymentsError } = useGetPaymentsList();
   const role = (session as (Session & { user?: { role?: string } }) | null)?.user?.role;
   const isAdmin = role === 'admin';
 
@@ -130,6 +132,62 @@ export default function AdminDashboard() {
           </div>
         ) : null}
 
+        {/* Payments Section */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-2xl font-bold text-gray-900">Последние платежи</h2>
+            <Link
+              href="/admin/payments"
+              className="text-sm text-[#B8835A] hover:text-[#9d6e47] font-medium"
+            >
+              Посмотреть все
+            </Link>
+          </div>
+          
+          {paymentsLoading ? (
+            <PaymentsLoading />
+          ) : paymentsError ? (
+            <div className="bg-white rounded-lg shadow p-6 text-center text-gray-500">
+              Ошибка загрузки платежей
+            </div>
+          ) : paymentsData?.items && paymentsData.items.length > 0 ? (
+            <div className="bg-white rounded-lg shadow overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        ID
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Сумма
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Карта
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Статус
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Дата
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {paymentsData.items.map((payment) => (
+                      <PaymentRow key={payment.id} payment={payment} />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-white rounded-lg shadow p-6 text-center text-gray-500">
+              Платежей не найдено
+            </div>
+          )}
+        </div>
+
         {/* Management Actions */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <ActionCard
@@ -184,6 +242,77 @@ export default function AdminDashboard() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Компонент строки платежа
+function PaymentRow({ payment }: { payment: PaymentItem }) {
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'succeeded':
+        return 'bg-green-100 text-green-800';
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'canceled':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case 'succeeded':
+        return 'Успешно';
+      case 'pending':
+        return 'В обработке';
+      case 'canceled':
+        return 'Отменен';
+      default:
+        return status;
+    }
+  };
+
+  return (
+    <tr className="hover:bg-gray-50">
+      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+        {payment.id}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+        {payment.amount.value} {payment.amount.currency}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+        {payment.payment_method?.card ? (
+          <div className="flex items-center">
+            <FaCreditCard className="mr-2 text-gray-400" />
+            **** {payment.payment_method.card.last4}
+          </div>
+        ) : (
+          'Не указана'
+        )}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(payment.status)}`}>
+          {getStatusText(payment.status)}
+        </span>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+        <div className="flex items-center">
+          <FaCalendar className="mr-2 text-gray-400" />
+          {formatDate(payment.created_at)}
+        </div>
+      </td>
+    </tr>
   );
 }
 
@@ -287,6 +416,23 @@ function StatsLoading() {
           </div>
         </div>
       ))}
+    </div>
+  );
+}
+
+function PaymentsLoading() {
+  return (
+    <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="animate-pulse">
+        <div className="border-b border-gray-200">
+          <div className="px-6 py-3 bg-gray-50 h-12"></div>
+        </div>
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="border-b border-gray-200">
+            <div className="px-6 py-4 h-16"></div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
