@@ -1,0 +1,27 @@
+[services]
+  [services.backend]
+    rootDir = "./src/backend"
+    [services.backend.build]
+      builder = "DOCKERFILE"
+      dockerfilePath = "./Dockerfile"
+    [services.backend.deploy]
+      numReplicas = 1
+      startCommand = "npm run start:prod"
+
+  [services.frontend]
+    rootDir = "./src"
+    [services.frontend.build]
+      builder = "DOCKERFILE"
+      dockerfilePath = "./Dockerfile"
+    [services.frontend.deploy]
+      numReplicas = 1
+      startCommand = "npm start"
+      [services.frontend.env]
+        PORT = "3000"
+
+[plugins]
+  [plugins.postgres]
+    enabled = true
+
+[variables]
+  DATABASE_URL = "${postgres.DATABASE_URL}"
