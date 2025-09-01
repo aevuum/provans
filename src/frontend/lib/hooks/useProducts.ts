@@ -1,6 +1,6 @@
 // lib/hooks/useProducts.ts
 import { useState, useEffect, useCallback } from 'react';
-import { FilterOptions, Product, ProductFilters } from '../../types';
+import { FilterOptions, Product, ProductFilters } from '../../types/index';
 
 // Хук для работы с продуктами с фильтрацией и пагинацией
 export function useProducts(initialFilters: ProductFilters = {}) {
