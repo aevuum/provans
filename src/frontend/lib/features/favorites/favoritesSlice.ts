@@ -1,6 +1,6 @@
 // lib/features/favorites/favoritesSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../../../types';
+import { Product } from '../../../types/index';
 
 interface FavoritesState {
   items: Product[];
