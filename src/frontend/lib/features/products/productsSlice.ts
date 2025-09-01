@@ -1,7 +1,7 @@
 // lib/features/products/productsSlice.ts
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Product, ProductFilters } from '../../../types';
+import { Product, ProductFilters } from '../../../types/index';
 
 interface ProductsState {
   items: Product[];
