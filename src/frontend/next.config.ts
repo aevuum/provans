@@ -1,10 +1,6 @@
 import type { NextConfig } from 'next';
-import path from 'path';
 
 const nextConfig: NextConfig = {
-  // Ensure Next traces files from the repository root when multiple lockfiles
-  // exist so client module ids in the RSC manifest are not absolute paths.
-  outputFileTracingRoot: path.resolve(__dirname, '..', '..'),
   images: {
     remotePatterns: [
       {
@@ -19,12 +15,18 @@ const nextConfig: NextConfig = {
         port: '3001',
         pathname: '/**',
       },
+      // Добавьте для production
+      {
+        protocol: 'https',
+        hostname: '**.up.railway.app',
+        pathname: '/**',
+      },
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24 * 7,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    unoptimized: false,
+    unoptimized: process.env.NODE_ENV === 'production' ? false : true,
     dangerouslyAllowSVG: true,
   },
 
@@ -55,11 +57,35 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  // Исправленные rewrites - только для development
   async rewrites() {
+    const isDevelopment = process.env.NODE_ENV === 'development';
+    
+    if (isDevelopment) {
+      return [
+        {
+          source: '/api/:path*',
+          destination: 'http://localhost:3001/api/:path*',
+        },
+      ];
+    }
+    
+    // Для production API запросы идут напрямую к тому же домену
+    // или используйте environment variable
+    return [];
+  },
+
+  // Добавьте для правильной работы с API routes в production
+  async headers_request() {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://backend:3001/api/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' },
+          { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
+        ],
       },
     ];
   },
