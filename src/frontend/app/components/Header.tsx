@@ -16,7 +16,7 @@ import {
 import { useAppSelector, useAppDispatch } from '../../lib/hooks';
 import { useRouter, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { getProductImage } from '../../types';
+import { getProductImage } from '../../types/index';
 import AuthModal from './AuthModal';
 import { SearchBar } from './SearchBar';
 import { toggleSearch } from '../../lib/features/ui/uiSlice';
