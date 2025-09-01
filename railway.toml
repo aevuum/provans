@@ -6,7 +6,10 @@
       dockerfilePath = "./Dockerfile"
     [services.backend.deploy]
       numReplicas = 1
-      startCommand = "npm run start:prod"
+      startCommand = "node dist/main.js"
+    [services.backend.env]
+      PORT = "3001"
+      DATABASE_URL = "${postgres.DATABASE_URL}"
 
   [services.frontend]
     rootDir = "./src"
@@ -16,12 +19,10 @@
     [services.frontend.deploy]
       numReplicas = 1
       startCommand = "npm start"
-      [services.frontend.env]
-        PORT = "3000"
+    [services.frontend.env]
+      PORT = "3000"
+      NEXT_PUBLIC_API_URL = "https://${RAILWAY_PUBLIC_DOMAIN}"
 
 [plugins]
   [plugins.postgres]
     enabled = true
-
-[variables]
-  DATABASE_URL = "${postgres.DATABASE_URL}"
