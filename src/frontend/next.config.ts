@@ -15,7 +15,6 @@ const nextConfig: NextConfig = {
         port: '3001',
         pathname: '/**',
       },
-      // Добавьте для production
       {
         protocol: 'https',
         hostname: '**.up.railway.app',
