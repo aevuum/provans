@@ -56,8 +56,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
-  // Исправленные rewrites - только для development
   async rewrites() {
     const isDevelopment = process.env.NODE_ENV === 'development';
     
@@ -69,24 +67,7 @@ const nextConfig: NextConfig = {
         },
       ];
     }
-    
-    // Для production API запросы идут напрямую к тому же домену
-    // или используйте environment variable
     return [];
-  },
-
-  // Добавьте для правильной работы с API routes в production
-  async headers_request() {
-    return [
-      {
-        source: '/api/:path*',
-        headers: [
-          { key: 'Access-Control-Allow-Origin', value: '*' },
-          { key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' },
-          { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
-        ],
-      },
-    ];
   },
 };
 
