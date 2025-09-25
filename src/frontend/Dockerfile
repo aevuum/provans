@@ -1,14 +1,15 @@
-# Dockerfile.frontend
+# STAGE 1: Build
 FROM node:20-alpine AS builder
 WORKDIR /app
-COPY src/frontend/package*.json ./
+COPY package*.json ./
 RUN npm ci --only=production && npm cache clean --force
-COPY src/frontend/ .
+COPY . .
 RUN npm run build
 
+# STAGE 2: Run
 FROM node:20-alpine AS runner
 WORKDIR /app
-COPY --from=builder /app/package*.json ./
+COPY package*.json ./
 RUN npm ci --only=production && npm cache clean --force
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
