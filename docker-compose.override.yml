@@ -1,0 +1,6 @@
+services:
+  frontend:
+    env_file:
+      - ./src/frontend/.env
+    ports:
+      - "3002:3000"

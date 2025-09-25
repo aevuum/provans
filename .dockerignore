@@ -1,0 +1,48 @@
+# Node
+node_modules
+**/node_modules
+npm-debug.log
+yarn-error.log
+.pnp
+.pnpm-debug.log
+.vscode
+.git
+.gitignore
+.env
+.env.local
+.env.*.local
+.DS_Store
+.DS_Store?
+
+# Build outputs
+dist
+build
+.out
+.next
+.next/**
+
+# Logs
+logs
+*.log
+coverage
+
+# OS / editor
+*.sqlite
+*.db
+*.tgz
+
+# Exclude large/static assets and backups from build context
+public-old
+archive
+archive/**
+docs/backups
+new-product.json
+new-product.backup*.json
+**/*.backup*.json
+
+# Docker / CI
+Dockerfile*
+docker-compose*.yml
+
+# Optional: exclude local scripts or generated files
+scripts/**/*.tmp

@@ -1,0 +1,11 @@
+.env
+.env.local
+.env.*.local
+.DS_Store
+
+# Исключаем билд артефакты Next.js (не коммитить чтобы не тянуть serverless функции в репо)
+.next
+out
+
+# Архив вынесенных неиспользуемых изображений
+public/_unused_photos

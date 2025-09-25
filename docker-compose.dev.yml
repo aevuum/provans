@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./src/frontend/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/frontend:/app/src/frontend
+      - /app/src/frontend/node_modules 
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3001
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/mydb
+    command: npm run dev
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: .  # Build from root directory
+      dockerfile: ./src/backend/Dockerfile  # Path to Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./src/backend:/app/src/backend  # Match WORKDIR in Dockerfile
+      - ./src/prisma:/app/src/prisma    # Also mount prisma folder
+      - /app/src/backend/node_modules   # Exclude node_modules from host
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/mydb
+      - PORT=3001
+    command: npm run start:dev
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=admin
+      - POSTGRES_USER=secret
+      - POSTGRES_PASSWORD=provans
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
